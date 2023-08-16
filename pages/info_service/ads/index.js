@@ -23,7 +23,7 @@ const page = () => {
   const [pageNumberLimit, setpageNumberLimit] = useState(5);
   const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
-  const { t } = useTranslation("index");
+  const { t } = useTranslation("common");
   const { locale } = useRouter();
 
   const getData = async () => {
@@ -215,10 +215,10 @@ export async function getStaticProps({ locale }) {
   };
 }
 
-export async function getStaticPaths(context) {
-  return {
-    paths: [],
-    fallback: true,
-  };
-}
+// export async function getStaticPaths(context) {
+//   return {
+//     paths: [],
+//     fallback: true,
+//   };
+// }
 export default page;
