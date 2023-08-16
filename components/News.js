@@ -8,7 +8,7 @@ import axios from "../http";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 
-const News = ({ news }) => {
+const News = () => {
   const { locale } = useRouter();
   const { t } = useTranslation("common");
   const [mainNews, setmainNews] = useState([]);
@@ -18,11 +18,11 @@ const News = ({ news }) => {
     const response = await axios.get(
       `/${locale}/api/information_service/newsForHomePage/?submenu_slug=/info_service/news`
     );
-    const mainNews = news[0];
+    const mainNews = response.data[0];
     const image = mainNews.images[0];
     setmainNews(mainNews);
     setImage(image);
-    const secondaryNewsList = news.slice(1);
+    const secondaryNewsList = response.data.slice(1);
     setsecondaryNewsList(secondaryNewsList);
     console.log(response, "news");
   };

@@ -15,7 +15,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../../next-i18next.config";
 
 const page = () => {
-  const { t } = useTranslation("index");
+  const { t } = useTranslation("common");
   const { locale } = useRouter();
   const [title, setTitle] = useState();
   const [submenu, setSubmenu] = useState([]);

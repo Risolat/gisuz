@@ -164,4 +164,15 @@ const NavbarBottom = () => {
   );
 };
 
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(
+        locale,
+        ["common", "index", "navbar"],
+        i18nextConfig
+      )),
+    },
+  };
+}
 export default NavbarBottom;
