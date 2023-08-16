@@ -25,7 +25,13 @@ const Footer = () => {
               className="mr-[16px]"
             />
             <p className="font-roboto text-white font-bold text-[1.15em] xl:text-[1.5em]">
-              {t("navbar.ozcom-short")}
+              {locale === "uz"
+                ? "“OʻZKOMNAZORAT” INSPEKSIYASI"
+                : locale === "ru"
+                ? "ИНСПЕКЦИЯ «УЗКОМНАЗОРАТ"
+                : locale === "uzb"
+                ? "“ЎЗКОМНАЗОРАТ” ИНСПEКЦИЯСИ"
+                : "INSPECTION “UZKOMNAZORAT"}
             </p>
           </div>
           <div className="flex items-center justify-center flex-wrap">
@@ -33,25 +39,59 @@ const Footer = () => {
               <input
                 className="outline-none bg-transparent w-[240px] xl:w-[300px] placeholder:text-[0.89em] text-[1em] px-[12px] text-white focus:ring-offset-1 focus:ring-2 focus:ring-[#1D1A49] focus:z-[22] placeholder:text-[#A2A0B3] py-[10px]"
                 type="email"
-                placeholder={t("form.appeal-placeholder")}
+                placeholder={
+                  locale === "uz"
+                    ? "Sizning elektron pochta manzilingiz"
+                    : locale === "ru"
+                    ? "Ваша электронная почта"
+                    : locale === "uzb"
+                    ? "Сизнинг электрон почта манзилингиз"
+                    : "Your email"
+                }
               />
               <button className="px-[16px] py-[10px] mr-[25px] hover:bg-white hover:text-[#24224E]">
-                {t("button.subscribe")}
+                {locale === "uz"
+                  ? "Obuna boʻlish"
+                  : locale === "ru"
+                  ? "Подписаться"
+                  : locale === "uzb"
+                  ? "Обуна бўлиш"
+                  : "Subscribe"}
               </button>
             </form>
             <Link
               href="/interactive_service/appeal"
               className="px-[21px] py-[10px] hover:text-[#24224E] hover:bg-white text-white border border-white bg-[#171142]"
             >
-              {t("button.send-appeal")}
+              {locale === "uz"
+                ? "Murojaat yuborish"
+                : locale === "ru"
+                ? "Отправить обращение"
+                : locale === "uzb"
+                ? "Мурожаат юбориш"
+                : "Send an appeal"}
             </Link>
           </div>
         </div>
         <div className="flex lg:flex-row justify-between flex-wrap flex-col py-[20px] text-[#A2A0B3]">
           <div className="basis-2/6 px-[10px]">
-            <p className="pb-[16px]">{t("footer.copyright")}</p>
+            <p className="pb-[16px]">
+              {locale === "uz"
+                ? "Copyright © 2019 - 2022 Oʻzbekiston Respublikasi Axborotlashtirish va telekommunikatsiyalar sohasida nazorat boʻyicha davlat inspeksiyasi rasmiy veb-sayti. Mualliflik huquqlari himoyalangan"
+                : locale === "ru"
+                ? "Copyright © 2019 - 2022 Официальный веб-сайт Государственной инспекции по контролю в сфере информатизации и телекоммуникаций Республики Узбекистан. Авторские права защищены"
+                : locale === "uzb"
+                ? "Copyright © 2019 - 2022 Ўзбекистон Республикаси Ахборотлаштириш ва телекоммуникациялар соҳасида назорат бўйича давлат инспексияси расмий веб-сайти. Муаллифлик ҳуқуқлари ҳимояланган"
+                : "Copyright © 2019 - 2022 Official website of the State Inspection on Control in the Field of Information and Telecommunications of the Republic of Uzbekistan."}
+            </p>
             <p>
-              {t("footer.remind")}{" "}
+              {locale === "uz"
+                ? "Veb-saytdan olingan maʼlumotlar chop etilganda veb-saytga havola qilish majburiy"
+                : locale === "ru"
+                ? "При использовании материалов ссылка на веб-сайт обязательна"
+                : locale === "uzb"
+                ? "Веб-сайтдан олинган маълумотлар чоп этилганда веб-сайтга ҳавола қилиш мажбурий"
+                : "When using materials, a link to the website is required"}{" "}
               <Link
                 className="text-[0.875em] hover:text-blue-500 hover:underline"
                 href="https://creativecommons.org/licenses/by/4.0/legalcode"
@@ -63,22 +103,48 @@ const Footer = () => {
           </div>
           <div className="basis-2/6 px-[10px]">
             <p>
-              {t("footer.attention-text")}{" "}
+              {locale === "uz"
+                ? "Diqqat! Agar siz matnda xatoliklarni aniqlasangiz, ularni belgilab, ma’muriyatni xabardor qilish uchun"
+                : locale === "ru"
+                ? "Внимание! Если Вы нашли ошибку в тексте, выделите её и нажмите"
+                : locale === "uzb"
+                ? "Диққат! Агар сиз матнда хатоликларни аниқласангиз, уларни белгилаб, маъмуриятни хабардор қилиш учун"
+                : "Attention! If you find an error in the text, select it and press"}{" "}
               <span className="text-white text-[15px] font-bold">
                 Ctrl+Enter
               </span>{" "}
-              {t("footer.press-button")}
+              {locale === "uz"
+                ? "tugmalarini bosing"
+                : locale === "ru"
+                ? "для уведомления администрации"
+                : locale === "uzb"
+                ? "тугмаларини босинг"
+                : "to notify the administration"}
             </p>
             <Link
               href="https://old1.gis.uz/uz"
               target="_blank"
               className="inline-block mt-[30px] bg-[#171142] shadow-md hover:shadow-2xl transition duration-150 px-[16px] py-[4px] hover-opacity-40 text-[#A2A0B3]"
             >
-              {t("other.site-old-version")}
+              {locale === "uz"
+                ? "Saytning eski talqini"
+                : locale === "ru"
+                ? "Старая версия сайта"
+                : locale === "uzb"
+                ? "Сайтнинг эски талқини"
+                : "Old site version"}
             </Link>
           </div>
           <div className="basis-2/6 pl-[10px] flex flex-col items-end">
-            <p className="pb-[16px] text-right">{t("footer.remind")}</p>
+            <p className="pb-[16px] text-right">
+              {locale === "uz"
+                ? "Diqqat! Agar siz matnda xatoliklarni aniqlasangiz, ularni belgilab, ma’muriyatni xabardor qilish uchun"
+                : locale === "ru"
+                ? "Внимание! Если Вы нашли ошибку в тексте, выделите её и нажмите"
+                : locale === "uzb"
+                ? "Диққат! Агар сиз матнда хатоликларни аниқласангиз, уларни белгилаб, маъмуриятни хабардор қилиш учун"
+                : "Attention! If you find an error in the text, select it and press"}
+            </p>
             <div className="flex items-center">
               <Link
                 target="_blank"
@@ -87,7 +153,16 @@ const Footer = () => {
               >
                 Technocorp
               </Link>
-              <p> {t("footer.created-by")}</p>
+              <p>
+                {" "}
+                {locale === "uz"
+                  ? "tomonidan ishlab chiqilgan"
+                  : locale === "ru"
+                  ? "Разработано"
+                  : locale === "uzb"
+                  ? "томонидан ишлаб чиқилган"
+                  : "Developed by"}
+              </p>
             </div>
             <Link
               href="https://www.uz/ru/res/visitor/index?id=1445"

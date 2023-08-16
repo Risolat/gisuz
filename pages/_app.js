@@ -6,6 +6,9 @@ import { appWithTranslation, useTranslation } from "next-i18next";
 import { Inter, Montserrat } from "next/font/google";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
+import CTRL from "../components/ctrl";
+import Connect from "../components/Connect";
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -108,6 +111,8 @@ const App = ({ Component, pageProps }) => {
         <script src="//code.jivo.ru/widget/uP3hSgxG8p" async></script>
       </Head>
       <Navbar />
+      <Connect />
+      <CTRL />
       <Component {...pageProps} />
       <Footer />
     </div>

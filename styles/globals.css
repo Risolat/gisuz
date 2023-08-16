@@ -411,3 +411,13 @@ strong {
   margin-top: 0;
   padding: 5px !important;
 }
+.social_button{
+  @apply p-[15px] rounded-full border-[2px] border-white hover:border-[#3D8DFF]
+}
+
+.brand-icon{
+ @apply text-white h-[30px] w-[30px]
+}
+.social_button:hover .socialMtooltip{
+  display: block;
+}

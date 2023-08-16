@@ -87,10 +87,22 @@ const NavbarBottom = () => {
               />
               <div className="2xl:pl-[16px] pl-[10px]">
                 <h1 className="title-gradient text-[20px] xl:text-[24px] leading-8 font-bold">
-                  {t("navbar.ozcom")}
+                  {locale === "uz"
+                    ? "O‘ZKOMNAZORAT"
+                    : locale === "ru"
+                    ? "УЗКОМНАЗОРАТ"
+                    : locale === "uzb"
+                    ? "ЎЗКОМНАЗОРАТ"
+                    : "INSPECTION"}
                 </h1>
                 <p className="hidden xl:block max-w-[280px] title-gradient text-[12px] font-normal leading-4">
-                  {t("navbar.ozcom-full")}
+                  {locale === "uz"
+                    ? "Raqamli texnologiyalar vazirligi huzuridagi Axborotlashtirish va telekommunikatsiyalar sohasida nazorat inspeksiyasi"
+                    : locale === "ru"
+                    ? "Инспекция по контролю в сфере информатизации и телекоммуникаций при Министерстве цифровых технологий"
+                    : locale === "uzb"
+                    ? "Рақамли технологиялар вазирлиги ҳузуридаги Ахборотлаштириш ва телекоммуникациялар соҳасида назорат инспекцияси"
+                    : "Inspection for Control in the Field of Information and Telecommunications under the Ministry of Digital Technologies of the Republic of Uzbekistan"}
                 </p>
               </div>
             </Link>

@@ -231,10 +231,22 @@ const NavbarTop = () => {
             />
             <div className="2xl:pl-[16px] pl-[10px]">
               <h1 className="title-gradient text-[20px] xl:text-[24px] leading-8 font-bold">
-                {t("navbar.ozcom")}
+                {locale === "uz"
+                  ? "O‘ZKOMNAZORAT"
+                  : locale === "ru"
+                  ? "УЗКОМНАЗОРАТ"
+                  : locale === "uzb"
+                  ? "ЎЗКОМНАЗОРАТ"
+                  : "INSPECTION"}
               </h1>
               <p className="hidden xl:block max-w-[284px] title-gradient text-[14px] font-normal leading-4">
-                {t("navbar.ozcom-full")}
+                {locale === "uz"
+                  ? "Raqamli texnologiyalar vazirligi huzuridagi Axborotlashtirish va telekommunikatsiyalar sohasida nazorat inspeksiyasi"
+                  : locale === "ru"
+                  ? "Инспекция по контролю в сфере информатизации и телекоммуникаций при Министерстве цифровых технологий"
+                  : locale === "uzb"
+                  ? "Рақамли технологиялар вазирлиги ҳузуридаги Ахборотлаштириш ва телекоммуникациялар соҳасида назорат инспекцияси"
+                  : "Inspection for Control in the Field of Information and Telecommunications under the Ministry of Digital Technologies of the Republic of Uzbekistan"}
               </p>
             </div>
           </Link>
@@ -264,10 +276,22 @@ const NavbarTop = () => {
                 <Image src={logo} alt="logo" className="" />
                 <div className="pl-[16px]">
                   <h1 className="title-gradient text-[20px] text-[24px] leading-8 font-bold">
-                    {t("navbar.ozcom")}
+                    {locale === "uz"
+                      ? "O‘ZKOMNAZORAT"
+                      : locale === "ru"
+                      ? "УЗКОМНАЗОРАТ"
+                      : locale === "uzb"
+                      ? "ЎЗКОМНАЗОРАТ"
+                      : "INSPECTION"}
                   </h1>
                   <p className="max-w-[284px] title-gradient text-[14px] font-normal leading-4">
-                    {t("navbar.ozcom-full")}
+                    {locale === "uz"
+                      ? "Raqamli texnologiyalar vazirligi huzuridagi Axborotlashtirish va telekommunikatsiyalar sohasida nazorat inspeksiyasi"
+                      : locale === "ru"
+                      ? "Инспекция по контролю в сфере информатизации и телекоммуникаций при Министерстве цифровых технологий"
+                      : locale === "uzb"
+                      ? "Рақамли технологиялар вазирлиги ҳузуридаги Ахборотлаштириш ва телекоммуникациялар соҳасида назорат инспекцияси"
+                      : "Inspection for Control in the Field of Information and Telecommunications under the Ministry of Digital Technologies of the Republic of Uzbekistan"}
                   </p>
                 </div>
               </Link>
@@ -300,7 +324,13 @@ const NavbarTop = () => {
                     <div ref={ref}>
                       <div className="eye-modal w-[220px] z-20 absolute p-[20px] bg-[#3A2F7D]">
                         <p className="text-[#8F8F8F] text-[18px]">
-                          {t("navbar.site-view")}
+                          {locale === "uz"
+                            ? "Sayt ko'rinishi"
+                            : locale === "ru"
+                            ? "Вид сайта"
+                            : locale === "uzb"
+                            ? "Сайт кўриниши"
+                            : "Site view"}
                         </p>
                         <ul className="flex items-center justify-between py-[15px] border-[#5C587A] border-b-[2px]">
                           <li>
@@ -329,7 +359,13 @@ const NavbarTop = () => {
                           </li>
                         </ul>
                         <p className="my-[10px] text-[18px] text-[#8F8F8F]">
-                          {t("navbar.shrift-size")}
+                          {locale === "uz"
+                            ? "Shrift o'lchami"
+                            : locale === "ru"
+                            ? "Размер шрифта"
+                            : locale === "uzb"
+                            ? "Шрифт ўлчами"
+                            : "Shrift size"}
                         </p>
                         <input
                           id="range"
@@ -478,7 +514,13 @@ const NavbarTop = () => {
                 >
                   <Image src={location} alt="location" />
                   <p className="2xl:w-full pl-[5px] text-[#A2A0B3] xl:w-[300px] xl:pl-0">
-                    {t("navbar.address")}
+                    {locale === "uz"
+                      ? "100128, Toshkent shahar, Shayxontohur tumani, Labzak ko‘chasi, 136 uy"
+                      : locale === "uzb"
+                      ? "100128, Тошкент шаҳар, Шайхонтоҳур тумани, Лабзак кўчаси, 136 уй"
+                      : locale === "ru"
+                      ? "100128, город Ташкент, Шайхонтохурский район, улица Лабзак, дом 136"
+                      : "100128, Tashkent city, Shaykhontokhur district, Labzak street, 136"}
                   </p>
                 </a>
               </li>
@@ -603,7 +645,13 @@ const NavbarTop = () => {
                 <div ref={ref}>
                   <div className="eye-modal w-[220px] z-20 absolute p-[20px] bg-[#3A2F7D]">
                     <p className="text-[#8F8F8F] text-[18px]">
-                      {t("navbar.site-view")}
+                      {locale === "uz"
+                        ? "Sayt ko'rinishi"
+                        : locale === "ru"
+                        ? "Вид сайта"
+                        : locale === "uzb"
+                        ? "Сайт кўриниши"
+                        : "Site view"}
                     </p>
                     <ul className="flex items-center justify-between py-[15px] border-[#5C587A] border-b-[2px]">
                       <li>
@@ -632,7 +680,13 @@ const NavbarTop = () => {
                       </li>
                     </ul>
                     <p className="my-[10px] text-[18px] text-[#8F8F8F]">
-                      {t("navbar.shrift-size")}
+                      {locale === "uz"
+                        ? "Shrift o'lchami"
+                        : locale === "ru"
+                        ? "Размер шрифта"
+                        : locale === "uzb"
+                        ? "Шрифт ўлчами"
+                        : "Shrift size"}
                     </p>
                     <input
                       id="range"
@@ -782,7 +836,13 @@ const NavbarTop = () => {
               <div className="max-w-[900px] my-0  mx-auto flex flex-col items-center justify-center bg-[#171142]">
                 <div className="flex justify-center items-center relative w-full py-[20px] ">
                   <h3 className="text-[25px] text-center">
-                    {t("button.search")}
+                    {locale === "uz"
+                      ? "Qidirish"
+                      : locale === "ru"
+                      ? "Поиск"
+                      : locale === "uzb"
+                      ? "Қидириш"
+                      : "Search"}
                   </h3>
                   <button
                     className="absolute right-[3%]"
@@ -805,13 +865,25 @@ const NavbarTop = () => {
                     onClick={() => onSubmit()}
                     className="basis-full xl:basis-1/5 w-full opacity-50 hover:bg-white hover:text-[#3C3971] text-white bg-[#3C3971] border border-white"
                   >
-                    {t("button.search")}
+                    {locale === "uz"
+                      ? "Qidirish"
+                      : locale === "ru"
+                      ? "Поиск"
+                      : locale === "uzb"
+                      ? "Қидириш"
+                      : "Search"}
                   </button>
                 </div>
                 <div className="pb-[20px] overflow-scroll h-auto w-auto relative">
                   {resData === 0 ? (
                     <div className="pb-[20px] overflow-scroll h-auto w-auto relative">
-                      {t("other.no-data")}
+                      {locale === "uz"
+                        ? "Topilmadi!"
+                        : locale === "ru"
+                        ? "Не найдено!"
+                        : locale === "uzb"
+                        ? "Топилмади!"
+                        : "No data!"}
                     </div>
                   ) : (
                     <div
