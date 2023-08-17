@@ -1,4 +1,3 @@
-import React, { useRef, useEffect, useState } from "react";
 import axios from "../../../../http";
 import Link from "next/link";
 import Image from "next/image";
@@ -9,60 +8,21 @@ import "lightgallery/css/lg-zoom.css";
 import "lightgallery/css/lg-thumbnail.css";
 import lgThumbnail from "lightgallery/plugins/thumbnail";
 import lgZoom from "lightgallery/plugins/zoom";
-import { useTranslation } from "next-i18next";
-import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../../../next-i18next.config";
 
-const photosDetail = () => {
+const photosDetail = ({
+  firstImage,
+  middleImg,
+  lastImg,
+  title,
+  submenu,
+  locale,
+  query,
+}) => {
   const onInit = () => {
     console.log("lightGallery has been initialized");
   };
-  const [title, setTitle] = useState();
-  const [submenu, setSubmenu] = useState([]);
-  const [images, setimages] = useState([]);
-  const [name, setname] = useState("");
-  const [firstImage, setfirstImage] = useState([]);
-  const [middleImg, setmiddleImg] = useState([]);
-  const [lastImg, setlastImg] = useState([]);
-  const { t } = useTranslation("index");
-  const { locale } = useRouter();
-  const { query } = useRouter();
-
-  const getData = async () => {
-    const response = await axios.get(`/${locale}/api/menu/`);
-
-    const menuName = ["INFORMATION_SERVICE"];
-
-    const data = response.data.filter((category) =>
-      menuName.includes(category.name)
-    );
-
-    const title = data.map((d) => {
-      return d.title;
-    });
-    setTitle(title);
-    setSubmenu(data[0].submenu);
-  };
-
-  const getphotosDetail = async () => {
-    const response = await axios.get(
-      `/${locale}/api/gallery/photos/${query.photosId}`
-    );
-
-    const name = response.data.name;
-    setname(name);
-    const firstImage = response.data.images.slice(0, 1);
-    setfirstImage(firstImage);
-    const middleImg = response.data.images.slice(1, 3);
-    setmiddleImg(middleImg);
-    const lastImg = response.data.images.slice(3);
-    setlastImg(lastImg);
-  };
-  useEffect(() => {
-    getphotosDetail();
-    getData();
-  }, []);
 
   return (
     <div>
@@ -169,18 +129,31 @@ const photosDetail = () => {
   );
 };
 
-export async function getStaticProps({ locale }) {
+export async function getServerSideProps(context) {
+  const locale = context.locale;
+  const query = context.query.photosId;
+  const res = await axios(`/${locale}/api/gallery/photos/${query}`);
+  const ads = await res.data;
+
+  const response = await axios.get(`/${locale}/api/menu/`);
+  const menuName = ["INFORMATION_SERVICE"];
+  const menu = response.data.filter((category) =>
+    menuName.includes(category.name)
+  );
+  const title = menu.map((d) => {
+    return d.title;
+  });
   return {
     props: {
       ...(await serverSideTranslations(locale, ["common"], i18nextConfig)),
+      firstImage: res.data.images.slice(0, 1),
+      middleImg: res.data.images.slice(1, 3),
+      lastImg: res.data.images.slice(3),
+      query: context.query.photosId,
+      title: title,
+      submenu: menu[0].submenu,
+      locale: locale,
     },
-  };
-}
-
-export async function getStaticPaths(context) {
-  return {
-    paths: [],
-    fallback: true,
   };
 }
 export default photosDetail;

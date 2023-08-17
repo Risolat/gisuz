@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import axios from "../http";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
+import { useClickAway } from "@uidotdev/usehooks";
 
 const NavbarBottom = () => {
   const { t } = useTranslation("common");
@@ -39,7 +40,9 @@ const NavbarBottom = () => {
     setData(data);
     setSubMenu(subm);
   };
-
+  const ref = useClickAway(() => {
+    setOpen(false);
+  });
   const changeActive = (i) => {
     setOpen(false);
     setData(
@@ -133,38 +136,43 @@ const NavbarBottom = () => {
                         />
                       )}
                     </button>
-                    <ul
-                      className={`${
-                        category.open
-                          ? "absolute top-[60px] left-0 w-[300px] flex flex-col py-[20px] text-[16px] text-[#A2A0B3] bg-[#3A2F7D] z-10"
-                          : "hidden"
-                      }`}
-                    >
-                      {category.submenu.map((sub) => (
-                        <li className="gradientBox " key={sub.id}>
-                          <div className="bg-[#3A2F7D] hover:bg-[#171142] hover:text-[#fff]">
-                            <Link
-                              className="block py-[10px] px-[20px] cursor-pointer"
-                              onClick={() => setOpen(category.open === false)}
-                              href={`${
-                                sub.slug === "/activity/strategy" ||
-                                sub.slug == null
-                                  ? sub.link
-                                  : sub.slug
-                              }`}
-                              target={`${
-                                sub.slug === "/activity/strategy" ||
-                                sub.slug == null
-                                  ? "_blank"
-                                  : "_self"
-                              }`}
-                            >
-                              {sub.title}
-                            </Link>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
+                    {category.open ? (
+                      <div
+                        ref={ref}
+                        className="absolute top-[60px] left-0 w-[300px] flex flex-col py-[20px] text-[16px] text-[#A2A0B3] bg-[#3A2F7D] z-10"
+                      >
+                        <div>
+                          {category.submenu.map((sub) => (
+                            <div className="gradientBox" key={sub.id}>
+                              <div className="bg-[#3A2F7D] hover:bg-[#171142] hover:text-[#fff]">
+                                <Link
+                                  className="block py-[10px] px-[20px] cursor-pointer"
+                                  onClick={() =>
+                                    setOpen(category.open === false)
+                                  }
+                                  href={`${
+                                    sub.slug === "/activity/strategy" ||
+                                    sub.slug == null
+                                      ? sub.link
+                                      : sub.slug
+                                  }`}
+                                  target={`${
+                                    sub.slug === "/activity/strategy" ||
+                                    sub.slug == null
+                                      ? "_blank"
+                                      : "_self"
+                                  }`}
+                                >
+                                  {sub.title}
+                                </Link>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      ""
+                    )}
                   </li>
                 ))}
               </ul>

@@ -1,12 +1,9 @@
 import axios from "../../http";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../next-i18next.config";
 
-const page = ({ coordinate, title, submenu }) => {
-  const { locale } = useRouter();
-
+const page = ({ coordinate, title, submenu, locale }) => {
   return (
     <div>
       <div className="container">
@@ -78,6 +75,7 @@ export async function getServerSideProps(context) {
       coordinate: data,
       title: title,
       submenu: menu[0].submenu,
+      locale,
     },
   };
 }

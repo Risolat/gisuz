@@ -1,4 +1,3 @@
-import React, { useRef, useEffect, useState } from "react";
 import axios from "../../../../http";
 import Link from "next/link";
 import Image from "next/image";
@@ -6,50 +5,10 @@ import date_range from "../../../../public/photos/main/date_range.svg";
 import red_eye from "../../../../public/photos/main/red_eye.svg";
 import dayjs from "dayjs";
 import { Icon } from "@iconify/react";
-import { useTranslation } from "next-i18next";
-import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../../../next-i18next.config";
 
-const wisdomDetail = () => {
-  const [wisdom, setwisdom] = useState([]);
-  const [title, setTitle] = useState();
-  const [submenu, setSubmenu] = useState([]);
-  const [photos, setPhotos] = useState([]);
-  const { t } = useTranslation("index");
-  const { locale } = useRouter();
-  const { query } = useRouter();
-
-  const getData = async () => {
-    const response = await axios.get(`/${locale}/api/menu/`);
-
-    const menuName = ["INFORMATION_SERVICE"];
-
-    const data = response.data.filter((category) =>
-      menuName.includes(category.name)
-    );
-
-    const title = data.map((d) => {
-      return d.title;
-    });
-    setTitle(title);
-    setSubmenu(data[0].submenu);
-  };
-
-  const getwisdomDetail = async () => {
-    const response = await axios.get(
-      `/${locale}/api/information_service/${query.language_nationId}`
-    );
-    const wisdom = response.data;
-    setwisdom(wisdom);
-
-    const photos = wisdom.images[0].photo;
-    setPhotos(photos);
-  };
-  useEffect(() => {
-    getwisdomDetail();
-    getData();
-  }, []);
+const wisdomDetail = ({ wisdom, title, submenu, photos, locale, query }) => {
   return (
     <div>
       <div className="container">
@@ -76,7 +35,10 @@ const wisdomDetail = () => {
                 </div>
               </div>
               <div className="flex items-center">
-                <Link href="/">
+                <Link
+                  target="_blank"
+                  href={`${`https://www.facebook.com/sharer/sharer.php?u=${`http://newgis.technocorp.uz/${locale}/language_nation/info_service/${query}&text=${wisdom.title}`}`}`}
+                >
                   <Icon
                     icon="ri:facebook-fill"
                     color="#a2a0b3"
@@ -84,7 +46,11 @@ const wisdomDetail = () => {
                     height={30}
                   />
                 </Link>
-                <Link href="/" className="mx-[10px]">
+                <Link
+                  href={`${`http://telegram.me/share/url?url=http://newgis.technocorp.uz/${locale}/language_nation/info_service/${query}&text=${wisdom.title}`}`}
+                  className="mx-[10px]"
+                  target="_blank"
+                >
                   <Icon
                     icon="file-icons:telegram"
                     color="#a2a0b3"
@@ -129,18 +95,30 @@ const wisdomDetail = () => {
   );
 };
 
-export async function getStaticProps({ locale }) {
+export async function getServerSideProps(context) {
+  const locale = context.locale;
+  const query = context.query.language_nationId;
+  const res = await axios(`/${locale}/api/information_service/${query}`);
+  const wisdom = await res.data;
+
+  const response = await axios.get(`/${locale}/api/menu/`);
+  const menuName = ["INFORMATION_SERVICE"];
+  const menu = response.data.filter((category) =>
+    menuName.includes(category.name)
+  );
+  const title = menu.map((d) => {
+    return d.title;
+  });
   return {
     props: {
       ...(await serverSideTranslations(locale, ["common"], i18nextConfig)),
+      wisdom: wisdom,
+      photos: res.data.images[0].photo,
+      query: context.query.language_nationId,
+      title: title,
+      submenu: menu[0].submenu,
+      locale: locale,
     },
-  };
-}
-
-export async function getStaticPaths(context) {
-  return {
-    paths: [],
-    fallback: true,
   };
 }
 export default wisdomDetail;

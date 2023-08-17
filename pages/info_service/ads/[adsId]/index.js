@@ -1,57 +1,14 @@
-import React, { useRef, useEffect, useState } from "react";
 import axios from "../../../../http";
 import Link from "next/link";
 import Image from "next/image";
-import facebook from "../../../../public/photos/icons/facebook.svg";
-import telegram from "../../../../public/photos/icons/telegram.svg";
 import date_range from "../../../../public/photos/main/date_range.svg";
 import red_eye from "../../../../public/photos/main/red_eye.svg";
 import dayjs from "dayjs";
-import { useTranslation } from "next-i18next";
-import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../../../next-i18next.config";
+import { Icon } from "@iconify/react";
 
-const adsDetail = () => {
-  const [ads, setads] = useState([]);
-  const [title, setTitle] = useState();
-  const [submenu, setSubmenu] = useState([]);
-  const [photos, setPhotos] = useState([]);
-  const { t } = useTranslation("index");
-  const { locale } = useRouter();
-  const { query } = useRouter();
-
-  const getData = async () => {
-    const response = await axios.get(`/${locale}/api/menu/`);
-
-    const menuName = ["INFORMATION_SERVICE"];
-
-    const data = response.data.filter((category) =>
-      menuName.includes(category.name)
-    );
-
-    const title = data.map((d) => {
-      return d.title;
-    });
-    setTitle(title);
-    setSubmenu(data[0].submenu);
-  };
-
-  const getadsDetail = async () => {
-    const response = await axios.get(
-      `/${locale}/api/information_service/${query.adsId}`
-    );
-    const ads = response.data;
-    setads(ads);
-
-    const photos = ads.images;
-    setPhotos(photos);
-    console.log(photos);
-  };
-  useEffect(() => {
-    getadsDetail();
-    getData();
-  }, []);
+const adsDetail = ({ ads, title, submenu, photos, locale, query }) => {
   return (
     <div>
       <div className="container">
@@ -60,29 +17,46 @@ const adsDetail = () => {
             <h3 className="text-white mt-[40px] description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]">
               {ads.title}
             </h3>
-            <div className="flex items-center justify-between pb-[10px]">
+            <div className="flex items-center justify-between pb-[20px] pr-[20px] mr-[10px]">
               <div className="flex items-center justify-self-end">
                 <div className="flex items-center mr-[10px]">
                   <Image
-                    className="mr-[5px]"
+                    // className="mr-[5px]"
                     src={date_range}
                     alt={date_range}
                   />
-                  <p className="text-[#a2a0b3]">
+                  <p className="pl-[2px] text-[#A2A0B3]">
                     {dayjs(ads.date).format("DD.MM.YYYY")}
                   </p>
                 </div>
                 <div className="flex items-center">
                   <Image className="mr-[5px]" src={red_eye} alt="red eye" />
-                  <p>{ads.view_count}</p>
+                  <p className="text-[#A2A0B3]">{ads.view_count}</p>
                 </div>
               </div>
-              <div className="flex items-center mr-[75px]">
-                <Link href="/">
-                  <Image src={facebook} alt="facebook" />
+              <div className="flex items-center">
+                <Link
+                  target="_blank"
+                  href={`${`https://www.facebook.com/sharer/sharer.php?u=${`http://newgis.technocorp.uz/${locale}/ads/info_service/${query}&text=${ads.title}`}`}`}
+                >
+                  <Icon
+                    icon="ri:facebook-fill"
+                    color="#a2a0b3"
+                    width={30}
+                    height={30}
+                  />
                 </Link>
-                <Link href="/">
-                  <Image src={telegram} alt="telegram" />
+                <Link
+                  href={`${`http://telegram.me/share/url?url=http://newgis.technocorp.uz/${locale}/ads/info_service/${query}&text=${ads.title}`}`}
+                  className="mx-[10px]"
+                  target="_blank"
+                >
+                  <Icon
+                    icon="file-icons:telegram"
+                    color="#a2a0b3"
+                    width={28}
+                    height={28}
+                  />
                 </Link>
               </div>
             </div>
@@ -91,7 +65,7 @@ const adsDetail = () => {
                 <Image
                   src={p.photo}
                   alt="photo"
-                  width={1000}
+                  width={1050}
                   height={400}
                   className=""
                 />
@@ -129,18 +103,30 @@ const adsDetail = () => {
   );
 };
 
-export async function getStaticProps({ locale }) {
+export async function getServerSideProps(context) {
+  const locale = context.locale;
+  const query = context.query.adsId;
+  const res = await axios(`/${locale}/api/information_service/${query}`);
+  const ads = await res.data;
+
+  const response = await axios.get(`/${locale}/api/menu/`);
+  const menuName = ["INFORMATION_SERVICE"];
+  const menu = response.data.filter((category) =>
+    menuName.includes(category.name)
+  );
+  const title = menu.map((d) => {
+    return d.title;
+  });
   return {
     props: {
       ...(await serverSideTranslations(locale, ["common"], i18nextConfig)),
+      ads: ads,
+      query: context.query.adsId,
+      photos: res.data.images,
+      title: title,
+      submenu: menu[0].submenu,
+      locale: locale,
     },
-  };
-}
-
-export async function getStaticPaths(context) {
-  return {
-    paths: [],
-    fallback: true,
   };
 }
 export default adsDetail;

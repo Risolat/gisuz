@@ -1,10 +1,7 @@
-import React, { useRef, useEffect, useState } from "react";
-import { useTranslation } from "next-i18next";
-import { useRouter } from "next/router";
 import axios from "../../../../http";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper";
+import { Navigation, Pagination, Keyboard } from "swiper";
 import Image from "next/image";
 import date_range from "../../../../public/photos/main/date_range.svg";
 import red_eye from "../../../../public/photos/main/red_eye.svg";
@@ -18,42 +15,7 @@ import "swiper/css/navigation";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../../../next-i18next.config";
 
-const newsDetail = () => {
-  const [news, setnews] = useState([]);
-  const [title, setTitle] = useState();
-  const [submenu, setSubmenu] = useState([]);
-  const [photos, setPhotos] = useState([]);
-  const { t } = useTranslation("index");
-  const { locale } = useRouter();
-  const { query } = useRouter();
-
-  const getData = async () => {
-    const response = await axios.get(`/${locale}/api/menu/`);
-
-    const menuName = ["INFORMATION_SERVICE"];
-
-    const data = response.data.filter((category) =>
-      menuName.includes(category.name)
-    );
-
-    const title = data.map((d) => {
-      return d.title;
-    });
-    setTitle(title);
-    setSubmenu(data[0].submenu);
-  };
-
-  const getnewsDetail = async () => {
-    const response = await axios.get(
-      `/${locale}/api/information_service/${query.newsId}`
-    );
-    const news = response.data;
-    setnews(news);
-
-    const photos = news.images;
-    setPhotos(photos);
-    console.log(photos);
-  };
+const newsDetail = ({ news, photos, title, submenu, locale, query }) => {
   function gallery(i) {
     photos.map((v, index) => {
       if (i === index) {
@@ -61,11 +23,6 @@ const newsDetail = () => {
       }
     });
   }
-
-  useEffect(() => {
-    getnewsDetail();
-    getData();
-  }, []);
   return (
     <div>
       <div className="container">
@@ -94,7 +51,7 @@ const newsDetail = () => {
               <div className="flex items-center">
                 <Link
                   target="_blank"
-                  href={`${`https://www.facebook.com/sharer/sharer.php?u=${`http://newgis.technocorp.uz/${locale}/news/info_service/${query.newsId}&text=${news.title}`}`}`}
+                  href={`${`https://www.facebook.com/sharer/sharer.php?u=${`http://newgis.technocorp.uz/${locale}/news/info_service/${query}&text=${news.title}`}`}`}
                 >
                   <Icon
                     icon="ri:facebook-fill"
@@ -104,7 +61,7 @@ const newsDetail = () => {
                   />
                 </Link>
                 <Link
-                  href={`${`http://telegram.me/share/url?url=http://newgis.technocorp.uz/${locale}/news/info_service/${query.newsId}&text=${news.title}`}`}
+                  href={`${`http://telegram.me/share/url?url=http://newgis.technocorp.uz/${locale}/news/info_service/${query}&text=${news.title}`}`}
                   className="mx-[10px]"
                   target="_blank"
                 >
@@ -180,19 +137,30 @@ const newsDetail = () => {
   );
 };
 
-export async function getStaticProps({ locale }) {
+export async function getServerSideProps(context) {
+  const locale = context.locale;
+  const query = context.query.newsId;
+  const res = await axios(`/${locale}/api/information_service/${query}`);
+  const news = await res.data;
+
+  const response = await axios.get(`/${locale}/api/menu/`);
+  const menuName = ["INFORMATION_SERVICE"];
+  const menu = response.data.filter((category) =>
+    menuName.includes(category.name)
+  );
+  const title = menu.map((d) => {
+    return d.title;
+  });
   return {
     props: {
       ...(await serverSideTranslations(locale, ["common"], i18nextConfig)),
+      news: news,
+      query: context.query.newsId,
+      photos: res.data.images,
+      title: title,
+      submenu: menu[0].submenu,
+      locale: locale,
     },
-  };
-}
-
-export async function getStaticPaths(context) {
-  console.log(context, "context");
-  return {
-    paths: [],
-    fallback: true,
   };
 }
 export default newsDetail;
