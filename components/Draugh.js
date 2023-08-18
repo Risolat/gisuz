@@ -34,7 +34,7 @@ export const data = {
         "rgba(75, 192, 192, 1)",
       ],
       borderWidth: 1,
-      hoverOffset: 10,
+      hoverOffset: 15,
     },
   ],
 };
@@ -57,8 +57,18 @@ const Draugh = () => {
       <h1 className="text-[1.35em] xl:text-[2em] text-[#A2A0B3] py-[10px] mr-[20px]">
         {name}
       </h1>
-      <div className="w-96 h-96 my-0 mx-auto">
-        <Doughnut className="w-3/5 h-1/2" data={data} />
+      <div className="w-96 h-96 flex items-center justify-center my-0 mx-auto">
+        <Doughnut
+          className="w-full h-[300px]"
+          data={data}
+          options={{
+            plugins: {
+              legend: {
+                position: "top",
+              },
+            },
+          }}
+        />
       </div>
     </div>
   );

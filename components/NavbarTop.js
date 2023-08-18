@@ -212,6 +212,7 @@ const NavbarTop = () => {
     setresData(resData);
     getMenu();
     setIsClient(true);
+    console.log(router);
   }, []);
 
   return (
@@ -407,7 +408,7 @@ const NavbarTop = () => {
                 >
                   <li>
                     <a
-                      href={`/uz${router.pathname}`}
+                      href={`/uz${router.asPath}`}
                       locale="uz"
                       onClick={() => {
                         setSelected("O`zb");
@@ -424,7 +425,7 @@ const NavbarTop = () => {
                   </li>
                   <li>
                     <a
-                      href={`/uzb${router.pathname}`}
+                      href={`/uzb${router.asPath}`}
                       locale="uzb"
                       onClick={() => {
                         setSelected("Ўзб");
@@ -441,7 +442,7 @@ const NavbarTop = () => {
                   </li>
                   <li>
                     <a
-                      href={`/ru${router.pathname}`}
+                      href={`/ru${router.asPath}`}
                       locale="ru"
                       onClick={() => {
                         setSelected("Ру");
@@ -458,7 +459,7 @@ const NavbarTop = () => {
                   </li>
                   <li>
                     <a
-                      href={`/en${router.pathname}`}
+                      href={`/en${router.asPath}`}
                       locale="en"
                       onClick={() => {
                         setSelected("En");
@@ -741,7 +742,7 @@ const NavbarTop = () => {
             >
               <li>
                 <a
-                  href={`/uz${router.pathname}`}
+                  href={`/uz${router.asPath}`}
                   locale="uz"
                   onClick={() => {
                     setSelected("O`zb");
@@ -758,7 +759,7 @@ const NavbarTop = () => {
               </li>
               <li>
                 <a
-                  href={`/uzb${router.pathname}`}
+                  href={`/uzb${router.asPath}`}
                   locale="uzb"
                   onClick={() => {
                     setSelected("Ўзб");
@@ -775,7 +776,7 @@ const NavbarTop = () => {
               </li>
               <li>
                 <a
-                  href={`/ru${router.pathname}`}
+                  href={`/ru${router.asPath}`}
                   locale="ru"
                   onClick={() => {
                     setSelected("Ру");
@@ -792,7 +793,7 @@ const NavbarTop = () => {
               </li>
               <li>
                 <a
-                  href={`/en${router.pathname}`}
+                  href={`/en${router.asPath}`}
                   locale="en"
                   onClick={() => {
                     setSelected("En");

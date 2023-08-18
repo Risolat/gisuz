@@ -34,7 +34,7 @@ const page = ({ title, submenu, infographics, locale }) => {
                     <Link
                       key={r.id}
                       href={r.photo}
-                      className=" py-[16px] px-[16px] block w-[342px]"
+                      className="infographics py-[16px] block w-[342px]"
                     >
                       <Image
                         className="w-[342px] h-[200px]"
@@ -43,7 +43,7 @@ const page = ({ title, submenu, infographics, locale }) => {
                         width={342}
                         height={200}
                       />
-                      <p className="mt-[10px] mb-[10px] h-[84px] hover:text-[#3D8DFF] max-h-[84px] font-semibold font-montserrat text-white text-[1.25em] leading-[28px] line-clamp-3">
+                      <p className="mt-[10px] mb-[10px] h-[84px] text-[#A2A0B3] hover:text-[#3D8DFF] max-h-[84px] font-semibold font-montserrat text-[1.25em] leading-[28px] line-clamp-3">
                         {r.title}
                       </p>
                     </Link>

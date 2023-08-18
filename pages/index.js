@@ -39,7 +39,7 @@ const montserrat = Montserrat({
 const Home = () => {
   const { t } = useTranslation("common");
   return (
-    <main className={`${montserrat.variable} font-monserrat`}>
+    <main className={`${montserrat.variable} font-montserrat`}>
       <div className={`${inter.variable} font-inter`}>
         <CallCenter />
         <Video />

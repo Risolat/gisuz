@@ -109,8 +109,12 @@ const page = () => {
     setindexOfLastPost(indexOfLastPost);
   };
   const clearInput = () => {
-    let inp = "";
-    setInput(inp);
+    let inp = document.getElementById("input");
+    inp.value = "";
+  };
+  const clearDate = () => {
+    let inpDate = document.getElementById("date");
+    inpDate.value = "";
   };
   useEffect(() => {
     getData();
@@ -128,17 +132,18 @@ const page = () => {
             <div className="w-full flex items-start">
               <label className="w-full mr-[10px] relative">
                 <input
+                  id="input"
                   type="text"
                   name="input"
                   onChange={(event) => handleInput(event)}
-                  className="w-full py-[13px] px-[50px] border-slate-200 placeholder-slate-400 px-[8px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
+                  className="w-full py-[13px] pl-[50px] border-slate-200 placeholder-slate-400 bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
                 />
                 <Icon
                   icon="iconamoon:search-light"
                   color="#a2a0b3"
                   width="16"
                   height="16"
-                  className="absolute top-[26%] left-[15px]"
+                  className="absolute top-[37%] left-[15px]"
                 />
                 <Icon
                   onClick={() => clearInput()}
@@ -149,14 +154,25 @@ const page = () => {
                   className="absolute top-[25%] right-[10px]"
                 />
               </label>
-              <DatePicker
-                className="w-full py-[13px] px-[50px] border-slate-200"
-                selected={date}
-                renderYearContent={renderYearContent}
-                showYearPicker
-                dateFormat="yyyy"
-                onChange={(date) => handleDate(date)}
-              />
+              <div className="relative w-full">
+                <DatePicker
+                  id="date"
+                  className="w-full py-[13px] px-[50px] border-slate-200"
+                  selected={date}
+                  renderYearContent={renderYearContent}
+                  showYearPicker
+                  dateFormat="yyyy"
+                  onChange={(date) => handleDate(date)}
+                />
+                <Icon
+                  onClick={() => clearDate()}
+                  icon="ic:round-clear"
+                  color="#a2a0b3"
+                  width="25"
+                  height="25"
+                  className="absolute top-[25%] right-[10px]"
+                />
+              </div>
             </div>
             <div className="flex flex-col mt-[20px] pr-[16px]">
               {gov_standarts.map((r) => (

@@ -67,7 +67,7 @@ const adsDetail = ({ ads, title, submenu, photos, locale, query }) => {
                   alt="photo"
                   width={1050}
                   height={400}
-                  className=""
+                  className="h-[325px] xl:h-[625px] w-[1050px] object-cover"
                 />
               ))}
               <div>

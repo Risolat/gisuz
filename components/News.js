@@ -37,7 +37,7 @@ const News = () => {
       </h2>
       <div className="flex flex-row items-start flex-wrap pb-[150px]">
         <Link
-          href={`/${locale}/info-service/news/${mainNews.id}`}
+          href={`/${locale}/info_service/news/${mainNews.id}`}
           className="relative w-full mb-[50px] 2xl:basis-9/12 px-[30px]"
         >
           <Image
@@ -79,7 +79,7 @@ const News = () => {
                 key={item.id}
                 className="pb-[10px] mb-[20px] border-[#ececec] border-b-[1px]"
               >
-                <Link href={`/info-service/news/${item.id}`}>
+                <Link href={`/info_service/news/${item.id}`}>
                   <div className="flex items-center py-[5px] text-[#A2A0B3] text-[12px]">
                     <div className="flex items-center pr-[5px]">
                       <Image src={date} alt="date" className="mr-[5px]" />

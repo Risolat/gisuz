@@ -47,7 +47,6 @@ const page = () => {
     const indexOfLastPost = Math.ceil(count / postsPerPage);
     setindexOfLastPost(indexOfLastPost);
 
-    console.log(laws, "DATA");
     setlaws(laws);
   };
   const previousPage = async () => {
@@ -57,8 +56,8 @@ const page = () => {
     const response = await axios.get(
       `/${locale}/api/documents/documentPostBySubmenuSlug/?submenu_slug=/documents/uz_laws&title&year&page=${currentPage}&page_size=${postsPerPage}`
     );
-    const wisdom = response.data.results;
-    setwisdom(wisdom);
+    const laws = response.data.results;
+    setlaws(laws);
     window.scrollTo(0, 0);
     if ((currentPage - 1) % pageNumberLimit == 0) {
       setmaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
@@ -72,8 +71,8 @@ const page = () => {
     const response = await axios.get(
       `/${locale}/api/documents/documentPostBySubmenuSlug/?submenu_slug=/documents/uz_laws&title&year&page=${currentPage}&page_size=${postsPerPage}`
     );
-    const wisdom = response.data.results;
-    setwisdom(wisdom);
+    const laws = response.data.results;
+    setlaws(laws);
     window.scrollTo(0, 0);
     if (currentPage + 1 > maxPageNumberLimit) {
       setmaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
@@ -85,8 +84,8 @@ const page = () => {
       `/${locale}/api/documents/documentPostBySubmenuSlug/?submenu_slug=/documents/uz_laws&title&year&page=${currentPage}&page_size=${postsPerPage}`
     );
     setCurrentPage(currentPage);
-    const wisdom = response.data.results;
-    setwisdom(wisdom);
+    const laws = response.data.results;
+    setlaws(laws);
     window.scrollTo(0, 0);
   };
   const lastPage = async (total) => {
@@ -94,8 +93,8 @@ const page = () => {
       `/${locale}/api/documents/documentPostBySubmenuSlug/?submenu_slug=/documents/uz_laws&title&year&page=${currentPage}&page_size=${postsPerPage}`
     );
     setCurrentPage(total);
-    const wisdom = response.data.results;
-    setwisdom(wisdom);
+    const laws = response.data.results;
+    setlaws(laws);
     window.scrollTo(0, 0);
   };
 

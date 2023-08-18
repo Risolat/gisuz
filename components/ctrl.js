@@ -4,23 +4,11 @@ import withReactContent from "sweetalert2-react-content";
 import { Icon } from "@iconify/react";
 import { useClickAway } from "@uidotdev/usehooks";
 import axios from "../http";
-import { useForm } from "react-hook-form";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 
 const MySwal = withReactContent(Swal);
 const ctrl = () => {
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-    setValue,
-  } = useForm({
-    defaultValues: {
-      site_text: "",
-      suggested_text: "",
-    },
-  });
   const { t } = useTranslation("common");
   const { locale } = useRouter();
   const [site_text, setsite_text] = useState("");
@@ -32,7 +20,6 @@ const ctrl = () => {
     if (window.getSelection) {
       site_text = window.getSelection().toString();
       setsite_text(site_text);
-      setValue("site_text", site_text);
       console.log(site_text);
     } else if (document.selection && document.selection.type != "Control") {
       site_text = document.selection.createRange().site_text;
@@ -57,19 +44,14 @@ const ctrl = () => {
   const handleSuggested = (event) => {
     const suggested_text = event.target.value;
     console.log(suggested_text);
-    setsuggested_text(suggested_text);
-    setValue("suggested_text", suggested_text);
+    setsuggested_text(event.target.value);
   };
-  const onSubmit = async (data) => {
-    const formData = new FormData();
-    const fieldNames = Object.keys(data);
-    fieldNames.forEach((item) => {
-      formData.append(item, data[item]);
+  const onSubmit = async () => {
+    const response = await axios.post(`/${locale}/api/error_text/create/`, {
+      site_text,
+      suggested_text,
     });
-    const response = await axios.post(
-      `/${locale}/api/error_text/create/`,
-      formData
-    );
+    setOpen(false);
     console.log(response);
     MySwal.$refs.modalComponentRef.closeModal();
     MySwal.fire({
@@ -121,10 +103,7 @@ const ctrl = () => {
             <div className="w-screen h-screen ">
               <div className="relative w-[500px] p-[20px]  pt-[30px] my-0  mx-auto flex items-start bg-[#171142]">
                 <div className="w-full">
-                  <form
-                    className="flex flex-col items-center justify-center"
-                    onSubmit={handleSubmit(onSubmit)}
-                  >
+                  <form className="flex flex-col items-center justify-center">
                     <label className="w-full">
                       <p className="pb-[10px]">{t("modal.selected-text")}</p>
                       <input
@@ -133,7 +112,6 @@ const ctrl = () => {
                         value={site_text}
                         disabled
                         name="site_text"
-                        {...register("site_text", { required: true })}
                       />
                     </label>
                     <label className="w-full">
@@ -141,30 +119,22 @@ const ctrl = () => {
                       <input
                         type="text"
                         className="w-full py-[13px] mb-[20px] px-[50px] border-slate-200 placeholder-slate-400 px-[8px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
-                        // onChange={(event) => handleSuggested(event)}
+                        onChange={(event) => handleSuggested(event)}
                         name="suggested_text"
-                        {...register("suggested_text", { required: true })}
                       />
-                      <span className="text-[red]">
-                        {errors.suggested_text?.type === "required" &&
-                          "suggested text is required"}
-                      </span>
                     </label>
                     <div className="flex mt-[40px]">
                       <button
                         className="px-[30px] py-[12px] border border-white font-inter font-medium text-[1em] hover:bg-white text-white hover:text-[#171142]"
-                        type="submit"
+                        onClick={() => onSubmit()}
+                        type="button"
                       >
                         {t("button.send")}
                       </button>
                     </div>
                   </form>
                 </div>
-                <button
-                  className="absolute right-[2%] top-[3%]"
-                  onClick={() => setOpen(false)}
-                  type="submit"
-                >
+                <button className="absolute right-[2%] top-[3%]" type="submit">
                   <Icon
                     icon="mdi:clear-circle-outline"
                     color="#a2a0b3"

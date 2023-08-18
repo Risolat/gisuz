@@ -12,6 +12,12 @@ import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../next-i18next.config";
+import { Montserrat } from "next/font/google";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+});
 
 const page = () => {
   const { t } = useTranslation("index");
@@ -100,7 +106,7 @@ const page = () => {
 
   return (
     <div className="">
-      <div className="container">
+      <div className={`${montserrat.variable} container font-montserrat`}>
         <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">
           <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px] px-[20px]">
             <div className="pb-[50px]">
@@ -108,7 +114,7 @@ const page = () => {
                 {t("page-titles.connect.feedback")}
               </h3>
               <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="flex flex-col xl:flex-row items-center justify-between pb-[30px]">
+                <div className="flex flex-col xl:flex-row items-center font-inter justify-between pb-[30px]">
                   <label className="w-full block mb-[20px]">
                     <span className="block font-medium text-[20px] mb-[12px] leading-4">
                       F.I.SH.
@@ -232,7 +238,7 @@ const page = () => {
                 Bogʻlanish uchun ma’lumot
               </h2>
               <div className="">
-                <div className="flex justify-between flex-wrap">
+                <div className="flex justify-between flex-wrap font-inter">
                   <div>
                     <p className="text-[#A2A0B3] font-inter">Manzil:</p>
                     <p className="max-w-full xl:w-[300px] h-[85px] text-white-500">
@@ -312,7 +318,7 @@ const page = () => {
           </div>
           <div className="sticky top-[197px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0 py-[8px] bg-[#3A2F7D]">
             <p className="mb-[24px] text-[20px] px-[16px]">{title}</p>
-            <ul className="">
+            <ul className="font-inter">
               {submenu.map((item) => (
                 <li key={item.id} className="">
                   {item.slug === "/connect/network" ? (

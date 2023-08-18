@@ -32,7 +32,7 @@ const Partners = () => {
     <div className="item mx-[10px]" key={i} data-value="1">
       <div className="hover:box-border gradientSolidBox">
         <Link href={p.link} className="">
-          <div className="hover:bg-[#24224E] m-0 flex flex-col items-center px-[24px] pt-[24px] pb-[42px] bg-[#3A2F7D]">
+          <div className="hover:bg-[#24224E] m-0 flex flex-col items-center px-[14px] pt-[24px] pb-[42px] bg-[#3A2F7D]">
             <img
               width="70"
               height="62"
@@ -55,7 +55,7 @@ const Partners = () => {
   return (
     <div className="container z-1">
       <h2 className="subtitle ml-[30px] 2xl:ml-0">{t("main-page.sponsors")}</h2>
-      <div className="w-auto my-0 mx-auto px-[40px] mb-[120px] z-1">
+      <div className="w-[1500px] my-0 mx-auto pr-[40px] mb-[120px] z-1">
         <AliceCarousel
           mouseTracking
           items={items}
@@ -65,66 +65,11 @@ const Partners = () => {
             1160: { items: 3 },
             1360: { items: 4 },
           }}
-          autoPlay={true}
-          autoPlayInterval="2000"
+          // autoPlay={true}
+          // autoPlayInterval="2000"
           infinite={true}
           disableButtonsControls
         />
-        {/* <Swiper
-        className="m-0 mb-[20px]  z-1 "
-        spaceBetween={5}
-        slidesPerView={4}
-        loop={true}
-        autoplay={{
-          delay: 3000,
-          disableOnInteraction: false
-      }}
-        breakpoints={{
-          350: {
-            slidesPerView: 1,
-            navigation: false,
-            spaceBetween: 10
-          },
-          640: {
-            slidesPerView: 2,
-            navigation: false,
-            spaceBetween: 10
-          },
-          1140: {
-            slidesPerView: 3,
-            spaceBetween: 10,
-            navigation: false
-          },
-          1440: {
-            slidesPerView: 4,
-            spaceBetween: 20,
-            navigation: true,
-          },
-        }}
-      >
-        <div className="flex items-end mx-[20px]">
-          {partners.map((p, index) => (
-            <SwiperSlide key={index}>
-              <div className="h-[320px] mx-[15px]">
-                <Link href={p.link} className="gradientBox block">
-                  <div className="w-[320px] hover:bg-[#24224E] m-0 flex flex-col items-center px-[24px] pt-[24px] pb-[42px] bg-[#3A2F7D]">
-                    <img
-                      width="70"
-                      height="62"
-                      src={p.photo}
-                      alt="partners"
-                      className="w-full h-[62px] mb-[10px] object-contain"
-                    />
-                    <h5 className="text-[16px] h-[30px] text-center leading-5 pb-[16px] text-[#A2A0B3]">
-                      {p.title}
-                    </h5>
-                  </div>
-                </Link>
-              </div>
-            </SwiperSlide>
-          ))}
-        </div> 
-      </Swiper> */}
       </div>
     </div>
   );

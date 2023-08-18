@@ -61,7 +61,14 @@ const wisdomDetail = ({ wisdom, title, submenu, photos, locale, query }) => {
               </div>
             </div>
             <div>
-              <Image src={photos} width={1050} height={600} />
+              <div className="w-full h-full">
+                <Image
+                  className="w-[1056px] h-[625px] object-cover"
+                  src={photos}
+                  width={1056}
+                  height={625}
+                />
+              </div>
               <div>
                 <p
                   className="pr-[40px] desc-html leading-[38px] text-[16px] text-[#A2A0B3] leading-[22px] text-justify font-inter break-words"

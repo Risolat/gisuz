@@ -25,7 +25,9 @@ const index = () => {
               />
             </svg>
 
-            <div className={styles._1444}>1144</div>
+            <div className="font-inter font-medium text-[1.5rem] leading-6">
+              1144
+            </div>
           </div>
         </div>
       </a>

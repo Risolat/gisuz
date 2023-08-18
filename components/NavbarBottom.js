@@ -28,6 +28,10 @@ const NavbarBottom = () => {
       "INFORMATION_SERVICE",
       "NETWORK",
     ];
+    const about = await axios(
+      `/${locale}/api/information_service/additionalInfoBySlug/?submenu_slug=/info_service/about`
+    );
+    console.log(about, "about");
     const data = response.data
       .filter((category) => shortMenuNames.includes(category.name))
       .map((n) => {

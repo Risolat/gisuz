@@ -79,8 +79,8 @@ const Paginate = ({
             />
           </button>
         </li>
-        {total > 5 ? <li className="px-[5px] text-[#A2A0B3]">...</li> : ""}
-        {total > 5 ? (
+        {total >= 5 ? <li className="px-[5px] text-[#A2A0B3]">...</li> : ""}
+        {total >= 5 ? (
           <li className="page-number" onClick={() => lastPage(total)}>
             {total}
           </li>

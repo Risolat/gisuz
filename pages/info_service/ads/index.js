@@ -117,7 +117,7 @@ const page = () => {
             </h3>
             <ul className="pr-[16px] flex items-center justify-between flex-wrap">
               {ads.map((r) => (
-                <li key={r.id} className="py-[16px] px-[16px] block w-[342px]">
+                <li key={r.id} className="py-[16px] block w-[342px]">
                   <Link href={`/info_service/ads/${r.id}`} className="">
                     {r.images != 0 ? (
                       <Image

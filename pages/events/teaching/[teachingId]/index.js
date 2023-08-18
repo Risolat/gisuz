@@ -1,30 +1,26 @@
-import React, { useEffect, useState } from "react";
 import axios from "../../../../http";
 import Link from "next/link";
-import { useTranslation } from "next-i18next";
-import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../../../next-i18next.config";
 
-const forEntrepreneurDetail = ({ forEntrepreneur, title, submenu, locale }) => {
+const plansDetail = ({ teaching, title, submenu, locale }) => {
   return (
-    <div className="mb-[175px]">
+    <div className="mb-[230px]">
       <div className="container">
-        <div className="flex flex-row items-start py-[40px]">
-          <div className="basis-3/4">
+        <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">
+          <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px]">
             <div>
               <h3 className="text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]">
-                {forEntrepreneur.title}
+                {teaching.title}
               </h3>
               <div
                 className="pr-[40px] desc-html leading-[38px] w-full text-[16px] text-[#A2A0B3] leading-[22px] text-justify font-inter break-words"
-                dangerouslySetInnerHTML={{
-                  __html: forEntrepreneur.description,
-                }}
+                dangerouslySetInnerHTML={{ __html: teaching.description }}
               />
+              <div className="flex item-center"></div>
             </div>
           </div>
-          <div className="sticky top-[197px] w-[350px] basis-1/4 py-[8px] bg-[#3A2F7D]">
+          <div className="sticky top-[197px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0 py-[8px] bg-[#3A2F7D]">
             <p className="mb-[24px] text-[20px] px-[16px]">{title}</p>
             <ul className="">
               {submenu.map((item) => (
@@ -51,12 +47,12 @@ const forEntrepreneurDetail = ({ forEntrepreneur, title, submenu, locale }) => {
 export async function getServerSideProps(context) {
   console.log(context, "context");
   const locale = context.locale;
-  const query = context.query.for_entrepreneurId;
-  const res = await axios(`/${locale}/api/business_entity/${query}`);
+  const query = context.query.teachingId;
+  const res = await axios(`/${locale}/api/events/${query}`);
   const data = await res.data;
   const response = await axios.get(`/${locale}/api/menu/`);
 
-  const menuName = ["INTERACTIVE_SERVICES"];
+  const menuName = ["EVENTS"];
   const menu = response.data.filter((category) =>
     menuName.includes(category.name)
   );
@@ -66,11 +62,12 @@ export async function getServerSideProps(context) {
   return {
     props: {
       ...(await serverSideTranslations(locale, ["common"], i18nextConfig)),
-      forEntrepreneur: data,
+      teaching: data,
       title: title,
       submenu: menu[0].submenu,
       locale: locale,
     },
   };
 }
-export default forEntrepreneurDetail;
+
+export default plansDetail;

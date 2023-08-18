@@ -13,6 +13,13 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../../next-i18next.config";
+import { Montserrat } from "next/font/google";
+import { Icon } from "@iconify/react";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+});
 
 const page = () => {
   const { t } = useTranslation("common");
@@ -107,7 +114,7 @@ const page = () => {
     const response = await axios.get(
       `/${locale}/api/information_service/informationServiceBySlug/?submenu_slug=/info_service/news&page=${total}&page_size=${postsPerPage}`
     );
-    setCurrentPage(total);
+    setindexOfLastPost(total);
     const news = response.data.results;
     setnews(news);
     window.scrollTo(0, 0);
@@ -124,6 +131,10 @@ const page = () => {
     );
     const news = response.data.results;
     setnews(news);
+    const count = response.data.count;
+    setCount(count);
+    const indexOfLastPost = Math.ceil(count / postsPerPage);
+    setindexOfLastPost(indexOfLastPost);
     window.scrollTo(0, 0);
   };
   const getCategory = async () => {
@@ -146,6 +157,10 @@ const page = () => {
     const indexOfLastPost = Math.ceil(count / postsPerPage);
     setindexOfLastPost(indexOfLastPost);
   };
+  function clearInput() {
+    let inpDate = document.getElementById("date");
+    inpDate.value = "";
+  }
   useEffect(() => {
     getData();
     getnews();
@@ -155,71 +170,77 @@ const page = () => {
 
   return (
     <div>
-      <div className="container">
+      <div className={`${montserrat.variable} container font-montserrat`}>
         <div className="flex flex-row items-start py-[40px]">
           <div className="basis-3/4">
             <h3 className="text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]">
               {t("page-titles.info-service.news-archive")}
             </h3>
-            <ul className="pr-[16px] flex items-center justify-between flex-wrap">
-              {news.map((r) => (
-                <li key={r.id} className="py-[16px] px-[16px] block w-[342px]">
-                  <Link href={`/info_service/news/${r.id}`} className="">
-                    <Image
-                      unoptimized
-                      className="w-[342px] h-[200px]"
-                      src={r.images[0].photo}
-                      alt={r.title}
-                      width={342}
-                      height={200}
-                    />
+            {news.length === 0 ? (
+              <p className="font-montserrat text-[#A2A0B3] font-bold text-[1.15em]">
+                {t("other.no-news")}
+              </p>
+            ) : (
+              <ul className="pr-[16px] flex items-center justify-start flex-wrap">
+                {news.map((r) => (
+                  <li key={r.id} className="py-[16px] mx-[5px] block w-[342px]">
+                    <Link href={`/info_service/news/${r.id}`} className="">
+                      <Image
+                        unoptimized
+                        className="w-[342px] h-[200px]"
+                        src={r.images[0].photo}
+                        alt={r.title}
+                        width={342}
+                        height={200}
+                      />
 
-                    <span className="inline-block my-[10px]  py-[4px] px-[16px] text-white font-inter text-[1em] bg-[#3A2F7D]">
-                      {r.category}
-                    </span>
-                    <p className="mb-[10px] h-[84px] hover:text-[#3D8DFF] max-h-[84px] font-semibold font-montserrat text-white text-[1.25em] leading-[28px] line-clamp-3">
-                      {r.title}
-                    </p>
-                    <div className="flex items-center justify-self-end">
-                      <div className="flex items-center mr-[10px]">
-                        <Image
-                          className="mr-[5px]"
-                          src={date_range}
-                          alt={date_range}
-                        />
-                        <p>{dayjs(r.date).format("DD.MM.YYYY")}</p>
+                      <span className="inline-block my-[10px]  py-[4px] px-[16px] text-white font-inter text-[1em] bg-[#3A2F7D]">
+                        {r.category}
+                      </span>
+                      <p className="mb-[10px] h-[84px] hover:text-[#3D8DFF] max-h-[84px] font-semibold font-montserrat text-white text-[1.25em] leading-[28px] line-clamp-3">
+                        {r.title}
+                      </p>
+                      <div className="flex items-center justify-self-end">
+                        <div className="flex items-center mr-[10px]">
+                          <Image
+                            className="mr-[5px]"
+                            src={date_range}
+                            alt={date_range}
+                          />
+                          <p>{dayjs(r.date).format("DD.MM.YYYY")}</p>
+                        </div>
+                        <div className="flex items-center">
+                          <Image
+                            className="mr-[5px]"
+                            src={red_eye}
+                            alt="red eye"
+                          />
+                          <p>{r.view_count}</p>
+                        </div>
                       </div>
-                      <div className="flex items-center">
-                        <Image
-                          className="mr-[5px]"
-                          src={red_eye}
-                          alt="red eye"
-                        />
-                        <p>{r.view_count}</p>
-                      </div>
-                    </div>
-                  </Link>
-                </li>
-              ))}
-              <Paginate
-                postsPerPage={postsPerPage}
-                totalPosts={count}
-                paginate={paginate}
-                previousPage={previousPage}
-                nextPage={nextPage}
-                currentPage={currentPage}
-                total={indexOfLastPost}
-                maxPageNumberLimit={maxPageNumberLimit}
-                minPageNumberLimit={minPageNumberLimit}
-                pageNumberLimit={pageNumberLimit}
-                lastPage={lastPage}
-              />
-            </ul>
+                    </Link>
+                  </li>
+                ))}
+                <Paginate
+                  postsPerPage={postsPerPage}
+                  totalPosts={count}
+                  paginate={paginate}
+                  previousPage={previousPage}
+                  nextPage={nextPage}
+                  currentPage={currentPage}
+                  total={indexOfLastPost}
+                  maxPageNumberLimit={maxPageNumberLimit}
+                  minPageNumberLimit={minPageNumberLimit}
+                  pageNumberLimit={pageNumberLimit}
+                  lastPage={lastPage}
+                />
+              </ul>
+            )}
           </div>
           <div className="basis-1/4">
             <div className="w-[350px]  py-[8px] bg-[#3A2F7D] mb-[10px]">
               <p className="mb-[24px] text-[20px] px-[16px]">{title}</p>
-              <ul className="">
+              <ul className="font-inter">
                 {submenu.map((item) => (
                   <li key={item.id} className="bg-[#3A2F7D]">
                     {item.slug === "/info_service/news" ? (
@@ -246,13 +267,22 @@ const page = () => {
                 ))}
               </ul>
             </div>
-            <div className="w-[350px] ">
+            <div className="w-[350px] relative ">
               <DatePicker
+                id="date"
                 className="w-full"
                 selected={date}
                 dateFormat="MM/yyyy"
                 showMonthYearPicker
                 onChange={(date) => handleDate(date)}
+              />
+              <Icon
+                onClick={() => clearInput()}
+                icon="ic:round-clear"
+                color="#a2a0b3"
+                width="25"
+                height="25"
+                className="absolute top-[25%] right-[10px]"
               />
             </div>
             <div className="w-[350px] mt-[20px]">
@@ -281,7 +311,7 @@ const page = () => {
                   <ul
                     className={`${
                       open
-                        ? "block w-[350px] h-auto mt-3 pt-1 bg-[#3C3976] cursor-pointer z-10"
+                        ? "block w-[350px] h-auto mt-3 pt-1 bg-[#3C3976] cursor-pointer z-10 font-inter"
                         : "hidden"
                     }`}
                   >

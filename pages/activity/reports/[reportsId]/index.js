@@ -24,6 +24,9 @@ const reportsDetail = ({ title, submenu, images, reports, locale }) => {
               <h3 className="text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]">
                 {reports.title}
               </h3>
+              <p className="text-[#A2A0B3] pb-[10px] desc-html text-[1em] leading-[22px] font-inter break-words">
+                {reports.title}
+              </p>
               <div className="flex">
                 <LightGallery
                   // onInit={onInit}
@@ -38,7 +41,7 @@ const reportsDetail = ({ title, submenu, images, reports, locale }) => {
                         height="300"
                         src={img.image}
                         alt={img.title}
-                        className="mx-[10px]"
+                        className="w-[342px] h-[200px] mb-[80px] mx-[5px] object-cover"
                       />
                     </a>
                   ))}

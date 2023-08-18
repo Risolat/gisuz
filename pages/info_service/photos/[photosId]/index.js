@@ -10,8 +10,11 @@ import lgThumbnail from "lightgallery/plugins/thumbnail";
 import lgZoom from "lightgallery/plugins/zoom";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../../../next-i18next.config";
+import Fancybox from "../../../../components/Fancybox";
+import { useEffect } from "react";
 
 const photosDetail = ({
+  images,
   firstImage,
   middleImg,
   lastImg,
@@ -23,15 +26,185 @@ const photosDetail = ({
   const onInit = () => {
     console.log("lightGallery has been initialized");
   };
-
+  function gallery3(index) {
+    lastImg.map((v, i) => {
+      if (index === i) {
+        new Fancybox([{ src: v.image, thumb: v.image }, {}]);
+      }
+    });
+  }
+  function gallery() {
+    Fancybox.show([{ src: firstImage[0].image, thumb: firstImage[0].image }]);
+  }
+  function gallery2(index) {
+    middleImg.map((v, i) => {
+      if (index === i) {
+        new Fancybox([{ src: v.image, thumb: v.image }, {}]);
+      }
+    });
+  }
   return (
     <div>
       <div className="container">
         <div className="flex flex-row items-start py-[40px]">
-          <div className="basis-3/4 pr-[30px]">
-            <div className="">
-              <div className="flex items-start justify-between">
-                <LightGallery
+          <div className="basis-3/4 pr-[20px]">
+            <div className="mb-[20px]">
+              <div>
+                <div className="flex">
+                  <Fancybox
+                    className="flex"
+                    options={{
+                      Carousel: {
+                        infinite: true,
+                      },
+                    }}
+                  >
+                    <div className="flex flex-wrap">
+                      <div className="">
+                        <a
+                          className="w-[696px] h-[475px] mr-[10px] mb-[10px] block"
+                          data-fancybox="gallery"
+                          href={images[0].image}
+                          width={696}
+                          height={475}
+                        >
+                          <img
+                            className="w-[696px] h-[475px]"
+                            alt="image"
+                            src={images[0].image}
+                            width={696}
+                            height={475}
+                          />
+                        </a>
+                      </div>
+                      <div>
+                        <a
+                          className="galleryLink"
+                          data-fancybox="gallery"
+                          href={images[1].image}
+                          width={336}
+                          height={222}
+                        >
+                          <img
+                            alt=""
+                            src={images[1].image}
+                            width={336}
+                            height={222}
+                          />
+                        </a>
+                        <a
+                          className="galleryLink"
+                          data-fancybox="gallery"
+                          href={images[2].image}
+                          width={336}
+                          height={222}
+                        >
+                          <img
+                            alt=""
+                            src={images[2].image}
+                            width={336}
+                            height={222}
+                          />
+                        </a>
+                      </div>
+                      <div className="flex flex-wrap">
+                        <a
+                          className="galleryLink"
+                          data-fancybox="gallery"
+                          href={images[3].image}
+                        >
+                          <img
+                            alt=""
+                            src={images[3].image}
+                            width={336}
+                            height={222}
+                          />
+                        </a>
+                        {images[4] ? (
+                          <a
+                            className="galleryLink"
+                            data-fancybox="gallery"
+                            href={images[4].image}
+                          >
+                            <img
+                              alt=""
+                              src={images[4].image}
+                              width={336}
+                              height={222}
+                            />
+                          </a>
+                        ) : (
+                          ""
+                        )}
+                        {images[5] ? (
+                          <a
+                            className="galleryLink"
+                            data-fancybox="gallery"
+                            href={images[5].image}
+                          >
+                            <img
+                              alt=""
+                              src={images[5].image}
+                              width={336}
+                              height={222}
+                            />
+                          </a>
+                        ) : (
+                          ""
+                        )}
+                        {images[6] ? (
+                          <a
+                            className="galleryLink"
+                            data-fancybox="gallery"
+                            href={images[6].image}
+                          >
+                            <img
+                              alt=""
+                              src={images[6].image}
+                              width={336}
+                              height={222}
+                            />
+                          </a>
+                        ) : (
+                          ""
+                        )}
+                        {images[7] ? (
+                          <a
+                            className="galleryLink"
+                            data-fancybox="gallery"
+                            href={images[7].image}
+                          >
+                            <img
+                              alt=""
+                              src={images[7].image}
+                              width={336}
+                              height={222}
+                            />
+                          </a>
+                        ) : (
+                          ""
+                        )}
+                        {images[8] ? (
+                          <a
+                            className="galleryLink"
+                            data-fancybox="gallery"
+                            href={images[8].image}
+                          >
+                            <img
+                              alt=""
+                              src={images[8].image}
+                              width={336}
+                              height={222}
+                            />
+                          </a>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                    </div>
+                  </Fancybox>
+                </div>
+                {/* <LightGallery
                   onInit={onInit}
                   speed={500}
                   plugins={[lgThumbnail, lgZoom]}
@@ -53,32 +226,46 @@ const photosDetail = ({
                       />
                     </Link>
                   ))}
-                </LightGallery>
-                <LightGallery
+                </LightGallery> */}
+                {/* <LightGallery
                   onInit={onInit}
                   speed={500}
                   plugins={[lgThumbnail, lgZoom]}
-                  className="pr-[16px] flex items-center justify-between"
+                  className="grid grid-rows-3 grid-flow-col gap-4"
                 >
-                  {middleImg.map((r, i) => (
-                    <Link
-                      key={i}
-                      href={r.image}
-                      className="w-[342px] h-full block mb-[20px]"
-                    >
-                      <Image
-                        unoptimized
-                        className="w-[342px] h-[222px] object-cover"
-                        src={r.image}
-                        alt={r.title}
-                        width={342}
-                        height={200}
-                      />
-                    </Link>
-                  ))}
-                </LightGallery>
+                  <Link href={images[0].image} className="row-span-3">
+                    <img
+                      unoptimized
+                      className="galleryImage"
+                      src={images[0].image}
+                      alt={images[0].title}
+                    />
+                  </Link>
+                  <Link
+                    href={images[1].image}
+                    className="row-span-2 col-span-2"
+                  >
+                    <img
+                      unoptimized
+                      className="galleryImage"
+                      src={images[1].image}
+                      alt={images[1].title}
+                    />
+                  </Link>
+                  <Link
+                    href={images[2].image}
+                    className="row-span-2 col-span-2"
+                  >
+                    <img
+                      unoptimized
+                      className="galleryImage"
+                      src={images[2].image}
+                      alt={images[2].title}
+                    />
+                  </Link>
+                </LightGallery> */}
               </div>
-              <div className="flex items-center justify-between w-full ml-[1px] mt-[10px]">
+              {/* <div className="flex items-center justify-between w-full ml-[1px] mt-[10px]">
                 <LightGallery
                   onInit={onInit}
                   speed={500}
@@ -102,7 +289,7 @@ const photosDetail = ({
                     </Link>
                   ))}
                 </LightGallery>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="sticky top-[197px] w-[350px] basis-1/4 py-[8px] bg-[#3A2F7D]">
@@ -133,7 +320,6 @@ export async function getServerSideProps(context) {
   const locale = context.locale;
   const query = context.query.photosId;
   const res = await axios(`/${locale}/api/gallery/photos/${query}`);
-  const ads = await res.data;
 
   const response = await axios.get(`/${locale}/api/menu/`);
   const menuName = ["INFORMATION_SERVICE"];
@@ -143,12 +329,14 @@ export async function getServerSideProps(context) {
   const title = menu.map((d) => {
     return d.title;
   });
+  console.log(res, "photos");
   return {
     props: {
       ...(await serverSideTranslations(locale, ["common"], i18nextConfig)),
       firstImage: res.data.images.slice(0, 1),
       middleImg: res.data.images.slice(1, 3),
       lastImg: res.data.images.slice(3),
+      images: res.data.images,
       query: context.query.photosId,
       title: title,
       submenu: menu[0].submenu,
