@@ -53,7 +53,7 @@ const App = ({ Component, pageProps }) => {
           href="/favicon-16x16.png"
         ></link>
         <link rel="manifest" href="/site.webmanifest"></link>
-        <script src="//code.jivo.ru/widget/uP3hSgxG8p" async></script>
+        <script src="//code.jivo.ru/widget/PYQoOFHYsy" async></script>
       </Head>
       <Navbar />
       <Connect />

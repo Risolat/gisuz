@@ -9,6 +9,12 @@ import axios from "../http";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 import { useClickAway } from "@uidotdev/usehooks";
+import { Roboto } from "next/font/google";
+const roboto = Roboto({
+  subsets: ["latin"],
+  variable: "--font-roboto",
+  weight: "500",
+});
 
 const NavbarBottom = () => {
   const { t } = useTranslation("common");
@@ -85,7 +91,9 @@ const NavbarBottom = () => {
               <Image
                 src={logoGis}
                 alt="logo-gis"
-                className="2xl:pr-[16px] pr-[10px] w-[60px] h-[60px] xl:w-[100px] xl:h-[100px]"
+                width={83}
+                height={83}
+                className="2xl:pr-[16px] pr-[10px] w-[60px] h-[60px] xl:w-[83px] xl:h-[83px]"
               />
               <Image
                 src={logo}
@@ -93,7 +101,9 @@ const NavbarBottom = () => {
                 className="w-[10px] h-[50px] xl:h-[80px]"
               />
               <div className="2xl:pl-[16px] pl-[10px]">
-                <h1 className="title-gradient text-[20px] xl:text-[24px] leading-8 font-bold">
+                <h1
+                  className={`${roboto.variable} title-gradient text-[20px] xl:text-[24px] leading-8 font-roboto font-bold`}
+                >
                   {locale === "uz"
                     ? "O‘ZKOMNAZORAT"
                     : locale === "ru"
