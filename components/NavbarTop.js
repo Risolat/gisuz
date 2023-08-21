@@ -164,7 +164,11 @@ const NavbarTop = () => {
       }
     }
   }
-
+  // function closeSearch() {
+  //   setsearchOpen(false);
+  //   let data = "";
+  //   setresData(data);
+  // }
   function getVoice(text) {
     console.log(speechSynthesis.getVoices());
     console.log(navigator);
@@ -889,15 +893,18 @@ const NavbarTop = () => {
                   ) : (
                     <div
                       className={
-                        resData != 0 ? "overflow-scroll h-[400px]" : "h-auto"
+                        resData != 0
+                          ? "overflow-scroll max-h-[400px]"
+                          : "h-auto"
                       }
                     >
                       {resData.map((r) => (
                         <div key={r.id}>
                           <div className="py-[10px] px-[20px] mb-[10px] mx-[20px] border-[#5C587A] border-[1px] rounded">
                             <Link
-                              href={`/${r.sub_menu.slug}/${r.id}`}
+                              href={`/${locale}${r.sub_menu.slug}`}
                               className=""
+                              onClick={() => closeSearch()}
                             >
                               <p id="title">{r.title}</p>
                               <p

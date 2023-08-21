@@ -103,7 +103,10 @@ const ctrl = () => {
             <div className="w-screen h-screen ">
               <div className="relative w-[500px] p-[20px]  pt-[30px] my-0  mx-auto flex items-start bg-[#171142]">
                 <div className="w-full">
-                  <form className="flex flex-col items-center justify-center">
+                  <form
+                    // onSubmit={onSubmit}
+                    className="flex flex-col items-center justify-center"
+                  >
                     <label className="w-full">
                       <p className="pb-[10px]">{t("modal.selected-text")}</p>
                       <input
@@ -126,8 +129,8 @@ const ctrl = () => {
                     <div className="flex mt-[40px]">
                       <button
                         className="px-[30px] py-[12px] border border-white font-inter font-medium text-[1em] hover:bg-white text-white hover:text-[#171142]"
-                        onClick={() => onSubmit()}
                         type="button"
+                        onClick={onSubmit}
                       >
                         {t("button.send")}
                       </button>
