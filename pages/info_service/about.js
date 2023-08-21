@@ -4,8 +4,9 @@ import Image from "next/image";
 import axbUser from "../../public/photos/main/axb.jpeg";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../next-i18next.config";
-
+import { useTranslation } from "next-i18next";
 const page = ({ about, title, submenu, locale }) => {
+  const { t } = useTranslation("common");
   return (
     <div>
       <div className="container">
@@ -29,22 +30,19 @@ const page = ({ about, title, submenu, locale }) => {
                 </p>
                 <p className="pb-[10px]">
                   <b>
-                    <span>Manzil:</span>
+                    <span>{t("card.address")}: </span>
                   </b>
-                  <span>
-                    Toshkent sh., 100200, Shayxontaxur tumani, Labzak ko'chasi,
-                    136
-                  </span>
+                  <span>{t("navbar.address")}</span>
                 </p>
                 <p className="pb-[10px]">
                   <b>
-                    <span>Telefon:</span>
+                    <span>{t("card.phone")}: </span>
                   </b>
                   <span>+99871-202-6992, +99871-202-6974</span>
                 </p>
                 <p className="pb-[10px]">
                   <b>
-                    <span>Email:</span>
+                    <span>{t("card.email")}: </span>
                   </b>
                   <span>press@gis.uz</span>
                 </p>

@@ -11,30 +11,30 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const data = {
   labels: [
+    "hayfsan",
     "ma'muriy javobgarlikka tortilgan",
     "egallab turgan lavozimidan ozod etildi",
     "Jarima",
-    "hayfsan",
   ],
   datasets: [
     {
       label:
         "2019-yilda mansabdor shaxslarga nisbatan koʻrilgan choralar toʻgʻrisida maʼlumot",
-      data: [18, 5, 8, 62],
+      data: [62, 18, 5, 8],
       backgroundColor: [
+        "rgb(73,147,255)",
         "rgb(255,110,118)",
         "rgb(253,221,96)",
         "rgb(124,255,178)",
-        "rgb(73,147,255)",
       ],
       borderColor: [
+        "rgba(75, 192, 192, 1)",
         "rgba(255, 99, 132, 1)",
         "rgba(54, 162, 235, 1)",
         "rgba(255, 206, 86, 1)",
-        "rgba(75, 192, 192, 1)",
       ],
       borderWidth: 1,
-      hoverOffset: 15,
+      hoverOffset: 18,
     },
   ],
 };
@@ -57,9 +57,9 @@ const Draugh = () => {
       <h1 className="text-[1.35em] xl:text-[2em] text-[#A2A0B3] py-[10px] mr-[20px]">
         {name}
       </h1>
-      <div className="w-96 h-96 flex items-center justify-center my-0 mx-auto">
+      <div className="w-[700px] h-[800px] flex items-center justify-center my-0 mx-auto">
         <Doughnut
-          className="w-full h-[300px]"
+          className="w-[700px] h-[700px]"
           data={data}
           options={{
             plugins: {

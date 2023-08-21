@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 const Video = () => {
   const { locale } = useRouter();
   const localeVideo = {
-    uz: "/photos/main/uz.mp4",
+    uz: "/photos/main/pink.mp4",
     uzb: "/photos/main/uzb.mp4",
     ru: "/photos/main/ru.mp4",
     en: "/photos/main/eng.mp4",
@@ -14,9 +14,13 @@ const Video = () => {
     return localeVideo[locale];
   };
   return (
-    <div className="">
-      <video autoPlay muted loop className="gradient-overlay w-full">
-        <source src={getVideo()} type="video/mp4" />
+    <div className="w-full">
+      <video autoPlay muted loop>
+        <source
+          src={getVideo()}
+          type="video/mp4"
+          className="gradient-overlay w-full"
+        />
       </video>
     </div>
   );

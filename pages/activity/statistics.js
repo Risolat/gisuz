@@ -120,14 +120,14 @@ const page = () => {
               {t("main-page.statistics")}
             </h3>
             <h1 className="text-[1.35em] xl:text-[2em] text-[#A2A0B3] py-[10px]">
-              {name1}
+              “Oʻzkomnazorat” inspeksiyasiga kelib tushgan murojaatlar soni
             </h1>
-            <Bar options={options} data={data} className="w-full" />
-            <h1 className="text-[1.35em] xl:text-[2em] text-[#A2A0B3] py-[10px]  mr-[20px]">
+            <Bar options={options} data={data} className="w-full mb-[50px]" />
+            <h1 className="text-[1.35em] xl:text-[2em] text-[#A2A0B3] py-[20px]  mr-[20px]">
               {name2}
             </h1>
-            <BarChart className="w-full" />
-            <Draugh className="w-full" />
+            <BarChart className="w-full mb-[50px]" />
+            <Draugh className="w-full mb-[50px]" />
             <HorizonatBarChart className="mr-[20px]" />
           </div>
           <div className="sticky top-[197px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0 py-[8px] bg-[#3A2F7D]">

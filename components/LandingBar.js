@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import "../app/[locale]/chart.css";
+import axios from "../http";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,6 +10,7 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import { useRouter } from "next/router";
 
 ChartJS.register(
   CategoryScale,
@@ -25,66 +26,63 @@ export default function Horizontal() {
     datasets: [],
   });
   const [chartOptions, setChartOptions] = useState({});
+  const [indicators, setIndicators] = useState([]);
+  const { locale } = useRouter();
 
+  // const getData = async () => {
+  //   const response = await axios.get(`/${locale}/api/statistics/?type=bar`);
+  //   console.log(response);
+  //   const indicators = response.data.indicators;
+  //   setIndicators(indicators);
+  // };
   useEffect(() => {
-    // setChartData({
-    //   labels: [
-    //     "mahalliy telefon tarmog'i",
-    //     "maʼlumotlar uzatish tarmogʻi",
-    //     "pochta xizmatlari",
-    //     "mobil aloqa xizmati",
-    //     "teleradio (KTV efir)",
-    //     "boshqa masalalar",
-    //   ],
-    //   datasets: [
-    //     {
-    //       label: "",
-    //       data: [1961, 2855, 3638, 3638, 544, 243],
-    //       borderRadius: 6,
-    //       borderColor: "rgb(53, 162, 235)",
-    //       backgroundColor: [
-    //         "#3D8DFF",
-    //         "#3878DD",
-    //         "#3467C2",
-    //         "#325EB5",
-    //         "#3156A7",
-    //         "#2F4D9A",
-    //         "#3D8DFF",
-    //         "#3878DD",
-    //       ],
-    //     },
-    //   ],
-    // });
+    setChartData({
+      datasets: [
+        {
+          data: [1961, 2855, 3638, 3638, 544, 243],
+        },
+      ],
+    });
+
     const interval = setInterval(() => {
       setChartData({
-        labels: [
-          "mahalliy telefon tarmog'i",
-          "maʼlumotlar uzatish tarmogʻi",
-          "pochta xizmatlari",
-          "mobil aloqa xizmati",
-          "teleradio (KTV efir)",
-          "boshqa masalalar",
-        ],
         datasets: [
           {
-            label: "",
-            data: [1961, 2855, 3638, 3638, 544, 243],
-            borderRadius: 6,
-            borderColor: "rgb(53, 162, 235)",
-            backgroundColor: [
-              "#3D8DFF",
-              "#3878DD",
-              "#3467C2",
-              "#325EB5",
-              "#3156A7",
-              "#2F4D9A",
-              "#3D8DFF",
-              "#3878DD",
-            ],
+            data: [],
           },
         ],
       });
-    }, 200);
+      setTimeout(() => {
+        setChartData({
+          labels: [
+            "mahalliy telefon tarmog'i",
+            "maʼlumotlar uzatish tarmogʻi",
+            "pochta xizmatlari",
+            "mobil aloqa xizmati",
+            "teleradio (KTV efir)",
+            "boshqa masalalar",
+          ],
+          datasets: [
+            {
+              label: "",
+              data: [1961, 2855, 3638, 3638, 544, 243],
+              borderRadius: 6,
+              borderColor: "rgb(53, 162, 235)",
+              backgroundColor: [
+                "#3D8DFF",
+                "#3878DD",
+                "#3467C2",
+                "#325EB5",
+                "#3156A7",
+                "#2F4D9A",
+                "#3D8DFF",
+                "#3878DD",
+              ],
+            },
+          ],
+        });
+      }, 100);
+    }, 3000);
 
     setChartOptions({
       scales: {
@@ -107,6 +105,15 @@ export default function Horizontal() {
       },
       maintainAspectRatio: false,
       responsive: true,
+      // animations: {
+      //   tension: {
+      //     duration: 1000,
+      //     easing: "linear",
+      //     from: 1,
+      //     to: 0,
+      //     loop: true,
+      //   },
+      // },
     });
     return () => clearInterval(interval);
   }, []);

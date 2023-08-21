@@ -11,11 +11,14 @@ const page = ({ coordinate, title, submenu, locale }) => {
           <div className="basis-3/4">
             <div>
               <h3 className="text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]">
-                {coordinate.title}
+                {coordinate.length === 0 ? "" : coordinate[0].title}
               </h3>
               <div
                 className="pr-[40px] desc-html leading-[38px] w-full text-[16px] text-[#A2A0B3] leading-[22px] text-justify font-inter break-words"
-                dangerouslySetInnerHTML={{ __html: coordinate.description }}
+                dangerouslySetInnerHTML={{
+                  __html:
+                    coordinate.length === 0 ? "" : coordinate[0].description,
+                }}
               />
             </div>
           </div>
@@ -60,7 +63,7 @@ export async function getServerSideProps(context) {
   const res = await axios(
     `/${locale}/api/information_service/informationServiceBySlug/?submenu_slug=/ozkomnazorat/coordinate`
   );
-  const data = await res.data.results[0];
+  const data = await res.data.results;
   const response = await axios.get(`/${locale}/api/menu/`);
   const menuName = ["OZCOM"];
   const menu = response.data.filter((category) =>

@@ -29,7 +29,7 @@ const NavbarBottom = () => {
       "NETWORK",
     ];
     const about = await axios(
-      `/${locale}/api/information_service/additionalInfoBySlug/?submenu_slug=/info_service/about`
+      `/${locale}/api/information_service/informationServiceBySlug/?submenu_slug=/documents/inactive`
     );
     console.log(about, "about");
     const data = response.data

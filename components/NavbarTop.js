@@ -216,7 +216,6 @@ const NavbarTop = () => {
     setresData(resData);
     getMenu();
     setIsClient(true);
-    console.log(router);
   }, []);
 
   return (

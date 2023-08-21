@@ -61,11 +61,20 @@ body {
   margin: 0 auto;
 }
 .gradient-overlay {
-width: 100%;
-height: 100%;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(83.34deg,rgba(23,17,66,.8) -4.52%,rgba(12,47,117,0) 100%);
 }
-
+.video-bg{
+  position: absolute;
+  top: 20%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  background: linear-gradient(83.34deg,rgba(23,17,66,.8) -4.52%,rgba(12,47,117,0) 100%);
+}
 
 .gradientBox {
   background: transparent;
@@ -476,4 +485,36 @@ strong {
   background: #fff!important;
   width: 16px!important;
   height: 16px!important;
+}
+
+
+.connect-btn-murojat #tooltip1{
+  visibility: hidden;
+}
+.connect-btn-murojat:hover #tooltip1{
+  visibility: visible;
+}
+.connect-btn-facebook #tooltip2{
+  visibility: hidden;
+}
+.connect-btn-facebook:hover #tooltip2{
+  visibility: visible;
+}
+.connect-btn-instagram #tooltip3{
+  visibility: hidden;
+}
+.connect-btn-instagram:hover #tooltip3{
+  visibility: visible;
+}
+.connect-btn-telegram #tooltip4{
+  visibility: hidden;
+}
+.connect-btn-telegram:hover #tooltip4{
+  visibility: visible;
+}
+.connect-btn-youtube #tooltip5{
+  visibility: hidden;
+}
+.connect-btn-youtube:hover #tooltip5{
+  visibility: visible;
 }

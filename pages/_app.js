@@ -38,18 +38,21 @@ const App = ({ Component, pageProps }) => {
         <link
           rel="apple-touch-icon"
           sizes="180x180"
-          href="/public/apple-touch-icon.png"
-        />
-        <link rel="icon" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" sizes="32x32" href="/favicon.ico" />
-        <link rel="icon" href="/public/favicon.ico" />
+          href="/apple-touch-icon.png"
+        ></link>
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        ></link>
         <link
           rel="icon"
           type="image/png"
           sizes="16x16"
-          href="/public/favicon-16x16.png"
-        />
-        <link rel="manifest" href="/public/site.webmanifest" />
+          href="/favicon-16x16.png"
+        ></link>
+        <link rel="manifest" href="/site.webmanifest"></link>
         <script src="//code.jivo.ru/widget/uP3hSgxG8p" async></script>
       </Head>
       <Navbar />

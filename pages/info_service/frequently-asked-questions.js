@@ -14,11 +14,22 @@ const page = ({ questions, title, submenu, locale }) => {
           <div className="basis-3/4">
             <div className="px-[16px]">
               <h3 className="text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]">
-                {questions[0].sub_menu}
+                {locale === "ru"
+                  ? "Часто задаваемые вопросы"
+                  : locale === "en"
+                  ? "FAQ"
+                  : questions[0].sub_menu}
               </h3>
               <div
                 className="pr-[40px] desc-html leading-[38px] w-divl text-[16px] text-[#A2A0B3] leading-[22px] text-justify font-inter break-words"
-                dangerouslySetInnerHTML={{ __html: questions[0].description }}
+                dangerouslySetInnerHTML={{
+                  __html:
+                    locale === "ru"
+                      ? ""
+                      : locale === "en"
+                      ? ""
+                      : questions[0].description,
+                }}
               />
             </div>
           </div>

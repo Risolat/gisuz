@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { BarChart, Bar, Tooltip } from "recharts";
 import Horizontal from "./Horizontal.js";
@@ -8,10 +8,12 @@ import PieChart from "./PieChart.js";
 import LandingBar from "./LandingBar.js";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
+import axios from "../http";
 
 export default function Statistics() {
   const { locale } = useRouter();
   const { t } = useTranslation("common");
+
   return (
     <div className="bg-[#3A2F7D] py-[40px]">
       <div className="container flex flex-col xl:flex-row items-center">
@@ -33,8 +35,7 @@ export default function Statistics() {
           <div className="lg:max-w-[280px] max-w-[350px] mb-[10px] bg-[#252356] p-[20px] mx-5">
             <LandingBar />
             <p className="font-[500] pt-[10px] text-[16px] leading-5 text-[#A2A0B3]">
-              “Oʻzkomnazorat” Davlat inspeksiyasiga kelib tushgan murojaatlar
-              soni
+              “Oʻzkomnazorat” inspeksiyasiga kelib tushgan murojaatlar soni
             </p>
           </div>
 
@@ -46,7 +47,7 @@ export default function Statistics() {
             </p>
           </div>
           <div className="lg:max-w-[280px] max-w-[350px]  mb-[10px] bg-[#252356] p-[20px] mx-5">
-            <PieChart className="" />
+            {/* <PieChart className="" /> */}
             <p className="w-full pt-[10px] font-[500] text-[16px] leading-5 text-[#A2A0B3] line-clamp-3">
               Qurilishi tugallangan telekommunikatsiya qurilmalarini davlat
               tomonidan qabul qilish toʻgʻrisida maʼlumot

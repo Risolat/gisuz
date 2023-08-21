@@ -18,11 +18,13 @@ const page = ({ inactive, title, submenu, locale }) => {
               <h3
                 className={`${montserrat.variable} text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]`}
               >
-                {inactive.title}
+                {inactive.length === 0 ? "" : inactive[0].title}
               </h3>
               <div
                 className="pr-[40px] desc-html leading-[38px] w-full text-[16px] text-[#A2A0B3] leading-[22px] text-justify font-inter break-words"
-                dangerouslySetInnerHTML={{ __html: inactive.description }}
+                dangerouslySetInnerHTML={{
+                  __html: inactive.length === 0 ? "" : inactive[0].description,
+                }}
               />
             </div>
           </div>
@@ -68,8 +70,8 @@ export async function getServerSideProps(context) {
   const res = await axios(
     `/${locale}/api/information_service/informationServiceBySlug/?submenu_slug=/documents/inactive`
   );
-  const inactive = await res.data.results[0];
-
+  const inactive = await res.data.results;
+  console.log(res);
   const response = await axios.get(`/${locale}/api/menu/`);
   const menuName = ["DOCUMENTS"];
   const menu = response.data.filter((category) =>

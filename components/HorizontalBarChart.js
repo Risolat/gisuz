@@ -48,7 +48,7 @@ export const options = {
     },
     title: {
       display: false,
-      text: "“Oʻzkomnazorat” Davlat inspeksiyasiga kelib tushgan murojaatlar soni",
+      text: "“Oʻzkomnazorat” inspeksiyasiga kelib tushgan murojaatlar soni",
     },
   },
 };
@@ -100,7 +100,8 @@ const page = () => {
   return (
     <div className="mb-[50px] mr-[50px]">
       <h1 className="text-[1.35em] xl:text-[2em] text-[#A2A0B3] py-[10px]">
-        {name}
+        2020-yil may oyi holatiga uyali aloqa operatorlarining tayanch
+        stansiyalari soni
       </h1>
       <Bar options={options} data={data} className="w-full" />
     </div>

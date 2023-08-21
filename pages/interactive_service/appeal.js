@@ -202,7 +202,7 @@ const page = () => {
                   }
                   onClick={() => toggleTab(1)}
                 >
-                  Murojaatni yuborish
+                  {t("form.interactive-service.send-appeal")}
                 </div>
                 <div
                   className={
@@ -212,7 +212,7 @@ const page = () => {
                   }
                   onClick={() => toggleTab(2)}
                 >
-                  Arizaning holatini tekshirish
+                  {t("form.interactive-service.check-appeal")}
                 </div>
               </div>
 

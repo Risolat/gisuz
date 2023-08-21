@@ -53,85 +53,87 @@ const index = () => {
         <span className="bg-white h-full w-[3px] my-[30px]"></span>
         <Link
           href="/connect/hotline"
-          className="social_button my-[15px] text-white hover:drop-shadow-[0_5px_30px_#3D8DFF]"
+          className="connect-btn-murojat block social_button my-[15px] text-white hover:drop-shadow-[0_5px_30px_#3D8DFF]"
         >
           <Icon
-            onMouseEnter={showTooltip1}
-            onMouseLeave={removeTooltip1}
-            className="text-#fff w-[30px] h-[30px] hover:text-[#3D8DFF] "
+            className="block text-#fff w-[30px] h-[30px] hover:text-[#3D8DFF] "
             icon="mdi:card-account-mail"
           />
+          <p
+            id="tooltip1"
+            className="absolute w-full text-center text-[12px] text-[#000] bg-gray-300 top-[28%] left-[10%]"
+          >
+            {t("page-titles.connect.hotline")}
+          </p>
         </Link>
-        <p
-          id="tooltip1"
-          className="absolute w-full no-wrap text-center text-[12px] text-[#000] bg-gray-300 top-[28%] left-[10%]"
-        ></p>
 
         <Link
           target="_blank"
           href="https://www.facebook.com/uzkomnazorat/"
-          className="social_button my-[15px] bg_white text-white hover:drop-shadow-[0_5px_30px_#3D8DFF]"
+          className="connect-btn-facebook block social_button my-[15px] bg_white text-white hover:drop-shadow-[0_5px_30px_#3D8DFF]"
         >
           <Icon
-            onMouseEnter={showTooltip2}
-            onMouseLeave={removeTooltip2}
             className="brand-icon hover:text-[#3D8DFF]"
             icon="brandico:facebook"
           />
+          <p
+            id="tooltip2"
+            className="absolute w-full text-center text-[12px] text-[#000] bg-gray-300 top-[37%] left-[10%]"
+          >
+            facebook
+          </p>
         </Link>
-        <p
-          id="tooltip2"
-          className="absolute w-full text-center text-[12px] text-[#000] bg-gray-300 top-[37%] left-[10%]"
-        ></p>
+
         <Link
           target="_blank"
           href="https://www.instagram.com/uzkomnazorat/"
-          className="social_button my-[15px] bg_white text-white hover:drop-shadow-[0_5px_30px_#3D8DFF]"
+          className="connect-btn-instagram block social_button my-[15px] bg_white text-white hover:drop-shadow-[0_5px_30px_#3D8DFF]"
         >
           <Icon
-            onMouseEnter={showTooltip3}
-            onMouseLeave={removeTooltip3}
             className="brand-icon hover:text-[#3D8DFF]"
             icon="akar-icons:instagram-fill"
           />
+          <p
+            id="tooltip3"
+            className="absolute w-full text-center text-[12px] text-[#000] bg-gray-300 top-[46%] left-[10%]"
+          >
+            instagram
+          </p>
         </Link>
-        <p
-          id="tooltip3"
-          className="absolute w-full text-center text-[12px] text-[#000] bg-gray-300 top-[46%] left-[10%]"
-        ></p>
+
         <Link
           target="_blank"
           href="https://t.me/gisuz"
-          className="social_button my-[15px] bg_white text-white hover:drop-shadow-[0_5px_30px_#3D8DFF]"
+          className="connect-btn-telegram block social_button my-[15px] bg_white text-white hover:drop-shadow-[0_5px_30px_#3D8DFF]"
         >
           <Icon
-            onMouseEnter={showTooltip4}
-            onMouseLeave={removeTooltip4}
             className="brand-icon hover:text-[#3D8DFF]"
             icon="bxl:telegram"
           />
+          <p
+            id="tooltip4"
+            className="absolute w-full text-center text-[12px] text-[#000] bg-gray-300 top-[55%] left-[10%]"
+          >
+            telegram
+          </p>
         </Link>
-        <p
-          id="tooltip4"
-          className="absolute w-full text-center text-[12px] text-[#000] bg-gray-300 top-[55%] left-[10%]"
-        ></p>
 
         <Link
           target="_blank"
           href="https://www.youtube.com/channel/UC3ajfdl_uoWLGR1B-eCELWA"
-          className="social_button my-[15px] bg_white text-white hover:drop-shadow-[0_5px_30px_#3D8DFF]"
+          className="connect-btn-youtube social_button my-[15px] bg_white text-white hover:drop-shadow-[0_5px_30px_#3D8DFF]"
         >
           <Icon
-            onMouseEnter={showTooltip5}
-            onMouseLeave={removeTooltip5}
             className="brand-icon hover:text-[#3D8DFF]"
             icon="bxl:youtube"
           />
+          <p
+            id="tooltip5"
+            className="absolute w-full text-center text-[12px] text-[#000] bg-gray-300 top-[64%] left-[10%]"
+          >
+            youtube
+          </p>
         </Link>
-        <p
-          id="tooltip5"
-          className="absolute w-full text-center text-[12px] text-[#000] bg-gray-300 top-[64%] left-[10%]"
-        ></p>
 
         <span className="!bg-white h-full w-[3px] my-[30px]"></span>
       </div>

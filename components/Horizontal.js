@@ -30,6 +30,13 @@ export default function Horizontal() {
 
   useEffect(() => {
     setChartData({
+      datasets: [
+        {
+          data: [1300, 1200, 1000, 1188, 1200, 1000, 1188],
+        },
+      ],
+    });
+    setChartData({
       labels: ["2G", "3G", "4G", "CDMA"],
       datasets: [
         {
@@ -68,6 +75,38 @@ export default function Horizontal() {
       maintainAspectRatio: false,
       responsive: true,
     });
+    const interval = setInterval(() => {
+      setChartData({
+        datasets: [
+          {
+            data: [],
+          },
+        ],
+      });
+      setTimeout(() => {
+        setChartData({
+          labels: ["2G", "3G", "4G", "CDMA"],
+          datasets: [
+            {
+              label: "",
+              data: [1300, 1200, 1000, 1188, 1200, 1000, 1188],
+              borderColor: "rgb(53, 162, 235)",
+              backgroundColor: [
+                "#3D8DFF",
+                "#3878DD",
+                "#3467C2",
+                "#325EB5",
+                "#3156A7",
+                "#2F4D9A",
+                "#3D8DFF",
+                "#3878DD",
+              ],
+            },
+          ],
+        });
+      }, 100);
+    }, 3000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
