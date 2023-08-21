@@ -100,8 +100,13 @@ const page = () => {
   return (
     <div className="mb-[50px] mr-[50px]">
       <h1 className="text-[1.35em] xl:text-[2em] text-[#A2A0B3] py-[10px]">
-        2020-yil may oyi holatiga uyali aloqa operatorlarining tayanch
-        stansiyalari soni
+        {locale === "uz"
+          ? "2020-yil may oyi holatiga uyali aloqa operatorlarining tayanch stansiyalari soni"
+          : locale === "ru"
+          ? "Количество базовых станций мобильных операторов май 2020 г."
+          : locale === "uzb"
+          ? "2020 йил май ойи ҳолатига уяли алоқа операторларининг таянч станциялари сони"
+          : "2020-yil may oyi holatiga uyali aloqa operatorlarining tayanch stansiyalari soni"}
       </h1>
       <Bar options={options} data={data} className="w-full" />
     </div>

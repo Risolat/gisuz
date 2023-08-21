@@ -30,13 +30,6 @@ export default function Horizontal() {
 
   useEffect(() => {
     setChartData({
-      datasets: [
-        {
-          data: [1300, 1200, 1000, 1188, 1200, 1000, 1188],
-        },
-      ],
-    });
-    setChartData({
       labels: ["2G", "3G", "4G", "CDMA"],
       datasets: [
         {

@@ -47,7 +47,7 @@ export default function Statistics() {
             </p>
           </div>
           <div className="lg:max-w-[280px] max-w-[350px]  mb-[10px] bg-[#252356] p-[20px] mx-5">
-            {/* <PieChart className="" /> */}
+            <PieChart className="" />
             <p className="w-full pt-[10px] font-[500] text-[16px] leading-5 text-[#A2A0B3] line-clamp-3">
               Qurilishi tugallangan telekommunikatsiya qurilmalarini davlat
               tomonidan qabul qilish toʻgʻrisida maʼlumot

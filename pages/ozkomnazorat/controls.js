@@ -3,8 +3,10 @@ import Link from "next/link";
 import { Icon } from "@iconify/react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../next-i18next.config";
+import { useTranslation } from "next-i18next";
 
 const page = ({ leaders, title, submenu, locale }) => {
+  const { t } = useTranslation("common");
   return (
     <div>
       <div className="container">
@@ -46,7 +48,7 @@ const page = ({ leaders, title, submenu, locale }) => {
                         />
                         <div>
                           <p className="font-medium text-[0.8125em] text-[#A2A0B3] mb-[4px]">
-                            Telefon
+                            {t("form.phone")}
                           </p>
                           <p className="text-[1em] text-white">{l.phone}</p>
                         </div>
@@ -60,7 +62,7 @@ const page = ({ leaders, title, submenu, locale }) => {
                         />
                         <div>
                           <p className="font-medium text-[0.8125em] text-[#A2A0B3] mb-[4px]">
-                            Elektron pochta
+                            {t("form.email")}
                           </p>
                           <p className="text-[1em] text-white">{l.mail}</p>
                         </div>
@@ -74,7 +76,7 @@ const page = ({ leaders, title, submenu, locale }) => {
                         />
                         <div>
                           <p className="font-medium text-[0.8125em] text-[#A2A0B3] mb-[4px]">
-                            Qabul kunlari
+                            {t("card.receive-time")}
                           </p>
                           <div
                             dangerouslySetInnerHTML={{

@@ -34,31 +34,6 @@ export const options = {
 };
 
 const labels = ["2019"];
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: "qabul qilingan obyektlar",
-      data: ["2987"],
-      backgroundColor: "rgb(73,147,255)",
-    },
-    {
-      label: "qabul qilinmagan obyektlar",
-      data: ["205"],
-      backgroundColor: "rgb(124,255,178)",
-    },
-    {
-      label: "obyektlarni qabuli uchun tushgan arizalar",
-      data: ["237"],
-      backgroundColor: "rgb(253,221,96)",
-    },
-    {
-      label: "qabul qilish jarayonidagi obyektlar",
-      data: ["1232"],
-      backgroundColor: "rgb(255,110,118)",
-    },
-  ],
-};
 
 const Barchart = () => {
   const { t } = useTranslation("index");
@@ -66,6 +41,59 @@ const Barchart = () => {
   const getBarData = async () => {
     const response = await axios.get(`/${locale}/api/statistics/?type=bar`);
     console.log(response);
+  };
+  const data = {
+    labels,
+    datasets: [
+      {
+        label:
+          locale === "uz"
+            ? "qabul qilingan obyektlar"
+            : locale === "uzb"
+            ? "қабул қилинган объектлар"
+            : locale === "ru"
+            ? "принятые объекты"
+            : "qabul qilingan obyektlar",
+        data: ["2987"],
+        backgroundColor: "rgb(73,147,255)",
+      },
+      {
+        label:
+          locale === "uz"
+            ? "qabul qilinmagan obyektlar"
+            : locale === "uzb"
+            ? "қабул қилинмаган объектлар"
+            : locale === "ru"
+            ? "непринятые объекты"
+            : "qabul qilinmagan obyektlar",
+        data: ["205"],
+        backgroundColor: "rgb(124,255,178)",
+      },
+      {
+        label:
+          locale === "uz"
+            ? "obyektlarni qabuli uchun tushgan arizalar"
+            : locale === "uzb"
+            ? "объектларни қабули учун тушган аризалар"
+            : locale === "ru"
+            ? "поступившие заявки для принятия объектов"
+            : "obyektlarni qabuli uchun tushgan arizalar",
+        data: ["237"],
+        backgroundColor: "rgb(253,221,96)",
+      },
+      {
+        label:
+          locale === "uz"
+            ? "qabul qilish jarayonidagi obyektlar"
+            : locale === "uzb"
+            ? "қабул қилиш жараёнидаги объектлар"
+            : locale === "ru"
+            ? "объекты, которые в процессе принятия"
+            : "qabul qilish jarayonidagi obyektlar",
+        data: ["1232"],
+        backgroundColor: "rgb(255,110,118)",
+      },
+    ],
   };
 
   useEffect(() => {

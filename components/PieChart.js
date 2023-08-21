@@ -6,7 +6,8 @@ import { useState, useEffect } from "react";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const pieChart = () => {
-  const [dataPie, setdataPie] = useState({
+  const [dataPie, setDataPie] = useState({
+    labels: [],
     datasets: [],
   });
   const [options, setOptions] = useState({});
@@ -19,7 +20,7 @@ const pieChart = () => {
         },
       },
     });
-    setdataPie({
+    setDataPie({
       labels: [
         "Qabul qilingan obyektlar",
         "Qabul qilish jarayonidagi obyektlar",
@@ -39,7 +40,8 @@ const pieChart = () => {
       ],
     });
     const interval = setInterval(() => {
-      setdataPie({
+      setDataPie({
+        labels: [],
         datasets: [
           {
             data: [],
@@ -47,7 +49,7 @@ const pieChart = () => {
         ],
       });
       setTimeout(() => {
-        setdataPie({
+        setDataPie({
           labels: [
             "Qabul qilingan obyektlar",
             "Qabul qilish jarayonidagi obyektlar",
@@ -56,7 +58,7 @@ const pieChart = () => {
           datasets: [
             {
               data: [12, 10, 5],
-              backgroundColor: ["#3D8DFF", "#3467C2", "#3D8DFF", "#3878DD"],
+              backgroundColor: ["#3D8DFF", "#3467C2", "#3D8DFF"],
               borderColor: [
                 "rgb(59 130 246 / 0.5)",
                 "rgb(79 123 193 / 50%)",

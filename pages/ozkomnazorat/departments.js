@@ -168,7 +168,7 @@ const page = () => {
                           onClick={() => changeActive(i)}
                           download
                         >
-                          Asosiy vazifalar
+                          {t("card.main-tasks")}
                         </button>
                       </div>
                       <div className="flex mt-[10px]">
@@ -181,7 +181,7 @@ const page = () => {
                           />
                           <div>
                             <p className="font-medium text-[0.8125em] text-[#A2A0B3] mb-[4px]">
-                              Telefon
+                              {t("form.phone")}
                             </p>
                             <p className="text-[1em] text-white">{l.phone}</p>
                           </div>
@@ -195,7 +195,7 @@ const page = () => {
                           />
                           <div>
                             <p className="font-medium text-[0.8125em] text-[#A2A0B3] mb-[4px]">
-                              Elektron pochta
+                              {t("form.email")}
                             </p>
                             <p className="text-[1em] text-white">{l.mail}</p>
                           </div>

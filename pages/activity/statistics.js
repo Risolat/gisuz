@@ -39,41 +39,6 @@ export const options = {
 };
 
 const labels = ["2019"];
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: "mahalliy telefon tarmogʻi",
-      data: ["1961"],
-      backgroundColor: "rgb(73,147,255)",
-    },
-    {
-      label: "maʼlumotlar uzatish tarmogʻi",
-      data: ["2855"],
-      backgroundColor: "rgb(124,255,178)",
-    },
-    {
-      label: "pochta xizmatlari",
-      data: ["3638"],
-      backgroundColor: "rgb(253,221,96)",
-    },
-    {
-      label: "mobil aloqa xizmati",
-      data: ["3638"],
-      backgroundColor: "rgb(255,110,118)",
-    },
-    {
-      label: "teleradio (KTV efir)",
-      data: ["544"],
-      backgroundColor: "rgb(88,217,249)",
-    },
-    {
-      label: "boshqa masalalar",
-      data: ["243"],
-      backgroundColor: "rgb(5,192,145)",
-    },
-  ],
-};
 
 const page = () => {
   const [title, setTitle] = useState();
@@ -82,7 +47,83 @@ const page = () => {
   const [name2, setname2] = useState("");
   const { t } = useTranslation("index");
   const { locale } = useRouter();
-
+  const data = {
+    labels,
+    datasets: [
+      {
+        label:
+          locale === "uz"
+            ? "mahalliy telefon tarmogʻi"
+            : locale === "uzb"
+            ? "маҳаллий телефон тармоғи"
+            : locale === "ru"
+            ? "местная телефонная связь"
+            : "mahalliy telefon tarmogʻi",
+        data: ["1961"],
+        backgroundColor: "rgb(73,147,255)",
+      },
+      {
+        label:
+          locale === "uz"
+            ? "maʼlumotlar uzatish tarmogʻi"
+            : locale === "uzb"
+            ? "маълумотлар узатиш тармоғи"
+            : locale === "ru"
+            ? "услуги передачи данных"
+            : "maʼlumotlar uzatish tarmogʻi",
+        data: ["2855"],
+        backgroundColor: "rgb(124,255,178)",
+      },
+      {
+        label:
+          locale === "uz"
+            ? "pochta xizmatlari"
+            : locale === "uzb"
+            ? "почта хизматлари"
+            : locale === "ru"
+            ? "почтовые услуги"
+            : "pochta xizmatlari",
+        data: ["3638"],
+        backgroundColor: "rgb(253,221,96)",
+      },
+      {
+        label:
+          locale === "uz"
+            ? "mobil aloqa xizmati"
+            : locale === "uzb"
+            ? "мобиль алоқа хизмати"
+            : locale === "ru"
+            ? "услуги мобильной связи"
+            : "mobil aloqa xizmati",
+        data: ["3638"],
+        backgroundColor: "rgb(255,110,118)",
+      },
+      {
+        label:
+          locale === "uz"
+            ? "teleradio (KTV efir)"
+            : locale === "uzb"
+            ? "телерадио (КТВ эфир)"
+            : locale === "ru"
+            ? "телерадио (эфир КТВ)"
+            : "teleradio (KTV efir)",
+        data: ["544"],
+        backgroundColor: "rgb(88,217,249)",
+      },
+      {
+        label:
+          locale === "uz"
+            ? "boshqa masalalar"
+            : locale === "uzb"
+            ? "бошқа масалалар"
+            : locale === "ru"
+            ? "другие вопросы"
+            : "boshqa masalalar",
+        data: ["243"],
+        backgroundColor: "rgb(5,192,145)",
+      },
+    ],
+  };
   const getBarData = async () => {
     const response = await axios.get(`/${locale}/api/statistics/?type=bar`);
     console.log(response);
@@ -120,7 +161,13 @@ const page = () => {
               {t("main-page.statistics")}
             </h3>
             <h1 className="text-[1.35em] xl:text-[2em] text-[#A2A0B3] py-[10px]">
-              “Oʻzkomnazorat” inspeksiyasiga kelib tushgan murojaatlar soni
+              {locale === "uz"
+                ? "“Oʻzkomnazorat” inspeksiyasiga kelib tushgan murojaatlar soni"
+                : locale === "ru"
+                ? "Количество обращений, поступивших в инспекцию «Узкомназорат»"
+                : locale === "uzb"
+                ? "“Ўзкомназорат” инспекциясига келиб тушган мурожаатлар сони"
+                : "“Oʻzkomnazorat” inspeksiyasiga kelib tushgan murojaatlar soni"}
             </h1>
             <Bar options={options} data={data} className="w-full mb-[50px]" />
             <h1 className="text-[1.35em] xl:text-[2em] text-[#A2A0B3] py-[20px]  mr-[20px]">

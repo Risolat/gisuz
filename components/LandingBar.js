@@ -37,13 +37,64 @@ export default function Horizontal() {
   // };
   useEffect(() => {
     setChartData({
+      labels: [
+        "mahalliy telefon tarmog'i",
+        "maʼlumotlar uzatish tarmogʻi",
+        "pochta xizmatlari",
+        "mobil aloqa xizmati",
+        "teleradio (KTV efir)",
+        "boshqa masalalar",
+      ],
       datasets: [
         {
+          label: "",
           data: [1961, 2855, 3638, 3638, 544, 243],
+          borderRadius: 6,
+          borderColor: "rgb(53, 162, 235)",
+          backgroundColor: [
+            "#3D8DFF",
+            "#3878DD",
+            "#3467C2",
+            "#325EB5",
+            "#3156A7",
+            "#2F4D9A",
+            "#3D8DFF",
+            "#3878DD",
+          ],
         },
       ],
     });
-
+    setChartOptions({
+      scales: {
+        x: {
+          display: false,
+        },
+        y: {
+          display: false,
+        },
+      },
+      indexAxis: "x",
+      plugins: {
+        legend: {
+          display: false,
+        },
+        title: {
+          display: false,
+          text: "",
+        },
+      },
+      maintainAspectRatio: false,
+      responsive: true,
+      // animations: {
+      //   tension: {
+      //     duration: 1000,
+      //     easing: "linear",
+      //     from: 1,
+      //     to: 0,
+      //     loop: true,
+      //   },
+      // },
+    });
     const interval = setInterval(() => {
       setChartData({
         datasets: [
@@ -84,37 +135,6 @@ export default function Horizontal() {
       }, 100);
     }, 3000);
 
-    setChartOptions({
-      scales: {
-        x: {
-          display: false,
-        },
-        y: {
-          display: false,
-        },
-      },
-      indexAxis: "x",
-      plugins: {
-        legend: {
-          display: false,
-        },
-        title: {
-          display: false,
-          text: "",
-        },
-      },
-      maintainAspectRatio: false,
-      responsive: true,
-      // animations: {
-      //   tension: {
-      //     duration: 1000,
-      //     easing: "linear",
-      //     from: 1,
-      //     to: 0,
-      //     loop: true,
-      //   },
-      // },
-    });
     return () => clearInterval(interval);
   }, []);
 
