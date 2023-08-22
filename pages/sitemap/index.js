@@ -28,15 +28,6 @@ const Sitemap = ({ menu }) => {
   const { locale } = useRouter();
   return (
     <>
-      {/* <h1>{menu.title}</h1>
-      <div>
-        {menu.submenu.map((d) => (
-          <div key={d.id}>
-            <p>{d.id}</p>
-            <h1>{d.title}</h1>
-          </div>
-        ))}
-      </div> */}
       <div>
         <div className="absolute z-20 top-0 w-full bg-[#171142]">
           <div className="border-[#5C587A] border-b-[2px]">
@@ -89,8 +80,8 @@ const Sitemap = ({ menu }) => {
                       d?.submenu.map((sub) => (
                         <ul className="w-[300px]">
                           <li>
-                            <Link
-                              onClick={() => setmenuOpen(false)}
+                            <a
+                              // onClick={() => setmenuOpen(false)}
                               className="block pb-[10px] text-[1.12em] font-montserrat text-[#A2A0B3] hover:text-white cursor-pointer  font-semibold"
                               locale={locale}
                               href={`${
@@ -101,7 +92,7 @@ const Sitemap = ({ menu }) => {
                               }`}
                             >
                               {sub.title}
-                            </Link>
+                            </a>
                           </li>
                         </ul>
                       ))

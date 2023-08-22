@@ -8,7 +8,12 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../next-i18next.config";
+import { Montserrat } from "next/font/google";
 
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+});
 const page = () => {
   const [title, setTitle] = useState();
   const [submenu, setSubmenu] = useState([]);
@@ -208,14 +213,14 @@ const page = () => {
                     onClick={() => hideModal(i)}
                     className={`${
                       l.modal
-                        ? "fixed top-0 bottom-0 left-0 right-0 z-30 w-full h-full bg-transparent"
+                        ? "fixed top-0 bottom-0 left-0 right-0 z-30 w-full h-full bg-[rgba(0,0,0,.4)]"
                         : "hidden"
                     }`}
                   >
-                    <div className="modal fixed top-[7%] left-0 bottom-0 right-0 w-screen h-screen  z-30 ml-[20px]">
+                    <div className="modal fixed top-[7%] left-[-20px] bottom-0 right-0 w-screen h-screen  z-30 ml-[20px]">
                       <div className="w-screen h-screen ">
                         <div className="relative w-[1300px] pt-[30px] my-0  mx-auto flex items-start justify-center bg-[#3A2F7D]">
-                          <div className="flex flex-col items-center ">
+                          <div className="flex flex-col items-center px-[30px]">
                             <Image
                               className="w-[200px] h-[222px] md:w-[366px] md:h-[388px] mb-[30px] object-cover object-top"
                               src={l.photo}
@@ -223,14 +228,16 @@ const page = () => {
                               width={266}
                               height={388}
                             />
-                            <p className="font-semibold pb-[20px] font-inter text-[.9em] text-[#A2A0B3] md:text-[1.25em] text-center ">
+                            <h2 className="font-semibold pb-[20px] font-inter text-[.9em] text-[#A2A0B3] md:text-[1.25em] text-center ">
                               {l.last_name} {l.first_name} {l.father_name}
-                            </p>
-                            <h3 className="text-[#3D8DFF] pb-[20px]  font-montserrat font-medium text-[.8em] md:text-[1.12em] md:mb-[8px] text-center">
+                            </h2>
+                            <h3
+                              className={`${montserrat.variable} text-[#3D8DFF] pb-[20px] tracking-wide font-montserrat font-semibold text-[1.12em] text-[1.12em] md:mb-[8px] text-center`}
+                            >
                               {l.position}
                             </h3>
                             <div
-                              className="px-[30px]  pb-[30px] desc-html leading-[38px] w-full text-[.7rem] text-[#A2A0B3] leading-[22px] text-justify font-inter break-words"
+                              className="  pb-[30px] desc-html leading-[38px] w-full text-[.8rem] text-[#A2A0B3] leading-[22px] text-justify font-inter break-words"
                               dangerouslySetInnerHTML={{
                                 __html: l.description,
                               }}

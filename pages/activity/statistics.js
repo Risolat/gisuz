@@ -71,7 +71,7 @@ const page = () => {
             ? "маҳаллий телефон тармоғи"
             : locale === "ru"
             ? "местная телефонная связь"
-            : "mahalliy telefon tarmogʻi",
+            : "local telephone connection",
         data: ["1961"],
         backgroundColor: "rgb(73,147,255)",
       },
@@ -83,7 +83,7 @@ const page = () => {
             ? "маълумотлар узатиш тармоғи"
             : locale === "ru"
             ? "услуги передачи данных"
-            : "maʼlumotlar uzatish tarmogʻi",
+            : "data services",
         data: ["2855"],
         backgroundColor: "rgb(124,255,178)",
       },
@@ -95,7 +95,7 @@ const page = () => {
             ? "почта хизматлари"
             : locale === "ru"
             ? "почтовые услуги"
-            : "pochta xizmatlari",
+            : "post services",
         data: ["3638"],
         backgroundColor: "rgb(253,221,96)",
       },
@@ -107,7 +107,7 @@ const page = () => {
             ? "мобиль алоқа хизмати"
             : locale === "ru"
             ? "услуги мобильной связи"
-            : "mobil aloqa xizmati",
+            : "mobile communication services",
         data: ["3638"],
         backgroundColor: "rgb(255,110,118)",
       },
@@ -119,7 +119,7 @@ const page = () => {
             ? "телерадио (КТВ эфир)"
             : locale === "ru"
             ? "телерадио (эфир КТВ)"
-            : "teleradio (KTV efir)",
+            : "television and radio (KTV broadcast)",
         data: ["544"],
         backgroundColor: "rgb(88,217,249)",
       },
@@ -131,7 +131,7 @@ const page = () => {
             ? "бошқа масалалар"
             : locale === "ru"
             ? "другие вопросы"
-            : "boshqa masalalar",
+            : "other questions",
         data: ["243"],
         backgroundColor: "rgb(5,192,145)",
       },

@@ -196,7 +196,7 @@ const appealCode = () => {
       <div className=" pb-[40px]">
         <form onSubmit={handleSubmit(onSubmit)}>
           <label className="block">
-            <p className="text-[18px] pb-[10px]">Murojaat kodi</p>
+            <p className="text-[18px] pb-[10px]">{t("modal.appeal-code")}</p>
             <input
               type="text"
               name="code_request"
@@ -209,7 +209,9 @@ const appealCode = () => {
             </span>
           </label>
           <label className="block">
-            <p className="text-[18px] pb-[10px]">Tekshiruv kodi</p>
+            <p className="text-[18px] pb-[10px]">
+              {t("modal.appeal-check-code")}
+            </p>
             <input
               type="text"
               name="code_password"
@@ -257,7 +259,7 @@ const appealCode = () => {
             //   onClick={() => getnetwork()}
             className="px-[60px] py-[20px] mt-[30px] border hover:bg-white hover:text-[#3C3971]"
           >
-            Tekshirish
+            {t("button.check")}
           </button>
         </form>
       </div>

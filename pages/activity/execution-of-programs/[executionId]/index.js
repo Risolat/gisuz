@@ -2,8 +2,10 @@ import axios from "../../../../http";
 import Link from "next/link";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../../../next-i18next.config";
+import { useTranslation } from "next-i18next";
 
 const executionDetail = ({ execution, title, submenu, locale }) => {
+  const { t } = useTranslation("common");
   return (
     <div className="mb-[130px]">
       <div className="container">
@@ -23,7 +25,7 @@ const executionDetail = ({ execution, title, submenu, locale }) => {
                 target="_blank"
                 download
               >
-                Hujjatni yuklab olish
+                {t("button.download-document")}
               </a>
               <div className="flex item-center"></div>
             </div>

@@ -145,6 +145,11 @@ const NavbarTop = () => {
     const resData = [];
     setresData(resData);
   };
+  const closeSearchBtn = () => {
+    setsearchOpen(false);
+    const resData = [];
+    setresData(resData);
+  };
   function getSelectionText() {
     let text = "";
     if (window.getSelection) {
@@ -837,7 +842,7 @@ const NavbarTop = () => {
         >
           <div className="absolute top-[30%] left-0 bottom-0 right-0  z-30 ml-[20px]">
             <div className="">
-              <div className="max-w-[900px] my-0  mx-auto flex flex-col items-center justify-center bg-[#171142]">
+              <div className="max-w-[1100px] my-0  mx-auto flex flex-col items-center justify-center bg-[#171142]">
                 <div className="flex justify-center items-center relative w-full py-[20px] ">
                   <h3 className="text-[25px] text-center">
                     {locale === "uz"
@@ -850,7 +855,7 @@ const NavbarTop = () => {
                   </h3>
                   <button
                     className="absolute right-[3%]"
-                    onClick={() => setsearchOpen(!searchopen)}
+                    onClick={() => closeSearchBtn()}
                   >
                     <Icon
                       icon="ph:x-circle-bold"

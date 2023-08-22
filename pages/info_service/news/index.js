@@ -173,7 +173,7 @@ const page = () => {
       <div className={`${montserrat.variable} container font-montserrat`}>
         <div className="flex flex-row items-start py-[40px]">
           <div className="basis-3/4">
-            <h3 className="text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]">
+            <h3 className="text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[32px]">
               {t("page-titles.info-service.news-archive")}
             </h3>
             {news.length === 0 ? (

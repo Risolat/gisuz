@@ -61,7 +61,7 @@ const Barchart = () => {
             ? "қабул қилинган объектлар"
             : locale === "ru"
             ? "принятые объекты"
-            : "qabul qilingan obyektlar",
+            : "accepted objects",
         data: ["2987"],
         backgroundColor: "rgb(73,147,255)",
       },
@@ -70,10 +70,10 @@ const Barchart = () => {
           locale === "uz"
             ? "qabul qilinmagan obyektlar"
             : locale === "uzb"
-            ? "қабул қилинмаган объектлар"
+            ? "unaccepted objects"
             : locale === "ru"
             ? "непринятые объекты"
-            : "qabul qilinmagan obyektlar",
+            : "unaccepted objects",
         data: ["205"],
         backgroundColor: "rgb(124,255,178)",
       },
@@ -85,7 +85,7 @@ const Barchart = () => {
             ? "объектларни қабули учун тушган аризалар"
             : locale === "ru"
             ? "поступившие заявки для принятия объектов"
-            : "obyektlarni qabuli uchun tushgan arizalar",
+            : "received applications for acceptance of objects",
         data: ["237"],
         backgroundColor: "rgb(253,221,96)",
       },
@@ -97,7 +97,7 @@ const Barchart = () => {
             ? "қабул қилиш жараёнидаги объектлар"
             : locale === "ru"
             ? "объекты, которые в процессе принятия"
-            : "qabul qilish jarayonidagi obyektlar",
+            : "objects that are in the process of being accepted",
         data: ["1232"],
         backgroundColor: "rgb(255,110,118)",
       },

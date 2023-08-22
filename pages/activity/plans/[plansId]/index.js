@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import axios from "../../../../http";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
@@ -8,6 +7,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../../../next-i18next.config";
 
 const plansDetail = ({ plans, title, submenu, locale }) => {
+  const { t } = useTranslation("common");
   return (
     <div className="mb-[230px]">
       <div className="container">
@@ -27,7 +27,7 @@ const plansDetail = ({ plans, title, submenu, locale }) => {
                 target="_blank"
                 download
               >
-                Hujjatni yuklab olish
+                {t("button.download-document")}
               </a>
               <div className="flex item-center"></div>
             </div>

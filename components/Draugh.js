@@ -26,28 +26,28 @@ const Draugh = () => {
         ? "ҳайфсан"
         : locale === "ru"
         ? "выговор"
-        : "hayfsan",
+        : "rebuke",
       locale === "uz"
         ? "jarima"
         : locale === "uzb"
         ? "жарима"
         : locale === "ru"
         ? "штраф"
-        : "jarima",
+        : "fine",
       locale === "uz"
         ? "egallab turgan lavozimidan ozod etildi"
         : locale === "uzb"
         ? "эгаллаб турган лавозимидан озод этилди"
         : locale === "ru"
         ? "освобождены от занимаемой должности"
-        : "egallab turgan lavozimidan ozod etildi",
+        : "relieved of his post",
       locale === "uz"
         ? "maʼmuriy javobgarlikka tortilgan"
         : locale === "uzb"
         ? "маъмурий жавобгарликка тортилган"
         : locale === "ru"
         ? "привлечены к административной ответственности"
-        : "maʼmuriy javobgarlikka tortilgan",
+        : "brought to administrative responsibility",
     ],
     datasets: [
       {

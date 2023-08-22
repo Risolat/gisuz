@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
 import axios from "../../../../http";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
-import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../../../next-i18next.config";
 
 const anticorruptionDetail = ({ title, submenu, anticorruption, locale }) => {
+  const { t } = useTranslation("common");
   return (
     <div>
       <div className="container">
@@ -29,7 +28,7 @@ const anticorruptionDetail = ({ title, submenu, anticorruption, locale }) => {
                   target="_blank"
                   download
                 >
-                  Hujjatni yuklab olish
+                  {t("button.download-document")}
                 </a>
               )}
 
