@@ -26,6 +26,14 @@ export const options = {
   plugins: {
     legend: {
       position: "top",
+      labels: {
+        color: "#A2A0B3",
+        layout: {
+          padding: {
+            bottom: 200,
+          },
+        },
+      },
     },
     title: {
       display: false,

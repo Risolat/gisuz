@@ -12,7 +12,7 @@ const index = () => {
           <div className={styles.tool}>{t("Index.navbar.phone")}</div>
           <div className={styles.frame3}>
             <svg
-              className="murojat"
+              className="murojat w-[28px] h-[23px] mb-[5px]"
               width="28"
               height="29"
               viewBox="0 0 28 29"

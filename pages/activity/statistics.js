@@ -28,9 +28,22 @@ ChartJS.register(
 );
 export const options = {
   responsive: true,
+  layout: {
+    padding: {
+      top: 10,
+    },
+  },
   plugins: {
     legend: {
       position: "top",
+      labels: {
+        color: "#A2A0B3",
+        layout: {
+          padding: {
+            bottom: 100,
+          },
+        },
+      },
     },
     title: {
       display: false,
@@ -167,11 +180,17 @@ const page = () => {
                 ? "Количество обращений, поступивших в инспекцию «Узкомназорат»"
                 : locale === "uzb"
                 ? "“Ўзкомназорат” инспекциясига келиб тушган мурожаатлар сони"
-                : "“Oʻzkomnazorat” inspeksiyasiga kelib tushgan murojaatlar soni"}
+                : "The number of appeals received by the inspection ”Uzkomnazorat”"}
             </h1>
             <Bar options={options} data={data} className="w-full mb-[50px]" />
             <h1 className="text-[1.35em] xl:text-[2em] text-[#A2A0B3] py-[20px]  mr-[20px]">
-              {name2}
+              {locale === "uz"
+                ? "Qurilishi tugallangan telekommunikatsiya qurilmalarini davlat tomonidan qabul qilish toʻgʻrisida maʼlumot"
+                : locale === "ru"
+                ? "Информация о государственной приемке законченных строительством объектов телекоммуникации"
+                : locale === "uzb"
+                ? "Қурилиши тугалланган телекоммуникация қурилмаларини давлат томонидан қабул қилиш тўғрисида маълумот"
+                : "Information on the state acceptance of completed construction of telecommunications facilities"}
             </h1>
             <BarChart className="w-full mb-[50px]" />
             <Draugh className="w-full mb-[50px]" />

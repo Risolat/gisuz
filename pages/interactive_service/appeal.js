@@ -221,10 +221,12 @@ const page = () => {
                   <div id="alert">
                     <div className=" w-full mb-[20px]" id="alertContent">
                       <div className="relative bg-[#164e21] text-green-500 p-[35px]  mr-[20px]">
-                        <p>Murojaatingiz qabul qilindi</p>
+                        <p>{t("modal.appeal-applied")}</p>
                         <div className="flex items-center">
-                          <p>Murojaat kodi:</p> <span>{code_request}</span>
-                          <p>Tekshiruv kodi:</p> <span>{code_password}</span>
+                          <p>{t("modal.appeal-code")}:</p>{" "}
+                          <span>{code_request}</span>
+                          <p>{t("modal.appeal-check-code")}:</p>{" "}
+                          <span>{code_password}</span>
                         </div>
                         <Icon
                           className="absolute right-[10px] top-[10px]"
@@ -475,7 +477,7 @@ const page = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="flex items-end">
+                    <div className="">
                       <div className="flex">
                         <div className="flex">
                           <label className="flex">
@@ -507,6 +509,9 @@ const page = () => {
                           />
                         </button>
                       </div>
+                      <span className="error-message">
+                        {t("validator.field-required")}
+                      </span>
                     </div>
                     <button
                       type="submit"

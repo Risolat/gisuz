@@ -117,7 +117,7 @@ const page = () => {
                 <div className="flex flex-col xl:flex-row items-center font-inter justify-between pb-[30px]">
                   <label className="w-full block mb-[20px]">
                     <span className="block font-medium text-[20px] mb-[12px] leading-4">
-                      F.I.SH.
+                      {t("form.full-name")}
                     </span>
                     <input
                       type="text"
@@ -132,7 +132,7 @@ const page = () => {
                   </label>
                   <label className="block w-full mb-[20px]">
                     <span className="block font-medium text-[20px] mb-[12px] leading-4">
-                      Elektron pochta
+                      {t("form.email")}
                     </span>
                     <input
                       type="email"
@@ -152,7 +152,7 @@ const page = () => {
                   </label>
                   <label className="block w-full mb-[20px]">
                     <span className="block font-medium text-[20px] mb-[12px] leading-4">
-                      Telefon
+                      {t("form.phone")}
                     </span>
                     <div className="flex items-center">
                       <span className="px-[8px] py-[10px] bg-[#3A2F7D] text-[17px]">
@@ -174,7 +174,7 @@ const page = () => {
                 <div className="flex flex-col justify-start xl:flex-row xl:items-end">
                   <label className="block mr-[50px] w-full xl:w-auto">
                     <span className="block font-medium text-[20px] mb-[12px] leading-4">
-                      Xabar matni
+                      {t("form.message-text")}
                     </span>
                     <input
                       type="text"
@@ -185,7 +185,7 @@ const page = () => {
                     />
                     <span className="text-[red]">
                       {errors.text?.type === "required" &&
-                        "Ushbu maydon to'ldirilishi shart"}
+                        t("validator.field-required")}
                     </span>
                   </label>
                   <div>
@@ -221,7 +221,7 @@ const page = () => {
                       </button>
                     </div>
                     <span className="absolute pl-[5px] text-[14px] text-red-400">
-                      Ushbu maydon to'ldirilishi shart
+                      {t("validator.field-required")}
                     </span>
                   </div>
                 </div>
@@ -229,46 +229,66 @@ const page = () => {
                   type="submit"
                   className="px-[60px] py-[20px] mt-[30px] border hover:bg-white hover:text-[#3C3971]"
                 >
-                  Yuborish
+                  {t("button.send")}
                 </button>
               </form>
             </div>
             <div>
               <h2 className="text-white font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]">
-                Bogʻlanish uchun ma’lumot
+                {t("page-titles.connect.info-for-connect")}
               </h2>
               <div className="">
                 <div className="flex justify-between flex-wrap font-inter">
                   <div>
-                    <p className="text-[#A2A0B3] font-inter">Manzil:</p>
+                    <p className="text-[#A2A0B3] font-inter">
+                      {" "}
+                      {t("form.address")}
+                    </p>
                     <p className="max-w-full xl:w-[300px] h-[85px] text-white-500">
-                      136, Labzak str., Shaykhantakhur district, 100128,
-                      Tashkent, Republic of Uzbekistan
+                      {t("navbar.address")}
                     </p>
 
-                    <p className="text-[#A2A0B3] font-inter">Telefon:</p>
+                    <p className="text-[#A2A0B3] font-inter">
+                      {t("form.phone")}:{" "}
+                    </p>
                     <p className="text-blue-500">(71) 202-69-65</p>
                     <p className="text-blue-500">(71) 202-69-61</p>
                   </div>
                   <div>
-                    <p className="text-[#A2A0B3] font-inter">Mo’ljal:</p>
-                    <p className="h-[85px] text-white-500 ">
-                      market Malika Bus: 29, 35, 78, 98, 148
+                    <p className="text-[#A2A0B3] font-inter">
+                      {t("card.near-place")}:
+                    </p>
+                    <p className="h-[85px] xl:w-[300px]  text-white-500 ">
+                      {locale === "uz"
+                        ? "Ishchilar shaharchasi, Malika savdo markazi Avtobuslar: 29, 35, 97, 78, 148"
+                        : locale === "ru"
+                        ? "Рабочий городок, рынок Малика Автобусы: 29, 35, 78, 98, 148"
+                        : locale === "uzb"
+                        ? "Ишчилар шаҳарчаси, Малика савдо маркази Автобуслар: 29, 35, 97, 78, 148"
+                        : "market Malika Bus: 29, 35, 78, 98, 148"}
                     </p>
 
                     <p className="text-[#A2A0B3] font-inter">
-                      Elektron pochta:
+                      {t("form.email")}:
                     </p>
                     <p className="text-blue-500">info@gis.uz</p>
                     <p className="text-blue-500">gis@exat.uz</p>
                   </div>
                   <div>
-                    <p className="text-[#A2A0B3] font-inter">Ish vaqti:</p>
+                    <p className="text-[#A2A0B3] font-inter">
+                      {t("card.work-time")}:
+                    </p>
                     <p className="h-[85px] text-white-500">
-                      Monday to Friday; at 9:00 to 18:00
+                      {locale === "uz"
+                        ? "Dushanba-juma; 9:00 dan 18:00 gacha"
+                        : locale === "ru"
+                        ? "С понедельника по пятницу; С 9:00 до 18:00"
+                        : locale === "uzb"
+                        ? "Душанба-жума; 9:00 дан 18:00 гача"
+                        : "Monday to Friday; at 9:00 to 18:00"}
                     </p>
                     <p className="text-[#A2A0B3] font-inter">
-                      Ishonch telefoni:
+                      {t("card.helpline")}:
                     </p>
                     <p className="text-blue-500">1144</p>
                   </div>

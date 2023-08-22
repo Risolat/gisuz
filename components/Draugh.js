@@ -76,17 +76,31 @@ const Draugh = () => {
   }, []);
   return (
     <div>
-      <h1 className="text-[1.35em] xl:text-[2em] text-[#A2A0B3] py-[10px] mr-[20px]">
-        {name}
+      <h1 className="text-[1.35em] xl:text-[2em] text-[#A2A0B3] py-[10px] mr-[20px] mb-[10px]">
+        {locale === "uz"
+          ? "2019-yilda mansabdor shaxslarga nisbatan koʻrilgan choralar toʻgʻrisida maʼlumot"
+          : locale === "ru"
+          ? " Информация о принятых мерах по отношению к ответственным лицам в результате изучения и проверок в 2019 году"
+          : locale === "uzb"
+          ? "2019 йилда мансабдор шахсларга нисбатан кўрилган чоралар тўғрисида маълумот"
+          : "Information on the measures taken in relation to responsible persons as a result of the study and inspections in 2019"}
       </h1>
-      <div className="w-[850px] h-[800px] flex items-center justify-center my-0 mx-auto">
+      <div className="w-[800px] h-[800px] flex items-center justify-center my-0 mx-auto">
         <Doughnut
-          className="w-[850px] h-[700px]"
+          className="w-[800px] h-[800px] p-[10px]"
           data={data}
           options={{
+            layout: {
+              padding: {
+                top: 20,
+              },
+            },
             plugins: {
               legend: {
                 position: "top",
+                labels: {
+                  color: "#A2A0B3",
+                },
               },
             },
           }}

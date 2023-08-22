@@ -18,7 +18,7 @@ const page = () => {
   const [title, setTitle] = useState();
   const [gov_standarts, setgov_standarts] = useState([]);
   const [year, setYear] = useState("");
-  const [date, setdate] = useState(new Date());
+  const [date, setdate] = useState(null);
   const [input, setInput] = useState("");
   const [count, setCount] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -71,7 +71,14 @@ const page = () => {
     }
   };
   const paginate = async (currentPage) => {
-    getgov_standarts(currentPage);
+    const response = await axios.get(
+      `/${locale}/api/documents/documents/stateStandartsBySubmenuSlug/?submenu_slug=/documents/gov_standarts&page=${currentPage}&title=${input}&year=${year}&page_size=${postsPerPage}`
+    );
+    const gov_standarts = response.data.results;
+    setCurrentPage(currentPage);
+    setgov_standarts(gov_standarts);
+    const count = response.data.count;
+    setCount(count);
     window.scrollTo(0, 0);
   };
   const lastPage = async (total) => {
@@ -112,9 +119,16 @@ const page = () => {
     let inp = document.getElementById("input");
     inp.value = "";
   };
-  const clearDate = () => {
+  const clearDate = async () => {
     let inpDate = document.getElementById("date");
-    inpDate.value = "";
+    location.reload();
+    // const response = await axios.get(
+    //   `/${locale}/api/documents/documents/stateStandartsBySubmenuSlug/?submenu_slug=/documents/gov_standarts&page=${currentPage}&title=${input}&year=&page_size=${postsPerPage}`
+    // );
+    // const gov_standarts = response.data.results;
+    // setgov_standarts(gov_standarts);
+    // window.scrollTo(0, 0);
+    inpDate.value = " ";
   };
   useEffect(() => {
     getData();
@@ -163,6 +177,7 @@ const page = () => {
                   showYearPicker
                   dateFormat="yyyy"
                   onChange={(date) => handleDate(date)}
+                  autocomplete="off"
                 />
                 <Icon
                   onClick={() => clearDate()}
@@ -175,35 +190,41 @@ const page = () => {
               </div>
             </div>
             <div className="flex flex-col mt-[20px] pr-[16px]">
-              {gov_standarts.map((r) => (
-                <div key={r.id} className="gradientBox">
-                  <div className="border-[#3A2F7D] border-y-[2px] hover:bg-[#24224E] w-full bg-[#171142]">
-                    <p className="text-[1.12rem]  py-[16px] px-[8px]">
-                      <Link
-                        className="text-[#A2A0B3]"
-                        href={`${r.link}`}
-                        target="_blank"
-                      >
-                        {r.title}
-                      </Link>
-                    </p>
-                  </div>
-                </div>
-              ))}
+              {gov_standarts.length === 0
+                ? t("other.no-data")
+                : gov_standarts.map((r) => (
+                    <div key={r.id} className="gradientBox">
+                      <div className="border-[#3A2F7D] border-y-[2px] hover:bg-[#24224E] w-full bg-[#171142]">
+                        <p className="text-[1.12rem]  py-[16px] px-[8px]">
+                          <Link
+                            className="text-[#A2A0B3]"
+                            href={`${r.link}`}
+                            target="_blank"
+                          >
+                            {r.title}
+                          </Link>
+                        </p>
+                      </div>
+                    </div>
+                  ))}
             </div>
-            <Paginate
-              postsPerPage={postsPerPage}
-              totalPosts={count}
-              paginate={paginate}
-              previousPage={previousPage}
-              nextPage={nextPage}
-              currentPage={currentPage}
-              total={indexOfLastPost}
-              maxPageNumberLimit={maxPageNumberLimit}
-              minPageNumberLimit={minPageNumberLimit}
-              pageNumberLimit={pageNumberLimit}
-              lastPage={lastPage}
-            />
+            {gov_standarts.length === 0 ? (
+              ""
+            ) : (
+              <Paginate
+                postsPerPage={postsPerPage}
+                totalPosts={count}
+                paginate={paginate}
+                previousPage={previousPage}
+                nextPage={nextPage}
+                currentPage={currentPage}
+                total={indexOfLastPost}
+                maxPageNumberLimit={maxPageNumberLimit}
+                minPageNumberLimit={minPageNumberLimit}
+                pageNumberLimit={pageNumberLimit}
+                lastPage={lastPage}
+              />
+            )}
           </div>
           <div className="sticky top-[197px] w-[350px] basis-1/4 py-[8px] bg-[#3A2F7D]">
             <p className="mb-[24px] text-[20px] px-[16px]">{title}</p>

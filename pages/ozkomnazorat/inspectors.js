@@ -7,6 +7,12 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../next-i18next.config";
+import { Roboto } from "next/font/google";
+const roboto = Roboto({
+  subsets: ["latin"],
+  variable: "--font-roboto",
+  weight: "500",
+});
 
 const page = () => {
   const [title, setTitle] = useState();
@@ -123,7 +129,9 @@ const page = () => {
                         {l.address}
                       </h3>
                     </div>
-                    <div className="flex basis-6/12">
+                    <div
+                      className={`${roboto.variable} flex basis-6/12 font-roboto`}
+                    >
                       <div className="flex items-center mr-[30px]">
                         <Icon
                           className="text-white mr-[5px]"

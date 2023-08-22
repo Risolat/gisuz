@@ -518,3 +518,10 @@ strong {
 .connect-btn-youtube:hover #tooltip5{
   visibility: visible;
 }
+
+.error-message{
+  color: rgb(255 115 74 / .9);
+}
+[class^=swal2] {
+  font-family: "Roboto";
+}

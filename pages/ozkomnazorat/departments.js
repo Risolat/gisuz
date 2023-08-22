@@ -212,7 +212,7 @@ const page = () => {
                         : "hidden"
                     }`}
                   >
-                    <div className="modal fixed top-[10%] left-0 bottom-0 right-0 w-screen h-screen  z-30 ml-[20px]">
+                    <div className="modal fixed top-[7%] left-0 bottom-0 right-0 w-screen h-screen  z-30 ml-[20px]">
                       <div className="w-screen h-screen ">
                         <div className="relative w-[1300px] pt-[30px] my-0  mx-auto flex items-start justify-center bg-[#3A2F7D]">
                           <div className="flex flex-col items-center ">
@@ -230,7 +230,7 @@ const page = () => {
                               {l.position}
                             </h3>
                             <div
-                              className="px-[30px] overflow-auto pb-[30px] desc-html leading-[38px] w-full text-[16px] text-[#A2A0B3] leading-[22px] text-justify font-inter break-words"
+                              className="px-[30px]  pb-[30px] desc-html leading-[38px] w-full text-[.7rem] text-[#A2A0B3] leading-[22px] text-justify font-inter break-words"
                               dangerouslySetInnerHTML={{
                                 __html: l.description,
                               }}

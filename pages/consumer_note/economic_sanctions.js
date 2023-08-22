@@ -14,7 +14,7 @@ const page = ({ submenu, title, locale }) => {
       <div className="container">
         <div className="flex flex-row items-start py-[40px]">
           <div className="basis-3/4"></div>
-          <div className="sticky top-[197px] w-[350px] basis-1/4 py-[8px] bg-[#3A2F7D]">
+          <div className="sticky top-[197px] w-[350px] basis-1/4 py-[8px] bg-[#3A2F7D] mb-[250px]">
             <p className="mb-[24px] text-[20px] px-[16px]">{title}</p>
             <ul className="">
               {submenu.map((item) => (

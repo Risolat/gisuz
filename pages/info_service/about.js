@@ -26,7 +26,13 @@ const page = ({ about, title, submenu, locale }) => {
 
               <div className="text-[16px] text-[#A2A0B3] leading-[22px">
                 <p className="pb-[10px] font-bold text-[18px]">
-                  Masharipova Ruxsora Olimjonovna
+                  {locale === "uz"
+                    ? "Masharipova Ruxsora Olimjonovna"
+                    : locale === "ru"
+                    ? "Машарипова Рухсора Алимжановна"
+                    : locale === "uzb"
+                    ? "Машарипова Рухсора Алимжановна"
+                    : "Masharipova Ruxsora Olimjonovna"}
                 </p>
                 <p className="pb-[10px]">
                   <b>

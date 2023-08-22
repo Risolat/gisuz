@@ -45,6 +45,9 @@ export const options = {
   plugins: {
     legend: {
       position: "top",
+      labels: {
+        color: "#A2A0B3",
+      },
     },
     title: {
       display: false,
@@ -99,14 +102,14 @@ const page = () => {
   }, []);
   return (
     <div className="mb-[50px] mr-[50px]">
-      <h1 className="text-[1.35em] xl:text-[2em] text-[#A2A0B3] py-[10px]">
+      <h1 className="text-[1.35em] xl:text-[2em] text-[#A2A0B3] py-[10px] max-w-[1000px]">
         {locale === "uz"
           ? "2020-yil may oyi holatiga uyali aloqa operatorlarining tayanch stansiyalari soni"
           : locale === "ru"
           ? "Количество базовых станций мобильных операторов май 2020 г."
           : locale === "uzb"
           ? "2020 йил май ойи ҳолатига уяли алоқа операторларининг таянч станциялари сони"
-          : "2020-yil may oyi holatiga uyali aloqa operatorlarining tayanch stansiyalari soni"}
+          : "Number of base stations of mobile operators May 2020"}
       </h1>
       <Bar options={options} data={data} className="w-full" />
     </div>

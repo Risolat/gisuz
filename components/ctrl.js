@@ -6,6 +6,12 @@ import { useClickAway } from "@uidotdev/usehooks";
 import axios from "../http";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
+import { Roboto } from "next/font/google";
+const roboto = Roboto({
+  subsets: ["latin"],
+  variable: "--font-roboto",
+  weight: "500",
+});
 
 const MySwal = withReactContent(Swal);
 const ctrl = () => {
@@ -47,19 +53,22 @@ const ctrl = () => {
     setsuggested_text(event.target.value);
   };
   const onSubmit = async () => {
-    const response = await axios.post(`/${locale}/api/error_text/create/`, {
+    const response = await axios.post(`/api/error_text/create/`, {
       site_text,
       suggested_text,
     });
     setOpen(false);
-    console.log(response);
-    MySwal.$refs.modalComponentRef.closeModal();
     MySwal.fire({
       color: "#A2A0B3",
       background: "#3A2F7D",
+      fontFamily: "font-inter",
       timerProgressBar: true,
       icon: "success",
-      title: t("modal.appeal-applied"),
+      title: (
+        <p className={`${roboto.variable} font-roboto`}>
+          {t("modal.appeal-applied")}
+        </p>
+      ),
       timer: 5500,
       showConfirmButton: false,
       customClass: {
@@ -92,7 +101,6 @@ const ctrl = () => {
     // }
   };
   useEffect(() => {
-    // getSelectedText();
     window.addEventListener("keydown", handleKeyDown);
   }, []);
   return (

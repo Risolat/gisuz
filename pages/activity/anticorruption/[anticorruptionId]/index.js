@@ -20,6 +20,19 @@ const anticorruptionDetail = ({ title, submenu, anticorruption, locale }) => {
                 className="pr-[40px] desc-html leading-[38px] w-full text-[16px] text-[#A2A0B3] leading-[22px] text-justify font-inter break-words"
                 dangerouslySetInnerHTML={{ __html: anticorruption.description }}
               />
+              {anticorruption.file === null ? (
+                ""
+              ) : (
+                <a
+                  href={anticorruption.file}
+                  className="inline-block mt-[20px] hover:bg-white hover:text-[#171142] font-bold tracking-[1px] text-white border border-text_secondary px-[20px] py-[12px]"
+                  target="_blank"
+                  download
+                >
+                  Hujjatni yuklab olish
+                </a>
+              )}
+
               <div className="flex item-center"></div>
             </div>
           </div>

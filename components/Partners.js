@@ -32,7 +32,7 @@ const Partners = () => {
     <div className="item mx-[10px]" key={i} data-value="1">
       <div className="hover:box-border gradientSolidBox">
         <Link href={p.link} className="">
-          <div className="hover:bg-[#24224E] m-0 flex flex-col items-center px-[14px] pt-[24px] pb-[42px] bg-[#3A2F7D]">
+          <div className="hover:bg-[#24224E] h-[174px] m-0 flex flex-col items-center px-[12px] pt-[24px] pb-[42px] bg-[#3A2F7D]">
             <img
               width="70"
               height="62"
