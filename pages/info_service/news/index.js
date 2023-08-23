@@ -187,7 +187,7 @@ const page = () => {
                     <Link href={`/info_service/news/${r.id}`} className="">
                       <Image
                         unoptimized
-                        className="w-[342px] h-[200px]"
+                        className="w-[342px] h-[200px] object-cover"
                         src={r.images[0].photo}
                         alt={r.title}
                         width={342}

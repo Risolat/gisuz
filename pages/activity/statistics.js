@@ -29,20 +29,30 @@ ChartJS.register(
 export const options = {
   responsive: true,
   layout: {
-    padding: {
-      top: 10,
-    },
+    // padding: 10,
   },
+  // scales: {
+  //   x: {
+  //     // <-- axis is not array anymore, unlike before in v2.x: '[{'
+  //     grid: {
+  //       color: "#ccc",
+  //       borderColor: "red", // <-- this line is answer to initial question
+  //     },
+  //   },
+  //   y: {
+  //     // <-- axis is not array anymore, unlike before in v2.x: '[{'
+  //     grid: {
+  //       color: "#ccc",
+  //       borderColor: "green", // <-- this line is answer to initial question
+  //     },
+  //   },
+  // },
   plugins: {
     legend: {
       position: "top",
       labels: {
         color: "#A2A0B3",
-        layout: {
-          padding: {
-            bottom: 100,
-          },
-        },
+        padding: 0,
       },
     },
     title: {
@@ -169,7 +179,7 @@ const page = () => {
     <div>
       <div className="container mr-[30px]">
         <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px] ">
-          <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px]">
+          <div className="2xl:basis-3/4 basis-full w-full px-[20px] 2xl:pl-0 mb-[20px]">
             <h3 className="text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]">
               {t("main-page.statistics")}
             </h3>

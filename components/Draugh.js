@@ -91,15 +91,16 @@ const Draugh = () => {
           data={data}
           options={{
             layout: {
-              padding: {
-                top: 20,
-              },
+              padding: 10,
             },
             plugins: {
               legend: {
                 position: "top",
                 labels: {
                   color: "#A2A0B3",
+                },
+                padding: {
+                  bottom: 100,
                 },
               },
             },

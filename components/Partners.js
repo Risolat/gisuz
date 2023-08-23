@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import axios from "../http";
@@ -55,7 +53,7 @@ const Partners = () => {
   return (
     <div className="container z-1">
       <h2 className="subtitle ml-[30px] 2xl:ml-0">{t("main-page.sponsors")}</h2>
-      <div className="w-[1500px] my-0 mx-auto pr-[40px] mb-[120px] z-1">
+      <div className="2xl:w-[1500px] my-0 mx-auto pr-[40px] mb-[120px] z-1">
         <AliceCarousel
           mouseTracking
           items={items}

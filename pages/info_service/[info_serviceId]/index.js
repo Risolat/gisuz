@@ -1,23 +1,23 @@
-import axios from "../../../../http";
+import axios from "../../../http";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Keyboard } from "swiper";
 import SwiperCore, { Pagination } from "swiper/core";
 import Image from "next/image";
-import date_range from "../../../../public/photos/main/date_range.svg";
-import red_eye from "../../../../public/photos/main/red_eye.svg";
+import date_range from "../../../public/photos/main/date_range.svg";
+import red_eye from "../../../public/photos/main/red_eye.svg";
 import dayjs from "dayjs";
 import { Icon } from "@iconify/react";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import i18nextConfig from "../../../../next-i18next.config";
+import i18nextConfig from "../../../next-i18next.config";
 import { Montserrat } from "next/font/google";
 import { useEffect, useState } from "react";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import Fancybox from "../../../../components/Fancybox";
+import Fancybox from "../../../components/Fancybox";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -52,21 +52,14 @@ const newsDetail = () => {
   };
   const getNews = async () => {
     const response = await axios(
-      `/${locale}/api/information_service/${query.newsId}`
+      `/${locale}/api/information_service/${query.info_serviceId}`
     );
     const news = response.data;
+    console.log(news);
     const photos = response.data.images;
     setnews(news);
     setPhotos(photos);
   };
-  function gallery(i) {
-    photos.map((v, index) => {
-      if (i === index) {
-        new Fancybox([{ src: v.photo, thumb: v.photo }, {}]);
-      }
-    });
-  }
-
   useEffect(() => {
     getData();
     getNews();
@@ -76,7 +69,7 @@ const newsDetail = () => {
       <div className={`${montserrat.variable} container font-montserrat`}>
         <div className="flex flex-row items-start py-[40px]">
           <div className="basis-3/4">
-            <h3 className="text-white px-[10px] mt-[40px] description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]">
+            <h3 className="text-white pr-[10px] mt-[40px] description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]">
               {news.title}
             </h3>
             <div className="flex items-center justify-between pb-[20px] pr-[20px] ">
@@ -124,28 +117,28 @@ const newsDetail = () => {
             </div>
 
             <div className="">
-              <Fancybox
-                className="flex"
-                options={{
-                  Carousel: {
-                    infinite: true,
-                  },
+              <Swiper
+                slidesPerView={1}
+                spaceBetween={20}
+                loop={true}
+                navigation={true}
+                pagination={{
+                  clickable: true,
                 }}
+                keyboard={true}
+                modules={[Navigation, Keyboard]}
+                className="mySwiper w-[1200px] h-full"
               >
-                <Swiper
-                  slidesPerView={1}
-                  spaceBetween={20}
-                  loop={true}
-                  navigation={true}
-                  pagination={{
-                    clickable: true,
-                  }}
-                  keyboard={true}
-                  modules={[Navigation, Keyboard]}
-                  className="mySwiper w-[1200px] h-full"
-                >
-                  {photos.map((p, i) => (
-                    <SwiperSlide key={i}>
+                {photos.map((p, i) => (
+                  <SwiperSlide key={i}>
+                    <Fancybox
+                      className="flex"
+                      options={{
+                        Carousel: {
+                          infinite: true,
+                        },
+                      }}
+                    >
                       <a
                         key={i}
                         href={p.photo}
@@ -159,10 +152,10 @@ const newsDetail = () => {
                           width={1056}
                         />
                       </a>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-              </Fancybox>
+                    </Fancybox>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
               <div>
                 <p
                   className="pr-[40px] pt-[20px] desc-html leading-[38px] text-[16px] text-[#A2A0B3] leading-[22px] text-justify font-inter break-words"
@@ -198,27 +191,27 @@ const newsDetail = () => {
 
 export async function getServerSideProps(context) {
   const locale = context.locale;
-  const query = context.query.newsId;
-  const res = await axios(`/${locale}/api/information_service/${query}`);
-  const news = await res.data;
+  // const query = context.query.info_serviceId;
+  // const res = await axios(`/${locale}/api/information_service/${query}`);
+  // const news = await res.data;
 
-  const response = await axios.get(`/${locale}/api/menu/`);
-  const menuName = ["INFORMATION_SERVICE"];
-  const menu = response.data.filter((category) =>
-    menuName.includes(category.name)
-  );
-  const title = menu.map((d) => {
-    return d.title;
-  });
+  // const response = await axios.get(`/${locale}/api/menu/`);
+  // const menuName = ["INFORMATION_SERVICE"];
+  // const menu = response.data.filter((category) =>
+  //   menuName.includes(category.name)
+  // );
+  // const title = menu.map((d) => {
+  //   return d.title;
+  // });
   return {
     props: {
       ...(await serverSideTranslations(locale, ["common"], i18nextConfig)),
-      news: news,
-      query: context.query.newsId,
-      photos: res.data.images,
-      title: title,
-      submenu: menu[0].submenu,
-      locale: locale,
+      // news: news,
+      // query: context.query.newsId,
+      // photos: res.data.images,
+      // title: title,
+      // submenu: menu[0].submenu,
+      // locale: locale,
     },
   };
 }

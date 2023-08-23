@@ -525,3 +525,7 @@ strong {
 [class^=swal2] {
   font-family: "Roboto";
 }
+
+.alice-carousel__prev-btn [data-area]::after, .alice-carousel__next-btn [data-area]::after{
+  color: #171142;
+}

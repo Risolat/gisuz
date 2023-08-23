@@ -28,11 +28,13 @@ export default function Statistics() {
           <button
             className={`${roboto.variable} font-roboto py-[13px] leading-6 text-[16px] px-[47px] ml-[30px] 2xl:ml-0 border-[2px] border-[#fff] hover:bg-white hover:text-[#3A2F7D]`}
           >
-            <a href="/activity/statistics">{t("button.more")}</a>
+            <a locale={locale} href={`${locale}/activity/statistics`}>
+              {t("button.more")}
+            </a>
           </button>
         </div>
         <div className="lg:basis-2/5 flex flex-col lg:flex-row items-stratch">
-          <div className="lg:max-w-[280px] max-w-[350px] mb-[10px] bg-[#252356] p-[20px] mx-5">
+          <div className="lg:max-w-[280px] max-w-[280px] sm:max-w-[350px] mb-[10px] bg-[#252356] p-[20px] sm:mx-5">
             <LandingBar />
             <p className="font-[500] pt-[10px] text-[16px] leading-5 text-[#A2A0B3]">
               {locale === "uz"
@@ -45,7 +47,7 @@ export default function Statistics() {
             </p>
           </div>
 
-          <div className="lg:max-w-[280px] max-w-[350px] mb-[10px] bg-[#252356] p-[20px] mx-5">
+          <div className="lg:max-w-[280px] max-w-[280px] sm:max-w-[350px] mb-[10px] bg-[#252356] p-[20px] sm:mx-5">
             <Horizontal className="" />
             <p className="font-[500] pt-[10px] text-[16px] leading-5 text-[#A2A0B3]">
               {locale === "uz"
@@ -57,7 +59,7 @@ export default function Statistics() {
                 : "Number of base stations of mobile operators May 2020"}
             </p>
           </div>
-          <div className="lg:max-w-[280px] max-w-[350px]  mb-[10px] bg-[#252356] p-[20px] mx-5">
+          <div className="lg:max-w-[280px] max-w-[280px] sm:max-w-[350px] mb-[10px] bg-[#252356] p-[20px] sm:mx-5">
             <PieChart className="" />
             <p className="w-full pt-[10px] font-[500] text-[16px] leading-5 text-[#A2A0B3] line-clamp-3">
               {locale === "uz"

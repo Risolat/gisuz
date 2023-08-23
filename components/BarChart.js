@@ -23,16 +23,15 @@ ChartJS.register(
 );
 export const options = {
   responsive: true,
+  layout: {
+    padding: 10,
+  },
   plugins: {
     legend: {
       position: "top",
       labels: {
         color: "#A2A0B3",
-        layout: {
-          padding: {
-            bottom: 200,
-          },
-        },
+        padding: 10,
       },
     },
     title: {

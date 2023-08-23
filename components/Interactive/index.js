@@ -18,9 +18,9 @@ const Slideshow = () => {
   const { t } = useTranslation("common");
   const responsive = {
     0: { items: 1 },
-    568: { items: 2 },
-    1024: { items: 3 },
-    1430: { items: 4 },
+    850: { items: 2 },
+    1160: { items: 3 },
+    1360: { items: 4 },
   };
   useEffect(() => {
     setIsClient(true);
@@ -131,7 +131,7 @@ const Slideshow = () => {
               {t("main-page.interactive-services")}
             </h2>
           </div>
-          <div className="carousel-box relative w-auto xl:w-[1440px] my-0 mx-auto px-[40px] mb-[120px] z-1">
+          <div className="carousel-box relative w-auto 2xl:w-[1440px] my-0 mx-auto px-[40px] mb-[120px] z-1">
             <AliceCarousel
               mouseTracking
               items={items}

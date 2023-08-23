@@ -4,11 +4,11 @@ import Image from "next/image";
 import logoGis from "../public/photos/icons/logo-gis.svg";
 import logo from "../public/photos/icons/logo.svg";
 import { useTranslation } from "next-i18next";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "../http";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
-import { useClickAway } from "@uidotdev/usehooks";
+import OutsideClickHandler from "react-outside-click-handler";
 import { Roboto } from "next/font/google";
 const roboto = Roboto({
   subsets: ["latin"],
@@ -23,7 +23,9 @@ const NavbarBottom = () => {
   const [open, setOpen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [subm, setSubMenu] = useState(null);
+  const [showInfo1, setShowInfo1] = useState(false);
 
+  const refOne = useRef();
   const getData = async () => {
     const response = await axios.get(`/${locale}/api/menu/`);
     const shortMenuNames = [
@@ -34,10 +36,6 @@ const NavbarBottom = () => {
       "INFORMATION_SERVICE",
       "NETWORK",
     ];
-    const about = await axios(
-      `/${locale}/api/information_service/informationServiceBySlug/?submenu_slug=/documents/inactive`
-    );
-    console.log(about, "about");
     const data = response.data
       .filter((category) => shortMenuNames.includes(category.name))
       .map((n) => {
@@ -46,13 +44,9 @@ const NavbarBottom = () => {
     const subm = data.map((sub) => {
       return sub;
     });
-    // console.log(data);
     setData(data);
     setSubMenu(subm);
   };
-  const ref = useClickAway(() => {
-    setOpen(false);
-  });
   const changeActive = (i) => {
     setOpen(false);
     setData(
@@ -72,9 +66,9 @@ const NavbarBottom = () => {
       })
     );
   };
-
   useEffect(() => {
     getData();
+    document.addEventListener("mousedown", () => {});
   }, []);
 
   if (!data) return <p></p>;
@@ -98,7 +92,9 @@ const NavbarBottom = () => {
               <Image
                 src={logo}
                 alt="logo"
-                className="w-[10px] h-[50px] xl:h-[80px]"
+                width={7}
+                height={83}
+                className="w-[7px] h-[50px] xl:h-[83px]"
               />
               <div className="2xl:pl-[16px] pl-[10px]">
                 <h1
@@ -124,7 +120,7 @@ const NavbarBottom = () => {
               </div>
             </Link>
 
-            <div id="navbarList">
+            <div id="navbarList" className="navbarList">
               <ul className="nav-list flex hidden xl:flex">
                 {data.map((category, i) => (
                   <li
@@ -132,29 +128,32 @@ const NavbarBottom = () => {
                     className="nav-item relative"
                     onClick={() => changeActive(i)}
                   >
-                    <button className="flex items-center px-[5px]">
-                      <p className="pr-[8px]">{category.title}</p>
-                      {category.open ? (
-                        <Icon
-                          icon="ep:arrow-up-bold"
-                          color="white"
-                          width={12}
-                          height={12}
-                        />
-                      ) : (
-                        <Icon
-                          icon="ep:arrow-down-bold"
-                          color="white"
-                          width={12}
-                          height={12}
-                        />
-                      )}
-                    </button>
+                    <OutsideClickHandler
+                      onOutsideClick={() => {
+                        setOpen(false);
+                      }}
+                    >
+                      <button className="flex items-center px-[5px]">
+                        <p className="pr-[8px]">{category.title}</p>
+                        {category.open ? (
+                          <Icon
+                            icon="ep:arrow-up-bold"
+                            color="white"
+                            width={12}
+                            height={12}
+                          />
+                        ) : (
+                          <Icon
+                            icon="ep:arrow-down-bold"
+                            color="white"
+                            width={12}
+                            height={12}
+                          />
+                        )}
+                      </button>
+                    </OutsideClickHandler>
                     {category.open ? (
-                      <div
-                        ref={ref}
-                        className="absolute top-[60px] left-0 w-[300px] flex flex-col py-[20px] text-[16px] text-[#A2A0B3] bg-[#3A2F7D] z-10"
-                      >
+                      <div className="absolute top-[60px] left-0 w-[300px] flex flex-col py-[20px] text-[16px] text-[#A2A0B3] bg-[#3A2F7D] z-10">
                         <div>
                           {category.submenu.map((sub) => (
                             <div className="gradientBox" key={sub.id}>

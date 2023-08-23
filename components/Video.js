@@ -14,7 +14,7 @@ const Video = () => {
     return localeVideo[locale];
   };
   return (
-    <div className="w-full">
+    <div className="w-full flex items-center justify-center">
       <video autoPlay muted loop>
         <source
           src={getVideo()}

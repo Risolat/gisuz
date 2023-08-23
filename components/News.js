@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,6 +6,12 @@ import eye from "../public/photos/main/eye.svg";
 import axios from "../http";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
+import { Roboto } from "next/font/google";
+const roboto = Roboto({
+  subsets: ["latin"],
+  variable: "--font-roboto",
+  weight: "500",
+});
 
 const News = () => {
   const { locale } = useRouter();
@@ -50,7 +55,7 @@ const News = () => {
             loading="lazy"
           />
 
-          <div className="absolute h-[180px] left-[26px] bottom-[-30px] p-[16px] bg-[#3C3976] w-[300px] sm:w-[400px] md:w-[687px]">
+          <div className="absolute h-[195px] left-[26px] bottom-[-30px] px-[20px] pt-[18px] pb-[8px] bg-[#3A2F7D] w-[300px] sm:w-[400px] md:w-[643px]">
             <div className="flex items-center py-[5px] text-[#A2A0B3] text-[12px]">
               <div className="flex items-center pr-[5px]">
                 <Image src={date} alt="date" className="mr-[5px]" />
@@ -64,7 +69,11 @@ const News = () => {
                 <p>{mainNews.view_count}</p>
               </div>
             </div>
-            <h3 className="font-bold h-[35px] truncate">{mainNews.title}</h3>
+            <h3
+              className={`${roboto.variable} text-white line-clamp-2 mt-[4px] mb-[8px] text-[1.15em] xl:text-[1.5em] leading-[130%] font-bold font-roboto`}
+            >
+              {mainNews.title}
+            </h3>
             <div
               className="line-clamp-3 text-[#A2A0B3] leading-[140%] font-inter break-words"
               dangerouslySetInnerHTML={{ __html: mainNews.description }}

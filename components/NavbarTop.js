@@ -19,6 +19,7 @@ import { Icon } from "@iconify/react";
 import { useClickAway } from "@uidotdev/usehooks";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
+import { Cookies } from "js-cookie";
 
 const NavbarTop = () => {
   const { t } = useTranslation("common");
@@ -125,19 +126,19 @@ const NavbarTop = () => {
       </span>
     );
   };
-  const changeColor = () => {
+  const changeGrayScale = () => {
     let html = document.querySelector("html");
-    if (view === "grayscale1") {
-      html.style.filter = "grayscale(1)";
-      console.log("grey1");
-    } else if (view === "grayscale") {
-      html.style.filter = "grayscale(100%) invert(100%)";
-      console.log("grey");
-    } else {
-      html.style.filter = "";
-      console.log("normal");
-    }
-    return view;
+    html.style.filter = "grayscale(1)";
+    setIsOpen(!isOpen);
+  };
+  const changeNormal = () => {
+    let html = document.querySelector("html");
+    html.style.filter = "";
+    setIsOpen(!isOpen);
+  };
+  const changeGrayScale1 = () => {
+    let html = document.querySelector("html");
+    html.style.filter = "grayscale(100%) invert(100%)";
     setIsOpen(!isOpen);
   };
   const closeSearch = () => {
@@ -169,11 +170,6 @@ const NavbarTop = () => {
       }
     }
   }
-  // function closeSearch() {
-  //   setsearchOpen(false);
-  //   let data = "";
-  //   setresData(data);
-  // }
   function getVoice(text) {
     console.log(speechSynthesis.getVoices());
     console.log(navigator);
@@ -236,7 +232,9 @@ const NavbarTop = () => {
             <Image
               src={logo}
               alt="logo"
-              className="w-[10px] h-[50px] xl:h-[100px]"
+              width={7}
+              height={83}
+              className="w-[7px] h-[50px] xl:h-[100px]"
             />
             <div className="2xl:pl-[16px] pl-[10px]">
               <h1 className="title-gradient text-[20px] xl:text-[24px] leading-8 font-bold">
@@ -274,7 +272,7 @@ const NavbarTop = () => {
         {sidebarOpen === false ? (
           ""
         ) : (
-          <div className="absolute top-0 left-0 z-40 w-full h-auto my-o mx-auto bg-[#171142]">
+          <div className="absolute top-0 left-0 z-40 w-full  my-0 mx-auto bg-[#171142]">
             <div className="p-[10px] flex items-start justify-between border-[#5C587A] bg-[#171142] border-b-[1px]">
               <Link href="/" className="relative flex items-center">
                 <Image
@@ -282,7 +280,13 @@ const NavbarTop = () => {
                   alt="logo-gis"
                   className=":pr-[16px] pr-[10px]"
                 />
-                <Image src={logo} alt="logo" className="" />
+                <Image
+                  src={logo}
+                  alt="logo"
+                  width={7}
+                  height={83}
+                  className="w-[7px] h-[50px] xl:h-[100px]"
+                />
                 <div className="pl-[16px]">
                   <h1 className="title-gradient text-[20px] text-[24px] leading-8 font-bold">
                     {locale === "uz"
@@ -345,7 +349,7 @@ const NavbarTop = () => {
                           <li>
                             <button
                               className="py-[10px] px-[17px] text-[18px] bg-[#171142]"
-                              onClick={() => changeColor(setView("normal"))}
+                              onClick={() => changeNormal()}
                             >
                               A
                             </button>
@@ -353,7 +357,7 @@ const NavbarTop = () => {
                           <li>
                             <button
                               className="py-[10px] px-[17px] text-[18px] bg-[#000]"
-                              onClick={() => changeColor(setView("grayscale"))}
+                              onClick={() => changeGrayScale()}
                             >
                               A
                             </button>
@@ -361,7 +365,7 @@ const NavbarTop = () => {
                           <li>
                             <button
                               className="py-[10px] px-[17px] text-[18px] text-[#000] bg-gray-300"
-                              onClick={() => changeColor(setView("grayscale1"))}
+                              onClick={() => changeGrayScale1()}
                             >
                               A
                             </button>
@@ -485,7 +489,7 @@ const NavbarTop = () => {
                 </ul>
               </div>
             </div>
-            <div className="flex justify-between flex-wrap py-[30px] px-[20px] border-[#5C587A] border-b-[1px] bg-[#171142]">
+            <div className="flex justify-between flex-wrap overflow-scroll py-[30px] px-[20px] border-[#5C587A] border-b-[1px] bg-[#171142]">
               {data.map((d, i) => (
                 <ul key={d.id}>
                   <li>
@@ -578,7 +582,7 @@ const NavbarTop = () => {
           </div>
         )}
       </div>
-      <div className="2xl:max-w-[1440px] xl:max-w-[1200px] hidden my-0 mx-auto xl:flex items-start justify-between pt-[8px] pb-[0]">
+      <div className="2xl:max-w-[1440px] hidden my-0 mx-auto xl:flex items-start justify-between pt-[8px] pb-[0]">
         <div className="navbar-left">
           <ul className="adress-list flex text-[14px]">
             <li className="adress-item pr-[16px]">
@@ -666,7 +670,7 @@ const NavbarTop = () => {
                       <li>
                         <button
                           className="py-[10px] px-[17px] text-[18px] bg-[#171142]"
-                          onClick={() => changeColor(setView("normal"))}
+                          onClick={() => changeNormal()}
                         >
                           A
                         </button>
@@ -674,7 +678,7 @@ const NavbarTop = () => {
                       <li>
                         <button
                           className="py-[10px] px-[17px] text-[18px] bg-[#000]"
-                          onClick={() => changeColor(setView("grayscale"))}
+                          onClick={() => changeGrayScale()}
                         >
                           A
                         </button>
@@ -682,7 +686,7 @@ const NavbarTop = () => {
                       <li>
                         <button
                           className="py-[10px] px-[17px] text-[18px] text-[#000] bg-gray-300"
-                          onClick={() => changeColor(setView("grayscale1"))}
+                          onClick={() => changeGrayScale1()}
                         >
                           A
                         </button>
@@ -755,6 +759,7 @@ const NavbarTop = () => {
                   onClick={() => {
                     setSelected("O`zb");
                     setOpen(false);
+                    Cookies.set("locale", "uz", { expires: 7 });
                   }}
                   className={
                     locale === "uz"
@@ -772,6 +777,7 @@ const NavbarTop = () => {
                   onClick={() => {
                     setSelected("Ўзб");
                     setOpen(false);
+                    Cookies.set("locale", "uzb", { expires: 7 });
                   }}
                   className={
                     locale === "uzb"
@@ -789,6 +795,7 @@ const NavbarTop = () => {
                   onClick={() => {
                     setSelected("Ру");
                     setOpen(false);
+                    Cookies.set("locale", "ru", { expires: 7 });
                   }}
                   className={
                     locale === "ru"
@@ -806,6 +813,7 @@ const NavbarTop = () => {
                   onClick={() => {
                     setSelected("En");
                     setOpen(false);
+                    Cookies.set("locale", "en", { expires: 7 });
                   }}
                   className={
                     locale === "en"
@@ -842,7 +850,7 @@ const NavbarTop = () => {
         >
           <div className="absolute top-[30%] left-0 bottom-0 right-0  z-30 ml-[20px]">
             <div className="">
-              <div className="max-w-[1100px] my-0  mx-auto flex flex-col items-center justify-center bg-[#171142]">
+              <div className="w-[1100px] my-0  mx-auto flex flex-col items-center justify-center bg-[#171142]">
                 <div className="flex justify-center items-center relative w-full py-[20px] ">
                   <h3 className="text-[25px] text-center">
                     {locale === "uz"
@@ -859,8 +867,8 @@ const NavbarTop = () => {
                   >
                     <Icon
                       icon="ph:x-circle-bold"
-                      color="white"
-                      className="w-[30px] h-[30px]"
+                      color="#A2A0B3"
+                      className="w-[40px] h-[40px]"
                     />
                   </button>
                 </div>
@@ -868,11 +876,11 @@ const NavbarTop = () => {
                   <input
                     type="search"
                     onChange={(event) => setsearch(event.target.value)}
-                    className="basis-full xl:basis-4/5 w-full p-[10px]  bg-[#3A2F7D]  bg-[#3A2F7D]"
+                    className="w-full p-[13px] bg-[#3A2F7D] bg-[#3A2F7D]"
                   />
                   <button
                     onClick={() => onSubmit()}
-                    className="basis-full xl:basis-1/5 w-full opacity-50 hover:bg-white hover:text-[#3C3971] text-white bg-[#3C3971] border border-white"
+                    className="w-[200px] opacity-50 hover:bg-white hover:bg-[rgb(255 255 255/ .5] hover:text-[#3C3971] text-white bg-[#3C3971]"
                   >
                     {locale === "uz"
                       ? "Qidirish"
