@@ -217,7 +217,7 @@ const NavbarBottom = () => {
               />
               <div className="2xl:pl-[16px] pl-[10px]">
                 <h1
-                  className={`${roboto.variable} title-gradient text-[20px] xl:text-[24px] leading-8 font-roboto font-bold`}
+                  className={`${roboto.variable} subpixel-antialiased title-gradient text-[20px] xl:text-[24px] leading-8 font-roboto font-bold`}
                 >
                   {locale === "uz"
                     ? "O‘ZKOMNAZORAT"
@@ -227,7 +227,7 @@ const NavbarBottom = () => {
                     ? "ЎЗКОМНАЗОРАТ"
                     : "INSPECTION"}
                 </h1>
-                <p className="hidden xl:block max-w-[280px] title-gradient text-[12px] font-normal leading-4">
+                <p className="hidden subpixel-antialiased xl:block max-w-[280px] title-gradient text-[12px] font-normal leading-4">
                   {locale === "uz"
                     ? "Raqamli texnologiyalar vazirligi huzuridagi Axborotlashtirish va telekommunikatsiyalar sohasida nazorat inspeksiyasi"
                     : locale === "ru"
@@ -246,7 +246,15 @@ const NavbarBottom = () => {
                   onClick={() => changeActive()}
                 >
                   <button className="flex items-center px-[5px]">
-                    <p className="pr-[8px]">O'zkomnazorat</p>
+                    <p className="pr-[8px]">
+                      {locale === "uz"
+                        ? "Oʻzkomnazorat"
+                        : locale === "ru"
+                        ? "Узкомназорат"
+                        : locale === "uzb"
+                        ? "Ўзкомназорат"
+                        : "Inspection"}
+                    </p>
                     {open ? (
                       <Icon
                         icon="ep:arrow-up-bold"
@@ -266,7 +274,7 @@ const NavbarBottom = () => {
                   {open ? (
                     <div
                       ref={ref}
-                      className="absolute top-[60px] left-0 w-[300px] flex flex-col py-[20px] text-[16px] text-[#A2A0B3] bg-[#3A2F7D] z-10"
+                      className="absolute top-[60px] left-0 w-[300px] flex flex-col text-[16px] text-[#A2A0B3] bg-[#3A2F7D] z-10"
                     >
                       <div>
                         {ozcom.map((sub) => (
@@ -301,7 +309,15 @@ const NavbarBottom = () => {
                 </li>
                 <li className="nav-item relative" onClick={() => activityCat()}>
                   <button className="flex items-center px-[5px]">
-                    <p className="pr-[8px]">Faoliyat</p>
+                    <p className="pr-[8px]">
+                      {locale === "uz"
+                        ? "Faoliyat"
+                        : locale === "ru"
+                        ? "Деятельность"
+                        : locale === "uzb"
+                        ? "Фаолият"
+                        : "Activity"}
+                    </p>
                     {openAc ? (
                       <Icon
                         icon="ep:arrow-up-bold"
@@ -321,7 +337,7 @@ const NavbarBottom = () => {
                   {openAc ? (
                     <div
                       ref={ref2}
-                      className="absolute top-[60px] left-0 w-[300px] flex flex-col py-[20px] text-[16px] text-[#A2A0B3] bg-[#3A2F7D] z-10"
+                      className="absolute top-[60px] left-0 w-[300px] flex flex-col text-[16px] text-[#A2A0B3] bg-[#3A2F7D] z-10"
                     >
                       <div>
                         {activity.map((sub) => (
@@ -356,7 +372,15 @@ const NavbarBottom = () => {
                 </li>
                 <li className="nav-item relative" onClick={() => infCat()}>
                   <button className="flex items-center px-[5px]">
-                    <p className="pr-[8px]">Axborat xizmati</p>
+                    <p className="pr-[8px]">
+                      {locale === "uz"
+                        ? "Axborot xizmati"
+                        : locale === "ru"
+                        ? "Пресса"
+                        : locale === "uzb"
+                        ? "Ахборот хизмати"
+                        : "Press office"}
+                    </p>
                     {openInf ? (
                       <Icon
                         icon="ep:arrow-up-bold"
@@ -376,7 +400,7 @@ const NavbarBottom = () => {
                   {openInf ? (
                     <div
                       ref={ref3}
-                      className="absolute top-[60px] left-0 w-[300px] flex flex-col py-[20px] text-[16px] text-[#A2A0B3] bg-[#3A2F7D] z-10"
+                      className="absolute top-[60px] left-0 w-[300px] flex flex-col text-[16px] text-[#A2A0B3] bg-[#3A2F7D] z-10"
                     >
                       <div>
                         {info_service.map((sub) => (
@@ -411,7 +435,15 @@ const NavbarBottom = () => {
                 </li>
                 <li className="nav-item relative" onClick={() => intCat()}>
                   <button className="flex items-center px-[5px]">
-                    <p className="pr-[8px]">Interaktiv xizmatlar</p>
+                    <p className="pr-[8px]">
+                      {locale === "uz"
+                        ? "Interaktiv xizmatlar"
+                        : locale === "ru"
+                        ? "Интерактивные услуги"
+                        : locale === "uzb"
+                        ? "Интерактив хизматлар"
+                        : "Interactive Services"}
+                    </p>
                     {openInt ? (
                       <Icon
                         icon="ep:arrow-up-bold"
@@ -431,7 +463,7 @@ const NavbarBottom = () => {
                   {openInt ? (
                     <div
                       ref={ref4}
-                      className="absolute top-[60px] left-0 w-[300px] flex flex-col py-[20px] text-[16px] text-[#A2A0B3] bg-[#3A2F7D] z-10"
+                      className="absolute top-[60px] left-0 w-[300px] flex flex-col text-[16px] text-[#A2A0B3] bg-[#3A2F7D] z-10"
                     >
                       <div>
                         {interactive.map((sub) => (
@@ -466,7 +498,15 @@ const NavbarBottom = () => {
                 </li>
                 <li className="nav-item relative" onClick={() => documentCat()}>
                   <button className="flex items-center px-[5px]">
-                    <p className="pr-[8px]">Me’yoriy-huquqiy hujjatlar</p>
+                    <p className="pr-[8px]">
+                      {locale === "uz"
+                        ? "Me’yoriy-huquqiy hujjatlar"
+                        : locale === "ru"
+                        ? "Нормативные документы"
+                        : locale === "uzb"
+                        ? "Меъёрий-ҳуқуқий ҳужжатлар"
+                        : "Regulatory documents"}
+                    </p>
                     {openDoc ? (
                       <Icon
                         icon="ep:arrow-up-bold"
@@ -486,7 +526,7 @@ const NavbarBottom = () => {
                   {openDoc ? (
                     <div
                       ref={ref5}
-                      className="absolute top-[60px] left-0 w-[300px] flex flex-col py-[20px] text-[16px] text-[#A2A0B3] bg-[#3A2F7D] z-10"
+                      className="absolute top-[60px] left-0 w-[300px] flex flex-col text-[16px] text-[#A2A0B3] bg-[#3A2F7D] z-10"
                     >
                       <div>
                         {documents.map((sub) => (
@@ -521,7 +561,15 @@ const NavbarBottom = () => {
                 </li>
                 <li className="nav-item relative" onClick={() => connectCat()}>
                   <button className="flex items-center px-[5px]">
-                    <p className="pr-[8px]">Aloqa</p>
+                    <p className="pr-[8px]">
+                      {locale === "uz"
+                        ? "Aloqa"
+                        : locale === "ru"
+                        ? "Контакты"
+                        : locale === "uzb"
+                        ? "Алоқа"
+                        : "Contacts"}
+                    </p>
                     {openCon ? (
                       <Icon
                         icon="ep:arrow-up-bold"
@@ -541,7 +589,7 @@ const NavbarBottom = () => {
                   {openCon ? (
                     <div
                       ref={ref6}
-                      className="absolute top-[60px] left-0 w-[300px] flex flex-col py-[20px] text-[16px] text-[#A2A0B3] bg-[#3A2F7D] z-10"
+                      className="absolute top-[60px] left-0 w-[300px] flex flex-col text-[16px] text-[#A2A0B3] bg-[#3A2F7D] z-10"
                     >
                       <div>
                         {network.map((sub) => (

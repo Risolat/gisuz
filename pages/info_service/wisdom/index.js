@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import date_range from "../../../public/photos/main/date_range.svg";
 import red_eye from "../../../public/photos/main/red_eye.svg";
-import Pagination from "../../../components/Pagination";
+import Paginate from "../../../components/Paginate";
 import dayjs from "dayjs";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
@@ -149,15 +149,18 @@ const page = () => {
                 </li>
               ))}
             </ul>
-            <Pagination
+            <Paginate
               postsPerPage={postsPerPage}
               totalPosts={count}
               paginate={paginate}
               previousPage={previousPage}
               nextPage={nextPage}
               currentPage={currentPage}
+              total={indexOfLastPost}
               maxPageNumberLimit={maxPageNumberLimit}
               minPageNumberLimit={minPageNumberLimit}
+              pageNumberLimit={pageNumberLimit}
+              lastPage={lastPage}
             />
           </div>
           <div className="sticky top-[197px] w-[350px] basis-1/4 py-[8px] bg-[#3A2F7D]">

@@ -238,8 +238,10 @@ const page = () => {
             )}
           </div>
           <div className="basis-1/4">
-            <div className="w-[350px]  py-[8px] bg-[#3A2F7D] mb-[10px]">
-              <p className="mb-[24px] text-[20px] px-[16px]">{title}</p>
+            <div className="mt-[92px] w-[350px]  py-[8px] bg-[#3A2F7D] mb-[10px]">
+              <p className="mb-[24px] text-[20px] px-[16px] font-montserrat font-semibold ">
+                {title}
+              </p>
               <ul className="font-inter">
                 {submenu.map((item) => (
                   <li key={item.id} className="bg-[#3A2F7D]">

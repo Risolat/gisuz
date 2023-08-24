@@ -55,7 +55,7 @@ const News = () => {
             loading="lazy"
           />
 
-          <div className="absolute h-[195px] left-[26px] bottom-[-30px] px-[20px] pt-[18px] pb-[8px] bg-[#3A2F7D] w-[300px] sm:w-[400px] md:w-[643px]">
+          <div className="absolute h-[195px] left-[60px] bottom-[-45px] px-[20px] pt-[18px] pb-[8px] bg-[#3A2F7D] w-[300px] sm:w-[400px] md:w-[643px]">
             <div className="flex items-center py-[5px] text-[#A2A0B3] text-[12px]">
               <div className="flex items-center pr-[5px]">
                 <Image src={date} alt="date" className="mr-[5px]" />
@@ -70,7 +70,7 @@ const News = () => {
               </div>
             </div>
             <h3
-              className={`${roboto.variable} text-white line-clamp-2 mt-[4px] mb-[8px] text-[1.15em] xl:text-[1.5em] leading-[130%] font-bold font-roboto`}
+              className={`${roboto.variable} subpixel-antialiased text-white line-clamp-2 mt-[4px] mb-[8px] text-[1.15em] xl:text-[1.5em] leading-[130%] font-bold font-roboto`}
             >
               {mainNews.title}
             </h3>

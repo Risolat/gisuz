@@ -19,8 +19,12 @@ import { Icon } from "@iconify/react";
 import { useClickAway } from "@uidotdev/usehooks";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import { Cookies } from "js-cookie";
-
+import { Roboto } from "next/font/google";
+const roboto = Roboto({
+  subsets: ["latin"],
+  variable: "--font-roboto",
+  weight: "500",
+});
 const NavbarTop = () => {
   const { t } = useTranslation("common");
   const { locale } = useRouter();
@@ -759,7 +763,6 @@ const NavbarTop = () => {
                   onClick={() => {
                     setSelected("O`zb");
                     setOpen(false);
-                    Cookies.set("locale", "uz", { expires: 7 });
                   }}
                   className={
                     locale === "uz"
@@ -777,7 +780,6 @@ const NavbarTop = () => {
                   onClick={() => {
                     setSelected("Ўзб");
                     setOpen(false);
-                    Cookies.set("locale", "uzb", { expires: 7 });
                   }}
                   className={
                     locale === "uzb"
@@ -795,7 +797,6 @@ const NavbarTop = () => {
                   onClick={() => {
                     setSelected("Ру");
                     setOpen(false);
-                    Cookies.set("locale", "ru", { expires: 7 });
                   }}
                   className={
                     locale === "ru"
@@ -813,7 +814,6 @@ const NavbarTop = () => {
                   onClick={() => {
                     setSelected("En");
                     setOpen(false);
-                    Cookies.set("locale", "en", { expires: 7 });
                   }}
                   className={
                     locale === "en"
@@ -848,11 +848,13 @@ const NavbarTop = () => {
           ref={searchRef}
           className="fixed top-0 bottom-0 left-0 right-0 z-30 w-full h-full bg-gray-800 bg-opacity-80"
         >
-          <div className="absolute top-[30%] left-0 bottom-0 right-0  z-30 ml-[20px]">
+          <div className="absolute top-[40%] left-0 bottom-0 right-0  z-30 ml-[20px] ">
             <div className="">
-              <div className="w-[1100px] my-0  mx-auto flex flex-col items-center justify-center bg-[#171142]">
-                <div className="flex justify-center items-center relative w-full py-[20px] ">
-                  <h3 className="text-[25px] text-center">
+              <div className="w-[1100px] my-0  mx-auto flex flex-col items-center justify-center bg-[#171142] border border-[#3C3971]">
+                <div className="flex justify-center items-center relative w-full py-[24px] ">
+                  <h3
+                    className={`${roboto.variable} font-500 font-roboto text-[2rem] text-center`}
+                  >
                     {locale === "uz"
                       ? "Qidirish"
                       : locale === "ru"
@@ -868,11 +870,11 @@ const NavbarTop = () => {
                     <Icon
                       icon="ph:x-circle-bold"
                       color="#A2A0B3"
-                      className="w-[40px] h-[40px]"
+                      className="w-[35px] h-[35px]"
                     />
                   </button>
                 </div>
-                <div className="flex flex-row w-full px-[20px] pb-[30px]">
+                <div className="flex flex-row w-full px-[20px]">
                   <input
                     type="search"
                     onChange={(event) => setsearch(event.target.value)}
@@ -880,7 +882,7 @@ const NavbarTop = () => {
                   />
                   <button
                     onClick={() => onSubmit()}
-                    className="w-[200px] opacity-50 hover:bg-white hover:bg-[rgb(255 255 255/ .5] hover:text-[#3C3971] text-white bg-[#3C3971]"
+                    className={`${roboto.variable} font-roboto font-500 w-[200px] tracking-normal text-[17px] leading-6 opacity-50 hover:bg-white hover:bg-[rgb(255 255 255/ .5] hover:text-[#3C3971] text-white bg-[#3C3971]`}
                   >
                     {locale === "uz"
                       ? "Qidirish"
@@ -893,7 +895,7 @@ const NavbarTop = () => {
                 </div>
                 <div className="pb-[20px] overflow-scroll h-auto w-auto relative">
                   {resData === 0 ? (
-                    <div className="pb-[20px] overflow-scroll h-auto w-auto relative">
+                    <div className=" overflow-scroll h-auto w-auto relative">
                       {locale === "uz"
                         ? "Topilmadi!"
                         : locale === "ru"

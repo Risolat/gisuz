@@ -37,7 +37,7 @@ const Footer = () => {
           <div className="flex items-center justify-center flex-wrap">
             <form action="#">
               <input
-                className="outline-none bg-transparent w-[240px] xl:w-[300px] placeholder:text-[0.89em] text-[1em] px-[12px] text-white focus:ring-offset-1 focus:ring-2 focus:ring-[#1D1A49] focus:z-[22] placeholder:text-[#A2A0B3] py-[10px]"
+                className="outline-none bg-transparent w-[240px] xl:w-[300px] placeholder:text-[0.89em] text-[1em] px-[12px] text-white focus:ring-offset-1 focus:ring-2 focus:ring-[#1D1A49] border border-[#3C3971] focus:z-[22] placeholder:text-[#A2A0B3] py-[10px]"
                 type="email"
                 placeholder={
                   locale === "uz"
@@ -49,7 +49,7 @@ const Footer = () => {
                     : "Your email"
                 }
               />
-              <button className="px-[16px] py-[10px] mr-[25px] hover:bg-white hover:text-[#24224E]">
+              <button className="px-[16px] py-[10px] mr-[25px] border border-[#3C3971] hover:bg-white hover:text-[#24224E]">
                 {locale === "uz"
                   ? "Obuna boʻlish"
                   : locale === "ru"
