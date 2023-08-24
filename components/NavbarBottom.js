@@ -10,6 +10,7 @@ import Link from "next/link";
 import { Icon } from "@iconify/react";
 import OutsideClickHandler from "react-outside-click-handler";
 import { Roboto } from "next/font/google";
+import { useClickAway } from "@uidotdev/usehooks";
 const roboto = Roboto({
   subsets: ["latin"],
   variable: "--font-roboto",
@@ -21,9 +22,20 @@ const NavbarBottom = () => {
   const { locale } = useRouter();
   const [data, setData] = useState(null);
   const [open, setOpen] = useState(false);
+  const [openAc, setOpenAc] = useState(false);
+  const [openInf, setOpenInf] = useState(false);
+  const [openInt, setOpenInt] = useState(false);
+  const [openDoc, setOpenDoc] = useState(false);
+  const [openCon, setOpenCon] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [subm, setSubMenu] = useState(null);
   const [showInfo1, setShowInfo1] = useState(false);
+  const [info_service, setinfo_service] = useState([]);
+  const [ozcom, setozcom] = useState([]);
+  const [activity, setactivity] = useState([]);
+  const [interactive, setinteractive] = useState([]);
+  const [documents, setdocuments] = useState([]);
+  const [network, setnetwork] = useState([]);
 
   const refOne = useRef();
   const getData = async () => {
@@ -47,28 +59,135 @@ const NavbarBottom = () => {
     setData(data);
     setSubMenu(subm);
   };
-  const changeActive = (i) => {
-    setOpen(false);
-    setData(
-      data.map((cat, ind) => {
-        if (i !== ind) {
-          cat.open = false;
-        }
-        return cat;
-      })
+  const getSubmenu = async () => {
+    const response = await axios.get(`/${locale}/api/menu/`);
+    const info_serviceName = ["INFORMATION_SERVICE"];
+    const ozcomName = ["OZCOM"];
+    const activityName = ["ACTIVITY"];
+    const interactiveName = ["INTERACTIVE_SERVICES"];
+    const documentsName = ["DOCUMENTS"];
+    const networkName = ["NETWORK"];
+    const ozcom = response.data.filter((category) =>
+      ozcomName.includes(category.name)
     );
-    setData(
-      data.map((cat, ind) => {
-        if (i === ind) {
-          cat.open = !cat.open;
-        }
-        return cat;
-      })
+    setozcom(ozcom[0].submenu);
+    const info_service = response.data.filter((category) =>
+      info_serviceName.includes(category.name)
     );
+    setinfo_service(info_service[0].submenu);
+    const activity = response.data.filter((category) =>
+      activityName.includes(category.name)
+    );
+    setactivity(activity[0].submenu);
+    const interactive = response.data.filter((category) =>
+      interactiveName.includes(category.name)
+    );
+    setinteractive(interactive[0].submenu);
+    const documents = response.data.filter((category) =>
+      documentsName.includes(category.name)
+    );
+    setdocuments(documents[0].submenu);
+    const network = response.data.filter((category) =>
+      networkName.includes(category.name)
+    );
+    setnetwork(network[0].submenu);
   };
+  const ref = useClickAway(() => {
+    setOpen(false);
+  });
+  const ref2 = useClickAway(() => {
+    setOpenAc(false);
+  });
+  const ref3 = useClickAway(() => {
+    setOpenInf(false);
+  });
+  const ref4 = useClickAway(() => {
+    setOpenInt(false);
+  });
+  const ref5 = useClickAway(() => {
+    setOpenDoc(false);
+  });
+  const ref6 = useClickAway(() => {
+    setOpenCon(false);
+  });
+  // const changeActive = (i) => {
+  //   setOpen(false);
+  //   setData(
+  //     data.map((cat, ind) => {
+  //       if (i !== ind) {
+  //         cat.open = false;
+  //       }
+  //       return cat;
+  //     })
+  //   );
+  //   setData(
+  //     data.map((cat, ind) => {
+  //       if (i === ind) {
+  //         cat.open = !cat.open;
+  //       }
+  //       return cat;
+  //     })
+  //   );
+  // };
+  function changeActive() {
+    setOpenAc(false);
+    setOpen(!open);
+    setOpenInt(false);
+    setOpenInf(false);
+    setOpenCon(false);
+    setOpenDoc(false);
+  }
+  function activityCat() {
+    setOpenAc(!openAc);
+    setOpen(false);
+    setOpenInt(false);
+    setOpenInf(false);
+    setOpenCon(false);
+    setOpenDoc(false);
+  }
+  function intCat() {
+    setOpenAc(false);
+    setOpen(false);
+    setOpenInt(!openInt);
+    setOpenInf(false);
+    setOpenCon(false);
+    setOpenDoc(false);
+  }
+  function infCat() {
+    setOpenAc(false);
+    setOpen(false);
+    setOpenInt(false);
+    setOpenInf(!openInf);
+    setOpenCon(false);
+    setOpenDoc(false);
+  }
+  function connectCat() {
+    setOpenAc(false);
+    setOpen(false);
+    setOpenInt(false);
+    setOpenInf(false);
+    setOpenCon(!openCon);
+    setOpenDoc(false);
+  }
+  function documentCat() {
+    setOpenAc(false);
+    setOpen(false);
+    setOpenInt(false);
+    setOpenInf(false);
+    setOpenCon(false);
+    setOpenDoc(!openDoc);
+  }
   useEffect(() => {
     getData();
-    document.addEventListener("mousedown", () => {});
+    // document.addEventListener("mousedown", () => {
+    //   setOpenAc(false);
+    //   setOpen(false);
+    //   setOpenInt(false);
+    //   setOpenInf(false);
+    //   setOpenCon(false);
+    //   setOpenDoc(false);
+    // });
+    getSubmenu();
   }, []);
 
   if (!data) return <p></p>;
@@ -121,6 +240,344 @@ const NavbarBottom = () => {
             </Link>
 
             <div id="navbarList" className="navbarList">
+              <ul className="nav-list flex hidden xl:flex">
+                <li
+                  className="nav-item relative"
+                  onClick={() => changeActive()}
+                >
+                  <button className="flex items-center px-[5px]">
+                    <p className="pr-[8px]">O'zkomnazorat</p>
+                    {open ? (
+                      <Icon
+                        icon="ep:arrow-up-bold"
+                        color="white"
+                        width={12}
+                        height={12}
+                      />
+                    ) : (
+                      <Icon
+                        icon="ep:arrow-down-bold"
+                        color="white"
+                        width={12}
+                        height={12}
+                      />
+                    )}
+                  </button>
+                  {open ? (
+                    <div
+                      ref={ref}
+                      className="absolute top-[60px] left-0 w-[300px] flex flex-col py-[20px] text-[16px] text-[#A2A0B3] bg-[#3A2F7D] z-10"
+                    >
+                      <div>
+                        {ozcom.map((sub) => (
+                          <div className="gradientBox" key={sub.id}>
+                            <div className="bg-[#3A2F7D] hover:bg-[#171142] hover:text-[#fff]">
+                              <Link
+                                className="block py-[10px] px-[20px] cursor-pointer"
+                                onClick={() => setOpen(open === false)}
+                                href={`${
+                                  sub.slug === "/activity/strategy" ||
+                                  sub.slug == null
+                                    ? sub.link
+                                    : sub.slug
+                                }`}
+                                target={`${
+                                  sub.slug === "/activity/strategy" ||
+                                  sub.slug == null
+                                    ? "_blank"
+                                    : "_self"
+                                }`}
+                              >
+                                {sub.title}
+                              </Link>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </li>
+                <li className="nav-item relative" onClick={() => activityCat()}>
+                  <button className="flex items-center px-[5px]">
+                    <p className="pr-[8px]">Faoliyat</p>
+                    {openAc ? (
+                      <Icon
+                        icon="ep:arrow-up-bold"
+                        color="white"
+                        width={12}
+                        height={12}
+                      />
+                    ) : (
+                      <Icon
+                        icon="ep:arrow-down-bold"
+                        color="white"
+                        width={12}
+                        height={12}
+                      />
+                    )}
+                  </button>
+                  {openAc ? (
+                    <div
+                      ref={ref2}
+                      className="absolute top-[60px] left-0 w-[300px] flex flex-col py-[20px] text-[16px] text-[#A2A0B3] bg-[#3A2F7D] z-10"
+                    >
+                      <div>
+                        {activity.map((sub) => (
+                          <div className="gradientBox" key={sub.id}>
+                            <div className="bg-[#3A2F7D] hover:bg-[#171142] hover:text-[#fff]">
+                              <Link
+                                className="block py-[10px] px-[20px] cursor-pointer"
+                                onClick={() => setOpenAc(openAc === false)}
+                                href={`${
+                                  sub.slug === "/activity/strategy" ||
+                                  sub.slug == null
+                                    ? sub.link
+                                    : sub.slug
+                                }`}
+                                target={`${
+                                  sub.slug === "/activity/strategy" ||
+                                  sub.slug == null
+                                    ? "_blank"
+                                    : "_self"
+                                }`}
+                              >
+                                {sub.title}
+                              </Link>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </li>
+                <li className="nav-item relative" onClick={() => infCat()}>
+                  <button className="flex items-center px-[5px]">
+                    <p className="pr-[8px]">Axborat xizmati</p>
+                    {openInf ? (
+                      <Icon
+                        icon="ep:arrow-up-bold"
+                        color="white"
+                        width={12}
+                        height={12}
+                      />
+                    ) : (
+                      <Icon
+                        icon="ep:arrow-down-bold"
+                        color="white"
+                        width={12}
+                        height={12}
+                      />
+                    )}
+                  </button>
+                  {openInf ? (
+                    <div
+                      ref={ref3}
+                      className="absolute top-[60px] left-0 w-[300px] flex flex-col py-[20px] text-[16px] text-[#A2A0B3] bg-[#3A2F7D] z-10"
+                    >
+                      <div>
+                        {info_service.map((sub) => (
+                          <div className="gradientBox" key={sub.id}>
+                            <div className="bg-[#3A2F7D] hover:bg-[#171142] hover:text-[#fff]">
+                              <Link
+                                className="block py-[10px] px-[20px] cursor-pointer"
+                                onClick={() => setOpenInf(openInf === false)}
+                                href={`${
+                                  sub.slug === "/activity/strategy" ||
+                                  sub.slug == null
+                                    ? sub.link
+                                    : sub.slug
+                                }`}
+                                target={`${
+                                  sub.slug === "/activity/strategy" ||
+                                  sub.slug == null
+                                    ? "_blank"
+                                    : "_self"
+                                }`}
+                              >
+                                {sub.title}
+                              </Link>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </li>
+                <li className="nav-item relative" onClick={() => intCat()}>
+                  <button className="flex items-center px-[5px]">
+                    <p className="pr-[8px]">Interaktiv xizmatlar</p>
+                    {openInt ? (
+                      <Icon
+                        icon="ep:arrow-up-bold"
+                        color="white"
+                        width={12}
+                        height={12}
+                      />
+                    ) : (
+                      <Icon
+                        icon="ep:arrow-down-bold"
+                        color="white"
+                        width={12}
+                        height={12}
+                      />
+                    )}
+                  </button>
+                  {openInt ? (
+                    <div
+                      ref={ref4}
+                      className="absolute top-[60px] left-0 w-[300px] flex flex-col py-[20px] text-[16px] text-[#A2A0B3] bg-[#3A2F7D] z-10"
+                    >
+                      <div>
+                        {interactive.map((sub) => (
+                          <div className="gradientBox" key={sub.id}>
+                            <div className="bg-[#3A2F7D] hover:bg-[#171142] hover:text-[#fff]">
+                              <Link
+                                className="block py-[10px] px-[20px] cursor-pointer"
+                                onClick={() => setOpenInt(openInt === false)}
+                                href={`${
+                                  sub.slug === "/activity/strategy" ||
+                                  sub.slug == null
+                                    ? sub.link
+                                    : sub.slug
+                                }`}
+                                target={`${
+                                  sub.slug === "/activity/strategy" ||
+                                  sub.slug == null
+                                    ? "_blank"
+                                    : "_self"
+                                }`}
+                              >
+                                {sub.title}
+                              </Link>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </li>
+                <li className="nav-item relative" onClick={() => documentCat()}>
+                  <button className="flex items-center px-[5px]">
+                    <p className="pr-[8px]">Me’yoriy-huquqiy hujjatlar</p>
+                    {openDoc ? (
+                      <Icon
+                        icon="ep:arrow-up-bold"
+                        color="white"
+                        width={12}
+                        height={12}
+                      />
+                    ) : (
+                      <Icon
+                        icon="ep:arrow-down-bold"
+                        color="white"
+                        width={12}
+                        height={12}
+                      />
+                    )}
+                  </button>
+                  {openDoc ? (
+                    <div
+                      ref={ref5}
+                      className="absolute top-[60px] left-0 w-[300px] flex flex-col py-[20px] text-[16px] text-[#A2A0B3] bg-[#3A2F7D] z-10"
+                    >
+                      <div>
+                        {documents.map((sub) => (
+                          <div className="gradientBox" key={sub.id}>
+                            <div className="bg-[#3A2F7D] hover:bg-[#171142] hover:text-[#fff]">
+                              <Link
+                                className="block py-[10px] px-[20px] cursor-pointer"
+                                onClick={() => setOpenDoc(openDoc === false)}
+                                href={`${
+                                  sub.slug === "/activity/strategy" ||
+                                  sub.slug == null
+                                    ? sub.link
+                                    : sub.slug
+                                }`}
+                                target={`${
+                                  sub.slug === "/activity/strategy" ||
+                                  sub.slug == null
+                                    ? "_blank"
+                                    : "_self"
+                                }`}
+                              >
+                                {sub.title}
+                              </Link>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </li>
+                <li className="nav-item relative" onClick={() => connectCat()}>
+                  <button className="flex items-center px-[5px]">
+                    <p className="pr-[8px]">Aloqa</p>
+                    {openCon ? (
+                      <Icon
+                        icon="ep:arrow-up-bold"
+                        color="white"
+                        width={12}
+                        height={12}
+                      />
+                    ) : (
+                      <Icon
+                        icon="ep:arrow-down-bold"
+                        color="white"
+                        width={12}
+                        height={12}
+                      />
+                    )}
+                  </button>
+                  {openCon ? (
+                    <div
+                      ref={ref6}
+                      className="absolute top-[60px] left-0 w-[300px] flex flex-col py-[20px] text-[16px] text-[#A2A0B3] bg-[#3A2F7D] z-10"
+                    >
+                      <div>
+                        {network.map((sub) => (
+                          <div className="gradientBox" key={sub.id}>
+                            <div className="bg-[#3A2F7D] hover:bg-[#171142] hover:text-[#fff]">
+                              <Link
+                                className="block py-[10px] px-[20px] cursor-pointer"
+                                onClick={() => setOpenCon(openCon === false)}
+                                href={`${
+                                  sub.slug === "/activity/strategy" ||
+                                  sub.slug == null
+                                    ? sub.link
+                                    : sub.slug
+                                }`}
+                                target={`${
+                                  sub.slug === "/activity/strategy" ||
+                                  sub.slug == null
+                                    ? "_blank"
+                                    : "_self"
+                                }`}
+                              >
+                                {sub.title}
+                              </Link>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </li>
+              </ul>
+            </div>
+
+            {/* <div id="navbarList" className="navbarList">
               <ul className="nav-list flex hidden xl:flex">
                 {data.map((category, i) => (
                   <li
@@ -189,7 +646,7 @@ const NavbarBottom = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
