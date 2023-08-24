@@ -93,7 +93,7 @@ const Slideshow = () => {
             <Image src={service3} alt="service" className="w-[80px] h-[80px]" />
           </div>
 
-          <h5 className="text-[1.25rem] h-[60px] leading-5 text-center pb-[24px]">
+          <h5 className="text-[1.25rem] h-[45px] sm:h-[60px] pb-[10px] sm-[24px] leading-5 text-center line-clamp-2">
             {t("interactive-services.problem-solution")}
           </h5>
           <p className="max-w-[284px] h-[58px] text-center line-clamp-3 text-[#A2A0B3] text-[16px] leading-5">
