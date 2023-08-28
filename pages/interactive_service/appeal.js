@@ -268,7 +268,7 @@ const page = () => {
                                 onClick={() => setOpen(!open)}
                                 className="bg-[#3A2F7D] flex justify-center cursor-pointer rounded"
                               >
-                                <p className="w-[480px] h-[40px] px-[10px] pt-[8px]">
+                                <p className="w-[280px] md:w-[480px] h-[40px] px-[10px] pt-[8px]">
                                   {selected}
                                 </p>
                                 <Image src={arrow} alt="arrow" />
@@ -315,7 +315,7 @@ const page = () => {
                                 onClick={() => setDistrictOpen(!districtOpen)}
                                 className="bg-[#3A2F7D] flex justify-center cursor-pointer rounded"
                               >
-                                <p className="w-[480px] h-[40px] px-[10px] pt-[8px]">
+                                <p className="w-[280px] md:w-[480px] h-[40px] px-[10px] pt-[8px]">
                                   {districtName}
                                 </p>
                                 <Image src={arrow} alt="arrow" />
@@ -349,7 +349,7 @@ const page = () => {
                           <input
                             type="text"
                             name="full_name"
-                            className="w-[500px] border-slate-200 placeholder-slate-400 px-[8px] py-[10px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
+                            className="w-[280px] md:w-[500px] border-slate-200 placeholder-slate-400 px-[8px] py-[10px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
                             {...register("full_name", { required: true })}
                           />
                           <span className="text-[red]">
@@ -364,7 +364,7 @@ const page = () => {
                           <input
                             type="text"
                             name="address"
-                            className="w-[500px] border-slate-200 placeholder-slate-400 px-[8px] py-[10px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
+                            className="w-[280px] md:w-[500px] border-slate-200 placeholder-slate-400 px-[8px] py-[10px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
                             {...register("address", { required: true })}
                           />
                           <span className="text-[red]">
@@ -382,7 +382,7 @@ const page = () => {
                             <input
                               type="email"
                               name="email"
-                              className="border-slate-200 placeholder-slate-400 px-[8px] py-[10px] w-[500px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
+                              className="border-slate-200 placeholder-slate-400 px-[8px] py-[10px] w-[280px] md:w-[500px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
                               {...register("email", {
                                 required: true,
                                 pattern:
@@ -408,7 +408,7 @@ const page = () => {
                               placeholder=""
                               // value={phone}
                               onChange={() => setValue(phone)}
-                              className="border-slate-200 placeholder-slate-400 px-[8px] py-[10px] w-[500px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
+                              className="border-slate-200 placeholder-slate-400 px-[8px] py-[10px] w-[280px] md:w-[500px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
                               {...register("phone", { required: true })}
                             />
                             <span className="text-[red]">
@@ -429,7 +429,7 @@ const page = () => {
                               name="text"
                               placeholder=""
                               onChange={() => setValue(text)}
-                              className="border-slate-200 placeholder-slate-400 px-[8px] py-[10px] w-[500px] h-[180px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
+                              className="border-slate-200 placeholder-slate-400 px-[8px] py-[10px] w-[280px] md:w-[500px] h-[180px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
                               {...register("text", { required: true })}
                             />
                             <span className="text-[red]">
@@ -449,7 +449,7 @@ const page = () => {
                           <div className="flex items-center justify-center w-full">
                             <label
                               htmlFor="dropzone-file"
-                              className="flex items-center justify-between w-[500px] h-[70px] px-[10px]  cursor-pointer bg-[#3A2F7D]"
+                              className="flex items-center justify-betweenw-[280px] md:w-[500px] h-[70px] px-[10px]  cursor-pointer bg-[#3A2F7D]"
                             >
                               <p>{t("form.upload-file")}</p>
                               <div className="items-center justify-center rotate-45">
@@ -485,7 +485,7 @@ const page = () => {
                               type="text"
                               onChange={(event) => handleCapcha(event)}
                               name="captcha_is_correct"
-                              className="border-slate-200 placeholder-slate-400 px-[8px] py-[10px] w-[370px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
+                              className="border-slate-200 placeholder-slate-400 px-[8px] py-[10px] w-[180px] md:w-[370px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
                               {...register("captcha_is_correct", {
                                 required: true,
                               })}

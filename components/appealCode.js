@@ -201,7 +201,7 @@ const appealCode = () => {
               type="text"
               name="code_request"
               onChange={(event) => handleCodeRequest(event)}
-              className="w-[500px] border-slate-200 placeholder-slate-400 px-[8px] py-[10px] mb-[20px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
+              className="w-[280px] md:w-[500px] border-slate-200 placeholder-slate-400 px-[8px] py-[10px] mb-[20px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
               {...register("code_request", { required: true })}
             />
             <span className="text-[red]">
@@ -216,7 +216,7 @@ const appealCode = () => {
               type="text"
               name="code_password"
               onChange={(event) => handleCodePassword(event)}
-              className="w-[500px] border-slate-200 placeholder-slate-400 px-[8px] py-[10px] mb-[20px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
+              className="w-[280px] md:w-[500px] border-slate-200 placeholder-slate-400 px-[8px] py-[10px] mb-[20px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
               {...register("code_password", { required: true })}
             />
             <span className="text-[red]">
@@ -230,7 +230,7 @@ const appealCode = () => {
                   type="text"
                   onChange={(event) => handleCapcha(event)}
                   name="captcha_is_correct"
-                  className="border-slate-200 placeholder-slate-400 px-[8px] py-[10px] w-[370px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
+                  className="border-slate-200 placeholder-slate-400 px-[8px] py-[10px] w-[180px] md:w-[370px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
                   {...register("captcha_is_correct", {
                     required: true,
                   })}

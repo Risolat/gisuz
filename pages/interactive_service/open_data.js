@@ -64,8 +64,8 @@ const page = () => {
   return (
     <div>
       <div className="container">
-        <div className="flex flex-row items-start py-[40px]">
-          <div className="basis-3/4">
+        <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">
+          <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px] pr-[20px] px-[20px]">
             <h3 className="text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]">
               {t("interactive-services.open-data")}
             </h3>
@@ -123,7 +123,7 @@ const page = () => {
                       <p className="text-[#8F8F8F] text-[1.15em] xl:text-[1.5em] font-bold mb-[10px]">
                         {d.name}
                       </p>
-                      <div className="flex justify-between">
+                      <div className="flex justify-between flex-wrap">
                         <p>
                           {locale === "uz"
                             ? d.sphereName.uzbText
@@ -133,7 +133,7 @@ const page = () => {
                             ? d.sphereName.uzbKrText
                             : d.sphereName.engText}
                         </p>
-                        <div className="flex items-center">
+                        <div className="flex items-center flex-wrap mt-[10px]">
                           <Link
                             href={`https://data.egov.uz/apiData/MainData/GetByFile?id=${d.structId}&fileType=2&tableType=2`}
                             className="px-[10px] py-[5px] mx-[5px] border-[#5C587A] border-[1px] text-[#8F8F8F]"
@@ -208,7 +208,7 @@ const page = () => {
               </div>
             </div>
           </div>
-          <div className="sticky top-[197px] w-[350px] basis-1/4 py-[8px] bg-[#3A2F7D]">
+          <div className="sticky top-[160px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0 py-[8px] bg-[#3A2F7D]">
             <p className="mb-[24px] text-[20px] px-[16px]">{title}</p>
             <ul className="">
               {submenu.map((item) => (
