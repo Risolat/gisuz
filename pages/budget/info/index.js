@@ -21,10 +21,16 @@ const page = ({ info, submenu, title, locale }) => {
               >
                 {info.title}
               </h3>
-              <div
-                className="pr-[40px] desc-html leading-[38px] w-full text-[16px] text-[#A2A0B3] leading-[22px] text-justify font-inter break-words"
-                dangerouslySetInnerHTML={{ __html: info.description }}
-              />
+              <div className="pr-[40px] desc-html leading-[38px] w-full text-[16px] text-[#A2A0B3] leading-[22px] text-justify font-inter break-words" />
+              <p className="text-[#A2A0B3]">
+                {locale === "uz"
+                  ? "O'zkomnazorat inspeksiyasi tassarufida budjet tashkilotlari mavjud emas"
+                  : locale === "ru"
+                  ? "Составе инспекции Узкомназорат нет подведомственных бюджетных организаций"
+                  : locale === "uzb"
+                  ? "Ўзкомназорат инспекцияси тассаруфида буджет ташкилотлари мавжуд эмас"
+                  : "Incpection Uzkomnazorat does not include subordinate budgetary organizations"}
+              </p>
             </div>
           </div>
           <div className="sticky top-[197px] w-[350px] basis-1/4 py-[8px] bg-[#3A2F7D]">
@@ -65,7 +71,7 @@ const page = ({ info, submenu, title, locale }) => {
 export async function getServerSideProps(context) {
   const locale = context.locale;
   const res = await axios(
-    `/${locale}/api/menu/submenu/a6f8e1b7-2463-4053-b53f-e8a7e4b8712f/posts/`
+    `/${locale}/api/menu/submenu/a6f8e1b7-2463-4053-b53f-e8a7e4b8712f`
   );
 
   const response = await axios.get(`/${locale}/api/menu/`);
@@ -80,7 +86,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       ...(await serverSideTranslations(locale, ["common"], i18nextConfig)),
-      info: res.data.results[0],
+      info: res.data,
       title: title,
       submenu: menu[0].submenu,
       locale: locale,
