@@ -8,7 +8,7 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
 });
 
-const page = ({ construction, submenu, title, locale }) => {
+const page = ({ gov_purchase, submenu, title, locale }) => {
   return (
     <div>
       <div className="container">
@@ -18,11 +18,11 @@ const page = ({ construction, submenu, title, locale }) => {
               <h3
                 className={`${montserrat.variable} max-w-[1000px] text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]`}
               >
-                {construction.title}
+                {gov_purchase.title}
               </h3>
               <div
                 className="pr-[40px] desc-html leading-[38px] w-full text-[16px] text-[#A2A0B3] leading-[22px] text-justify font-inter break-words"
-                dangerouslySetInnerHTML={{ __html: construction.description }}
+                dangerouslySetInnerHTML={{ __html: gov_purchase.description }}
               />
             </div>
           </div>
@@ -31,7 +31,7 @@ const page = ({ construction, submenu, title, locale }) => {
             <ul className="">
               {submenu.map((item) => (
                 <li key={item.id} className="bg-[#3A2F7D]">
-                  {item.slug === "/budget/construction" ? (
+                  {item.slug === "/budget/gov_purchase" ? (
                     <div className="gradientBox  bg-[#3A2F7D]">
                       <Link
                         className="block py-[10px] px-[16px] mx-[3px] hover:bg-[#24224E] bg-[#171142] text-white"
@@ -64,7 +64,7 @@ const page = ({ construction, submenu, title, locale }) => {
 export async function getServerSideProps(context) {
   const locale = context.locale;
   const res = await axios(
-    `/${locale}/api/menu/submenu/2ddfb81c-1489-45e1-be2b-1c16ae749b5a`
+    `/${locale}/api/menu/submenu/eab0e062-fd7f-48fe-8277-a54fcd297ddb`
   );
 
   const response = await axios.get(`/${locale}/api/menu/`);
@@ -79,7 +79,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       ...(await serverSideTranslations(locale, ["common"], i18nextConfig)),
-      construction: res.data,
+      gov_purchase: res.data,
       title: title,
       submenu: menu[0].submenu,
       locale: locale,
