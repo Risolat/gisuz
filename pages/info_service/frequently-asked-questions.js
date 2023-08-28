@@ -1,19 +1,24 @@
 import axios from "../../http";
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useTranslation } from "next-i18next";
-import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../next-i18next.config";
+import { Montserrat } from "next/font/google";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+});
 
 const page = ({ questions, title, submenu, locale }) => {
   return (
     <div>
       <div className="container">
-        <div className="flex flex-row items-start py-[40px]">
-          <div className="basis-3/4">
+        <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">
+          <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px] pr-[20px]">
             <div className="px-[16px]">
-              <h3 className="text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]">
+              <h3
+                className={`${montserrat.variable} font-montserrat font-semibold text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]`}
+              >
                 {locale === "ru"
                   ? "Часто задаваемые вопросы"
                   : locale === "en"
@@ -33,8 +38,12 @@ const page = ({ questions, title, submenu, locale }) => {
               />
             </div>
           </div>
-          <div className="sticky top-[197px] w-[350px] basis-1/4 py-[8px] bg-[#3A2F7D]">
-            <p className="mb-[24px] text-[20px] px-[16px]">{title}</p>
+          <div className="sticky top-[160px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0 py-[8px] bg-[#3A2F7D]">
+            <p
+              className={` ${montserrat.variable} font-montserrat font-semibold mb-[24px] text-[20px] px-[16px]`}
+            >
+              {title}
+            </p>
             <ul className="">
               {submenu.map((item) => (
                 <li key={item.id} className="bg-[#3A2F7D]">

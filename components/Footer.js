@@ -1,19 +1,24 @@
-"use client";
-import { useEffect } from "react";
 import { useRouter } from "next/router";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import footerLogo from "../public/photos/icons/footerLogo.jpg";
 import { useTranslation } from "next-i18next";
-import axios from "axios";
 import footerImg from "../public/photos/icons/footer-img.png";
+import { Roboto } from "next/font/google";
+const roboto = Roboto({
+  subsets: ["latin"],
+  variable: "--font-roboto",
+  weight: "500",
+});
 
 const Footer = () => {
   const { t } = useTranslation("common");
   const { locale } = useRouter();
   return (
-    <div className="bottom-0 w-full mt-auto z-1 bg-[#3A2F7D] text-[0.875em]">
+    <div
+      className={`${roboto.variable} bottom-0 w-full mt-auto z-1 bg-[#3A2F7D]`}
+    >
       <div className="max-w-[1440px] my-0 mx-auto pb-[30px]">
         <div className="flex justify-center xl:justify-between items-center flex-wrap py-[16px] border-[#A2A0B3] border-b-[1px] mx-[20px] 2xl:mx-0">
           <div className="flex items-center flex-wrap">
@@ -24,7 +29,7 @@ const Footer = () => {
               height={40}
               className="mr-[16px]"
             />
-            <p className="font-roboto text-white font-bold text-[1.15em] xl:text-[1.5em]">
+            <p className="font-roboto text-white font-bold text-[1.15em] xl:text-[24px]">
               {locale === "uz"
                 ? "“OʻZKOMNAZORAT” INSPEKSIYASI"
                 : locale === "ru"
@@ -34,10 +39,10 @@ const Footer = () => {
                 : "INSPECTION “UZKOMNAZORAT"}
             </p>
           </div>
-          <div className="flex items-center justify-center flex-wrap">
+          <div className="font-roboto font-normal flex items-center justify-center flex-wrap">
             <form action="#">
               <input
-                className="outline-none bg-transparent w-[240px] xl:w-[300px] placeholder:text-[0.89em] text-[1em] px-[12px] text-white focus:ring-offset-1 focus:ring-2 focus:ring-[#1D1A49] border border-[#3C3971] focus:z-[22] placeholder:text-[#A2A0B3] py-[10px]"
+                className="outline-none bg-transparent mr-[2px] w-[240px] xl:w-[300px] placeholder:text-[0.89em] text-[1em] px-[12px] text-white focus:ring-offset-1 focus:ring-2 focus:ring-[#1D1A49] border border-[#3C3971] focus:z-[22] placeholder:text-[#A2A0B3] py-[10px]"
                 type="email"
                 placeholder={
                   locale === "uz"
@@ -73,7 +78,7 @@ const Footer = () => {
             </Link>
           </div>
         </div>
-        <div className="flex lg:flex-row justify-between flex-wrap flex-col py-[20px] text-[#A2A0B3]">
+        <div className="flex lg:flex-row justify-between flex-wrap flex-col font-roboto font-thin  py-[20px] text-[#A2A0B3]">
           <div className="basis-2/6 px-[10px]">
             <p className="pb-[16px]">
               {locale === "uz"
@@ -169,7 +174,12 @@ const Footer = () => {
               className="mt-[20px]"
               target="_blank"
             >
-              <Image src={footerImg} alt="img" width={88} height={31} />
+              <img
+                src="https://cnt0.www.uz/counter/collect?id=1445&r=&pg=https%3A//gis.uz/info_service/news&c=Y&j=N&wh=1920x1080&px=24&js=1.3&col=0063AF&t=ffffff&p=E6850F"
+                alt="img"
+                width={88}
+                height={31}
+              />
             </Link>
           </div>
         </div>

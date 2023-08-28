@@ -190,8 +190,8 @@ const page = () => {
   return (
     <div>
       <div className="container">
-        <div className="flex flex-row items-start py-[40px]">
-          <div className="basis-3/4 px-[20px]">
+        <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">
+          <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px] pr-[20px] px-[20px]">
             <div>
               <div className="block-tabs">
                 <div
@@ -245,8 +245,8 @@ const page = () => {
 
                 <div className={toggleState === 1 ? "block" : "hidden"}>
                   <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className=" mr-[30px] pb-[30px]">
-                      <div className="flex items-center justify-between pb-[40px]">
+                    <div className="mr-[30px] pb-[30px]">
+                      <div className="flex flex-col xl:flex-row items-center justify-between pb-[40px]">
                         <div>
                           <p className="text-[18px] pb-[10px]">
                             {t("form.your-region")}
@@ -341,7 +341,7 @@ const page = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="flex items-center justify-between pb-[40px]">
+                      <div className="flex flex-col xl:flex-row items-center justify-between pb-[40px]">
                         <label className="block">
                           <p className="text-[18px] pb-[10px]">
                             {t("form.full-name")}
@@ -373,7 +373,7 @@ const page = () => {
                           </span>
                         </label>
                       </div>
-                      <div className="flex items-center justify-between pb-[40px]">
+                      <div className="flex flex-col xl:flex-row items-center justify-between pb-[40px]">
                         <div>
                           <p className="text-[18px] pb-[10px]">
                             {t("form.email")}
@@ -418,12 +418,12 @@ const page = () => {
                           </label>
                         </div>
                       </div>
-                      <div className="flex items-start justify-between">
+                      <div className="flex flex-col xl:flex-row xl:items-start items-center justify-between">
                         <div>
                           <p className="text-[18px] pb-[10px]">
                             {t("form.message-text")}
                           </p>
-                          <label className="flex flex-col mr-[20px]">
+                          <label className="flex flex-col mr-0 xl:mr-[20px]">
                             <input
                               type="text"
                               name="text"
@@ -477,8 +477,8 @@ const page = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="">
-                      <div className="flex">
+                    <div className="flex flex-col items-center justify-center">
+                      <div className="flex items-start justify-center">
                         <div className="flex">
                           <label className="flex">
                             <input
@@ -513,12 +513,14 @@ const page = () => {
                         {t("validator.field-required")}
                       </span>
                     </div>
-                    <button
-                      type="submit"
-                      className="px-[60px] py-[20px] mt-[30px] border hover:bg-white hover:text-[#3C3971]"
-                    >
-                      {t("button.send")}
-                    </button>
+                    <div className="flex items-start justify-center">
+                      <button
+                        type="submit"
+                        className="px-[60px] py-[20px] mt-[30px] border hover:bg-white hover:text-[#3C3971]"
+                      >
+                        {t("button.send")}
+                      </button>
+                    </div>
                   </form>
                 </div>
 
@@ -528,7 +530,7 @@ const page = () => {
               </div>
             </div>
           </div>
-          <div className="sticky top-[197px] w-[350px] basis-1/4 py-[8px] bg-[#3A2F7D]">
+          <div className="sticky top-[160px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0 py-[8px] bg-[#3A2F7D]">
             <p className="mb-[24px] text-[20px] px-[16px]">{title}</p>
             <ul className="">
               {submenu.map((item) => (

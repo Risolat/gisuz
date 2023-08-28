@@ -272,7 +272,6 @@ const NavbarTop = () => {
             className="w-[24px] h-[24px] mr-[10px] xl:hidden"
           />
         </button>
-
         {sidebarOpen === false ? (
           ""
         ) : (
@@ -493,65 +492,7 @@ const NavbarTop = () => {
                 </ul>
               </div>
             </div>
-            <div className="flex justify-between flex-wrap overflow-scroll py-[30px] px-[20px] border-[#5C587A] border-b-[1px] bg-[#171142]">
-              {data.map((d, i) => (
-                <ul key={d.id}>
-                  <li>
-                    <p className="pb-[30px] text-white text-[16px] xl:text-[1.5em] font-roboto font-bold w-[250px]">
-                      {d.title}
-                    </p>
-                    {d.submenu.map((sub) => (
-                      <ul className="w-[300px]">
-                        <li>
-                          <Link
-                            onClick={() => setmenuOpen(false)}
-                            className="block pb-[10px] text-[1.12em] font-montserrat text-[#A2A0B3] hover:text-white cursor-pointer  font-semibold"
-                            locale={locale}
-                            href={`${
-                              sub.slug === "/activity/strategy" ||
-                              sub.slug == null
-                                ? sub.link
-                                : sub.slug
-                            }`}
-                          >
-                            {sub.title}
-                          </Link>
-                        </li>
-                      </ul>
-                    ))}
-                  </li>
-                </ul>
-              ))}
-            </div>
-            <ul className="adress-list flex flex-wrap mb-[10px] pt-[20px] ">
-              <li className="adress-item pr-[16px] mb-[10px]">
-                <a
-                  href="#"
-                  className="adress-link flex items-center justify-center"
-                >
-                  <Image src={location} alt="location" />
-                  <p className="2xl:w-full pl-[5px] text-[#A2A0B3] xl:w-[300px] xl:pl-0">
-                    {locale === "uz"
-                      ? "100128, Toshkent shahar, Shayxontohur tumani, Labzak ko‘chasi, 136 uy"
-                      : locale === "uzb"
-                      ? "100128, Тошкент шаҳар, Шайхонтоҳур тумани, Лабзак кўчаси, 136 уй"
-                      : locale === "ru"
-                      ? "100128, город Ташкент, Шайхонтохурский район, улица Лабзак, дом 136"
-                      : "100128, Tashkent city, Shaykhontokhur district, Labzak street, 136"}
-                  </p>
-                </a>
-              </li>
-              <li className="adress-item mb-[10px]">
-                <a
-                  href="#"
-                  className="adress-link flex items-center justify-center"
-                >
-                  <Image src={mail} alt="mail" />
-                  <p className="pl-[5px] text-[#A2A0B3]">info@gis.uz</p>
-                </a>
-              </li>
-            </ul>
-            <ul className="social-media flex items-center pb-[20px] border-[#5C587A] border-b-[1px]">
+            <ul className="social-media overflow-scroll h-[50px] flex items-center border-[#5C587A] border-b-[1px]">
               <li className="social-media-item pr-[15px]">
                 <Link
                   href="https://www.facebook.com/uzkomnazorat/"
@@ -583,15 +524,79 @@ const NavbarTop = () => {
                 </Link>
               </li>
             </ul>
+            <div className="overflow-scroll h-[800px]">
+              <ul className="adress-list flex flex-wrap mb-[10px] pt-[20px] overflow-scroll h-[50px] ">
+                <li className="adress-item pr-[16px] mb-[10px]">
+                  <a
+                    href="#"
+                    className="adress-link flex items-center justify-center"
+                  >
+                    <Image src={location} alt="location" />
+                    <p className="2xl:w-full pl-[5px] text-[#A2A0B3] xl:w-[300px] xl:pl-0">
+                      {locale === "uz"
+                        ? "100128, Toshkent shahar, Shayxontohur tumani, Labzak ko‘chasi, 136 uy"
+                        : locale === "uzb"
+                        ? "100128, Тошкент шаҳар, Шайхонтоҳур тумани, Лабзак кўчаси, 136 уй"
+                        : locale === "ru"
+                        ? "100128, город Ташкент, Шайхонтохурский район, улица Лабзак, дом 136"
+                        : "100128, Tashkent city, Shaykhontokhur district, Labzak street, 136"}
+                    </p>
+                  </a>
+                </li>
+                <li className="adress-item mb-[10px]">
+                  <a
+                    href="#"
+                    className="adress-link flex items-center justify-center"
+                  >
+                    <Image src={mail} alt="mail" />
+                    <p className="pl-[5px] text-[#A2A0B3]">info@gis.uz</p>
+                  </a>
+                </li>
+              </ul>
+              <div className="flex justify-between flex-wrap overflow-scroll py-[30px] px-[20px] border-[#5C587A] border-b-[1px] bg-[#171142]">
+                {data.map((d, i) => (
+                  <ul key={d.id}>
+                    <li>
+                      <p className="pb-[30px] text-white text-[16px] xl:text-[1.5em] font-roboto font-bold w-[250px]">
+                        {d.title}
+                      </p>
+                      {d.submenu.map((sub) => (
+                        <ul className="w-[300px]">
+                          <li>
+                            <Link
+                              onClick={() => setmenuOpen(false)}
+                              className="block pb-[10px] text-[1.12em] font-montserrat text-[#A2A0B3] hover:text-white cursor-pointer  font-semibold"
+                              locale={locale}
+                              href={`${
+                                sub.slug === "/activity/strategy" ||
+                                sub.slug == null
+                                  ? sub.link
+                                  : sub.slug
+                              }`}
+                            >
+                              {sub.title}
+                            </Link>
+                          </li>
+                        </ul>
+                      ))}
+                    </li>
+                  </ul>
+                ))}
+              </div>
+            </div>
           </div>
         )}
       </div>
-      <div className="2xl:max-w-[1440px] hidden my-0 mx-auto xl:flex items-start justify-between pt-[8px] pb-[0]">
+      <div className="2xl:max-w-[1440px] hidden my-0 mx-auto xl:px-[10px] 2xl:px-[10px] xl:flex items-start justify-between pt-[8px] pb-[0]">
         <div className="navbar-left">
           <ul className="adress-list flex text-[14px]">
             <li className="adress-item pr-[16px]">
               <div className="adress-link flex items-center justify-center">
-                <Image src={location} alt="location" />
+                <Image
+                  src={location}
+                  alt="location"
+                  className="pr-[5px] 2xl:pr-[5px]"
+                />
                 <span className="2xl:w-full pl-[5px] text-[#A2A0B3] xl:w-[300px] xl:pl-0">
                   {locale === "uz"
                     ? "100128, Toshkent shahar, Shayxontohur tumani, Labzak ko‘chasi, 136 uy"

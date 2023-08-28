@@ -17,7 +17,7 @@ export default function Statistics() {
   return (
     <div className="bg-[#3A2F7D] py-[40px]">
       <div className="container flex flex-col xl:flex-row items-center">
-        <div className="lg:basis-3/5 pb-[50px]">
+        <div className="lg:basis-3/5 pb-[50px] text-center xl:text-left">
           <h2 className="subtitle font-montserrat ml-[30px] 2xl:ml-0">
             {t("main-page.statistics")}
           </h2>
@@ -34,9 +34,9 @@ export default function Statistics() {
           </button>
         </div>
         <div className="lg:basis-2/5 flex flex-col lg:flex-row items-stratch">
-          <div className="lg:max-w-[280px] max-w-[280px] sm:max-w-[350px] mb-[10px] bg-[#252356] p-[20px] sm:mx-5">
+          <div className="xl:w-[250px] 2xl:w-[290px] max-w-[290px] sm:max-w-[350px] pt-[33px] pb-[25px] px-[16px] mb-[10px] bg-[#252356] sm:mx-5">
             <LandingBar />
-            <p className="font-[500] pt-[10px] text-[16px] leading-5 text-[#A2A0B3]">
+            <p className="font-medium pt-[10px] text-[16px] leading-6 text-[#A2A0B3] line-clamp-4">
               {locale === "uz"
                 ? "“Oʻzkomnazorat” inspeksiyasiga kelib tushgan murojaatlar soni"
                 : locale === "ru"
@@ -47,9 +47,9 @@ export default function Statistics() {
             </p>
           </div>
 
-          <div className="lg:max-w-[280px] max-w-[280px] sm:max-w-[350px] mb-[10px] bg-[#252356] p-[20px] sm:mx-5">
+          <div className="xl:w-[250px] 2xl:w-[290px] max-w-[280px] sm:max-w-[350px] mb-[10px] bg-[#252356] pt-[33px] pb-[25px] px-[16px] sm:mx-5">
             <Horizontal className="" />
-            <p className="font-[500] pt-[10px] text-[16px] leading-5 text-[#A2A0B3]">
+            <p className="font-medium pt-[10px] text-[16px] leading-6 text-[#A2A0B3] line-clamp-4">
               {locale === "uz"
                 ? "2020-yil may oyi holatiga uyali aloqa operatorlarining tayanch stansiyalari soni"
                 : locale === "ru"
@@ -59,9 +59,9 @@ export default function Statistics() {
                 : "Number of base stations of mobile operators May 2020"}
             </p>
           </div>
-          <div className="lg:max-w-[280px] max-w-[280px] sm:max-w-[350px] mb-[10px] bg-[#252356] p-[20px] sm:mx-5">
+          <div className="xl:w-[250px] 2xl:w-[290px] flex flex-col items-center max-w-[280px] sm:max-w-[350px] mb-[10px] bg-[#252356] pt-[33px] pb-[25px] px-[16px] sm:mx-5">
             <PieChart className="" />
-            <p className="w-full pt-[10px] font-[500] text-[16px] leading-5 text-[#A2A0B3] line-clamp-3">
+            <p className="font-medium pt-[10px] text-[16px] leading-6 text-[#A2A0B3] line-clamp-4">
               {locale === "uz"
                 ? "Qurilishi tugallangan telekommunikatsiya qurilmalarini davlat tomonidan qabul qilish toʻgʻrisida maʼlumot"
                 : locale === "ru"

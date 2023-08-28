@@ -53,9 +53,9 @@ const Paginate = ({
   });
 
   return (
-    <div className="pagination-container w-full flex items-center justify-center my-[30px]">
+    <div className="pagination-container w-full flex items-center justify-center flex-wrap my-[30px]">
       <ul className="pagination">
-        <li className="arrow-button hover:bg-indigo-600 hover:text-white">
+        <li className="arrow-button hover:bg-indigo-600 hover:text-white mb-[8px]">
           <button
             onClick={previousPage}
             disabled={currentPage == pageNumbers[0] ? true : false}

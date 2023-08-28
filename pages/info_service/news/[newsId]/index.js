@@ -74,8 +74,8 @@ const newsDetail = () => {
   return (
     <div>
       <div className={`${montserrat.variable} container font-montserrat`}>
-        <div className="flex flex-row items-start py-[40px]">
-          <div className="basis-3/4">
+        <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">
+          <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px] flex flex-col">
             <h3 className="text-white px-[10px] mt-[40px] description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]">
               {news.title}
             </h3>
@@ -123,9 +123,9 @@ const newsDetail = () => {
               </div>
             </div>
 
-            <div className="">
+            <div className="mr-[30px]">
               <Fancybox
-                className="flex"
+                className="flex items-center"
                 options={{
                   Carousel: {
                     infinite: true,
@@ -142,7 +142,7 @@ const newsDetail = () => {
                   }}
                   keyboard={true}
                   modules={[Navigation, Keyboard]}
-                  className="mySwiper w-[1200px] h-full"
+                  className="mySwiper w-[1200px] h-full w-full"
                 >
                   {photos.map((p, i) => (
                     <SwiperSlide key={i}>
@@ -150,10 +150,10 @@ const newsDetail = () => {
                         key={i}
                         href={p.photo}
                         data-fancybox="gallery"
-                        className="w-full h-full"
+                        className="w-full h-full "
                       >
                         <img
-                          className="w-[1056px] h-[625px]"
+                          className="2xl:w-[1056px] 2xl:h-[625px] w-full mr-[30px]"
                           src={p.photo}
                           alt="slide"
                           width={1056}
@@ -172,7 +172,7 @@ const newsDetail = () => {
               </div>
             </div>
           </div>
-          <div className="sticky top-[197px] w-[350px] basis-1/4 py-[8px] bg-[#3A2F7D]">
+          <div className="sticky top-[197px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0 py-[8px] bg-[#3A2F7D]">
             <p className="mb-[24px] text-[20px] px-[16px]">{title}</p>
             <ul className="font-inter">
               {submenu.map((item) => (

@@ -46,8 +46,8 @@ const photosDetail = ({
   return (
     <div>
       <div className="container">
-        <div className="flex flex-row items-start py-[40px]">
-          <div className="basis-3/4 pr-[20px]">
+        <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">
+          <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px] pr-[20px]">
             <div className="mb-[20px]">
               <div>
                 <div className="flex">
@@ -59,17 +59,17 @@ const photosDetail = ({
                       },
                     }}
                   >
-                    <div className="flex flex-wrap">
+                    <div className="flex flex-wrap justify-center 2xl:justify-start">
                       <div className="">
                         <a
-                          className="w-[696px] h-[475px] mr-[10px] mb-[10px] block"
+                          className="md:w-[696px] md:h-[475px] sm:w-[400px] sm:h-[270px] w-[300px] h-[200px] mr-[10px] mb-[10px] block"
                           data-fancybox="gallery"
                           href={images[0].image}
                           width={696}
                           height={475}
                         >
                           <img
-                            className="w-[696px] h-[475px]"
+                            className="md:w-[696px] md:h-[475px] sm:w-[400px] sm:h-[270px] w-[300px] h-[200px]"
                             alt="image"
                             src={images[0].image}
                             width={696}
@@ -79,123 +79,79 @@ const photosDetail = ({
                       </div>
                       <div>
                         <a
-                          className="galleryLink"
+                          className="xl:w-[336px] xl:h-[222px] md:w-[696px] md:h-[475px] sm:w-[400px] sm:h-[270px] w-[300px] h-[200px] block mr-[16px] mb-[25px]"
                           data-fancybox="gallery"
                           href={images[1].image}
-                          width={336}
-                          height={222}
                         >
-                          <img
-                            alt=""
-                            src={images[1].image}
-                            width={336}
-                            height={222}
-                          />
+                          <img alt="" src={images[1].image} />
                         </a>
                         <a
-                          className="galleryLink"
+                          className="xl:w-[336px] xl:h-[222px] md:w-[696px] md:h-[475px] sm:w-[400px] sm:h-[270px] w-[300px] h-[200px] block mr-[16px] mb-[25px]"
                           data-fancybox="gallery"
                           href={images[2].image}
-                          width={336}
-                          height={222}
                         >
-                          <img
-                            alt=""
-                            src={images[2].image}
-                            width={336}
-                            height={222}
-                          />
+                          <img alt="" src={images[2].image} />
                         </a>
                       </div>
-                      <div className="flex flex-wrap">
+                      <div className="flex flex-wrap justify-center 2xl:justify-start">
                         <a
-                          className="galleryLink"
+                          className="xl:w-[336px] xl:h-[222px] md:w-[696px] md:h-[475px] sm:w-[400px] sm:h-[270px] w-[300px] h-[200px] block mr-[16px] mb-[25px]"
                           data-fancybox="gallery"
                           href={images[3].image}
                         >
-                          <img
-                            alt=""
-                            src={images[3].image}
-                            width={336}
-                            height={222}
-                          />
+                          <img alt="" src={images[3].image} />
                         </a>
                         {images[4] ? (
                           <a
-                            className="galleryLink"
+                            className="xl:w-[336px] xl:h-[222px] md:w-[696px] md:h-[475px] sm:w-[400px] sm:h-[270px] w-[300px] h-[200px] block mr-[16px] mb-[25px]"
                             data-fancybox="gallery"
                             href={images[4].image}
                           >
-                            <img
-                              alt=""
-                              src={images[4].image}
-                              width={336}
-                              height={222}
-                            />
+                            <img alt="" src={images[4].image} />
                           </a>
                         ) : (
                           ""
                         )}
                         {images[5] ? (
                           <a
-                            className="galleryLink"
+                            className="xl:w-[336px] xl:h-[222px] md:w-[696px] md:h-[475px] sm:w-[400px] sm:h-[270px] w-[300px] h-[200px] block mr-[16px] mb-[25px]"
                             data-fancybox="gallery"
                             href={images[5].image}
                           >
-                            <img
-                              alt=""
-                              src={images[5].image}
-                              width={336}
-                              height={222}
-                            />
+                            <img alt="" src={images[5].image} />
                           </a>
                         ) : (
                           ""
                         )}
                         {images[6] ? (
                           <a
-                            className="galleryLink"
+                            className="xl:w-[336px] xl:h-[222px] md:w-[696px] md:h-[475px] sm:w-[400px] sm:h-[270px] w-[300px] h-[200px] block mr-[16px] mb-[25px]"
                             data-fancybox="gallery"
                             href={images[6].image}
                           >
-                            <img
-                              alt=""
-                              src={images[6].image}
-                              width={336}
-                              height={222}
-                            />
+                            <img alt="" src={images[6].image} />
                           </a>
                         ) : (
                           ""
                         )}
                         {images[7] ? (
                           <a
-                            className="galleryLink"
+                            className="xl:w-[336px] xl:h-[222px] md:w-[696px] md:h-[475px] sm:w-[400px] sm:h-[270px] w-[300px] h-[200px] block mr-[16px] mb-[25px]"
                             data-fancybox="gallery"
                             href={images[7].image}
                           >
-                            <img
-                              alt=""
-                              src={images[7].image}
-                              width={336}
-                              height={222}
-                            />
+                            <img alt="" src={images[7].image} />
                           </a>
                         ) : (
                           ""
                         )}
                         {images[8] ? (
                           <a
-                            className="galleryLink"
+                            className="xl:w-[336px] xl:h-[222px] md:w-[696px] md:h-[475px] sm:w-[400px] sm:h-[270px] w-[300px] h-[200px] block mr-[16px] mb-[25px]"
                             data-fancybox="gallery"
                             href={images[8].image}
                           >
-                            <img
-                              alt=""
-                              src={images[8].image}
-                              width={336}
-                              height={222}
-                            />
+                            <img alt="" src={images[8].image} />
                           </a>
                         ) : (
                           ""
@@ -204,95 +160,10 @@ const photosDetail = ({
                     </div>
                   </Fancybox>
                 </div>
-                {/* <LightGallery
-                  onInit={onInit}
-                  speed={500}
-                  plugins={[lgThumbnail, lgZoom]}
-                  className="pr-[16px] flex items-center justify-between"
-                >
-                  {firstImage.map((r, i) => (
-                    <Link
-                      key={i}
-                      href={r.image}
-                      className="w-[696px] h-[468px] block mr-[20px]"
-                    >
-                      <Image
-                        unoptimized
-                        className="w-full h-full object-cover"
-                        src={r.image}
-                        alt={r.title}
-                        width={342}
-                        height={200}
-                      />
-                    </Link>
-                  ))}
-                </LightGallery> */}
-                {/* <LightGallery
-                  onInit={onInit}
-                  speed={500}
-                  plugins={[lgThumbnail, lgZoom]}
-                  className="grid grid-rows-3 grid-flow-col gap-4"
-                >
-                  <Link href={images[0].image} className="row-span-3">
-                    <img
-                      unoptimized
-                      className="galleryImage"
-                      src={images[0].image}
-                      alt={images[0].title}
-                    />
-                  </Link>
-                  <Link
-                    href={images[1].image}
-                    className="row-span-2 col-span-2"
-                  >
-                    <img
-                      unoptimized
-                      className="galleryImage"
-                      src={images[1].image}
-                      alt={images[1].title}
-                    />
-                  </Link>
-                  <Link
-                    href={images[2].image}
-                    className="row-span-2 col-span-2"
-                  >
-                    <img
-                      unoptimized
-                      className="galleryImage"
-                      src={images[2].image}
-                      alt={images[2].title}
-                    />
-                  </Link>
-                </LightGallery> */}
               </div>
-              {/* <div className="flex items-center justify-between w-full ml-[1px] mt-[10px]">
-                <LightGallery
-                  onInit={onInit}
-                  speed={500}
-                  plugins={[lgThumbnail, lgZoom]}
-                  className="pr-[16px] flex items-center justify-between w-full"
-                >
-                  {lastImg.map((r, i) => (
-                    <Link
-                      key={i}
-                      href={r.image}
-                      className="w-[336px] h-full block mb-[20px] mr-[22px] lastImageGallery"
-                    >
-                      <Image
-                        unoptimized
-                        className="w-[336px] h-[222px] object-cover"
-                        src={r.image}
-                        alt={r.title}
-                        width={336}
-                        height={200}
-                      />
-                    </Link>
-                  ))}
-                </LightGallery>
-              </div> */}
             </div>
           </div>
-          <div className="sticky top-[197px] w-[350px] basis-1/4 py-[8px] bg-[#3A2F7D]">
+          <div className="sticky top-[160px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0  py-[8px] bg-[#3A2F7D]">
             <p className="mb-[24px] text-[20px] px-[16px]">{title}</p>
             <ul className="">
               {submenu.map((item) => (

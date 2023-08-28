@@ -8,9 +8,8 @@ import { useEffect, useState, useRef } from "react";
 import axios from "../http";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
-import OutsideClickHandler from "react-outside-click-handler";
-import { Roboto } from "next/font/google";
 import { useClickAway } from "@uidotdev/usehooks";
+import { Roboto } from "next/font/google";
 const roboto = Roboto({
   subsets: ["latin"],
   variable: "--font-roboto",
@@ -110,25 +109,6 @@ const NavbarBottom = () => {
   const ref6 = useClickAway(() => {
     setOpenCon(false);
   });
-  // const changeActive = (i) => {
-  //   setOpen(false);
-  //   setData(
-  //     data.map((cat, ind) => {
-  //       if (i !== ind) {
-  //         cat.open = false;
-  //       }
-  //       return cat;
-  //     })
-  //   );
-  //   setData(
-  //     data.map((cat, ind) => {
-  //       if (i === ind) {
-  //         cat.open = !cat.open;
-  //       }
-  //       return cat;
-  //     })
-  //   );
-  // };
   function changeActive() {
     setOpenAc(false);
     setOpen(!open);
@@ -179,14 +159,6 @@ const NavbarBottom = () => {
   }
   useEffect(() => {
     getData();
-    // document.addEventListener("mousedown", () => {
-    //   setOpenAc(false);
-    //   setOpen(false);
-    //   setOpenInt(false);
-    //   setOpenInf(false);
-    //   setOpenCon(false);
-    //   setOpenDoc(false);
-    // });
     getSubmenu();
   }, []);
 
@@ -195,7 +167,7 @@ const NavbarBottom = () => {
   return (
     <div className="pb-[10px]">
       <div className="xl:border-[#5C587A] xl:border-b-[1px]">
-        <div className="max-w-[1440px] my-0 mx-auto">
+        <div className="max-w-[1440px] my-0 mx-auto xl:px-[10px] 2xl:px-[10px]">
           <div className="flex justify-between items-center ">
             <Link
               href="/"
@@ -206,18 +178,18 @@ const NavbarBottom = () => {
                 alt="logo-gis"
                 width={83}
                 height={83}
-                className="2xl:pr-[16px] pr-[10px] w-[60px] h-[60px] xl:w-[83px] xl:h-[83px]"
+                className="2xl:pr-[16px] pr-[10px] w-[60px] h-[60px] xl:w-[70px] xl:h-[70px] 2xl:w-[83px] 2xl:h-[83px]"
               />
               <Image
                 src={logo}
                 alt="logo"
                 width={7}
                 height={83}
-                className="w-[7px] h-[50px] xl:h-[83px]"
+                className="w-[7px] h-[50px] xl:h-[70px] 2xl:h-[83px]"
               />
               <div className="2xl:pl-[16px] pl-[10px]">
                 <h1
-                  className={`${roboto.variable} subpixel-antialiased title-gradient text-[20px] xl:text-[24px] leading-8 font-roboto font-bold`}
+                  className={`${roboto.variable} subpixel-antialiased title-gradient xl:text-[17px] 2xl:text-[20px] xl:text-[24px] 2xl:leading-8 leading-6 font-roboto font-bold`}
                 >
                   {locale === "uz"
                     ? "O‘ZKOMNAZORAT"
@@ -227,7 +199,7 @@ const NavbarBottom = () => {
                     ? "ЎЗКОМНАЗОРАТ"
                     : "INSPECTION"}
                 </h1>
-                <p className="hidden subpixel-antialiased xl:block max-w-[280px] title-gradient text-[12px] font-normal leading-4">
+                <p className="hidden subpixel-antialiased xl:block max-w-[220px] 2xl:max-w-[280px] title-gradient xl:text-[11px] 2xl:text-[12px] font-normal 2xl:leading-4 leading-3">
                   {locale === "uz"
                     ? "Raqamli texnologiyalar vazirligi huzuridagi Axborotlashtirish va telekommunikatsiyalar sohasida nazorat inspeksiyasi"
                     : locale === "ru"
@@ -240,7 +212,7 @@ const NavbarBottom = () => {
             </Link>
 
             <div id="navbarList" className="navbarList">
-              <ul className="nav-list flex hidden xl:flex">
+              <ul className="nav-list flex hidden xl:flex xl:text-[14px] 2xl:text-[16px]">
                 <li
                   className="nav-item relative"
                   onClick={() => changeActive()}

@@ -85,11 +85,12 @@ const Draugh = () => {
           ? "2019 йилда мансабдор шахсларга нисбатан кўрилган чоралар тўғрисида маълумот"
           : "Information on the measures taken in relation to responsible persons as a result of the study and inspections in 2019"}
       </h1>
-      <div className="w-[800px] h-[800px] flex items-center justify-center my-0 mx-auto">
+      <div className="xl:w-[600px] xl:h-[600px] lg:w-[400px] lg:h-[400px] flex items-center justify-center my-0 mx-auto">
         <Doughnut
-          className="w-[800px] h-[800px] p-[10px]"
+          className="p-[10px]"
           data={data}
           options={{
+            responsive: true,
             layout: {
               padding: 10,
             },

@@ -13,8 +13,8 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../../next-i18next.config";
-import { Montserrat } from "next/font/google";
 import { Icon } from "@iconify/react";
+import { Montserrat } from "next/font/google";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -171,8 +171,8 @@ const page = () => {
   return (
     <div>
       <div className={`${montserrat.variable} container font-montserrat`}>
-        <div className="flex flex-row items-start py-[40px]">
-          <div className="basis-3/4">
+        <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">
+          <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px]">
             <h3 className="text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[32px]">
               {t("page-titles.info-service.news-archive")}
             </h3>
@@ -181,10 +181,14 @@ const page = () => {
                 {t("other.no-news")}
               </p>
             ) : (
-              <ul className="pr-[16px] flex items-center justify-start flex-wrap">
+              <ul className="pr-[16px] flex items-center justify-start justify-center flex-wrap">
                 {news.map((r) => (
                   <li key={r.id} className="py-[16px] mx-[5px] block w-[342px]">
-                    <Link href={`/info_service/news/${r.id}`} className="">
+                    <Link
+                      href={`/info_service/news/${r.id}`}
+                      className=""
+                      onClick={() => saveCurrent()}
+                    >
                       <Image
                         unoptimized
                         className="w-[342px] h-[200px] object-cover"
@@ -237,8 +241,8 @@ const page = () => {
               </ul>
             )}
           </div>
-          <div className="basis-1/4">
-            <div className="mt-[92px] w-[350px]  py-[8px] bg-[#3A2F7D] mb-[10px]">
+          <div className="w-full 2xl:basis-1/4 basis-full">
+            <div className="mt-[92px] 2xl:w-[350px] mx-[20px] 2xl:mx-0 py-[8px] bg-[#3A2F7D]">
               <p className="mb-[24px] text-[20px] px-[16px] font-montserrat font-semibold ">
                 {title}
               </p>
@@ -248,7 +252,7 @@ const page = () => {
                     {item.slug === "/info_service/news" ? (
                       <div className="gradientBox  bg-[#3A2F7D]">
                         <Link
-                          className="block py-[10px] px-[16px] mx-[3px] hover:bg-[#24224E] bg-[#171142] text-white"
+                          className="block py-[10px] px-[16px] mx-[3px] hover:bg-[#24224E] bg-[#171142] text-white font-inter"
                           href={`${item.slug}`}
                         >
                           {item.title}
@@ -257,7 +261,7 @@ const page = () => {
                     ) : (
                       <div className="gradientBox bg-[#3A2F7D]">
                         <Link
-                          className="block py-[10px] px-[16px] hover:bg-[#24224E] hover:text-white bg-[#3A2F7D] text-[#A2A0B3]"
+                          className="block py-[10px] px-[16px] hover:bg-[#24224E] hover:text-white bg-[#3A2F7D] text-[#A2A0B3] font-inter"
                           locale={locale}
                           href={`${item.slug}`}
                         >
@@ -269,71 +273,73 @@ const page = () => {
                 ))}
               </ul>
             </div>
-            <div className="w-[350px] relative ">
-              <DatePicker
-                id="date"
-                className="w-full"
-                selected={date}
-                dateFormat="MM/yyyy"
-                showMonthYearPicker
-                onChange={(date) => handleDate(date)}
-              />
-              <Icon
-                onClick={() => clearInput()}
-                icon="ic:round-clear"
-                color="#a2a0b3"
-                width="25"
-                height="25"
-                className="absolute top-[25%] right-[10px]"
-              />
-            </div>
-            <div className="w-[350px] mt-[20px]">
-              <label className="sr-only">
-                <input
-                  type="text"
-                  className="hidden"
-                  id="region"
-                  value={selected}
-                  name="region"
-                  onChange={() => handleChange()}
+            <div className="mr-[40px] 2xl:mr-0">
+              <div className="2xl:w-[350px] relative w-full my-[30px]  2xl:ml-[0] ml-[20px]">
+                <DatePicker
+                  id="date"
+                  className="w-full"
+                  selected={date}
+                  dateFormat="MM/yyyy"
+                  showMonthYearPicker
+                  onChange={(date) => handleDate(date)}
                 />
-              </label>
+                <Icon
+                  onClick={() => clearInput()}
+                  icon="ic:round-clear"
+                  color="#a2a0b3"
+                  width="25"
+                  height="25"
+                  className="absolute top-[25%] right-[10px]"
+                />
+              </div>
+              <div className="mt-[20px] 2xl:w-[350px] relative w-full my-[30px]  2xl:ml-[0] ml-[20px]">
+                <label className="sr-only">
+                  <input
+                    type="text"
+                    className="hidden"
+                    id="region"
+                    value={selected}
+                    name="region"
+                    onChange={() => handleChange()}
+                  />
+                </label>
 
-              <div>
-                <div className="">
-                  <div
-                    onClick={() => setOpen(!open)}
-                    className="bg-[#3A2F7D] flex justify-center py-[8px] cursor-pointer rounded"
-                  >
-                    <p className="font-montserrat font-semibold px-[16px] text-[1.12em] text-white cursor-pointer w-[480px] h-[40px] px-[10px] pt-[8px]">
-                      Sohalar
-                    </p>
-                    <Image src={arrow} alt="arrow" />
-                  </div>
-                  <ul
-                    className={`${
-                      open
-                        ? "block w-[350px] h-auto mt-3 pt-1 bg-[#3C3976] cursor-pointer z-10 font-inter"
-                        : "hidden"
-                    }`}
-                  >
-                    <li onClick={() => getnews()} className="gradientBox ">
-                      <p className="hover:bg-[#24224E] bg-[#24224E] px-[20px] py-[8px] text-[#A2A0B3]">
-                        Barcha Sohalar
+                <div>
+                  <div className="">
+                    <div
+                      onClick={() => setOpen(!open)}
+                      className="bg-[#3A2F7D] flex justify-between py-[8px] cursor-pointer rounded"
+                    >
+                      <p className="font-montserrat font-semibold px-[16px] text-[1.12em] text-white cursor-pointer w-[480px] h-[40px] px-[10px] pt-[8px]">
+                        Sohalar
                       </p>
-                    </li>
-                    {category.map((r) => (
-                      <li
-                        key={r.id}
-                        onClick={() => getCategoryNews(r.id)}
-                        className="gradientBox "
-                      >
-                        <p className="hover:bg-[#24224E] px-[20px] py-[8px] text-[#A2A0B3]">
-                          {r.title}
+                      <Image src={arrow} alt="arrow" />
+                    </div>
+                    <ul
+                      className={`${
+                        open
+                          ? "block w-[270px] md:w-[350px] h-auto mt-3 pt-1 bg-[#3C3976] cursor-pointer z-10 font-inter"
+                          : "hidden"
+                      }`}
+                    >
+                      <li onClick={() => getnews()} className="gradientBox ">
+                        <p className="hover:bg-[#24224E] bg-[#24224E] px-[20px] py-[8px] text-[#A2A0B3]">
+                          Barcha Sohalar
                         </p>
                       </li>
-                    ))}
-                  </ul>
+                      {category.map((r) => (
+                        <li
+                          key={r.id}
+                          onClick={() => getCategoryNews(r.id)}
+                          className="gradientBox"
+                        >
+                          <p className="hover:bg-[#24224E] px-[20px] py-[8px] text-[#A2A0B3]">
+                            {r.title}
+                          </p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>

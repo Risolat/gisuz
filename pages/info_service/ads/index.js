@@ -11,7 +11,12 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../../next-i18next.config";
+import { Montserrat } from "next/font/google";
 
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+});
 const page = () => {
   const [title, setTitle] = useState();
   const [submenu, setSubmenu] = useState([]);
@@ -109,15 +114,18 @@ const page = () => {
 
   return (
     <div>
-      <div className="container">
-        <div className="flex flex-row items-start py-[40px]">
-          <div className="basis-3/4">
-            <h3 className="text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]">
-              {t("page-titles.info-service.ads")}
+      <div className={`${montserrat.variable} container font-montserrat`}>
+        <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">
+          <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px]">
+            <h3 className="text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[32px]">
+              {t("page-titles.info-service.news-archive")}
             </h3>
-            <ul className="pr-[16px] flex items-center justify-between flex-wrap">
+            <ul className="pr-[16px] flex items-center justify-center xl:justify-between flex-wrap ">
               {ads.map((r) => (
-                <li key={r.id} className="py-[16px] block w-[342px]">
+                <li
+                  key={r.id}
+                  className="py-[16px] block w-[342px] mx-[5px] 2xl:mx-[5px]"
+                >
                   <Link href={`/info_service/ads/${r.id}`} className="">
                     {r.images != 0 ? (
                       <Image
@@ -172,15 +180,17 @@ const page = () => {
               />
             </ul>
           </div>
-          <div className="sticky top-[197px] w-[350px] basis-1/4 py-[8px] bg-[#3A2F7D]">
-            <p className="mb-[24px] text-[20px] px-[16px]">{title}</p>
+          <div className="sticky top-[272px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0  py-[8px] bg-[#3A2F7D]">
+            <p className="mb-[24px] text-[20px] px-[16px] font-montserrat font-semibold ">
+              {title}
+            </p>
             <ul className="">
               {submenu.map((item) => (
                 <li key={item.id} className="bg-[#3A2F7D]">
                   {item.slug === "/info_service/ads" ? (
                     <div className="gradientBox  bg-[#3A2F7D]">
                       <Link
-                        className="block py-[10px] px-[16px] mx-[3px] hover:bg-[#24224E] bg-[#171142] text-white"
+                        className="block py-[10px] px-[16px] font-inter mx-[3px] hover:bg-[#24224E] bg-[#171142] text-white"
                         href={`${item.slug}`}
                       >
                         {item.title}
@@ -189,7 +199,7 @@ const page = () => {
                   ) : (
                     <div className="gradientBox bg-[#3A2F7D]">
                       <Link
-                        className="block py-[10px] px-[16px] hover:bg-[#24224E] hover:text-white bg-[#3A2F7D] text-[#A2A0B3]"
+                        className="block py-[10px] px-[16px] font-inter hover:bg-[#24224E] hover:text-white bg-[#3A2F7D] text-[#A2A0B3]"
                         locale={locale}
                         href={`${item.slug}`}
                       >

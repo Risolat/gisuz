@@ -93,15 +93,15 @@ const page = () => {
   return (
     <div>
       <div className="container">
-        <div className="flex flex-row items-start pt-[40px] pb-[100px]">
-          <div className="basis-3/4 mr-[30px]">
+        <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">
+          <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px] mr-[30px]">
             <h3 className="text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]">
               {t("page-titles.ozcom.inspections")}
             </h3>
             {inspectors.map((l) => (
               <div className="gradientBox mb-[30px]">
                 <div
-                  className="flex p-[24px] bg-[#3A2F7D] hover:bg-[#312E6B]"
+                  className="flex flex-col lg:flex-row p-[24px] bg-[#3A2F7D]  hover:bg-[#312E6B]"
                   key={l.id}
                 >
                   <div className="basis-1/5">
@@ -117,20 +117,20 @@ const page = () => {
                   </div>
                   <div className="basis-4/5 flex flex-col">
                     <div className="basis-6/12">
-                      <p className="text-[#3D8DFF] text-center xl:text-left font-montserrat font-medium text-[1.12em] mb-[8px]">
+                      <p className="text-[#3D8DFF] xl:text-left xl:text-left font-montserrat font-medium text-[1.12em] mb-[8px]">
                         {l.position}
                       </p>
-                      <p className="font-semibold text-center text-[#A2A0B3] xl:text-left font-inter text-[1.25em] h-[90px] max-h-[90px]">
+                      <p className="font-semibold xl:text-left text-[#A2A0B3] xl:text-left font-inter text-[1.25em] h-[90px] max-h-[90px]">
                         {l.last_name} {l.first_name} {l.father_name}
                       </p>
                     </div>
                     <div className="border-[#5C587A] border-b-[2px]">
-                      <h3 className="text-white text-center xl:text-left font-montserrat font-medium text-[16px] lg:text-[1.12em] pb-[8px]">
+                      <h3 className="text-white xl:text-left font-montserrat font-medium text-[16px] lg:text-[1.12em] pb-[8px]">
                         {l.address}
                       </h3>
                     </div>
                     <div
-                      className={`${roboto.variable} flex basis-6/12 font-roboto`}
+                      className={`${roboto.variable} flex flex-col xl:flex-row basis-6/12 font-roboto`}
                     >
                       <div className="flex items-center mr-[30px]">
                         <Icon
@@ -194,7 +194,7 @@ const page = () => {
               minPageNumberLimit={minPageNumberLimit}
             />
           </div>
-          <div className="sticky top-[197px] w-[350px] basis-1/4 py-[8px] bg-[#3A2F7D]">
+          <div className="sticky top-[197px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0  py-[8px] bg-[#3A2F7D]">
             <p className="mb-[24px] text-[20px] px-[16px]">{title}</p>
             <ul className="">
               {submenu.map((item) => (

@@ -12,11 +12,12 @@ import { useRouter } from "next/router";
 const Partners = () => {
   const { t } = useTranslation("common");
   const { locale } = useRouter();
-  // const responsive = {
-  //   0: { items: 1 },
-  //   568: { items: 2 },
-  //   1024: { items: 4 },
-  // };
+  const responsive = {
+    0: { items: 1 },
+    850: { items: 2 },
+    1160: { items: 3 },
+    1360: { items: 4 },
+  };
   const [partners, setPartners] = useState([]);
   const getPartners = async () => {
     const response =
@@ -53,7 +54,7 @@ const Partners = () => {
   return (
     <div className="container z-1">
       <h2 className="subtitle ml-[30px] 2xl:ml-0">{t("main-page.sponsors")}</h2>
-      <div className="2xl:w-[1500px] my-0 mx-auto pr-[40px] mb-[120px] z-1">
+      <div className="relative w-auto 2xl:max-w-[1440px] my-0 mx-auto px-[40px] mb-[120px] z-1">
         <AliceCarousel
           mouseTracking
           items={items}
@@ -61,7 +62,8 @@ const Partners = () => {
             0: { items: 1 },
             850: { items: 2 },
             1160: { items: 3 },
-            1360: { items: 4 },
+            1360: { items: 3 },
+            1450: { items: 4 },
           }}
           // autoPlay={true}
           // autoPlayInterval="2000"

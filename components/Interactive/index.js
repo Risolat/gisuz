@@ -20,25 +20,26 @@ const Slideshow = () => {
     0: { items: 1 },
     850: { items: 2 },
     1160: { items: 3 },
-    1360: { items: 4 },
+    1360: { items: 3 },
+    1450: { items: 4 },
   };
   useEffect(() => {
     setIsClient(true);
   }, []);
   const items = [
     <div
-      className="block item cursor-pointer mx-[20px] h-auto"
+      className="block item cursor-pointer mx-[18px] h-auto"
       onClick={() => router.push("/interactive_service/openData")}
     >
       <div className="gradientBox">
         <div className="hover:bg-[#312E6B] bg-[#3A2F7D] flex flex-col items-center px-[20px] pt-[24px] pb-[42px]">
-          <div className="w-[120px] h-[120px] p-[20px] bg-[#3C3976] mb-[40px]">
+          <div className="w-[120px] h-[120px] p-[15px] bg-[#3C3976] mb-[40px]">
             <Image src={openData} alt="service" className="w-[80px] h-[80px]" />
           </div>
           <h5 className="text-[1.25rem] h-[60px] leading-5 text-center pb-[24px]">
             {t("interactive-services.open-data")}
           </h5>
-          <p className="max-w-[284px] h-[58px] text-center line-clamp-3 text-[#A2A0B3] text-[16px] leading-5">
+          <p className="max-w-[284px] h-[78px] text-center line-clamp-4 text-[#A2A0B3] text-[16px] leading-5">
             {t("interactive-services.open-data-text")}
           </p>
         </div>
@@ -47,18 +48,18 @@ const Slideshow = () => {
 
     <div
       onClick={() => router.push("/events/schedule")}
-      className="block item cursor-pointer mx-[20px] h-auto"
+      className="block item cursor-pointer mx-[18px] h-auto"
     >
       <div className="gradientBox">
         <div className="hover:bg-[#312E6B] bg-[#3A2F7D] flex flex-col items-center px-[20px] pt-[24px] pb-[42px]">
-          <div className="w-[120px] h-[120px] p-[20px] bg-[#3C3976] mb-[40px]">
+          <div className="w-[120px] h-[120px] p-[15px] bg-[#3C3976] mb-[40px]">
             <Image src={service1} alt="service" className="w-[80px] h-[80px]" />
           </div>
 
           <h5 className="text-[1.25rem] h-[60px] leading-5 text-center pb-[24px]">
             {t("interactive-services.check-table")}
           </h5>
-          <p className="max-w-[284px] h-[58px] px-[24px] text-center line-clamp-3 leading-[140%] break-words text-[#A2A0B3] text-[16px] leading-5">
+          <p className="max-w-[284px] h-[78px] px-[24px] text-center line-clamp-4 leading-[140%] break-words text-[#A2A0B3] text-[16px] leading-5">
             {t("interactive-services.check-table-text")}
           </p>
         </div>
@@ -66,18 +67,18 @@ const Slideshow = () => {
     </div>,
     <div
       onClick={() => router.push("/interactive_service/for_entrepreneur")}
-      className="block item cursor-pointer mx-[20px] h-auto"
+      className="block item cursor-pointer mx-[18px] h-auto"
     >
       <div className="gradientBox">
         <div className="hover:bg-[#312E6B] bg-[#3A2F7D] flex flex-col items-center px-[20px] pt-[24px] pb-[42px]">
-          <div className="w-[120px] h-[120px] p-[20px] bg-[#3C3976] mb-[40px]">
+          <div className="w-[120px] h-[120px] p-[15px] bg-[#3C3976] mb-[40px]">
             <Image src={service2} alt="service" className="w-[80px] h-[80px]" />
           </div>
 
           <h5 className="text-[1.25rem] h-[60px] leading-5 text-center pb-[24px]">
             {t("interactive-services.for-entrepreneur")}
           </h5>
-          <p className="max-w-[284px] h-[58px] px-[24px] text-center line-clamp-3 leading-[140%] break-words text-[#A2A0B3] text-[16px] leading-5">
+          <p className="max-w-[284px] h-[78px] px-[24px] text-center line-clamp-4 leading-[140%] break-words text-[#A2A0B3] text-[16px] leading-5">
             {t("interactive-services.for-entrepreneur-text")}
           </p>
         </div>
@@ -85,18 +86,18 @@ const Slideshow = () => {
     </div>,
     <div
       onClick={() => router.push("/consumer_note/troubleshooting_guides")}
-      className="block item cursor-pointer mx-[20px] h-auto"
+      className="block item cursor-pointer mx-[18px] h-auto"
     >
       <div className="gradientBox">
         <div className="hover:bg-[#312E6B] bg-[#3A2F7D] flex flex-col items-center px-[20px] pt-[24px] pb-[42px]">
-          <div className="w-[120px] h-[120px] p-[20px] bg-[#3C3976] mb-[40px]">
+          <div className="w-[120px] h-[120px] p-[15px] bg-[#3C3976] mb-[40px]">
             <Image src={service3} alt="service" className="w-[80px] h-[80px]" />
           </div>
 
           <h5 className="text-[1.25rem] h-[45px] sm:h-[60px] pb-[10px] sm-[24px] leading-5 text-center line-clamp-2">
             {t("interactive-services.problem-solution")}
           </h5>
-          <p className="max-w-[284px] h-[58px] text-center line-clamp-3 text-[#A2A0B3] text-[16px] leading-5">
+          <p className="max-w-[284px] h-[78px] text-center line-clamp-4 text-[#A2A0B3] text-[16px] leading-5">
             {t("interactive-services.problem-solution-text")}
           </p>
         </div>
@@ -104,18 +105,18 @@ const Slideshow = () => {
     </div>,
     <div
       onClick={() => router.push("/connect/network")}
-      className="block item cursor-pointer mx-[20px] h-auto"
+      className="block item cursor-pointer mx-[18px] h-auto"
     >
       <div className="gradientBox">
         <div className="hover:bg-[#312E6B] bg-[#3A2F7D] flex flex-col items-center px-[20px] pt-[24px] pb-[42px]">
-          <div className="w-[120px] h-[120px] p-[20px] bg-[#3C3976] mb-[40px]">
+          <div className="w-[120px] h-[120px] p-[15px] bg-[#3C3976] mb-[40px]">
             <Image src={service4} alt="service" className="w-[80px] h-[80px]" />
           </div>
 
           <h5 className="text-[1.25rem] h-[60px] leading-5 text-center pb-[24px]">
             {t("interactive-services.take-answer")}
           </h5>
-          <p className="max-w-[284px] h-[58px] text-center text-[#A2A0B3] line-clamp-3 text-[16px] leading-5">
+          <p className="max-w-[284px] h-[78px] text-center text-[#A2A0B3] line-clamp-4 text-[16px] leading-5">
             {t("interactive-services.take-answer-text")}
           </p>
         </div>
@@ -139,7 +140,8 @@ const Slideshow = () => {
                 0: { items: 1 },
                 850: { items: 2 },
                 1160: { items: 3 },
-                1360: { items: 4 },
+                1360: { items: 3 },
+                1450: { items: 4 },
               }}
               controlsStrategy="alternate"
               autoPlay={true}
