@@ -2,7 +2,12 @@ import axios from "../../../http";
 import Link from "next/link";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../../next-i18next.config";
+import { Montserrat } from "next/font/google";
 
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+});
 const page = ({ title, submenu, locale, teaching }) => {
   return (
     <div className="mb-[120px]">
@@ -30,7 +35,11 @@ const page = ({ title, submenu, locale, teaching }) => {
             </div>
           </div>
           <div className="sticky top-[197px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0 py-[8px] bg-[#3A2F7D]">
-            <p className="mb-[24px] text-[20px] px-[16px]">{title}</p>
+            <p
+              className={`${montserrat.variable} font-semibold font-montserrat mb-[24px] text-[1.12rem] px-[16px]`}
+            >
+              {title}
+            </p>
             <ul className="">
               {submenu.map((item) => (
                 <li key={item.id} className="bg-[#3A2F7D]">

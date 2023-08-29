@@ -2,6 +2,12 @@ import axios from "../../http";
 import Link from "next/link";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../next-i18next.config";
+import { Montserrat } from "next/font/google";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+});
 
 const page = ({ functions, title, submenu, locale }) => {
   return (
@@ -10,7 +16,9 @@ const page = ({ functions, title, submenu, locale }) => {
         <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">
           <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px]">
             <div>
-              <h3 className="text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]">
+              <h3
+                className={`${montserrat.variable} text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]`}
+              >
                 {functions.title}
               </h3>
               <div
@@ -20,7 +28,11 @@ const page = ({ functions, title, submenu, locale }) => {
             </div>
           </div>
           <div className="sticky top-[197px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0  py-[8px] bg-[#3A2F7D]">
-            <p className="mb-[24px] text-[20px] px-[16px]">{title}</p>
+            <p
+              className={`${montserrat.variable} font-semibold font-montserrat mb-[24px] text-[1.12rem] px-[16px]`}
+            >
+              {title}
+            </p>
             <ul className="">
               {submenu.map((item) => (
                 <li key={item.id} className="bg-[#3A2F7D]">

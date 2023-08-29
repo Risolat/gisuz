@@ -26,6 +26,12 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+import { Montserrat } from "next/font/google";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+});
 export const options = {
   responsive: true,
   layout: {
@@ -180,7 +186,9 @@ const page = () => {
       <div className="container mr-[30px]">
         <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px] ">
           <div className="2xl:basis-3/4 basis-full w-full px-[20px] 2xl:pl-0 mb-[20px]">
-            <h3 className="text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]">
+            <h3
+              className={`${montserrat.variable} text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px`}
+            >
               {t("main-page.statistics")}
             </h3>
             <h1 className="text-[1.35em] xl:text-[2em] text-[#A2A0B3] py-[10px]">
@@ -207,7 +215,11 @@ const page = () => {
             <HorizonatBarChart className="mr-[20px]" />
           </div>
           <div className="sticky top-[197px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0 py-[8px] bg-[#3A2F7D]">
-            <p className="mb-[24px] text-[20px] px-[16px]">{title}</p>
+            <p
+              className={`${montserrat.variable} font-semibold font-montserrat mb-[24px] text-[1.12rem] px-[16px]`}
+            >
+              {title}
+            </p>
             <ul className="">
               {submenu.map((item) => (
                 <li key={item.id} className="bg-[#3A2F7D]">

@@ -28,7 +28,11 @@ const page = ({ capital, submenu, title, locale }) => {
             </div>
           </div>
           <div className="sticky top-[197px] w-[350px] basis-1/4 py-[8px] bg-[#3A2F7D]">
-            <p className="mb-[24px] text-[20px] px-[16px]">{title}</p>
+            <p
+              className={`${montserrat.variable} font-semibold font-montserrat mb-[24px] text-[1.12rem] px-[16px]`}
+            >
+              {title}
+            </p>
             <ul className="">
               {submenu.map((item) => (
                 <li key={item.id} className="bg-[#3A2F7D]">
