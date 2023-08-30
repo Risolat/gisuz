@@ -2,10 +2,12 @@ import React from "react";
 import { Chart as ChartJS, ArcElement, Legend, Tooltip } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const pieChart = () => {
+  const { locale } = useRouter();
   const [dataPie, setDataPie] = useState({
     labels: [],
     datasets: [],
@@ -22,9 +24,27 @@ const pieChart = () => {
     });
     setDataPie({
       labels: [
-        "Qabul qilingan obyektlar",
-        "Qabul qilish jarayonidagi obyektlar",
-        "Qabul qilinmagan obyektlar",
+        locale === "uz"
+          ? "qabul qilingan obyektlar"
+          : locale === "uzb"
+          ? "қабул қилинган объектлар"
+          : locale === "ru"
+          ? "принятые объекты"
+          : "accepted objects",
+        locale === "uz"
+          ? "qabul qilish jarayonidagi obyektlar"
+          : locale === "uzb"
+          ? "қабул қилиш жараёнидаги объектлар"
+          : locale === "ru"
+          ? "объекты, которые в процессе принятия"
+          : "objects that are in the process of being accepted",
+        locale === "uz"
+          ? "qabul qilinmagan obyektlar"
+          : locale === "uzb"
+          ? "unaccepted objects"
+          : locale === "ru"
+          ? "непринятые объекты"
+          : "unaccepted objects",
       ],
       datasets: [
         {
@@ -51,9 +71,27 @@ const pieChart = () => {
       setTimeout(() => {
         setDataPie({
           labels: [
-            "Qabul qilingan obyektlar",
-            "Qabul qilish jarayonidagi obyektlar",
-            "Qabul qilinmagan obyektlar",
+            locale === "uz"
+              ? "qabul qilingan obyektlar"
+              : locale === "uzb"
+              ? "қабул қилинган объектлар"
+              : locale === "ru"
+              ? "принятые объекты"
+              : "accepted objects",
+            locale === "uz"
+              ? "qabul qilish jarayonidagi obyektlar"
+              : locale === "uzb"
+              ? "қабул қилиш жараёнидаги объектлар"
+              : locale === "ru"
+              ? "объекты, которые в процессе принятия"
+              : "objects that are in the process of being accepted",
+            locale === "uz"
+              ? "qabul qilinmagan obyektlar"
+              : locale === "uzb"
+              ? "unaccepted objects"
+              : locale === "ru"
+              ? "непринятые объекты"
+              : "unaccepted objects",
           ],
           datasets: [
             {

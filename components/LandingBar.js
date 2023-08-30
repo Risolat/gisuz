@@ -38,12 +38,48 @@ export default function Horizontal() {
   useEffect(() => {
     setChartData({
       labels: [
-        "mahalliy telefon tarmog'i",
-        "maʼlumotlar uzatish tarmogʻi",
-        "pochta xizmatlari",
-        "mobil aloqa xizmati",
-        "teleradio (KTV efir)",
-        "boshqa masalalar",
+        locale === "uz"
+          ? "mahalliy telefon tarmogʻi"
+          : locale === "uzb"
+          ? "маҳаллий телефон тармоғи"
+          : locale === "ru"
+          ? "местная телефонная связь"
+          : "local telephone connection",
+        locale === "uz"
+          ? "maʼlumotlar uzatish tarmogʻi"
+          : locale === "uzb"
+          ? "маълумотлар узатиш тармоғи"
+          : locale === "ru"
+          ? "услуги передачи данных"
+          : "data services",
+        locale === "uz"
+          ? "pochta xizmatlari"
+          : locale === "uzb"
+          ? "почта хизматлари"
+          : locale === "ru"
+          ? "почтовые услуги"
+          : "post services",
+        locale === "uz"
+          ? "mobil aloqa xizmati"
+          : locale === "uzb"
+          ? "мобиль алоқа хизмати"
+          : locale === "ru"
+          ? "услуги мобильной связи"
+          : "mobile communication services",
+        locale === "uz"
+          ? "teleradio (KTV efir)"
+          : locale === "uzb"
+          ? "телерадио (КТВ эфир)"
+          : locale === "ru"
+          ? "телерадио (эфир КТВ)"
+          : "television and radio (KTV broadcast)",
+        locale === "uz"
+          ? "boshqa masalalar"
+          : locale === "uzb"
+          ? "бошқа масалалар"
+          : locale === "ru"
+          ? "другие вопросы"
+          : "other questions",
       ],
       datasets: [
         {
@@ -106,12 +142,48 @@ export default function Horizontal() {
       setTimeout(() => {
         setChartData({
           labels: [
-            "mahalliy telefon tarmog'i",
-            "maʼlumotlar uzatish tarmogʻi",
-            "pochta xizmatlari",
-            "mobil aloqa xizmati",
-            "teleradio (KTV efir)",
-            "boshqa masalalar",
+            locale === "uz"
+              ? "mahalliy telefon tarmogʻi"
+              : locale === "uzb"
+              ? "маҳаллий телефон тармоғи"
+              : locale === "ru"
+              ? "местная телефонная связь"
+              : "local telephone connection",
+            locale === "uz"
+              ? "maʼlumotlar uzatish tarmogʻi"
+              : locale === "uzb"
+              ? "маълумотлар узатиш тармоғи"
+              : locale === "ru"
+              ? "услуги передачи данных"
+              : "data services",
+            locale === "uz"
+              ? "pochta xizmatlari"
+              : locale === "uzb"
+              ? "почта хизматлари"
+              : locale === "ru"
+              ? "почтовые услуги"
+              : "post services",
+            locale === "uz"
+              ? "mobil aloqa xizmati"
+              : locale === "uzb"
+              ? "мобиль алоқа хизмати"
+              : locale === "ru"
+              ? "услуги мобильной связи"
+              : "mobile communication services",
+            locale === "uz"
+              ? "teleradio (KTV efir)"
+              : locale === "uzb"
+              ? "телерадио (КТВ эфир)"
+              : locale === "ru"
+              ? "телерадио (эфир КТВ)"
+              : "television and radio (KTV broadcast)",
+            locale === "uz"
+              ? "boshqa masalalar"
+              : locale === "uzb"
+              ? "бошқа масалалар"
+              : locale === "ru"
+              ? "другие вопросы"
+              : "other questions",
           ],
           datasets: [
             {

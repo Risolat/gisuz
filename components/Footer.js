@@ -39,7 +39,7 @@ const Footer = () => {
                 : "INSPECTION “UZKOMNAZORAT"}
             </p>
           </div>
-          <div className="font-roboto font-normal flex items-center justify-center flex-wrap">
+          <div className="font-roboto font-normal flex items-center justify-center flex-wrap text-[14px]">
             <form action="#">
               <input
                 className="outline-none bg-transparent mr-[2px] w-[240px] xl:w-[300px] placeholder:text-[0.89em] text-[1em] px-[12px] text-white focus:ring-offset-1 focus:ring-2 focus:ring-[#1D1A49] border border-[#3C3971] focus:z-[22] placeholder:text-[#A2A0B3] py-[10px]"
@@ -78,7 +78,7 @@ const Footer = () => {
             </Link>
           </div>
         </div>
-        <div className="flex lg:flex-row justify-between flex-wrap flex-col font-roboto font-thin  py-[20px] text-[#A2A0B3]">
+        <div className="flex lg:flex-row justify-between flex-wrap flex-col font-roboto font-thin  py-[20px] text-[#A2A0B3] text-[14px]">
           <div className="basis-2/6 px-[10px]">
             <p className="pb-[16px]">
               {locale === "uz"
@@ -143,31 +143,35 @@ const Footer = () => {
           <div className="basis-2/6 pl-[10px] flex flex-col items-end">
             <p className="pb-[16px] text-right">
               {locale === "uz"
-                ? "Diqqat! Agar siz matnda xatoliklarni aniqlasangiz, ularni belgilab, ma’muriyatni xabardor qilish uchun"
+                ? "Veb-saytdan olingan maʼlumotlar chop etilganda veb-saytga havola qilish majburiy"
                 : locale === "ru"
-                ? "Внимание! Если Вы нашли ошибку в тексте, выделите её и нажмите"
+                ? "При использовании материалов ссылка на веб-сайт обязательна"
                 : locale === "uzb"
-                ? "Диққат! Агар сиз матнда хатоликларни аниқласангиз, уларни белгилаб, маъмуриятни хабардор қилиш учун"
-                : "Attention! If you find an error in the text, select it and press"}
+                ? "Веб-сайтдан олинган маълумотлар чоп этилганда веб-сайтга ҳавола қилиш мажбурий"
+                : "When using materials, a link to the website is required"}
             </p>
-            <div className="flex items-center">
+            <div className="">
+              {locale === "uz" && locale === "uzb"
+                ? "hidden"
+                : locale === "ru"
+                ? "Разработано"
+                : locale === "en"
+                ? "Developed by"
+                : ""}
               <Link
                 target="_blank"
                 href="https://technocorp.uz"
-                className="font-semibold text-[#45A57D] pr-[5px] uppercase"
+                className="font-semibold text-[#45A57D]  px-[5px] uppercase"
               >
                 Technocorp
               </Link>
-              <p>
-                {" "}
-                {locale === "uz"
-                  ? "tomonidan ishlab chiqilgan"
-                  : locale === "ru"
-                  ? "Разработано"
-                  : locale === "uzb"
-                  ? "томонидан ишлаб чиқилган"
-                  : "Developed by"}
-              </p>
+              {locale === "ru" && locale === "en"
+                ? "hidden"
+                : locale === "uz"
+                ? "tomonidan ishlab chiqilgan"
+                : locale === "uzb"
+                ? "томонидан ишлаб чиқилган"
+                : ""}
             </div>
             <Link
               href="https://www.uz/ru/res/visitor/index?id=1445"
