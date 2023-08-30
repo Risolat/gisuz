@@ -28,8 +28,8 @@ const page = ({ about, title, submenu, locale }) => {
               <Image
                 src={axbUser}
                 alt="image"
-                width={400}
-                height={600}
+                width={264}
+                height={396}
                 className="mb-[20px]"
               />
 

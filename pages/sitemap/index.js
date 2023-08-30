@@ -51,7 +51,7 @@ const Sitemap = ({ menu }) => {
                     xmlnXlink="http://www.w3.org/1999/xlink"
                     aria-hidden="true"
                     role="img"
-                    class="text-text_secondary iconify iconify--ep"
+                    className="text-text_secondary iconify iconify--ep"
                     width="32px"
                     height="32px"
                     preserveAspectRatio="xMidYMid meet"
@@ -69,7 +69,7 @@ const Sitemap = ({ menu }) => {
           <div className="container">
             <div className="flex justify-between flex-wrap py-[30px]">
               {menu.map((d) => (
-                <ul>
+                <ul key={d.id}>
                   <li>
                     <p className="pb-[30px] text-white text-[16px] xl:text-[1.5em] font-roboto font-bold w-[250px]">
                       {d.title}
@@ -78,9 +78,9 @@ const Sitemap = ({ menu }) => {
                       <div>Loading...</div>
                     ) : (
                       d?.submenu.map((sub) => (
-                        <ul className="w-[300px]">
+                        <ul className="w-[300px]" key={sub.id}>
                           <li>
-                            <a
+                            <Link
                               // onClick={() => setmenuOpen(false)}
                               className="block pb-[10px] text-[1.12em] font-montserrat text-[#A2A0B3] hover:text-white cursor-pointer  font-semibold"
                               locale={locale}
@@ -92,7 +92,7 @@ const Sitemap = ({ menu }) => {
                               }`}
                             >
                               {sub.title}
-                            </a>
+                            </Link>
                           </li>
                         </ul>
                       ))
