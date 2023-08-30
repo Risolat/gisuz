@@ -129,7 +129,7 @@ const Footer = () => {
             <Link
               href="https://old1.gis.uz/uz"
               target="_blank"
-              className="inline-block mt-[30px] bg-[#171142] shadow-md hover:shadow-2xl transition duration-150 px-[16px] py-[4px] hover-opacity-40 text-[#A2A0B3]"
+              className="inline-block mt-[30px] bg-[#171142] shadow-md hover:shadow-2xl transition duration-150 px-[16px] py-[4px] hover-opacity-40 text-[#A2A0B3] text-[16px]"
             >
               {locale === "uz"
                 ? "Saytning eski talqini"
@@ -150,7 +150,7 @@ const Footer = () => {
                 ? "Веб-сайтдан олинган маълумотлар чоп этилганда веб-сайтга ҳавола қилиш мажбурий"
                 : "When using materials, a link to the website is required"}
             </p>
-            <div className="">
+            <div className="text-[16px] text-white">
               {locale === "uz" && locale === "uzb"
                 ? "hidden"
                 : locale === "ru"

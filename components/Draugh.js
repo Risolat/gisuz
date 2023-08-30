@@ -51,8 +51,7 @@ const Draugh = () => {
     ],
     datasets: [
       {
-        label:
-          "2019-yilda mansabdor shaxslarga nisbatan koʻrilgan choralar toʻgʻrisida maʼlumot",
+        label: "",
         data: [62, 18, 5, 8],
         backgroundColor: [
           "rgb(73,147,255)",
