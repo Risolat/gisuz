@@ -1,5 +1,5 @@
 import axios from "../../../http";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import date_range from "../../../public/photos/main/date_range.svg";
@@ -15,6 +15,8 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../../next-i18next.config";
 import { Icon } from "@iconify/react";
 import { Montserrat } from "next/font/google";
+import Head from "next/head";
+import { useSearchParams, usePathname } from "next/navigation";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -22,6 +24,8 @@ const montserrat = Montserrat({
 });
 
 const page = () => {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const { t } = useTranslation("common");
   const { locale } = useRouter();
   const [title, setTitle] = useState();
@@ -43,7 +47,17 @@ const page = () => {
   const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
 
   const router = useRouter();
-  console.log(router);
+
+  const createQueryString = useCallback(
+    (name, value) => {
+      const params = new URLSearchParams(searchParams);
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
+
   const getData = async () => {
     const response = await axios.get(`/${locale}/api/menu/`);
 
@@ -87,7 +101,7 @@ const page = () => {
       setmaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
       setminPageNumberLimit(minPageNumberLimit - pageNumberLimit);
     }
-    router.push(router.pathname + "?" + "page=" + (currentPage - 1));
+    router.push(pathname + "?" + createQueryString("page", currentPage));
   };
   const nextPage = async () => {
     if (currentPage !== Math.ceil(count / postsPerPage)) {
@@ -103,7 +117,7 @@ const page = () => {
       setmaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
       setminPageNumberLimit(minPageNumberLimit + pageNumberLimit);
     }
-    router.push(router.pathname + "?" + "page=" + (currentPage + 1));
+    router.push(pathname + "?" + createQueryString("page", currentPage + 1));
   };
   const paginate = async (currentPage) => {
     const response = await axios.get(
@@ -124,7 +138,7 @@ const page = () => {
     const news = response.data.results;
     setnews(news);
     window.scrollTo(0, 0);
-    console.log(router.push(router.pathname + "?" + "page=" + total));
+    router.push(pathname + "?" + createQueryString("page", currentPage));
   };
   const handleDate = async (date) => {
     setDate(date);
@@ -143,7 +157,7 @@ const page = () => {
     const indexOfLastPost = Math.ceil(count / postsPerPage);
     setindexOfLastPost(indexOfLastPost);
     window.scrollTo(0, 0);
-    console.log(router.push(router.pathname + "?" + "page=" + currentPage));
+    router.push(pathname + "?" + createQueryString("page", currentPage));
   };
   const getCategory = async () => {
     const response = await axios.get(
@@ -164,7 +178,7 @@ const page = () => {
     setCount(count);
     const indexOfLastPost = Math.ceil(count / postsPerPage);
     setindexOfLastPost(indexOfLastPost);
-    console.log(router.push(router.pathname + "?" + "page=" + currentPage));
+    router.push(pathname + "?" + createQueryString("page", currentPage));
   };
   function clearInput() {
     let inpDate = document.getElementById("date");
@@ -179,6 +193,10 @@ const page = () => {
 
   return (
     <div>
+      <Head>
+        <title>{t("page-titles.info-service.news-archive")}</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <div className={`${montserrat.variable} container font-montserrat`}>
         <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">
           <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px]">
@@ -193,7 +211,17 @@ const page = () => {
               <ul className="pr-[16px] flex items-center lg:justify-center justify-start  flex-wrap">
                 {news.map((r) => (
                   <li key={r.id} className="py-[16px] mx-[5px] block w-[342px]">
-                    <Link href={`/info_service/news/${r.id}`} className="">
+                    <Link
+                      href={`/info_service/news/${r.id}`}
+                      className=""
+                      onClick={() =>
+                        router.push(
+                          pathname +
+                            "?" +
+                            createQueryString("page", currentPage)
+                        )
+                      }
+                    >
                       <Image
                         unoptimized
                         className="w-[342px] h-[200px] object-cover"

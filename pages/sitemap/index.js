@@ -8,6 +8,7 @@ import Image from "next/image";
 import logoGis from "../../public/photos/icons/logo-gis.svg";
 import logo from "../../public/photos/icons/logo.svg";
 import Footer from "../../components/Footer";
+import Head from "next/head";
 
 export async function getServerSideProps(context) {
   console.log(context, "context");

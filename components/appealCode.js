@@ -195,7 +195,7 @@ const appealCode = () => {
       )}
       <div className=" pb-[40px]">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <label className="flex flex-col mb-[20px]">
+          <label className="flex flex-col mb-[40px]">
             <p className="text-[18px] pb-[10px]">{t("modal.appeal-code")}</p>
             <input
               type="text"
@@ -209,7 +209,7 @@ const appealCode = () => {
                 t("validator.field-required")}
             </span>
           </label>
-          <label className="flex flex-col mb-[20px]">
+          <label className="flex flex-col mb-[40px]">
             <p className="text-[18px] pb-[10px]">
               {t("modal.appeal-check-code")}
             </p>

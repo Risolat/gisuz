@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../next-i18next.config";
 import { Montserrat } from "next/font/google";
+import Head from "next/head";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -142,6 +143,10 @@ const page = () => {
 
   return (
     <div>
+      <Head>
+        <title>{t("page-titles.documents.gov-standarts")}</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <div className="container">
         <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">
           <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px] pr-[20px] px-[20px] mr-[30px]">
@@ -201,7 +206,7 @@ const page = () => {
                 ? t("other.no-data")
                 : gov_standarts.map((r) => (
                     <div key={r.id} className="gradientBox">
-                      <div className="border-[#3A2F7D] border-y-[2px] hover:bg-[#24224E] w-full bg-[#171142]">
+                      <div className="border-[#3A2F7D] border-y-[2px] hover:bg-[#24224E] w-full">
                         <p className="text-[1.12rem]  py-[16px] px-[8px]">
                           <Link
                             className="text-[#A2A0B3]"
@@ -233,7 +238,7 @@ const page = () => {
               />
             )}
           </div>
-          <div className="sticky top-[160px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0 py-[8px] bg-[#3A2F7D]">
+          <div className="sticky top-[160px] mt-[85px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0 py-[8px] bg-[#3A2F7D]">
             <p
               className={`${montserrat.variable} font-semibold font-montserrat mb-[24px] text-[1.12rem] px-[16px]`}
             >

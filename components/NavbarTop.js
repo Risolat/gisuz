@@ -72,6 +72,24 @@ const NavbarTop = () => {
     const searchSubMenu = resData.map((r) => {
       return r.sub_menu.slug;
     });
+    // const description = resData.map((r) => {
+    //   return r.description;
+    // });
+    // let textToSearch = search;
+    // let paragraph = resData.toString();
+    // textToSearch = textToSearch?.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    // let pattern = new RegExp(`${textToSearch}`, "gi");
+    // let result = paragraph
+    //   ?.toString()
+    //   .toLowerCase()
+    //   .indexOf(textToSearch.toLowerCase());
+    // result = result - 20;
+    // if (result) {
+    //   paragraph = paragraph?.toString().substring(result, result + 100);
+    // }
+    // return paragraph?.replace(pattern, (match) => {
+    //   return <mark>{match}</mark>;
+    // });
     // let paragraph = resData.map((r) => {
     //   return r.title;
     // });
@@ -110,25 +128,38 @@ const NavbarTop = () => {
     console.log(html);
     return size;
   };
-  const Highlighted = (search = "", highlight = "") => {
-    if (!highlight.trim()) {
-      return <span>{search}</span>;
+  const Highlighted = (q, content) => {
+    let textToSearch = q;
+    let paragraph = content;
+    textToSearch = textToSearch?.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    let pattern = new RegExp(`${textToSearch}`, "gi");
+    let result = paragraph?.toLowerCase().indexOf(textToSearch.toLowerCase());
+    result = result - 20;
+    if (result) {
+      paragraph = paragraph.substring(result, result + 100);
     }
-    const regex = new RegExp(`(${_.escapeRegExp(highlight)})`, "gi");
-    const parts = search.split(regex);
-    return (
-      <span>
-        {parts
-          .filter((part) => part)
-          .map((part, i) =>
-            regex.test(part) ? (
-              <mark key={i}>{part}</mark>
-            ) : (
-              <span key={i}>{part}</span>
-            )
-          )}
-      </span>
-    );
+    return paragraph?.replace(pattern, (match) => {
+      return <mark>${match}</mark>;
+    });
+
+    // if (!highlight.trim()) {
+    //   return <span>{search}</span>;
+    // }
+    // const regex = new RegExp(`(${_.escapeRegExp(highlight)})`, "gi");
+    // const parts = search.split(regex);
+    // return (
+    //   <span>
+    //     {parts
+    //       .filter((part) => part)
+    //       .map((part, i) =>
+    //         regex.test(part) ? (
+    //           <mark key={i}>{part}</mark>
+    //         ) : (
+    //           <span key={i}>{part}</span>
+    //         )
+    //       )}
+    //   </span>
+    // );
   };
   const changeGrayScale = () => {
     let html = document.querySelector("html");

@@ -13,6 +13,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../next-i18next.config";
 import { Montserrat } from "next/font/google";
+import Head from "next/head";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -106,6 +107,10 @@ const page = () => {
 
   return (
     <div className="">
+      <Head>
+        <title>{t("page-titles.connect.feedback")}</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <div className={`${montserrat.variable} container font-montserrat`}>
         <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">
           <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px] px-[20px]">
@@ -117,7 +122,7 @@ const page = () => {
               </h3>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="flex flex-col xl:flex-row items-center font-inter justify-between pb-[30px]">
-                  <label className="w-full block mb-[20px]">
+                  <label className="w-full flex flex-col mb-[20px]">
                     <span className="block font-medium text-[20px] mb-[12px] leading-4">
                       {t("form.full-name")}
                     </span>
@@ -127,12 +132,12 @@ const page = () => {
                       className="border-slate-200 placeholder-slate-400 px-[8px] py-[10px] w-full xl:w-[300px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
                       {...register("full_name", { required: true })}
                     />
-                    <span className="text-[red]">
+                    <span className="error-message">
                       {errors.full_name?.type === "required" &&
-                        "Name is required"}
+                        t("validator.field-required")}
                     </span>
                   </label>
-                  <label className="block w-full mb-[20px]">
+                  <label className="flex flex-col w-full mb-[20px]">
                     <span className="block font-medium text-[20px] mb-[12px] leading-4">
                       {t("form.email")}
                     </span>
@@ -146,13 +151,14 @@ const page = () => {
                           /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
                       })}
                     />
-                    <span className="text-[red]">
-                      {errors.email?.type === "required" && "Email is required"}
+                    <span className="error-message">
+                      {errors.email?.type === "required" &&
+                        t("validator.field-required")}
                       {errors.email?.type === "pattern" &&
                         "Entered email is in wrong format"}
                     </span>
                   </label>
-                  <label className="block w-full mb-[20px]">
+                  <label className="flex flex-col w-full mb-[20px]">
                     <span className="block font-medium text-[20px] mb-[12px] leading-4">
                       {t("form.phone")}
                     </span>
@@ -168,13 +174,14 @@ const page = () => {
                         {...register("phone", { required: true })}
                       />
                     </div>
-                    <span className="text-[red]">
-                      {errors.phone?.type === "required" && "Phone is required"}
+                    <span className="error-message">
+                      {errors.phone?.type === "required" &&
+                        t("validator.field-required")}
                     </span>
                   </label>
                 </div>
-                <div className="flex flex-col justify-start xl:flex-row xl:items-end">
-                  <label className="block mr-[50px] w-full xl:w-auto">
+                <div className="flex flex-col justify-start xl:flex-row xl:items-end mb-[30px]">
+                  <label className="relative flex flex-col mr-[50px] w-full xl:w-auto">
                     <span className="block font-medium text-[20px] mb-[12px] leading-4">
                       {t("form.message-text")}
                     </span>
@@ -185,7 +192,7 @@ const page = () => {
                       className="border-slate-200 placeholder-slate-400 px-[8px] py-[10px] w-full xl:w-[300px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
                       {...register("text", { required: true })}
                     />
-                    <span className="text-[red]">
+                    <span className="absolute top-[74px] error-message">
                       {errors.text?.type === "required" &&
                         t("validator.field-required")}
                     </span>
@@ -208,7 +215,7 @@ const page = () => {
                             {randomText}
                           </span>
 
-                          <span className="text-[red]">
+                          <span className="error-message">
                             {errors.captcha_is_correct
                               ? errors.captcha_is_correct.message
                               : ""}
@@ -222,7 +229,7 @@ const page = () => {
                         />
                       </button>
                     </div>
-                    <span className="absolute pl-[5px] text-[14px] text-red-400">
+                    <span className="absolute pl-[5px] error-message">
                       {t("validator.field-required")}
                     </span>
                   </div>

@@ -11,8 +11,7 @@ import lgZoom from "lightgallery/plugins/zoom";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../../../next-i18next.config";
 import Fancybox from "../../../../components/Fancybox";
-import { useEffect } from "react";
-
+import Head from "next/head";
 const photosDetail = ({
   images,
   firstImage,
@@ -45,6 +44,10 @@ const photosDetail = ({
   }
   return (
     <div>
+      <Head>
+        <title>{t("page-titles.info-service.photomaterials")}</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <div className="container">
         <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">
           <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px] pr-[20px]">

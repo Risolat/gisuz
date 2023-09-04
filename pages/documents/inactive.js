@@ -3,6 +3,8 @@ import { Montserrat } from "next/font/google";
 import Link from "next/link";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../next-i18next.config";
+import Head from "next/head";
+
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
@@ -11,6 +13,12 @@ const montserrat = Montserrat({
 const page = ({ inactive, title, submenu, locale }) => {
   return (
     <div>
+      <Head>
+        <title>
+          {inactive.length === 0 ? t("navbar.ozcom-full") : inactive[0].title}
+        </title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <div className="container">
         <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">
           <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px] pr-[20px] px-[20px]">

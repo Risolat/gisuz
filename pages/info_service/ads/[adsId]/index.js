@@ -7,10 +7,15 @@ import dayjs from "dayjs";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../../../next-i18next.config";
 import { Icon } from "@iconify/react";
+import Head from "next/head";
 
 const adsDetail = ({ ads, title, submenu, photos, locale, query }) => {
   return (
     <div>
+      <Head>
+        <title>{ads.title}</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <div className="container">
         <div className="flex flex-row items-start py-[40px]">
           <div className="basis-3/4">

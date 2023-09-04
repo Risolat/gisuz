@@ -32,6 +32,7 @@ const Paginate = ({
       </li>
     );
   }
+
   const renderPageNumbers = pageNumbers.map((number) => {
     if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
       return (

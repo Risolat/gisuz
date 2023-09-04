@@ -8,6 +8,8 @@ import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../next-i18next.config";
 import { Roboto, Montserrat } from "next/font/google";
+import Head from "next/head";
+
 const roboto = Roboto({
   subsets: ["latin"],
   variable: "--font-roboto",
@@ -96,6 +98,10 @@ const page = () => {
 
   return (
     <div>
+      <Head>
+        <title>{t("page-titles.ozcom.inspections")}</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <div className="container">
         <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">
           <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px] mr-[30px]">
@@ -200,7 +206,7 @@ const page = () => {
               minPageNumberLimit={minPageNumberLimit}
             />
           </div>
-          <div className="sticky top-[197px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0  py-[8px] bg-[#3A2F7D]">
+          <div className="sticky top-[197px] mt-[85px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0  py-[8px] bg-[#3A2F7D]">
             <p
               className={`${montserrat.variable} font-semibold font-montserrat mb-[24px] text-[1.12rem] px-[16px]`}
             >

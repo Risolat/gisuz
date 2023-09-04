@@ -12,6 +12,7 @@ import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../next-i18next.config";
 import { Montserrat } from "next/font/google";
+import Head from "next/head";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -357,7 +358,7 @@ const page = () => {
                             className="w-[280px] md:w-[500px] border-slate-200 placeholder-slate-400 px-[8px] py-[10px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
                             {...register("full_name", { required: true })}
                           />
-                          <span className="text-[red]">
+                          <span className="error-message">
                             {errors.name?.type === "required" &&
                               t("validator.field-required")}
                           </span>
@@ -372,7 +373,7 @@ const page = () => {
                             className="w-[280px] md:w-[500px] border-slate-200 placeholder-slate-400 px-[8px] py-[10px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
                             {...register("address", { required: true })}
                           />
-                          <span className="text-[red]">
+                          <span className="error-message">
                             {errors.name?.type === "required" &&
                               t("validator.field-required")}
                           </span>
@@ -394,7 +395,7 @@ const page = () => {
                                   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
                               })}
                             />
-                            <span className="text-[red]">
+                            <span className="error-message">
                               {errors.email?.type === "required" &&
                                 t("validator.field-required")}
                               {errors.email?.type === "pattern" &&
@@ -403,7 +404,7 @@ const page = () => {
                           </label>
                         </div>
                         <div>
-                          <label className="block">
+                          <label className="flex flex-col">
                             <p className="text-[18px] pb-[10px]">
                               {t("form.phone")}
                             </p>
@@ -416,7 +417,7 @@ const page = () => {
                               className="border-slate-200 placeholder-slate-400 px-[8px] py-[10px] w-[280px] md:w-[500px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
                               {...register("phone", { required: true })}
                             />
-                            <span className="text-[red]">
+                            <span className="error-message">
                               {errors.phone?.type === "required" &&
                                 t("validator.field-required")}
                             </span>
@@ -437,7 +438,7 @@ const page = () => {
                               className="border-slate-200 placeholder-slate-400 px-[8px] py-[10px] w-[280px] md:w-[500px] h-[180px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
                               {...register("text", { required: true })}
                             />
-                            <span className="text-[red]">
+                            <span className="error-message">
                               {errors.text?.type === "required" &&
                                 t("validator.field-required")}
                             </span>
@@ -473,7 +474,7 @@ const page = () => {
                                 onChange={(e) => setValue(e.target.files[0])}
                                 {...register("file", { required: true })}
                               />
-                              {/* <span className="text-[red]">
+                              {/* <span className="error-message">
                                 {errors.file?.type === "required" &&
                                   "File is required"}
                               </span> */}
@@ -500,7 +501,7 @@ const page = () => {
                               {randomText}
                             </span>
 
-                            <span className="text-[red]">
+                            <span className="error-message">
                               {errors.captcha_is_correct
                                 ? errors.captcha_is_correct.message
                                 : ""}

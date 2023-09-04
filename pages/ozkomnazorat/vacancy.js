@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../next-i18next.config";
 import { Montserrat } from "next/font/google";
+import Head from "next/head";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -15,6 +16,18 @@ const page = ({ title, submenu }) => {
 
   return (
     <div>
+      <Head>
+        <title>
+          {locale === "uz"
+            ? "Vakansiyalar"
+            : locale === "ru"
+            ? "Вакансии"
+            : locale === "uzb"
+            ? "Вакансиялар"
+            : "Vacancies"}
+        </title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <div className="container">
         <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">
           <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px] mr-[30px]">

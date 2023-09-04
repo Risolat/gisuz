@@ -65,8 +65,8 @@ const Partners = () => {
             1360: { items: 3 },
             1450: { items: 4 },
           }}
-          // autoPlay={true}
-          // autoPlayInterval="2000"
+          autoPlay={true}
+          autoPlayInterval="2000"
           infinite={true}
           disableButtonsControls
         />
