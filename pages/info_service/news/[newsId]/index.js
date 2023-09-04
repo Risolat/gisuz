@@ -76,24 +76,20 @@ const newsDetail = () => {
       <div className={`${montserrat.variable} container font-montserrat`}>
         <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">
           <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px] flex flex-col">
-            <h3 className="text-white px-[10px] mt-[40px] description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]">
+            <h3 className="text-white pr-[10px] mt-[40px] description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]">
               {news.title}
             </h3>
             <div className="flex items-center justify-between pb-[20px] pr-[20px] ">
               <div className="flex items-center justify-self-end">
                 <div className="flex items-center mr-[10px]">
-                  <Image
-                    // className="mr-[5px]"
-                    src={date_range}
-                    alt={date_range}
-                  />
-                  <p className="pl-[2px] text-[#A2A0B3]">
+                  <Icon icon="fa-solid:calendar-alt" color="#a2a0b3" />
+                  <p className="pl-[2px] text-[#A2A0B3] font-inter">
                     {dayjs(news.date).format("DD.MM.YYYY")}
                   </p>
                 </div>
                 <div className="flex items-center">
                   <Image className="mr-[5px]" src={red_eye} alt="red eye" />
-                  <p className="text-[#A2A0B3]">{news.view_count}</p>
+                  <p className="text-[#A2A0B3] font-inter">{news.view_count}</p>
                 </div>
               </div>
               <div className="flex items-center">

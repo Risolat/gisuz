@@ -115,15 +115,15 @@ const page = () => {
     <div>
       <div className="container">
         <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">
-          <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px] pr-[20px]">
+          <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px]">
             <h3
               className={`${montserrat.variable} font-montserrat font-semibold text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]`}
             >
               {t("page-titles.info-service.wisdom")}
             </h3>
-            <ul className="pr-[16px] flex items-center justify-between flex-wrap">
+            <ul className=" flex items-center justify-start flex-wrap">
               {wisdom.map((r) => (
-                <li key={r.id} className="py-[16px] block w-[342px]">
+                <li key={r.id} className="py-[16px] block w-[342px] mx-[8px]">
                   <Link href={`/info_service/wisdom/${r.id}`} className="">
                     <Image
                       className="w-[342px] h-[200px]"
@@ -142,15 +142,18 @@ const page = () => {
                           src={date_range}
                           alt={date_range}
                         />
-                        <p>{dayjs(r.date).format("DD.MM.YYYY")}</p>
+                        <p className="text-[#A2A0B3]">
+                          {dayjs(r.date).format("DD.MM.YYYY")}
+                        </p>
                       </div>
+                      <p className="mr-[5px] text-[#A2A0B3]"> | </p>
                       <div className="flex items-center">
                         <Image
                           className="mr-[5px]"
                           src={red_eye}
                           alt="red eye"
                         />
-                        <p>{r.view_count}</p>
+                        <p className="text-[#A2A0B3]">{r.view_count}</p>
                       </div>
                     </div>
                   </Link>
@@ -171,7 +174,7 @@ const page = () => {
               lastPage={lastPage}
             />
           </div>
-          <div className="sticky top-[160px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0 py-[8px] bg-[#3A2F7D]">
+          <div className="sticky top-[160px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mt-[100px] mx-[20px] 2xl:mx-0 py-[8px] bg-[#3A2F7D]">
             <p
               className={`${montserrat.variable} font-montserrat font-semibold mb-[24px] text-[20px] px-[16px]`}
             >

@@ -4,7 +4,7 @@ import NavbarBottom from "./NavbarBottom";
 
 const Navbar = () => {
   return (
-    <nav className="sticky w-full top-0 z-20 bg-[#171142]">
+    <nav className="sticky w-full top-0 z-20 navbar">
       <NavbarTop />
       <NavbarBottom />
     </nav>

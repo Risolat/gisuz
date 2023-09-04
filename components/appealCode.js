@@ -99,7 +99,7 @@ const appealCode = () => {
           <div className=" w-full mb-[20px]" id="alertContent">
             <div className="relative bg-[#3A2F7D] p-[35px]  mr-[20px] font-montserrat">
               <p className="my-[12px] font-montserrat text-[1.37rem] font-bold text-[#a2a0b3]">
-                Sizning Murojaatingiz
+                {t("modal.your-appeal")}
               </p>
               <div className="w-full flex flex-col items-start ">
                 <div className="w-full flex justify-between py-[12px] font-medium text-[1.12rem] border-[#a2a0b3] border-[1px]">
@@ -195,20 +195,21 @@ const appealCode = () => {
       )}
       <div className=" pb-[40px]">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <label className="block">
+          <label className="flex flex-col mb-[20px]">
             <p className="text-[18px] pb-[10px]">{t("modal.appeal-code")}</p>
             <input
               type="text"
               name="code_request"
               onChange={(event) => handleCodeRequest(event)}
-              className="w-[280px] md:w-[500px] border-slate-200 placeholder-slate-400 px-[8px] py-[10px] mb-[20px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
+              className="w-[280px] md:w-[500px] border-slate-200 placeholder-slate-400 px-[8px] py-[10px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
               {...register("code_request", { required: true })}
             />
-            <span className="text-[red]">
-              {errors.code_request?.type === "required" && "Name is required"}
+            <span className="error-message">
+              {errors.code_request?.type === "required" &&
+                t("validator.field-required")}
             </span>
           </label>
-          <label className="block">
+          <label className="flex flex-col mb-[20px]">
             <p className="text-[18px] pb-[10px]">
               {t("modal.appeal-check-code")}
             </p>
@@ -216,43 +217,49 @@ const appealCode = () => {
               type="text"
               name="code_password"
               onChange={(event) => handleCodePassword(event)}
-              className="w-[280px] md:w-[500px] border-slate-200 placeholder-slate-400 px-[8px] py-[10px] mb-[20px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
+              className="w-[280px] md:w-[500px] border-slate-200 placeholder-slate-400 px-[8px] py-[10px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
               {...register("code_password", { required: true })}
             />
-            <span className="text-[red]">
-              {errors.code_password?.type === "required" && "Name is required"}
+            <span className="error-message">
+              {errors.code_password?.type === "required" &&
+                t("validator.field-required")}
             </span>
           </label>
-          <div className="flex mt-[30px]">
-            <div className="flex">
-              <label className="flex">
-                <input
-                  type="text"
-                  onChange={(event) => handleCapcha(event)}
-                  name="captcha_is_correct"
-                  className="border-slate-200 placeholder-slate-400 px-[8px] py-[10px] w-[180px] md:w-[370px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
-                  {...register("captcha_is_correct", {
-                    required: true,
-                  })}
+          <div className="flex flex-col items-center justify-center lg:items-start">
+            <div className="flex items-start justify-center">
+              <div className="flex">
+                <label className="flex">
+                  <input
+                    type="text"
+                    onChange={(event) => handleCapcha(event)}
+                    name="captcha_is_correct"
+                    className="border-slate-200 placeholder-slate-400 px-[8px] py-[10px] w-[180px] md:w-[370px] bg-[#3A2F7D] contrast-more:border-slate-400 contrast-more:placeholder-slate-500"
+                    {...register("captcha_is_correct", {
+                      required: true,
+                    })}
+                  />
+
+                  <span className="px-[8px] py-[10px] border-l bg-[#3A2F7D] text-[17px]">
+                    {randomText}
+                  </span>
+
+                  <span className="text-[red]">
+                    {errors.captcha_is_correct
+                      ? errors.captcha_is_correct.message
+                      : ""}
+                  </span>
+                </label>
+              </div>
+              <button type="button" onClick={() => makeId()}>
+                <Icon
+                  icon="bx:refresh"
+                  className="w-[50px] h-[50px] text-[#A2A0B3]"
                 />
-
-                <span className="px-[8px] py-[10px] border-l bg-[#3A2F7D] text-[17px]">
-                  {randomText}
-                </span>
-
-                <span className="text-[red]">
-                  {errors.captcha_is_correct
-                    ? errors.captcha_is_correct.message
-                    : ""}
-                </span>
-              </label>
+              </button>
             </div>
-            <button type="button" onClick={() => makeId()}>
-              <Icon
-                icon="bx:refresh"
-                className="w-[50px] h-[50px] text-[#A2A0B3]"
-              />
-            </button>
+            <span className="error-message">
+              {t("validator.field-required")}
+            </span>
           </div>
           <button
             type="submit"

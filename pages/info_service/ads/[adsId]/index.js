@@ -20,18 +20,14 @@ const adsDetail = ({ ads, title, submenu, photos, locale, query }) => {
             <div className="flex items-center justify-between pb-[20px] pr-[20px] mr-[10px]">
               <div className="flex items-center justify-self-end">
                 <div className="flex items-center mr-[10px]">
-                  <Image
-                    // className="mr-[5px]"
-                    src={date_range}
-                    alt={date_range}
-                  />
-                  <p className="pl-[2px] text-[#A2A0B3]">
+                  <Icon icon="fa-solid:calendar-alt" color="#a2a0b3" />
+                  <p className="pl-[2px] text-[#A2A0B3] font-inter">
                     {dayjs(ads.date).format("DD.MM.YYYY")}
                   </p>
                 </div>
                 <div className="flex items-center">
                   <Image className="mr-[5px]" src={red_eye} alt="red eye" />
-                  <p className="text-[#A2A0B3]">{ads.view_count}</p>
+                  <p className="text-[#A2A0B3] font-inter">{ads.view_count}</p>
                 </div>
               </div>
               <div className="flex items-center">

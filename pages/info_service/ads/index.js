@@ -52,6 +52,7 @@ const page = () => {
       `/${locale}/api/information_service/informationServiceBySlug/?submenu_slug=/info_service/ads&page=${currentPage}&page_size=${postsPerPage}`
     );
     const ads = response.data.results;
+    console.log(response);
     const count = response.data.count;
     setCount(count);
     const indexOfLastPost = Math.ceil(count / postsPerPage);
@@ -118,9 +119,9 @@ const page = () => {
         <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">
           <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px]">
             <h3 className="text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[32px]">
-              {t("page-titles.info-service.news-archive")}
+              {t("page-titles.info-service.ads")}
             </h3>
-            <ul className="pr-[16px] flex items-center justify-center xl:justify-between flex-wrap ">
+            <ul className="pr-[16px] flex items-start justify-center xl:justify-between flex-wrap ">
               {ads.map((r) => (
                 <li
                   key={r.id}
@@ -129,7 +130,7 @@ const page = () => {
                   <Link href={`/info_service/ads/${r.id}`} className="">
                     {r.images != 0 ? (
                       <Image
-                        className="w-[342px] h-[200px] mb-[10px]"
+                        className="w-[342px] h-[200px] mb-[5px]"
                         src={r.images[0].photo}
                         alt={r.title}
                         width={342}
@@ -137,13 +138,21 @@ const page = () => {
                       />
                     ) : (
                       <Image
-                        className="w-[342px] h-[200px] mb-[10px]"
+                        className="w-[342px] h-[200px] mb-[5px]"
                         src={noPhoto}
                         alt={r.title}
                         width={342}
                         height={200}
                       />
                     )}
+                    {r.category === null ? (
+                      ""
+                    ) : (
+                      <span className="inline-block py-[4px] px-[16px] text-white font-inter text-[1em] bg-[#3A2F7D]">
+                        {r.category}
+                      </span>
+                    )}
+
                     <p className="mb-[10px] h-[84px] hover:text-[#3D8DFF] max-h-[84px] font-semibold font-montserrat text-white text-[1.25em] leading-[28px] line-clamp-3">
                       {r.title}
                     </p>
@@ -154,15 +163,18 @@ const page = () => {
                           src={date_range}
                           alt={date_range}
                         />
-                        <p>{dayjs(r.date).format("DD.MM.YYYY")}</p>
+                        <p className="text-[#A2A0B3]">
+                          {dayjs(r.date).format("DD.MM.YYYY")}
+                        </p>
                       </div>
+                      <p className="mr-[5px] text-[#A2A0B3]"> | </p>
                       <div className="flex items-center">
                         <Image
                           className="mr-[5px]"
                           src={red_eye}
                           alt="red eye"
                         />
-                        <p>{r.view_count}</p>
+                        <p className="text-[#A2A0B3]">{r.view_count}</p>
                       </div>
                     </div>
                   </Link>
@@ -180,7 +192,7 @@ const page = () => {
               />
             </ul>
           </div>
-          <div className="sticky top-[272px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0  py-[8px] bg-[#3A2F7D]">
+          <div className="sticky top-[265px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0  py-[8px] bg-[#3A2F7D]">
             <p className="mb-[24px] text-[20px] px-[16px] font-montserrat font-semibold ">
               {title}
             </p>

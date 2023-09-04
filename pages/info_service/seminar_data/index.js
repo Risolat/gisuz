@@ -37,7 +37,7 @@ const page = ({ seminar_data, title, submenu, locale }) => {
               ))}
             </div>
           </div>
-          <div className="sticky top-[160px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0  py-[8px] bg-[#3A2F7D]">
+          <div className="sticky top-[160px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] mt-[85px] 2xl:mx-0  py-[8px] bg-[#3A2F7D]">
             <p
               className={`${montserrat.variable} font-montserrat font-semibold mb-[24px] text-[20px] px-[16px]`}
             >

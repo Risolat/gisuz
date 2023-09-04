@@ -54,7 +54,7 @@ const Partners = () => {
   return (
     <div className="container z-1">
       <h2 className="subtitle ml-[30px] 2xl:ml-0">{t("main-page.sponsors")}</h2>
-      <div className="relative w-auto 2xl:max-w-[1440px] my-0 mx-auto px-[40px] mb-[120px] z-1">
+      <div className="relative w-auto 2xl:max-w-[1440px] my-0 mx-auto mb-[120px] z-1">
         <AliceCarousel
           mouseTracking
           items={items}

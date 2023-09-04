@@ -37,7 +37,7 @@ const page = ({ reports, title, submenu, locale }) => {
               ))}
             </div>
           </div>
-          <div className="sticky top-[197px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0  py-[8px] bg-[#3A2F7D]">
+          <div className="sticky top-[255px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0  py-[8px] bg-[#3A2F7D]">
             <p
               className={`${montserrat.variable} font-semibold font-montserrat mb-[24px] text-[1.12rem] px-[16px]`}
             >
@@ -50,7 +50,18 @@ const page = ({ reports, title, submenu, locale }) => {
                     <div className="gradientBox  bg-[#3A2F7D]">
                       <Link
                         className="block py-[10px] px-[16px] mx-[3px] hover:bg-[#24224E] bg-[#171142] text-white"
-                        href={`${item.slug}`}
+                        href={`${
+                          item.slug === "/activity/strategy" ||
+                          item.slug == null
+                            ? item.link
+                            : item.slug
+                        }`}
+                        target={`${
+                          item.slug === "/activity/strategy" ||
+                          item.slug == null
+                            ? "_blank"
+                            : "_self"
+                        }`}
                       >
                         {item.title}
                       </Link>
@@ -60,7 +71,18 @@ const page = ({ reports, title, submenu, locale }) => {
                       <Link
                         className="block py-[10px] px-[16px] hover:bg-[#24224E] hover:text-white bg-[#3A2F7D] text-[#A2A0B3]"
                         locale={locale}
-                        href={`${item.slug}`}
+                        href={`${
+                          item.slug === "/activity/strategy" ||
+                          item.slug == null
+                            ? item.link
+                            : item.slug
+                        }`}
+                        target={`${
+                          item.slug === "/activity/strategy" ||
+                          item.slug == null
+                            ? "_blank"
+                            : "_self"
+                        }`}
                       >
                         {item.title}
                       </Link>

@@ -56,7 +56,16 @@ const anticorruptionDetail = ({ title, submenu, anticorruption, locale }) => {
                     <Link
                       className="block py-[10px] px-[16px] hover:bg-[#24224E] hover:text-white bg-[#3A2F7D] text-[#A2A0B3]"
                       locale={locale}
-                      href={`${item.slug}`}
+                      href={`${
+                        item.slug === "/activity/strategy" || item.slug == null
+                          ? item.link
+                          : item.slug
+                      }`}
+                      target={`${
+                        item.slug === "/activity/strategy" || item.slug == null
+                          ? "_blank"
+                          : "_self"
+                      }`}
                     >
                       {item.title}
                     </Link>

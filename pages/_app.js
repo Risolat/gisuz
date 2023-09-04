@@ -8,6 +8,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 import CTRL from "../components/ctrl";
 import Connect from "../components/Connect";
+import ScrollTop from "@/components/ScrollTop";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -58,6 +59,7 @@ const App = ({ Component, pageProps }) => {
       <Navbar />
       <Connect />
       <CTRL />
+      <ScrollTop />
       <Component
         className={`${montserrat.variable} font-montserrat`}
         {...pageProps}

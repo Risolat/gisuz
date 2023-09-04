@@ -289,7 +289,7 @@ const page = () => {
                                   <li
                                     key={r.id}
                                     onClick={() => getDistrict(r.id, r.name)}
-                                    className="px-[20px] py-[8px] text-[#A2A0B3]"
+                                    className="px-[20px] py-[8px] text-[#A2A0B3] hover:bg-[#24224E] "
                                   >
                                     {r.name}
                                   </li>
@@ -359,7 +359,7 @@ const page = () => {
                           />
                           <span className="text-[red]">
                             {errors.name?.type === "required" &&
-                              "Name is required"}
+                              t("validator.field-required")}
                           </span>
                         </label>
                         <label className="block">
@@ -374,7 +374,7 @@ const page = () => {
                           />
                           <span className="text-[red]">
                             {errors.name?.type === "required" &&
-                              "Name is required"}
+                              t("validator.field-required")}
                           </span>
                         </label>
                       </div>
@@ -396,9 +396,9 @@ const page = () => {
                             />
                             <span className="text-[red]">
                               {errors.email?.type === "required" &&
-                                "Email is required"}
+                                t("validator.field-required")}
                               {errors.email?.type === "pattern" &&
-                                "Entered email is in wrong format"}
+                                t("validator.wrong-email")}
                             </span>
                           </label>
                         </div>
@@ -418,7 +418,7 @@ const page = () => {
                             />
                             <span className="text-[red]">
                               {errors.phone?.type === "required" &&
-                                "Phone is required"}
+                                t("validator.field-required")}
                             </span>
                           </label>
                         </div>
@@ -439,7 +439,7 @@ const page = () => {
                             />
                             <span className="text-[red]">
                               {errors.text?.type === "required" &&
-                                "Name is required"}
+                                t("validator.field-required")}
                             </span>
                           </label>
                         </div>
@@ -454,7 +454,7 @@ const page = () => {
                           <div className="flex items-center justify-center w-full">
                             <label
                               htmlFor="dropzone-file"
-                              className="flex items-center justify-betweenw-[280px] md:w-[500px] h-[70px] px-[10px]  cursor-pointer bg-[#3A2F7D]"
+                              className="flex items-center justify-between w-[280px] md:w-[500px] h-[70px] px-[10px]  cursor-pointer bg-[#3A2F7D]"
                             >
                               <p>{t("form.upload-file")}</p>
                               <div className="items-center justify-center rotate-45">
@@ -482,7 +482,7 @@ const page = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="flex flex-col items-center justify-center">
+                    <div className="flex flex-col items-center lg:items-start justify-center">
                       <div className="flex items-start justify-center">
                         <div className="flex">
                           <label className="flex">
@@ -518,7 +518,7 @@ const page = () => {
                         {t("validator.field-required")}
                       </span>
                     </div>
-                    <div className="flex items-start justify-center">
+                    <div className="flex items-start lg:justify-start justify-center">
                       <button
                         type="submit"
                         className="px-[60px] py-[20px] mt-[30px] border hover:bg-white hover:text-[#3C3971]"

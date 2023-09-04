@@ -190,7 +190,7 @@ const page = () => {
                 {t("other.no-news")}
               </p>
             ) : (
-              <ul className="pr-[16px] flex items-center justify-start justify-center flex-wrap">
+              <ul className="pr-[16px] flex items-center lg:justify-center justify-start  flex-wrap">
                 {news.map((r) => (
                   <li key={r.id} className="py-[16px] mx-[5px] block w-[342px]">
                     <Link href={`/info_service/news/${r.id}`} className="">
@@ -216,15 +216,20 @@ const page = () => {
                             src={date_range}
                             alt={date_range}
                           />
-                          <p>{dayjs(r.date).format("DD.MM.YYYY")}</p>
+                          <p className="font-inter text-[#A2A0B3]">
+                            {dayjs(r.date).format("DD.MM.YYYY")}
+                          </p>
                         </div>
+                        <p className="mr-[5px] text-[#A2A0B3]"> | </p>
                         <div className="flex items-center">
                           <Image
                             className="mr-[5px]"
                             src={red_eye}
                             alt="red eye"
                           />
-                          <p>{r.view_count}</p>
+                          <p className="font-inter text-[#A2A0B3]">
+                            {r.view_count}
+                          </p>
                         </div>
                       </div>
                     </Link>

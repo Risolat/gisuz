@@ -129,7 +129,18 @@ const page = () => {
                     <div className="gradientBox  bg-[#3A2F7D]">
                       <Link
                         className="block py-[10px] px-[16px] mx-[3px] hover:bg-[#24224E] bg-[#171142] text-white"
-                        href={`${item.slug}`}
+                        href={`${
+                          item.slug === "/activity/strategy" ||
+                          item.slug == null
+                            ? item.link
+                            : item.slug
+                        }`}
+                        target={`${
+                          item.slug === "/activity/strategy" ||
+                          item.slug == null
+                            ? "_blank"
+                            : "_self"
+                        }`}
                       >
                         {item.title}
                       </Link>
@@ -139,7 +150,18 @@ const page = () => {
                       <Link
                         className="block py-[10px] px-[16px] hover:bg-[#24224E] hover:text-white bg-[#3A2F7D] text-[#A2A0B3]"
                         locale={locale}
-                        href={`${item.slug}`}
+                        href={`${
+                          item.slug === "/activity/strategy" ||
+                          item.slug == null
+                            ? item.link
+                            : item.slug
+                        }`}
+                        target={`${
+                          item.slug === "/activity/strategy" ||
+                          item.slug == null
+                            ? "_blank"
+                            : "_self"
+                        }`}
                       >
                         {item.title}
                       </Link>

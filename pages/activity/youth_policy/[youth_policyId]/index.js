@@ -17,7 +17,7 @@ const youthDetail = ({ youth, submenu, title, locale }) => {
           <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px]">
             <div>
               <h3
-                className={`${montserrat.variable} text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]`}
+                className={`${montserrat.variable} text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px] pr-[5px]`}
               >
                 {youth.title}
               </h3>
@@ -41,7 +41,16 @@ const youthDetail = ({ youth, submenu, title, locale }) => {
                     <Link
                       className="block py-[10px] px-[16px] hover:bg-[#24224E] hover:text-white bg-[#3A2F7D] text-[#A2A0B3]"
                       locale={locale}
-                      href={`${item.slug}`}
+                      href={`${
+                        item.slug === "/activity/strategy" || item.slug == null
+                          ? item.link
+                          : item.slug
+                      }`}
+                      target={`${
+                        item.slug === "/activity/strategy" || item.slug == null
+                          ? "_blank"
+                          : "_self"
+                      }`}
                     >
                       {item.title}
                     </Link>

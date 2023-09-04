@@ -25,13 +25,13 @@ const wisdomDetail = ({ wisdom, title, submenu, photos, locale, query }) => {
                     src={date_range}
                     alt={date_range}
                   />
-                  <p className="text-[#a2a0b3]">
+                  <p className="text-[#A2A0B3]">
                     {dayjs(wisdom.date).format("DD.MM.YYYY")}
                   </p>
                 </div>
                 <div className="flex items-center">
                   <Image className="mr-[5px]" src={red_eye} alt="red eye" />
-                  <p className="text-[#a2a0b3]">{wisdom.view_count}</p>
+                  <p className="text-[#A2A0B3]">{wisdom.view_count}</p>
                 </div>
               </div>
               <div className="flex items-center">
