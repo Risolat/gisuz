@@ -68,21 +68,20 @@ const NavbarTop = () => {
   const onSubmit = async () => {
     const response = await axios.get(`/${locale}/api/search/?q=${search}`);
     const resData = response.data.results;
-    console.log(resData);
     const searchSubMenu = resData.map((r) => {
       return r.sub_menu.slug;
     });
-    // const description = resData.map((r) => {
-    //   return r.description;
+    // const title = resData.map((r) => {
+    //   return r.title;
     // });
     // let textToSearch = search;
-    // let paragraph = resData.toString();
+    // let paragraph = title;
     // textToSearch = textToSearch?.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    // let pattern = new RegExp(`${textToSearch}`, "gi");
+    // let pattern = new RegExp(`${search}`, "gi");
     // let result = paragraph
     //   ?.toString()
     //   .toLowerCase()
-    //   .indexOf(textToSearch.toLowerCase());
+    //   .indexOf(search.toLowerCase());
     // result = result - 20;
     // if (result) {
     //   paragraph = paragraph?.toString().substring(result, result + 100);
@@ -115,9 +114,6 @@ const NavbarTop = () => {
       setIsOpen(true);
     }
   };
-  function handleChange(event) {
-    setsearch(event.target.value);
-  }
   const changeFontSize = (event) => {
     const range = event.target.valueAsNumber;
     const html = document.getElementsByTagName("body")[0];

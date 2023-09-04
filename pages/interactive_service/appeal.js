@@ -384,7 +384,7 @@ const page = () => {
                           <p className="text-[18px] pb-[10px]">
                             {t("form.email")}
                           </p>
-                          <label className="block">
+                          <label className="flex flex-col">
                             <input
                               type="email"
                               name="email"
