@@ -24,7 +24,7 @@
     box-shadow: 0 0 0 0.9375em #443993b3, 0 0 0 1.875em #443993b3;
     -webkit-backdrop-filter: blur(2.5em);
     backdrop-filter: blur(2.5em);
-    animation: shadow-6eeb511f 2s 4s infinite;
+    animation: shadow 2s 4s infinite;
   }
   ._1144 {
     font-size: 1.5em;
