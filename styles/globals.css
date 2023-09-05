@@ -38,6 +38,9 @@ body {
   /* opacity: 1; */
   font-family: "Montserrat", "Inter", "sans-serif";
 }
+.bg-color{
+  background-color: rgba(29 26 73 / 1);
+}
 .navbar{
   background-color: rgba(29 26 73 / 1);
 }

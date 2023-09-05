@@ -124,7 +124,7 @@ const page = () => {
             <div className="flex flex-col mt-[20px] pr-[16px]">
               {cabmin_decisions.map((r) => (
                 <div key={r.id} className="gradientBox">
-                  <div className="border-[#3A2F7D] border-y-[2px] hover:bg-[#24224E] w-full">
+                  <div className="bg-color border-[#3A2F7D] border-y-[2px] hover:bg-[#24224E] w-full">
                     <p className="text-[1.12rem]  py-[16px] px-[8px]">
                       <Link
                         className="text-[#A2A0B3]"

@@ -14,11 +14,7 @@ const page = ({ coordinate, title, submenu, locale }) => {
   return (
     <div>
       <Head>
-        <title>
-          {coordinate.length === 0
-            ? t("navbar.ozcom-full")
-            : coordinate[0].title}
-        </title>
+        <title>{coordinate.length === 0 ? "" : coordinate[0].title}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <div className="container">
