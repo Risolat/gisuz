@@ -36,7 +36,7 @@ const page = ({ photos1, photos2, photos3, title, submenu, locale }) => {
               <div className="lg:basis-3/5 basis-full relative">
                 <Link href={`/info_service/photos/${photos1.id}`}>
                   <img
-                    unoptimized
+                    unoptimized="true"
                     src={photos1.cover}
                     alt="gallery"
                     width={600}
@@ -52,7 +52,7 @@ const page = ({ photos1, photos2, photos3, title, submenu, locale }) => {
                 <div className="relative">
                   <Link href={`/info_service/photos/${photos2.id}`}>
                     <img
-                      unoptimized
+                      unoptimized="true"
                       src={photos2.cover}
                       alt="gallery1"
                       width={300}
@@ -67,7 +67,7 @@ const page = ({ photos1, photos2, photos3, title, submenu, locale }) => {
                 <div className="relative">
                   <Link href={`/info_service/photos/${photos3.id}`}>
                     <img
-                      unoptimized
+                      unoptimized="true"
                       src={photos3.cover}
                       alt="gallery2"
                       width={300}

@@ -47,7 +47,6 @@ const Barchart = () => {
   const { locale } = useRouter();
   const getBarData = async () => {
     const response = await axios.get(`/${locale}/api/statistics/?type=bar`);
-    console.log(response);
   };
   const data = {
     labels,

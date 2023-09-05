@@ -111,11 +111,8 @@ const page = () => {
               {t("page-titles.ozcom.inspections")}
             </h3>
             {inspectors.map((l) => (
-              <div className="gradientBox mb-[30px]">
-                <div
-                  className="flex flex-col lg:flex-row p-[24px] bg-[#3A2F7D]  hover:bg-[#312E6B]"
-                  key={l.id}
-                >
+              <div className="gradientBox mb-[30px]" key={l.id}>
+                <div className="flex flex-col lg:flex-row p-[24px] bg-[#3A2F7D]  hover:bg-[#312E6B]">
                   <div className="basis-1/5">
                     <div className="mr-[24px] w-[full] h-[full]">
                       <img

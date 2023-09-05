@@ -156,7 +156,6 @@ const page = () => {
   };
   const getBarData = async () => {
     const response = await axios.get(`/${locale}/api/statistics/?type=bar`);
-    console.log(response);
     const name1 = response.data[0].name;
     setname1(name1);
     const name2 = response.data[1].name;

@@ -16,7 +16,6 @@ const Draugh = () => {
     const response = await axios.get(`/${locale}/api/statistics/?type=pie`);
     const name = response.data[0].name;
     setname(name);
-    console.log(response, "pie");
   };
   const data = {
     labels: [

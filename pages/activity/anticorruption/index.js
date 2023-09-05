@@ -42,8 +42,6 @@ const page = () => {
       `/${locale}/api/activity/activityPostBySubmenuSlug/?submenu_slug=/activity/anticorruption`
     );
     const anticorruption = response.data.results;
-
-    console.log(anticorruption, "anti");
     setanticorruption(anticorruption);
   };
 
@@ -51,8 +49,6 @@ const page = () => {
     getData();
     getanticorruption();
   }, []);
-
-  console.log(anticorruption, "data");
 
   return (
     <div>

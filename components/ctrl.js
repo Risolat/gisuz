@@ -26,7 +26,6 @@ const ctrl = () => {
     if (window.getSelection) {
       site_text = window.getSelection().toString();
       setsite_text(site_text);
-      console.log(site_text);
     } else if (document.selection && document.selection.type != "Control") {
       site_text = document.selection.createRange().site_text;
       setsite_text(site_text);
@@ -44,12 +43,10 @@ const ctrl = () => {
       getSelectionText(site_text);
       setOpen(true);
     } else {
-      console.log(event);
     }
   };
   const handleSuggested = (event) => {
     const suggested_text = event.target.value;
-    console.log(suggested_text);
     setsuggested_text(event.target.value);
   };
   const onSubmit = async () => {
@@ -80,25 +77,6 @@ const ctrl = () => {
         toast.addEventListener("mouseleave", MySwal.resumeTimer);
       },
     });
-    //   MySwal.fire({
-    //     color: "#A2A0B3",
-    //     background: "#3A2F7D",
-    //     timerProgressBar: true,
-    //     icon: "error",
-    //     title: $t("modal.appeal-not-applied"),
-    //     timer: 5500,
-    //     showConfirmButton: false,
-    //     customClass: {
-    //       timerProgressBar: "swal_timerProgressBar",
-    //       popup: "swal_popup",
-    //     },
-    //     didOpen: (toast) => {
-    //       toast.addEventListener("mouseenter", MySwal.stopTimer);
-    //       toast.addEventListener("mouseleave", MySwal.resumeTimer);
-    //     },
-    //   });
-    //   console.log(e);
-    // }
   };
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
@@ -111,10 +89,7 @@ const ctrl = () => {
             <div className="w-screen h-screen ">
               <div className="relative w-[500px] p-[20px]  pt-[30px] my-0  mx-auto flex items-start bg-[#171142]">
                 <div className="w-full">
-                  <form
-                    // onSubmit={onSubmit}
-                    className="flex flex-col items-center justify-center"
-                  >
+                  <form className="flex flex-col items-center justify-center">
                     <label className="w-full">
                       <p className="pb-[10px]">{t("modal.selected-text")}</p>
                       <input

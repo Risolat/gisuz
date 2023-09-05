@@ -37,7 +37,6 @@ const page = () => {
     const title = data.map((d) => {
       return d.title;
     });
-    console.log(data);
     setTitle(title);
     setSubmenu(data[0].submenu);
   };
@@ -47,8 +46,6 @@ const page = () => {
       `https://data.egov.uz/apiClient/main/gettable?orgId=377&limit=10&sortType=1&offset=0`
     );
     const open_data = response.data.result.data;
-
-    console.log(open_data, "DATA");
     setopen_data(open_data);
   };
   const getTab2 = async () => {
@@ -56,8 +53,6 @@ const page = () => {
       `${locale}/api/open_data/openDataBySubmenuSlug/?submenu_slug=/interactive_service/open_data`
     );
     const tab2 = response.data;
-
-    console.log(tab2, "tab2");
     setTab2(tab2);
   };
 
@@ -184,7 +179,10 @@ const page = () => {
               </div>
               <div className={toggleState === 2 ? "block" : "hidden"}>
                 {tab2.map((t) => (
-                  <div className="card p-[20px] bg-[#3A2F7D] mr-[30px] mb-[20px] rounded-lg">
+                  <div
+                    key={t.id}
+                    className="card p-[20px] bg-[#3A2F7D] mr-[30px] mb-[20px] rounded-lg"
+                  >
                     <p className="cursor-pointer pb-[20px] text-[0.825em] xl:text-[1.285em] text-[#8F8F8F] font-montserrat">
                       {t.title}
                     </p>

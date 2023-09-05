@@ -24,10 +24,8 @@ const montserrat = Montserrat({
 });
 
 const page = () => {
-  // const params = useParams();
   const router = useRouter();
   const pathname = usePathname();
-  console.log(router.query);
   const searchParams = useSearchParams();
   const { t } = useTranslation("common");
   const { locale } = useRouter();
@@ -84,7 +82,6 @@ const page = () => {
     setCount(count);
     const indexOfLastPost = Math.ceil(count / postsPerPage);
     setindexOfLastPost(indexOfLastPost);
-    console.log(response, "DATA");
     setnews(news);
     router.push(router.pathname + "?" + "page=" + currentPage);
   };
@@ -129,7 +126,7 @@ const page = () => {
     const news = response.data.results;
     setnews(news);
     window.scrollTo(0, 0);
-    console.log(router.push(router.pathname + "?" + "page=" + currentPage));
+    router.push(pathname + "?" + createQueryString("page", currentPage));
   };
   const lastPage = async (total) => {
     const response = await axios.get(
@@ -143,7 +140,6 @@ const page = () => {
   };
   const handleDate = async (date) => {
     setDate(date);
-    console.log(date);
     const year = date.toISOString().slice(0, 4);
     const month = date.toISOString().slice(5, 7);
     const day = date.toISOString().slice(8, 10);
@@ -165,7 +161,6 @@ const page = () => {
     const response = await axios.get(
       `/${locale}/api/information_service/news_categories/`
     );
-    console.log(response);
     const category = response.data;
     setCategory(category);
   };

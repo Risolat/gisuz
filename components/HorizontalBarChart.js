@@ -94,7 +94,6 @@ const page = () => {
     );
     const name = response.data[0].name;
     setname(name);
-    console.log(response, "horizontal");
   };
 
   useEffect(() => {

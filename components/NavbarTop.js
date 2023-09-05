@@ -61,7 +61,6 @@ const NavbarTop = () => {
     const subm = data.map((sub) => {
       return sub;
     });
-    console.log(data);
     setData(data);
     setSubMenu(subm);
   };
@@ -75,11 +74,6 @@ const NavbarTop = () => {
     if (result) {
       paragraph = paragraph.substring(result, result + 100);
     }
-    console.log(
-      paragraph?.replace(pattern, (match) => {
-        return `<mark>${match}</mark>`;
-      })
-    );
     return paragraph?.replace(pattern, (match) => {
       return `<mark>${match}</mark>`;
     });
@@ -87,40 +81,6 @@ const NavbarTop = () => {
   const onSubmit = async () => {
     const response = await axios.get(`/${locale}/api/search/?q=${search}`);
     setresData(response.data.results);
-    // const searchSubMenu = resData.map((r) => {
-    //   return r.sub_menu.slug;
-    // });
-    // const title = resData.map((r) => {
-    //   return searchContent(search, r.title);
-    // });
-    // let textToSearch = search;
-    // let paragraph = title;
-    // textToSearch = textToSearch?.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    // let pattern = new RegExp(`${search}`, "gi");
-    // let result = paragraph
-    //   ?.toString()
-    //   .toLowerCase()
-    //   .indexOf(search.toLowerCase());
-    // result = result - 20;
-    // if (result) {
-    //   paragraph = paragraph?.toString().substring(result, result + 100);
-    // }
-    // return paragraph?.replace(pattern, (match) => {
-    //   return <mark>{match}</mark>;
-    // });
-    // let paragraph = resData.map((r) => {
-    //   return r.title;
-    // });
-    // const description = document.getElementById("description");
-    // if (search !== "") {
-    //   let regexPattern = new RegExp(search, "gi");
-    //   description === description.replace(regexPattern, "<mark>$&</mark>") ||
-    //     "";
-    // }
-
-    // setSearchSubMenu(searchSubMenu);
-    // setresData(resData);
-    // console.log(errors);
   };
   const ref = useClickAway(() => {
     setIsOpen(false);
@@ -137,44 +97,8 @@ const NavbarTop = () => {
     const range = event.target.valueAsNumber;
     const html = document.getElementsByTagName("body")[0];
     const size = (html.style.fontSize = range + "px");
-    // const size = font;
     setSize(size);
-    console.log(size);
-    console.log(html);
     return size;
-  };
-  const Highlighted = (q, content) => {
-    let textToSearch = q;
-    let paragraph = content;
-    textToSearch = textToSearch?.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    let pattern = new RegExp(`${textToSearch}`, "gi");
-    let result = paragraph?.toLowerCase().indexOf(textToSearch.toLowerCase());
-    result = result - 20;
-    if (result) {
-      paragraph = paragraph.substring(result, result + 100);
-    }
-    return paragraph?.replace(pattern, (match) => {
-      return <mark>${match}</mark>;
-    });
-
-    // if (!highlight.trim()) {
-    //   return <span>{search}</span>;
-    // }
-    // const regex = new RegExp(`(${_.escapeRegExp(highlight)})`, "gi");
-    // const parts = search.split(regex);
-    // return (
-    //   <span>
-    //     {parts
-    //       .filter((part) => part)
-    //       .map((part, i) =>
-    //         regex.test(part) ? (
-    //           <mark key={i}>{part}</mark>
-    //         ) : (
-    //           <span key={i}>{part}</span>
-    //         )
-    //       )}
-    //   </span>
-    // );
   };
   const changeGrayScale = () => {
     let html = document.querySelector("html");
@@ -222,7 +146,6 @@ const NavbarTop = () => {
   }
   function getVoice(text) {
     console.log(speechSynthesis.getVoices());
-    console.log(navigator);
     // console.log(speechSynthesis.getVoices());
 
     const voices = speechSynthesis
@@ -254,7 +177,6 @@ const NavbarTop = () => {
         voice.lang.includes("en-GB");
       }
     });
-    console.log(voices, "voices");
     speechSynthesis.speak(speakData);
     setTimeout(() => {
       if (!speechSynthesis.speaking) {

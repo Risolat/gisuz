@@ -114,7 +114,6 @@ const page = () => {
       `/${locale}/api/documents/documents/stateStandartsBySubmenuSlug/?submenu_slug=/documents/gov_standarts&page=${currentPage}&title=${input}&year=${year}&page_size=${postsPerPage}`
     );
     const gov_standarts = response.data.results;
-    console.log(response, "DATA");
     setgov_standarts(gov_standarts);
     const count = response.data.count;
     setCount(count);
@@ -128,12 +127,6 @@ const page = () => {
   const clearDate = async () => {
     let inpDate = document.getElementById("date");
     location.reload();
-    // const response = await axios.get(
-    //   `/${locale}/api/documents/documents/stateStandartsBySubmenuSlug/?submenu_slug=/documents/gov_standarts&page=${currentPage}&title=${input}&year=&page_size=${postsPerPage}`
-    // );
-    // const gov_standarts = response.data.results;
-    // setgov_standarts(gov_standarts);
-    // window.scrollTo(0, 0);
     inpDate.value = " ";
   };
   useEffect(() => {

@@ -84,9 +84,8 @@ const page = ({ videos1, videos2, videos3, title, submenu, locale }) => {
               </div>
               <div>
                 {videos2.map((v, index) => (
-                  <div className="mb-[20px] relative cursor-pointer">
+                  <div className="mb-[20px] relative cursor-pointer" key={v.id}>
                     <a
-                      key={v.id}
                       data-fancybox="gallery"
                       data-type="iframe"
                       data-text={v.title}

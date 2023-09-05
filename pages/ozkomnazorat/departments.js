@@ -52,8 +52,6 @@ const page = () => {
     const departments = response.data.results.map((d) => {
       return { ...d, modal: false };
     });
-
-    console.log(departments);
     setdepartments(departments);
   };
   const changeActive = (i) => {
@@ -147,11 +145,8 @@ const page = () => {
               {t("page-titles.ozcom.departments")}
             </h3>
             {departments.map((l, i) => (
-              <div className="gradientBox mb-[30px]">
-                <div
-                  className="flex flex-col lg:flex-row p-[24px] bg-[#3A2F7D]  hover:bg-[#312E6B]"
-                  key={l.id}
-                >
+              <div className="gradientBox mb-[30px]" key={l.id}>
+                <div className="flex flex-col lg:flex-row p-[24px] bg-[#3A2F7D]  hover:bg-[#312E6B]">
                   <div className="basis-1/5">
                     <div className="mr-[24px] w-[full] h-[full]">
                       <img

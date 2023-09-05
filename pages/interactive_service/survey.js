@@ -42,10 +42,7 @@ const page = () => {
       }
       return returenedObj;
     });
-    console.log(data);
     const response = await axios.post(`/${locale}/api/survey/answer/`, data);
-    console.log(response);
-    console.log(errors);
     if (response.status === 201) {
       MySwal.fire({
         title: t("modal.thanks-for-participating-survey"),
@@ -66,7 +63,6 @@ const page = () => {
         },
       });
     } else {
-      console.log(errors);
       MySwal.fire({
         title: t("modal.survey-not-answered"),
         timer: 5500,
@@ -126,32 +122,12 @@ const page = () => {
     const survey = response.data.survey[0].questions;
     const aboutsurvey = response.data.about_survey;
     setaboutsurvey(aboutsurvey);
-
-    console.log(survey, "DATA");
     setsurvey(survey);
   };
 
   useEffect(() => {
     getData();
     getsurvey();
-    // MySwal.fire({
-    //   title: t("modal.thanks-for-participating-survey"),
-    //   timer: 5500,
-    //   icon: "success",
-    //   color: "#A2A0B3",
-    //   background: "#3A2F7D",
-    //   timerProgressBar: true,
-    //   timer: 5500,
-    //   showConfirmButton: false,
-    //   customClass: {
-    //     timerProgressBar: "swal_timerProgressBar",
-    //     popup: "swal_popup",
-    //   },
-    //   didOpen: (toast) => {
-    //     toast.addEventListener("mouseenter", Swal.stopTimer);
-    //     toast.addEventListener("mouseleave", Swal.resumeTimer);
-    //   },
-    // });
   }, []);
 
   return (
@@ -174,7 +150,7 @@ const page = () => {
               </p>
             </div>
             <div>
-              <form onSubmit={handleSubmit(onSubmit)}>
+              <form onSubmit={handleSubmit(onSubmit)} name="myForm">
                 {survey.map((item, index) => (
                   <div className="questions" key={index}>
                     <div className="flex items-start pb-[10px]">
@@ -183,173 +159,174 @@ const page = () => {
                         {item.title}
                       </span>
                     </div>
+
                     {item.type === RADIO_INPUT ? (
-                      <div className="block pb-[10px]">
-                        {item.options.map((opt, index) => (
-                          <div key={opt.id}>
-                            <div className="flex mb-[10px]">
-                              <input
-                                className="cursor-pointer w-[20px] h-[20px]"
-                                type="radio"
-                                id={"id-" + opt.id}
-                                value={opt.id}
-                                name={"answer-" + item.id}
-                                checked={form_data[item.id]?.id === opt.id}
-                                onChange={(e) =>
-                                  setFormData({
-                                    ...form_data,
-                                    [item.id]: { id: e.target.value },
-                                  })
-                                }
-                                required
-                                // {...register("answer-" + item.id, {
-                                //   required: true,
-                                // })}
-                              />
-                              {/* <span className="error-message">
-                                {errors.name?.type === "required" &&
-                                  t("validator.field-required")}
-                              </span> */}
-                              <label
-                                className="font-inter text-[1.12em] leading-[24px] text-text_secondary cursor-pointer pl-[10px] text-[#A2A0B3]"
-                                htmlFor={"id-" + opt.id}
-                              >
-                                {opt.title}
-                              </label>
-                            </div>
-                            {opt.with_input &&
-                            form_data[item.id]?.id === opt.id ? (
-                              <div className="flex">
+                      <div>
+                        <div className="block pb-[10px]">
+                          {item.options.map((opt, index) => (
+                            <div key={opt.id}>
+                              <div className="flex mb-[10px]">
                                 <input
-                                  className="base_input w-full mb-[10px]"
-                                  type="text"
+                                  className="cursor-pointer w-[20px] h-[20px]"
+                                  type="radio"
                                   id={"id-" + opt.id}
+                                  value={opt.id}
                                   name={"answer-" + item.id}
-                                  value={form_data[item.id]?.text}
-                                  placeholder={t("form.write-answer")}
+                                  checked={form_data[item.id]?.id === opt.id}
                                   onChange={(e) =>
                                     setFormData({
                                       ...form_data,
-                                      [item.id]: {
-                                        ...form_data[item.id],
-                                        text: e.target.value,
-                                      },
+                                      [item.id]: { id: e.target.value },
                                     })
                                   }
-                                  required
-                                  // {...register("answer-" + item.id, {
-                                  //   required: true,
-                                  // })}
                                 />
-                                {/* <span className="error-message">
-                                  {errors.phone?.type === "required" &&
-                                    t("validator.field-required")}
-                                </span> */}
+                                <label
+                                  className="font-inter text-[1.12em] leading-[24px] text-text_secondary cursor-pointer pl-[10px] text-[#A2A0B3]"
+                                  htmlFor={"id-" + opt.id}
+                                >
+                                  {opt.title}
+                                </label>
                               </div>
-                            ) : (
-                              <></>
-                            )}
-                          </div>
-                        ))}
+                              {opt.with_input &&
+                              form_data[item.id]?.id === opt.id ? (
+                                <div key={opt.id}>
+                                  <div className="flex">
+                                    <input
+                                      className="base_input w-full mb-[10px]"
+                                      type="text"
+                                      id={"id-" + opt.id}
+                                      name={"answer-" + item.id}
+                                      value={form_data[item.id]?.text}
+                                      placeholder={t("form.write-answer")}
+                                      onChange={(e) =>
+                                        setFormData({
+                                          ...form_data,
+                                          [item.id]: {
+                                            ...form_data[item.id],
+                                            text: e.target.value,
+                                          },
+                                        })
+                                      }
+                                    />
+                                  </div>
+                                  {/* <span className="error-message block mb-[20px]">
+                                    {t("validator.field-required")}
+                                  </span> */}
+                                </div>
+                              ) : (
+                                <></>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                        {/* <span className="error-message block mb-[20px]">
+                          {t("validator.field-required")}
+                        </span> */}
                       </div>
                     ) : item.type === TEXT_INPUT ? (
-                      <div className="flex">
-                        <input
-                          className="base_input w-full mb-[10px]"
-                          type="text"
-                          id={"id-" + item.id}
-                          name={"answer-" + item.id}
-                          placeholder={t("form.write-answer")}
-                          onChange={(e) =>
-                            setFormData({
-                              ...form_data,
-                              [item.id]: {
-                                text: e.target.value,
-                              },
-                            })
-                          }
-                          value={form_data[item.id]?.text}
-                          required
-                        />
+                      <div>
+                        <div className="flex">
+                          <input
+                            className="base_input w-full mb-[10px]"
+                            type="text"
+                            id={"id-" + item.id}
+                            name={"answer-" + item.id}
+                            placeholder={t("form.write-answer")}
+                            onChange={(e) =>
+                              setFormData({
+                                ...form_data,
+                                [item.id]: {
+                                  text: e.target.value,
+                                },
+                              })
+                            }
+                            value={form_data[item.id]?.text}
+                          />
+                        </div>
+                        {/* <span className="error-message block mb-[20px]">
+                          {t("validator.field-required")}
+                        </span> */}
                       </div>
                     ) : item.type === TEXT_AND_RADIO ? (
-                      <div className="block pb-[10px]">
-                        {!form_data[item.id]?.id && (
-                          <div className="flex">
-                            <input
-                              className="base_input w-full mb-[10px]"
-                              type="text"
-                              id={"id-" + item.id}
-                              name={"answer-" + item.id}
-                              placeholder={t("form.write-answer")}
-                              value={form_data[item.id]?.text}
-                              onChange={(e) =>
-                                setFormData({
-                                  ...form_data,
-                                  [item.id]: {
-                                    text: e.target.value,
-                                  },
-                                })
-                              }
-                              required
-                            />
-                          </div>
-                        )}
-                        {item.options.map((opt, index) => (
-                          <>
-                            <div className="flex mb-[10px]">
+                      <div>
+                        <div className="block pb-[10px]">
+                          {!form_data[item.id]?.id && (
+                            <div className="flex" key={item.id}>
                               <input
-                                className="cursor-pointer w-[20px] h-[20px]"
-                                key={opt.id}
-                                type="radio"
-                                id={"id-" + opt.id}
-                                value={opt.id}
+                                className="base_input w-full mb-[10px]"
+                                type="text"
+                                id={"id-" + item.id}
                                 name={"answer-" + item.id}
-                                checked={form_data[item.id]?.id === opt.id}
+                                placeholder={t("form.write-answer")}
+                                value={form_data[item.id]?.text}
                                 onChange={(e) =>
                                   setFormData({
                                     ...form_data,
                                     [item.id]: {
-                                      id: e.target.value,
+                                      text: e.target.value,
                                     },
                                   })
                                 }
-                                required
                               />
-                              <label
-                                className="font-inter text-[1.12em] leading-[24px] text-text_secondary cursor-pointer pl-[10px] text-[#A2A0B3]"
-                                htmlFor={"id-" + opt.id}
-                              >
-                                {opt.title}
-                              </label>
                             </div>
-                            {opt.with_input &&
-                            form_data[item.id]?.id === opt.id ? (
-                              <div className="flex">
+                          )}
+                          {item.options.map((opt, index) => (
+                            <>
+                              <div className="flex mb-[10px]" key={index}>
                                 <input
-                                  className="base_input w-full mb-[10px]"
-                                  type="text"
+                                  className="cursor-pointer w-[20px] h-[20px]"
+                                  key={opt.id}
+                                  type="radio"
                                   id={"id-" + opt.id}
+                                  value={opt.id}
                                   name={"answer-" + item.id}
-                                  value={form_data[item.id]?.text}
-                                  placeholder={t("form.write-answer")}
+                                  checked={form_data[item.id]?.id === opt.id}
                                   onChange={(e) =>
                                     setFormData({
                                       ...form_data,
                                       [item.id]: {
-                                        ...form_data[item.id],
-                                        text: e.target.value,
+                                        id: e.target.value,
                                       },
                                     })
                                   }
-                                  required
                                 />
+                                <label
+                                  className="font-inter text-[1.12em] leading-[24px] text-text_secondary cursor-pointer pl-[10px] text-[#A2A0B3]"
+                                  htmlFor={"id-" + opt.id}
+                                >
+                                  {opt.title}
+                                </label>
                               </div>
-                            ) : (
-                              <></>
-                            )}
-                          </>
-                        ))}
+                              {opt.with_input &&
+                              form_data[item.id]?.id === opt.id ? (
+                                <div className="flex" key={opt.id}>
+                                  <input
+                                    className="base_input w-full mb-[10px]"
+                                    type="text"
+                                    id={"id-" + opt.id}
+                                    name={"answer-" + item.id}
+                                    value={form_data[item.id]?.text}
+                                    placeholder={t("form.write-answer")}
+                                    onChange={(e) =>
+                                      setFormData({
+                                        ...form_data,
+                                        [item.id]: {
+                                          ...form_data[item.id],
+                                          text: e.target.value,
+                                        },
+                                      })
+                                    }
+                                  />
+                                </div>
+                              ) : (
+                                <></>
+                              )}
+                            </>
+                          ))}
+                        </div>
+                        {/* <span className="error-message block mb-[20px]">
+                          {t("validator.field-required")}
+                        </span> */}
                       </div>
                     ) : (
                       <button></button>

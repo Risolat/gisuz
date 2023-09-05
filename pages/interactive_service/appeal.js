@@ -46,8 +46,6 @@ const page = () => {
   const [code_request, setcode_request] = useState("");
   const [Isopen, setIsopen] = useState(false);
 
-  console.log(errors, "errors");
-
   const onSubmit = async (data) => {
     const isValid = data.captcha_is_correct === testCode;
 
@@ -162,7 +160,6 @@ const page = () => {
     setdistrict(district);
     setValue("district", district);
     setDistrictOpen(!districtOpen);
-    console.log(district);
   };
   function makeId() {
     let rText = "";

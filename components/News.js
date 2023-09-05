@@ -32,7 +32,6 @@ const News = () => {
     }
     const secondaryNewsList = response.data.slice(1);
     setsecondaryNewsList(secondaryNewsList);
-    console.log(response, "news");
   };
   useEffect(() => {
     getNews();

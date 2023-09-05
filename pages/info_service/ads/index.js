@@ -52,7 +52,6 @@ const page = () => {
       `/${locale}/api/information_service/informationServiceBySlug/?submenu_slug=/info_service/ads&page=${currentPage}&page_size=${postsPerPage}`
     );
     const ads = response.data.results;
-    console.log(response);
     const count = response.data.count;
     setCount(count);
     const indexOfLastPost = Math.ceil(count / postsPerPage);
