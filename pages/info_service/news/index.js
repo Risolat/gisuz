@@ -16,7 +16,7 @@ import i18nextConfig from "../../../next-i18next.config";
 import { Icon } from "@iconify/react";
 import { Montserrat } from "next/font/google";
 import Head from "next/head";
-import { useSearchParams, usePathname } from "next/navigation";
+import { useSearchParams, usePathname, useParams } from "next/navigation";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -24,7 +24,10 @@ const montserrat = Montserrat({
 });
 
 const page = () => {
+  // const params = useParams();
+  const router = useRouter();
   const pathname = usePathname();
+  console.log(router.query);
   const searchParams = useSearchParams();
   const { t } = useTranslation("common");
   const { locale } = useRouter();
@@ -39,14 +42,12 @@ const page = () => {
   const [selected, setselected] = useState("");
   const [categoryId, setcategoryId] = useState("");
   const [count, setCount] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(router.query.page || 1);
   const [postsPerPage] = useState(9);
   const [indexOfLastPost, setindexOfLastPost] = useState("");
   const [pageNumberLimit, setpageNumberLimit] = useState(5);
   const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
-
-  const router = useRouter();
 
   const createQueryString = useCallback(
     (name, value) => {

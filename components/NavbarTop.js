@@ -65,14 +65,33 @@ const NavbarTop = () => {
     setData(data);
     setSubMenu(subm);
   };
+  function searchContent(q, content) {
+    let textToSearch = q;
+    let paragraph = content;
+    textToSearch = textToSearch.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    let pattern = new RegExp(`${textToSearch}`, "gi");
+    let result = paragraph?.toLowerCase().indexOf(textToSearch.toLowerCase());
+    result = result - 20;
+    if (result) {
+      paragraph = paragraph.substring(result, result + 100);
+    }
+    console.log(
+      paragraph?.replace(pattern, (match) => {
+        return `<mark>${match}</mark>`;
+      })
+    );
+    return paragraph?.replace(pattern, (match) => {
+      return `<mark>${match}</mark>`;
+    });
+  }
   const onSubmit = async () => {
     const response = await axios.get(`/${locale}/api/search/?q=${search}`);
-    const resData = response.data.results;
-    const searchSubMenu = resData.map((r) => {
-      return r.sub_menu.slug;
-    });
+    setresData(response.data.results);
+    // const searchSubMenu = resData.map((r) => {
+    //   return r.sub_menu.slug;
+    // });
     // const title = resData.map((r) => {
-    //   return r.title;
+    //   return searchContent(search, r.title);
     // });
     // let textToSearch = search;
     // let paragraph = title;
@@ -99,9 +118,9 @@ const NavbarTop = () => {
     //     "";
     // }
 
-    setSearchSubMenu(searchSubMenu);
-    setresData(resData);
-    console.log(errors);
+    // setSearchSubMenu(searchSubMenu);
+    // setresData(resData);
+    // console.log(errors);
   };
   const ref = useClickAway(() => {
     setIsOpen(false);
@@ -925,9 +944,9 @@ const NavbarTop = () => {
                       : "Search"}
                   </button>
                 </div>
-                <div className="pb-[20px] overflow-scroll h-auto w-auto relative">
+                <div className="pb-[20px] overflow-scroll h-auto w-full relative">
                   {resData === 0 ? (
-                    <div className=" overflow-scroll h-auto w-auto relative">
+                    <div className="overflow-scroll h-auto w-full relative">
                       {locale === "uz"
                         ? "Topilmadi!"
                         : locale === "ru"
@@ -939,7 +958,7 @@ const NavbarTop = () => {
                   ) : (
                     <div
                       className={
-                        resData != 0
+                        resData.length != 0
                           ? "overflow-scroll max-h-[400px]"
                           : "h-auto"
                       }
@@ -952,13 +971,21 @@ const NavbarTop = () => {
                               className=""
                               onClick={() => closeSearch()}
                             >
-                              <p id="title">{r.title}</p>
-                              <p
+                              <div
+                                id="title"
+                                dangerouslySetInnerHTML={{
+                                  __html: searchContent(search, r.title),
+                                }}
+                              ></div>
+                              <div
                                 className="text-[#A2A0B3] line-clamp-1"
                                 id="description"
+                                dangerouslySetInnerHTML={{
+                                  __html: searchContent(search, r.description),
+                                }}
                               >
-                                {r.description}
-                              </p>
+                                {/* {searchContent(search, r.description)} */}
+                              </div>
                             </Link>
                           </div>
                         </div>
