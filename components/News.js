@@ -7,6 +7,7 @@ import axios from "../http";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { Roboto } from "next/font/google";
+import dayjs from "dayjs";
 const roboto = Roboto({
   subsets: ["latin"],
   variable: "--font-roboto",
@@ -59,7 +60,7 @@ const News = () => {
             <div className="flex items-center py-[5px] text-[#A2A0B3] text-[12px]">
               <div className="flex items-center pr-[5px]">
                 <Image src={date} alt="date" className="mr-[5px]" />
-                <p className="">{mainNews.date}</p>
+                <p className="">{dayjs(mainNews.date).format("DD.MM.YYYY")}</p>
               </div>
 
               <p className="mr-[5px]"> | </p>
@@ -92,7 +93,9 @@ const News = () => {
                   <div className="flex items-center py-[5px] text-[#A2A0B3] text-[12px]">
                     <div className="flex items-center pr-[5px]">
                       <Image src={date} alt="date" className="mr-[5px]" />
-                      <p className="">{item.date}</p>
+                      <p className="">
+                        {dayjs(item.date).format("DD.MM.YYYY")}
+                      </p>
                     </div>
 
                     <p className="mr-[5px]"> | </p>
