@@ -337,7 +337,7 @@ const page = () => {
                                   <li
                                     key={r.id}
                                     onClick={() => chooseDistrict(r.id, r.name)}
-                                    className="px-[20px] py-[8px] text-[#A2A0B3]"
+                                    className="px-[20px] py-[8px] text-[#A2A0B3] hover:bg-[#24224E] "
                                   >
                                     {r.name}
                                   </li>
@@ -359,11 +359,11 @@ const page = () => {
                             {...register("full_name", { required: true })}
                           />
                           <span className="error-message">
-                            {errors.name?.type === "required" &&
+                            {errors.full_name?.type === "required" &&
                               t("validator.field-required")}
                           </span>
                         </label>
-                        <label className="block">
+                        <label className="flex flex-col">
                           <p className="text-[18px] pb-[10px]">
                             {t("form.address")}
                           </p>
@@ -374,7 +374,7 @@ const page = () => {
                             {...register("address", { required: true })}
                           />
                           <span className="error-message">
-                            {errors.name?.type === "required" &&
+                            {errors.address?.type === "required" &&
                               t("validator.field-required")}
                           </span>
                         </label>

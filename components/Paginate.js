@@ -82,7 +82,13 @@ const Paginate = ({
         </li>
         {total >= 5 ? <li className="px-[5px] text-[#A2A0B3]">...</li> : ""}
         {total >= 5 ? (
-          <li className="page-number" onClick={() => lastPage(total)}>
+          <li
+            className={`${
+              "page-number " +
+              (total === currentPage ? "page-number-active" : null)
+            }`}
+            onClick={() => lastPage(total)}
+          >
             {total}
           </li>
         ) : (

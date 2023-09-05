@@ -14,7 +14,7 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
 });
 const page = () => {
-  const { t } = useTranslation("index");
+  const { t } = useTranslation("common");
   const { locale } = useRouter();
   const [title, setTitle] = useState();
   const [submenu, setSubmenu] = useState([]);

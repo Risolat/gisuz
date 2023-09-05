@@ -127,58 +127,67 @@ const page = () => {
             >
               {t("page-titles.info-service.lang-nation")}
             </h3>
-            <ul className="flex items-center justify-start flex-wrap pr-[5px]">
-              {wisdom.map((r) => (
-                <li key={r.id} className="py-[16px] block w-[342px] mx-[8px]">
-                  <Link
-                    href={`/info_service/language_nation/${r.id}`}
-                    className=""
-                  >
-                    <Image
-                      className="w-[342px] h-[200px]"
-                      src={r.images[0].photo}
-                      alt={r.title}
-                      width={342}
-                      height={200}
-                    />
-                    <p className="mb-[10px] h-[84px] pt-[10px] hover:text-[#3D8DFF] max-h-[84px] font-semibold font-montserrat text-white text-[1.25em] leading-[28px] line-clamp-3">
-                      {r.title}
-                    </p>
-                    <div className="flex items-center justify-self-end">
-                      <div className="flex items-center mr-[10px]">
+            {wisdom.length === 0 ? (
+              ""
+            ) : (
+              <div>
+                <ul className="flex items-center justify-start flex-wrap pr-[5px]">
+                  {wisdom.map((r) => (
+                    <li
+                      key={r.id}
+                      className="py-[16px] block w-[342px] mx-[8px]"
+                    >
+                      <Link
+                        href={`/info_service/language_nation/${r.id}`}
+                        className=""
+                      >
                         <Image
-                          className="mr-[5px]"
-                          src={date_range}
-                          alt={date_range}
+                          className="w-[342px] h-[200px] object-cover"
+                          src={r.images[0].photo}
+                          alt={r.title}
+                          width={342}
+                          height={200}
                         />
-                        <p className="text-[#A2A0B3]">
-                          {dayjs(r.date).format("DD.MM.YYYY")}
+                        <p className="mb-[10px] h-[84px] pt-[10px] hover:text-[#3D8DFF] max-h-[84px] font-semibold font-montserrat text-white text-[1.25em] leading-[28px] line-clamp-3">
+                          {r.title}
                         </p>
-                      </div>
-                      <p className="mr-[5px] text-[#A2A0B3]"> | </p>
-                      <div className="flex items-center">
-                        <Image
-                          className="mr-[5px]"
-                          src={red_eye}
-                          alt="red eye"
-                        />
-                        <p className="text-[#A2A0B3]">{r.view_count}</p>
-                      </div>
-                    </div>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <Pagination
-              postsPerPage={postsPerPage}
-              totalPosts={count}
-              paginate={paginate}
-              previousPage={previousPage}
-              nextPage={nextPage}
-              currentPage={currentPage}
-              maxPageNumberLimit={maxPageNumberLimit}
-              minPageNumberLimit={minPageNumberLimit}
-            />
+                        <div className="flex items-center justify-self-end">
+                          <div className="flex items-center mr-[10px]">
+                            <Image
+                              className="mr-[5px]"
+                              src={date_range}
+                              alt={date_range}
+                            />
+                            <p className="text-[#A2A0B3]">
+                              {dayjs(r.date).format("DD.MM.YYYY")}
+                            </p>
+                          </div>
+                          <p className="mr-[5px] text-[#A2A0B3]"> | </p>
+                          <div className="flex items-center">
+                            <Image
+                              className="mr-[5px]"
+                              src={red_eye}
+                              alt="red eye"
+                            />
+                            <p className="text-[#A2A0B3]">{r.view_count}</p>
+                          </div>
+                        </div>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                <Pagination
+                  postsPerPage={postsPerPage}
+                  totalPosts={count}
+                  paginate={paginate}
+                  previousPage={previousPage}
+                  nextPage={nextPage}
+                  currentPage={currentPage}
+                  maxPageNumberLimit={maxPageNumberLimit}
+                  minPageNumberLimit={minPageNumberLimit}
+                />
+              </div>
+            )}
           </div>
           <div className="sticky top-[160px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mt-[100px] mx-[20px] 2xl:mx-0 py-[8px] bg-[#3A2F7D]">
             <p

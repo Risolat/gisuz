@@ -446,9 +446,9 @@ const NavbarTop = () => {
                   )}
                 </li>
                 <li className="extra-item pr-[15px]">
-                  <a href="#" onClick={() => speechBtnClicked()}>
+                  <button onClick={() => speechBtnClicked()}>
                     <Image src={volume} alt="volume" />
-                  </a>
+                  </button>
                 </li>
                 {/* <li className="text-[#A2A0B3] pr-[16px]">|</li> */}
               </ul>
@@ -772,9 +772,9 @@ const NavbarTop = () => {
               )}
             </li>
             <li className="extra-item mr-[10px]">
-              <a href="#" onClick={() => speechBtnClicked()}>
+              <button onClick={() => speechBtnClicked()}>
                 <Image src={volume} alt="volume" width={20} height={20} />
-              </a>
+              </button>
             </li>
             <li className="text-[#A2A0B3] pr-[16px]">|</li>
           </ul>

@@ -133,16 +133,17 @@ const page = () => {
   };
   const lastPage = async (total) => {
     const response = await axios.get(
-      `/${locale}/api/information_service/informationServiceBySlug/?submenu_slug=/info_service/news&page=${total}&page_size=${postsPerPage}`
+      `/${locale}/api/information_service/informationServiceBySlug/?submenu_slug=/info_service/news&page=${indexOfLastPost}&page_size=${postsPerPage}`
     );
     setindexOfLastPost(total);
     const news = response.data.results;
     setnews(news);
     window.scrollTo(0, 0);
-    router.push(pathname + "?" + createQueryString("page", currentPage));
+    router.push(pathname + "?" + createQueryString("page", indexOfLastPost));
   };
   const handleDate = async (date) => {
     setDate(date);
+    console.log(date);
     const year = date.toISOString().slice(0, 4);
     const month = date.toISOString().slice(5, 7);
     const day = date.toISOString().slice(8, 10);
@@ -181,10 +182,12 @@ const page = () => {
     setindexOfLastPost(indexOfLastPost);
     router.push(pathname + "?" + createQueryString("page", currentPage));
   };
-  function clearInput() {
+  const clearInput = async () => {
     let inpDate = document.getElementById("date");
     inpDate.value = "";
-  }
+    location.reload();
+    router.push(pathname + "?" + createQueryString("page", currentPage));
+  };
   useEffect(() => {
     getData();
     getnews();
@@ -209,7 +212,7 @@ const page = () => {
                 {t("other.no-news")}
               </p>
             ) : (
-              <ul className="pr-[16px] flex items-center lg:justify-center justify-start  flex-wrap">
+              <ul className="pr-[16px] flex items-start justify-center lg:justify-start flex-wrap">
                 {news.map((r) => (
                   <li key={r.id} className="py-[16px] mx-[5px] block w-[342px]">
                     <Link

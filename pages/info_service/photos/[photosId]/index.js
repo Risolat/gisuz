@@ -45,7 +45,15 @@ const photosDetail = ({
   return (
     <div>
       <Head>
-        <title>{t("page-titles.info-service.photomaterials")}</title>
+        <title>
+          {locale === "uz"
+            ? "Fotogalereya"
+            : locale === "ru"
+            ? "Фотогалерея"
+            : locale === "uzb"
+            ? "Фотогалерея"
+            : "Photo gallery"}
+        </title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <div className="container">

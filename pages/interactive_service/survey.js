@@ -19,7 +19,7 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
 });
 const page = () => {
-  const { t } = useTranslation("index");
+  const { t } = useTranslation("common");
   const { locale } = useRouter();
   const {
     register,
@@ -45,6 +45,7 @@ const page = () => {
     console.log(data);
     const response = await axios.post(`/${locale}/api/survey/answer/`, data);
     console.log(response);
+    console.log(errors);
     if (response.status === 201) {
       MySwal.fire({
         title: t("modal.thanks-for-participating-survey"),
@@ -65,6 +66,7 @@ const page = () => {
         },
       });
     } else {
+      console.log(errors);
       MySwal.fire({
         title: t("modal.survey-not-answered"),
         timer: 5500,
@@ -199,7 +201,15 @@ const page = () => {
                                     [item.id]: { id: e.target.value },
                                   })
                                 }
+                                required
+                                // {...register("answer-" + item.id, {
+                                //   required: true,
+                                // })}
                               />
+                              {/* <span className="error-message">
+                                {errors.name?.type === "required" &&
+                                  t("validator.field-required")}
+                              </span> */}
                               <label
                                 className="font-inter text-[1.12em] leading-[24px] text-text_secondary cursor-pointer pl-[10px] text-[#A2A0B3]"
                                 htmlFor={"id-" + opt.id}
@@ -226,7 +236,15 @@ const page = () => {
                                       },
                                     })
                                   }
+                                  required
+                                  // {...register("answer-" + item.id, {
+                                  //   required: true,
+                                  // })}
                                 />
+                                {/* <span className="error-message">
+                                  {errors.phone?.type === "required" &&
+                                    t("validator.field-required")}
+                                </span> */}
                               </div>
                             ) : (
                               <></>
@@ -251,6 +269,7 @@ const page = () => {
                             })
                           }
                           value={form_data[item.id]?.text}
+                          required
                         />
                       </div>
                     ) : item.type === TEXT_AND_RADIO ? (
@@ -272,6 +291,7 @@ const page = () => {
                                   },
                                 })
                               }
+                              required
                             />
                           </div>
                         )}
@@ -294,6 +314,7 @@ const page = () => {
                                     },
                                   })
                                 }
+                                required
                               />
                               <label
                                 className="font-inter text-[1.12em] leading-[24px] text-text_secondary cursor-pointer pl-[10px] text-[#A2A0B3]"
@@ -321,6 +342,7 @@ const page = () => {
                                       },
                                     })
                                   }
+                                  required
                                 />
                               </div>
                             ) : (

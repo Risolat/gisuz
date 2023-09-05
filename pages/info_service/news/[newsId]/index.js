@@ -174,13 +174,15 @@ const newsDetail = () => {
             </div>
           </div>
           <div className="sticky top-[197px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0 py-[8px] bg-[#3A2F7D]">
-            <p className="mb-[24px] text-[20px] px-[16px]">{title}</p>
+            <p className="mb-[24px] text-[20px] px-[16px] font-montserrat font-semibold">
+              {title}
+            </p>
             <ul className="font-inter">
               {submenu.map((item) => (
                 <li key={item.id} className="bg-[#3A2F7D]">
                   <div className="gradientBox bg-[#3A2F7D]">
                     <Link
-                      className="block py-[10px] px-[16px] hover:bg-[#24224E] hover:text-white bg-[#3A2F7D] text-[#A2A0B3]"
+                      className="block py-[10px] px-[16px] font-inter hover:bg-[#24224E] hover:text-white bg-[#3A2F7D] text-[#A2A0B3]"
                       locale={locale}
                       href={`${item.slug}`}
                     >
