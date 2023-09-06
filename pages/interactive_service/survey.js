@@ -179,6 +179,7 @@ const page = () => {
                                       [item.id]: { id: e.target.value },
                                     })
                                   }
+                                  required
                                 />
                                 <label
                                   className="font-inter text-[1.12em] leading-[24px] text-text_secondary cursor-pointer pl-[10px] text-[#A2A0B3]"
@@ -207,6 +208,7 @@ const page = () => {
                                           },
                                         })
                                       }
+                                      required
                                     />
                                   </div>
                                   {/* <span className="error-message block mb-[20px]">
@@ -241,6 +243,7 @@ const page = () => {
                               })
                             }
                             value={form_data[item.id]?.text}
+                            required
                           />
                         </div>
                         {/* <span className="error-message block mb-[20px]">
@@ -267,6 +270,7 @@ const page = () => {
                                     },
                                   })
                                 }
+                                required
                               />
                             </div>
                           )}
@@ -289,6 +293,7 @@ const page = () => {
                                       },
                                     })
                                   }
+                                  required
                                 />
                                 <label
                                   className="font-inter text-[1.12em] leading-[24px] text-text_secondary cursor-pointer pl-[10px] text-[#A2A0B3]"
@@ -316,6 +321,7 @@ const page = () => {
                                         },
                                       })
                                     }
+                                    required
                                   />
                                 </div>
                               ) : (
