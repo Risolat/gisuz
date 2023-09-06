@@ -65,7 +65,6 @@ const page = () => {
     const data = response.data.filter((category) =>
       menuName.includes(category.name)
     );
-
     const title = data.map((d) => {
       return d.title;
     });
