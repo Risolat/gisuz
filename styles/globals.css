@@ -56,6 +56,7 @@ body {
     linear-gradient(0deg, #ffffff, #ffffff);
   -webkit-background-clip: text;
 }
+
 .subtitle {
   padding: 20px 0;
   font-style: normal;
@@ -576,6 +577,20 @@ strong {
 @media (min-width: 320px){
   .infographics:nth-child(3n){
     margin-right: 15px;
+  }
+  .animated{
+    width: 40vh;
+    height: 50vh;
+    background-image: url("../public/photos/icons/animatedLogo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+@media (min-width: 1024px){
+  .animated{
+    width: 80vh;
+    height: 80vh;
   }
 }
 @media (min-width: 1440px) {

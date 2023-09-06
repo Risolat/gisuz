@@ -16,7 +16,7 @@ import i18nextConfig from "../../../next-i18next.config";
 import { Icon } from "@iconify/react";
 import { Montserrat } from "next/font/google";
 import Head from "next/head";
-import { useSearchParams, usePathname, useParams } from "next/navigation";
+import { useSearchParams, usePathname } from "next/navigation";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -82,6 +82,7 @@ const page = () => {
     const indexOfLastPost = Math.ceil(count / postsPerPage);
     setindexOfLastPost(indexOfLastPost);
     setnews(news);
+    console.log(news);
     router.push(router.pathname + "?" + "page=" + currentPage);
   };
   const previousPage = async () => {

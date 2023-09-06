@@ -8,8 +8,25 @@
   .socialMedia {
     @apply w-full h-full flex items-center justify-center relative;
   }
-  .tool {
-    @apply absolute text-sm bg-[#453a94] rounded-md px-1.5 py-0.5 text-white top-0 left-1/2 transform -translate-x-1/2 z-50 truncate opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:top-0;
+  /* .tool {
+    @apply absolute text-sm bg-[#453a94] rounded-md px-1.5 py-0.5 text-white top-0 left-1/2 transform -translate-x-1/2 z-50 truncate opacity-0 transition-all duration-200 group-hover:opacity-100 hover:top-0;
+  } */
+  .tool{
+    display: none;
+    position: absolute;
+    font-size: 14px;
+    background-color: #453a94;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: #fff;
+    top: -10%;
+    right: -25%;
+    transform: translateX(-50%);
+    z-index: 5;
+  }
+  .socialMedia:hover .tool{
+    display: block;
+
   }
   .frame3 {
     display: flex;

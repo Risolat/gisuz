@@ -29,7 +29,7 @@ const Slideshow = () => {
   const items = [
     <div
       className="block item cursor-pointer mx-[18px] h-auto"
-      onClick={() => router.push("/interactive_service/openData")}
+      onClick={() => router.push("/interactive_service/open_data")}
     >
       <div className="gradientBox">
         <div className="hover:bg-[#312E6B] bg-[#3A2F7D] flex flex-col items-center px-[20px] pt-[24px] pb-[42px]">

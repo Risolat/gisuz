@@ -120,12 +120,13 @@ const ctrl = () => {
                     </div>
                   </form>
                 </div>
-                <button className="absolute right-[2%] top-[3%]" type="submit">
+                <button className="absolute right-[2%] top-[3%]">
                   <Icon
                     icon="mdi:clear-circle-outline"
                     color="#a2a0b3"
                     width="25"
                     height="25"
+                    onClick={() => setOpen(!open)}
                   />
                 </button>
               </div>

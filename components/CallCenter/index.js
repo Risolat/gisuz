@@ -3,13 +3,13 @@ import { useTranslation } from "next-i18next";
 import styles from "../CallCenter/style.module.css";
 
 const index = () => {
-  const { t } = useTranslation("index");
+  const { t } = useTranslation("common");
 
   return (
     <div className="font-inter">
       <a href="tel:1144" className={styles.callCenter}>
         <div className={styles.socialMedia}>
-          <div className={styles.tool}>{t("Index.navbar.phone")}</div>
+          <div className={styles.tool}>{t("navbar.phone")}</div>
           <div className={styles.frame3}>
             <svg
               className="murojat w-[28px] h-[23px] mb-[5px]"

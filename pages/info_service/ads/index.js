@@ -1,5 +1,5 @@
 import axios from "../../../http";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import date_range from "../../../public/photos/main/date_range.svg";
@@ -13,16 +13,21 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../../next-i18next.config";
 import { Montserrat } from "next/font/google";
 import Head from "next/head";
+import { useSearchParams, usePathname } from "next/navigation";
+
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
 });
 const page = () => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [title, setTitle] = useState();
   const [submenu, setSubmenu] = useState([]);
   const [ads, setads] = useState([]);
   const [count, setCount] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(router.query.page || 1);
   const [postsPerPage] = useState(9);
   const [indexOfLastPost, setindexOfLastPost] = useState("");
   const [pageNumberLimit, setpageNumberLimit] = useState(5);
@@ -30,6 +35,16 @@ const page = () => {
   const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
   const { t } = useTranslation("common");
   const { locale } = useRouter();
+
+  const createQueryString = useCallback(
+    (name, value) => {
+      const params = new URLSearchParams(searchParams);
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
 
   const getData = async () => {
     const response = await axios.get(`/${locale}/api/menu/`);
@@ -57,6 +72,7 @@ const page = () => {
     const indexOfLastPost = Math.ceil(count / postsPerPage);
     setindexOfLastPost(indexOfLastPost);
     setads(ads);
+    router.push(router.pathname + "?" + "page=" + currentPage);
   };
   const previousPage = async () => {
     if (currentPage !== 1) {
@@ -72,6 +88,7 @@ const page = () => {
       setmaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
       setminPageNumberLimit(minPageNumberLimit - pageNumberLimit);
     }
+    router.push(pathname + "?" + createQueryString("page", currentPage));
   };
   const nextPage = async () => {
     if (currentPage !== Math.ceil(count / postsPerPage)) {
@@ -87,6 +104,7 @@ const page = () => {
       setmaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
       setminPageNumberLimit(minPageNumberLimit + pageNumberLimit);
     }
+    router.push(pathname + "?" + createQueryString("page", currentPage + 1));
   };
   const paginate = async (currentPage) => {
     const response = await axios.get(
@@ -97,6 +115,7 @@ const page = () => {
     const ads = response.data.results;
     setads(ads);
     window.scrollTo(0, 0);
+    router.push(pathname + "?" + createQueryString("page", currentPage));
   };
   const lastPage = async (total) => {
     const response = await axios.get(
@@ -106,6 +125,7 @@ const page = () => {
     const ads = response.data.results;
     setads(ads);
     window.scrollTo(0, 0);
+    router.push(pathname + "?" + createQueryString("page", indexOfLastPost));
   };
   useEffect(() => {
     getData();
@@ -129,7 +149,7 @@ const page = () => {
             ) : (
               <div>
                 {" "}
-                <ul className="pr-[16px] flex items-start justify-center xl:justify-between flex-wrap ">
+                <ul className="pr-[16px] flex items-start justify-center xl:justify-start flex-wrap ">
                   {ads.map((r) => (
                     <li
                       key={r.id}
@@ -246,11 +266,4 @@ export async function getStaticProps({ locale }) {
     },
   };
 }
-
-// export async function getStaticPaths(context) {
-//   return {
-//     paths: [],
-//     fallback: true,
-//   };
-// }
 export default page;
