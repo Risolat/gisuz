@@ -121,7 +121,7 @@ const page = ({ videos1, videos2, videos3, title, submenu, locale }) => {
                   infinite: false,
                 },
               }}
-              className="flex items-center justify-center 2xl:justify-between flex-wrap mr-0"
+              className="flex items-center justify-center 2xl:justify-start flex-wrap mr-0"
             >
               {videos3.map((v, index) => (
                 <div key={index} className="video-wrapper relative mb-[15px]">
