@@ -167,7 +167,7 @@ const NavbarBottom = () => {
   return (
     <div className="pb-[10px]">
       <div className="xl:border-[#5C587A] xl:border-b-[1px]">
-        <div className="max-w-[1440px] my-0 mx-auto xl:px-[10px] 2xl:px-[10px]">
+        <div className="max-w-[1440px] my-0 mx-auto xl:px-[10px] py-2 2xl:py-0 2xl:px-[10px]">
           <div className="flex justify-between items-center ">
             <Link
               href="/"

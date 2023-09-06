@@ -493,12 +493,9 @@ const NavbarTop = () => {
               </li>
             </ul>
             <div className="overflow-scroll h-[800px]">
-              <ul className="adress-list flex flex-wrap mb-[10px] pt-[20px] overflow-scroll h-[50px] ">
+              <ul className="adress-list flex items-center flex-wrap mb-[10px] pt-[20px] overflow-scroll h-[50px] ">
                 <li className="adress-item pr-[16px] mb-[10px]">
-                  <a
-                    href="#"
-                    className="adress-link flex items-center justify-center"
-                  >
+                  <a href="#" className="adress-link flex justify-center">
                     <Image src={location} alt="location" />
                     <p className="2xl:w-full pl-[5px] text-[#A2A0B3] xl:w-[300px] xl:pl-0">
                       {locale === "uz"
@@ -555,11 +552,11 @@ const NavbarTop = () => {
           </div>
         )}
       </div>
-      <div className="2xl:max-w-[1440px] hidden my-0 mx-auto xl:px-[10px] 2xl:px-[10px] xl:flex items-start justify-between pt-[8px] pb-[0]">
+      <div className="2xl:max-w-[1440px] hidden my-0 mx-auto xl:px-[10px] 2xl:px-[10px] xl:flex 2xl:items-start items-center justify-between pt-[8px] pb-[0]">
         <div className="navbar-left">
-          <ul className="adress-list flex text-[14px]">
+          <ul className="adress-list flex items-center text-[14px]">
             <li className="adress-item pr-[16px]">
-              <div className="adress-link flex items-center justify-center">
+              <div className="adress-link flex items-center justify-center pb-[5px]">
                 <Image
                   src={location}
                   alt="location"

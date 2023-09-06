@@ -42,7 +42,7 @@ const MapOfUzbekistan = () => {
 
   return (
     <div className="container pt-[30px] pb-[100px]">
-      <h2 className="subtitle font-montserrat ml-[30px] 2xl:ml-0">
+      <h2 className="subtitle font-montserrat ml-[10px] sm:ml-[30px] 2xl:ml-0">
         {t("main-page.region-inspections")}
       </h2>
       <span
@@ -235,7 +235,7 @@ const MapOfUzbekistan = () => {
             </svg>
           </div>
         </div>
-        <div className="xl:col-span-5 col-span-12 mx-[10px]">
+        <div className="xl:col-span-5 col-span-12 sm:mx-[10px] mx-0">
           {regionData.map((region) => (
             <div className="p-[30px] bg-[#3A2F7D]" key={region.region}>
               <p className="text-[24px] font-bold leading-6 pb-[35px]">

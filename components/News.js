@@ -47,7 +47,7 @@ const News = () => {
           <div className="flex flex-row items-start flex-wrap pb-[150px]">
             <Link
               href={`/${locale}/info_service/news/${mainNews.id}`}
-              className="relative w-full mb-[50px] 2xl:basis-9/12 pr-[7px]"
+              className="relative w-full mb-[50px] 2xl:basis-9/12 pr-0 sm:pr-[7px]"
             >
               <Image
                 unoptimized
@@ -59,7 +59,7 @@ const News = () => {
                 loading="lazy"
               />
 
-              <div className="absolute h-[195px] left-[30px] bottom-[-45px] px-[20px] pt-[18px] pb-[8px] bg-[#3A2F7D] w-[300px] sm:w-[400px] md:w-[643px]">
+              <div className="absolute h-[195px] left-0 md:left-[30px] bottom-[-45px] px-[10px] md:px-[20px] pt-[18px] pb-[8px] bg-[#3A2F7D] w-[300px] sm:w-[400px] md:w-[643px]">
                 <div className="flex items-center py-[5px] text-[#A2A0B3] text-[12px]">
                   <div className="flex items-center pr-[5px]">
                     <Image src={date} alt="date" className="mr-[5px]" />

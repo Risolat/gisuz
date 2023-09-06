@@ -18,15 +18,15 @@ export default function Statistics() {
     <div className="bg-[#3A2F7D] py-[40px]">
       <div className="container flex flex-col xl:flex-row items-center">
         <div className="lg:basis-3/5 pb-[50px] text-center xl:text-left">
-          <h2 className="subtitle font-montserrat ml-[30px] 2xl:ml-0">
+          <h2 className="subtitle font-montserrat ml-0 sm:ml-[30px] 2xl:ml-0">
             {t("main-page.statistics")}
           </h2>
-          <p className="max-w-[500px] text-[#A2A0B3] leading-6 pr-[30px] mb-[40px] text-[16px] leading-5 ml-[30px] 2xl:ml-0">
+          <p className="max-w-[500px] text-[#A2A0B3] px-[10px] sm:px-0 leading-6 pr-0 sm:pr-[30px] mb-[40px] text-[16px] leading-5 ml-0 sm:ml-[30px] 2xl:ml-0">
             {t("main-page.statistics-text")}
           </p>
 
           <button
-            className={`${roboto.variable} font-roboto py-[13px] leading-6 text-[16px] px-[47px] ml-[30px] 2xl:ml-0 border-[2px] border-[#fff] hover:bg-white hover:text-[#3A2F7D]`}
+            className={`${roboto.variable} font-roboto py-[13px] leading-6 text-[16px] px-[47px] ml-0 sm:ml-[30px] 2xl:ml-0 border-[2px] border-[#fff] hover:bg-white hover:text-[#3A2F7D]`}
           >
             <a locale={locale} href={`${locale}/activity/statistics`}>
               {t("button.more")}
@@ -34,7 +34,7 @@ export default function Statistics() {
           </button>
         </div>
         <div className="lg:basis-2/5 flex flex-col lg:flex-row items-stratch">
-          <div className="xl:w-[250px] 2xl:w-[290px] max-w-[290px] sm:max-w-[350px] pt-[33px] pb-[25px] px-[16px] mb-[10px] bg-[#252356] sm:mx-5">
+          <div className="xl:w-[250px] 2xl:w-[290px] max-w-[280px] sm:max-w-[350px] pt-[33px] pb-[25px] px-[16px] mb-[10px] bg-[#252356] sm:mx-5">
             <LandingBar />
             <p className="font-medium pt-[10px] text-[16px] leading-6 text-[#A2A0B3] line-clamp-4">
               {locale === "uz"
