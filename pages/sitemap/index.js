@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -9,24 +8,25 @@ import logoGis from "../../public/photos/icons/logo-gis.svg";
 import logo from "../../public/photos/icons/logo.svg";
 import Footer from "../../components/Footer";
 import Head from "next/head";
+import axios from "../../http";
 
 export async function getServerSideProps(context) {
   console.log(context, "context");
   const locale = context.locale;
-  const res = await axios(`https://back.gis.uz/${locale}/api/menu/`);
+  const res = await axios.get(`${locale}/api/menu/`);
   const data = await res.data;
   console.log(data);
   return {
     props: {
       menu: data,
+      locale,
       ...(await serverSideTranslations(locale, ["common"], i18nextConfig)),
     },
   };
 }
 
-const Sitemap = ({ menu }) => {
+const Sitemap = ({ menu, locale }) => {
   const { t } = useTranslation("common");
-  const { locale } = useRouter();
   return (
     <>
       <div>
