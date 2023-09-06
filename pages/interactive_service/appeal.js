@@ -427,7 +427,7 @@ const page = () => {
                             {t("form.message-text")}
                           </p>
                           <label className="flex flex-col mr-0 xl:mr-[20px]">
-                            <input
+                            <textarea
                               type="text"
                               name="text"
                               placeholder=""
