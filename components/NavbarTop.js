@@ -50,8 +50,8 @@ const NavbarTop = () => {
 
   const languages = [
     { name: "O'zb", key: "uz" },
-    { name: "Ру", key: "ru" },
-    { name: "En", key: "en" },
+    { name: "Руc", key: "ru" },
+    { name: "Eng", key: "en" },
     { name: "Ўзб", key: "uzb" },
   ];
 
@@ -428,7 +428,7 @@ const NavbarTop = () => {
                       href={`/ru${router.asPath}`}
                       locale="ru"
                       onClick={() => {
-                        setSelected("Ру");
+                        setSelected("Руc");
                         setOpen(false);
                       }}
                       className={
@@ -445,7 +445,7 @@ const NavbarTop = () => {
                       href={`/en${router.asPath}`}
                       locale="en"
                       onClick={() => {
-                        setSelected("En");
+                        setSelected("Eng");
                         setOpen(false);
                       }}
                       className={
@@ -765,7 +765,7 @@ const NavbarTop = () => {
                   href={`/ru${router.asPath}`}
                   locale="ru"
                   onClick={() => {
-                    setSelected("Ру");
+                    setSelected("Руc");
                     setOpen(false);
                   }}
                   className={
@@ -782,7 +782,7 @@ const NavbarTop = () => {
                   href={`/en${router.asPath}`}
                   locale="en"
                   onClick={() => {
-                    setSelected("En");
+                    setSelected("Eng");
                     setOpen(false);
                   }}
                   className={

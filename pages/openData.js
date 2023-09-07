@@ -1,11 +1,11 @@
-import axios from "../../http";
-import { useEffect, useState, useCallback } from "react";
+import axios from "../http";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import ax from "axios";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import i18nextConfig from "../../next-i18next.config";
+import i18nextConfig from "../next-i18next.config";
 import { Montserrat } from "next/font/google";
 import Head from "next/head";
 import { useSearchParams, usePathname } from "next/navigation";
@@ -23,7 +23,7 @@ const page = () => {
   const [title, setTitle] = useState();
   const [submenu, setSubmenu] = useState([]);
   const [open_data, setopen_data] = useState([]);
-  const [toggleState, setToggleState] = useState(1);
+  const [toggleState, setToggleState] = useState(2);
   const [tab2, setTab2] = useState([]);
 
   const toggleTab = (toggleState) => {
@@ -87,7 +87,7 @@ const page = () => {
                     ? "tabs active-tabs mr-[20px] "
                     : "tabs text-[#8F8F8F]"
                 }
-                onClick={() => toggleTab(1)}
+                onClick={() => router.push("/interactive_service/open_data")}
               >
                 {t("form.interactive-service.open-data")}
               </div>
@@ -97,7 +97,7 @@ const page = () => {
                     ? "tabs active-tabs "
                     : "tabs text-[#8F8F8F]"
                 }
-                onClick={() => router.push("/openData")}
+                onClick={() => toggleTab(2)}
               >
                 {t("form.interactive-service.custom-open-data")}
               </div>
