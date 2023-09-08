@@ -6,6 +6,7 @@ import i18nextConfig from "../../next-i18next.config";
 import { useTranslation } from "next-i18next";
 import { Montserrat } from "next/font/google";
 import Head from "next/head";
+import Image from "next/image";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -32,13 +33,16 @@ const page = ({ leaders, title, submenu, locale }) => {
               <div className="gradientBox mb-[30px]" key={l.id}>
                 <div className="flex flex-col lg:flex-row p-[24px] bg-[#3A2F7D]  hover:bg-[#312E6B]">
                   <div className="basis-1/5 ">
-                    <div className="mr-[24px] w-[full] h-[full]">
-                      <img
-                        className="w-[236px] h-[250px] object-cover object-top"
+                    <div className="mr-[24px] w-[180px] h-[250px] relative">
+                      <Image
+                        quality={100}
+                        className="object-cover object-center"
                         src={l.photo}
                         alt="photo"
-                        width={236}
-                        height={250}
+                        // width={236}
+                        // height={250}
+                        sizes="100vw"
+                        fill
                       />
                     </div>
                   </div>
