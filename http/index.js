@@ -3,7 +3,7 @@ let baseURL;
 if (typeof window === "undefined") {
   baseURL = "http://back.gis.uz";
 } else {
-  baseURL = "http://back.gis.uz";
+  baseURL = "https://back.gis.uz";
 }
 
 let http = axios.create({

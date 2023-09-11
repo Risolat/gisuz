@@ -14,6 +14,7 @@ const montserrat = Montserrat({
 });
 
 const page = ({ leaders, title, submenu, locale }) => {
+  console.log(leaders);
   const { t } = useTranslation("common");
   return (
     <div>
@@ -36,13 +37,14 @@ const page = ({ leaders, title, submenu, locale }) => {
                     <div className="mr-[24px] w-[180px] h-[250px] relative">
                       <Image
                         quality={100}
-                        className="object-cover object-center"
                         src={l.photo}
                         alt="photo"
-                        // width={236}
-                        // height={250}
-                        sizes="100vw"
+                        blurDataURL={l.thumbnail}
                         fill
+                        placeholder="blur"
+                        sizes="100%"
+                        loading="lazy"
+                        className="object-cover object-center"
                       />
                     </div>
                   </div>
@@ -155,7 +157,7 @@ export async function getServerSideProps(context) {
     `/${locale}/api/employee/employeeBySlug/?submenu_slug=/ozkomnazorat/leaders`
   );
   const data = await res.data.results;
-
+  console.log(data);
   const response = await axios.get(`/${locale}/api/menu/`);
   const menuName = ["OZCOM"];
   const menu = response.data.filter((category) =>
