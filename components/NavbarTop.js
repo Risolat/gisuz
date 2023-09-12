@@ -738,7 +738,6 @@ const NavbarTop = () => {
                   onClick={() => {
                     setSelected("O`zb");
                     setOpen(false);
-                    Cookies.set("lang", "O`zb");
                   }}
                   className={
                     locale === "uz"
@@ -756,7 +755,6 @@ const NavbarTop = () => {
                   onClick={() => {
                     setSelected("Ўзб");
                     setOpen(false);
-                    Cookies.set("lang", "Ўзб");
                   }}
                   className={
                     locale === "uzb"
@@ -774,7 +772,6 @@ const NavbarTop = () => {
                   onClick={() => {
                     setSelected("Руc");
                     setOpen(false);
-                    Cookies.set("lang", "Руc");
                   }}
                   className={
                     locale === "ru"
@@ -792,7 +789,6 @@ const NavbarTop = () => {
                   onClick={() => {
                     setSelected("Eng");
                     setOpen(false);
-                    Cookies.set("lang", "Eng");
                   }}
                   className={
                     locale === "en"
