@@ -20,6 +20,8 @@ import { useClickAway } from "@uidotdev/usehooks";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { Roboto } from "next/font/google";
+import Cookies from "js-cookie";
+
 const roboto = Roboto({
   subsets: ["latin"],
   variable: "--font-roboto",
@@ -34,7 +36,7 @@ const NavbarTop = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const [selected, setSelected] = useState();
+  const [selected, setSelected] = useState("");
   const [open, setOpen] = useState(false);
   const [searchopen, setsearchOpen] = useState(false);
   const [search, setsearch] = useState("");
@@ -54,7 +56,7 @@ const NavbarTop = () => {
     { name: "Eng", key: "en" },
     { name: "Ўзб", key: "uzb" },
   ];
-
+  Cookies.set("lang", "O`zb");
   const getMenu = async () => {
     const response = await axios.get(`/${locale}/api/menu/`);
     const data = response.data;
@@ -185,6 +187,9 @@ const NavbarTop = () => {
     }, 2000);
   }
   useEffect(() => {
+    const lang = Cookies.get("lang");
+    console.log(lang);
+    setSelected(lang);
     setSelected(languages.find((n) => n.key === locale).name);
     setresData(resData);
     getMenu();
@@ -733,6 +738,7 @@ const NavbarTop = () => {
                   onClick={() => {
                     setSelected("O`zb");
                     setOpen(false);
+                    Cookies.set("lang", "O`zb");
                   }}
                   className={
                     locale === "uz"
@@ -750,6 +756,7 @@ const NavbarTop = () => {
                   onClick={() => {
                     setSelected("Ўзб");
                     setOpen(false);
+                    Cookies.set("lang", "Ўзб");
                   }}
                   className={
                     locale === "uzb"
@@ -767,6 +774,7 @@ const NavbarTop = () => {
                   onClick={() => {
                     setSelected("Руc");
                     setOpen(false);
+                    Cookies.set("lang", "Руc");
                   }}
                   className={
                     locale === "ru"
@@ -784,6 +792,7 @@ const NavbarTop = () => {
                   onClick={() => {
                     setSelected("Eng");
                     setOpen(false);
+                    Cookies.set("lang", "Eng");
                   }}
                   className={
                     locale === "en"

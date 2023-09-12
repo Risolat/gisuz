@@ -14,6 +14,7 @@ const montserrat = Montserrat({
 
 const page = ({ leaders, title, submenu, locale }) => {
   const { t } = useTranslation("common");
+  console.log(leaders);
   return (
     <div>
       <Head>
