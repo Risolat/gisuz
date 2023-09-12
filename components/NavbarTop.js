@@ -187,9 +187,9 @@ const NavbarTop = () => {
     }, 2000);
   }
   useEffect(() => {
-    const lang = Cookies.get("lang");
-    console.log(lang);
-    setSelected(lang);
+    // const lang = Cookies.get("lang");
+    // console.log(lang);
+    // setSelected(lang);
     setSelected(languages.find((n) => n.key === locale).name);
     setresData(resData);
     getMenu();
