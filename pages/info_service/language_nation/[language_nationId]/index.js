@@ -8,7 +8,15 @@ import { Icon } from "@iconify/react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../../../next-i18next.config";
 import Head from "next/head";
-const wisdomDetail = ({ wisdom, title, submenu, photos, locale, query }) => {
+const wisdomDetail = ({
+  wisdom,
+  view,
+  title,
+  submenu,
+  photos,
+  locale,
+  query,
+}) => {
   return (
     <div>
       <Head>
@@ -35,7 +43,7 @@ const wisdomDetail = ({ wisdom, title, submenu, photos, locale, query }) => {
                 </div>
                 <div className="flex items-center">
                   <Image className="mr-[5px]" src={red_eye} alt="red eye" />
-                  <p className="text-[#A2A0B3]">{wisdom.view_count}</p>
+                  <p className="text-[#A2A0B3]">{view}</p>
                 </div>
               </div>
               <div className="flex items-center">
@@ -120,10 +128,14 @@ export async function getServerSideProps(context) {
   const title = menu.map((d) => {
     return d.title;
   });
+  const view = await axios(
+    `/${locale}/api/information_service/view_count/${query}`
+  );
   return {
     props: {
       ...(await serverSideTranslations(locale, ["common"], i18nextConfig)),
       wisdom: wisdom,
+      view: view.data.num_views,
       photos: res.data.images[0].photo,
       query: context.query.language_nationId,
       title: title,

@@ -9,7 +9,7 @@ import i18nextConfig from "../../../../next-i18next.config";
 import { Icon } from "@iconify/react";
 import Head from "next/head";
 
-const adsDetail = ({ ads, title, submenu, photos, locale, query }) => {
+const adsDetail = ({ ads, view, title, submenu, photos, locale, query }) => {
   return (
     <div>
       <Head>
@@ -32,7 +32,7 @@ const adsDetail = ({ ads, title, submenu, photos, locale, query }) => {
                 </div>
                 <div className="flex items-center">
                   <Image className="mr-[5px]" src={red_eye} alt="red eye" />
-                  <p className="text-[#A2A0B3] font-inter">{ads.view_count}</p>
+                  <p className="text-[#A2A0B3] font-inter">{view}</p>
                 </div>
               </div>
               <div className="flex items-center">
@@ -116,10 +116,9 @@ export async function getServerSideProps(context) {
     menuName.includes(category.name)
   );
   const view = await axios(
-    `/${locale}/api/information_service/view_count/${query.newsId}`
+    `/${locale}/api/information_service/view_count/${query}`
   );
-  console.log(response);
-  setview(response.data.num_views);
+  console.log(view);
 
   const title = menu.map((d) => {
     return d.title;
@@ -128,6 +127,7 @@ export async function getServerSideProps(context) {
     props: {
       ...(await serverSideTranslations(locale, ["common"], i18nextConfig)),
       ads: ads,
+      view: view.data.num_views,
       query: context.query.adsId,
       photos: res.data.images,
       title: title,
