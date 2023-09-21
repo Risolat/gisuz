@@ -35,6 +35,7 @@ const newsDetail = () => {
   const { t } = useTranslation("common");
   const { locale } = useRouter();
   const { query } = useRouter();
+  const [view, setview] = useState("");
 
   const getData = async () => {
     const response = await axios.get(`/${locale}/api/menu/`);
@@ -60,6 +61,13 @@ const newsDetail = () => {
     setnews(news);
     setPhotos(photos);
   };
+  const getViewCount = async () => {
+    const response = await axios(
+      `/${locale}/api/information_service/view_count/${query.newsId}`
+    );
+    console.log(response);
+    setview(response.data.num_views);
+  };
   function gallery(i) {
     photos.map((v, index) => {
       if (i === index) {
@@ -71,6 +79,7 @@ const newsDetail = () => {
   useEffect(() => {
     getData();
     getNews();
+    getViewCount();
   }, []);
   return (
     <div>
@@ -94,7 +103,7 @@ const newsDetail = () => {
                 </div>
                 <div className="flex items-center">
                   <Image className="mr-[5px]" src={red_eye} alt="red eye" />
-                  <p className="text-[#A2A0B3] font-inter">{news.view_count}</p>
+                  <p className="text-[#A2A0B3] font-inter">{view}</p>
                 </div>
               </div>
               <div className="flex items-center">

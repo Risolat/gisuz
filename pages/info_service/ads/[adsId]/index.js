@@ -115,6 +115,12 @@ export async function getServerSideProps(context) {
   const menu = response.data.filter((category) =>
     menuName.includes(category.name)
   );
+  const view = await axios(
+    `/${locale}/api/information_service/view_count/${query.newsId}`
+  );
+  console.log(response);
+  setview(response.data.num_views);
+
   const title = menu.map((d) => {
     return d.title;
   });
