@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import date from "../public/photos/main/date.svg";
 import eye from "../public/photos/main/eye.svg";
-import oktabr from "../public/photos/oktabr.svg";
+import oktabr from "../public/photos/til.jpg";
 import axios from "../http";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
@@ -122,9 +122,9 @@ const News = () => {
       ) : (
         ""
       )}
-      {/* <div className="px-5 mb-[40px]">
+      <div className="px-5 mb-[40px]">
         <Image src={oktabr} alt="oktabr" />
-      </div> */}
+      </div>
     </div>
   );
 };
