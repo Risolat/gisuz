@@ -122,9 +122,9 @@ const News = () => {
       ) : (
         ""
       )}
-      <div className="px-5 mb-[40px]">
+      {/* <div className="px-5 mb-[40px]">
         <Image src={oktabr} alt="oktabr" />
-      </div>
+      </div> */}
     </div>
   );
 };
