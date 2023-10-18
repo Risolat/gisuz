@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import date from "../public/photos/main/date.svg";
 import eye from "../public/photos/main/eye.svg";
+import oktabr from "../public/photos/oktabr.svg";
 import axios from "../http";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
@@ -44,7 +45,7 @@ const News = () => {
           <h2 className="subtitle font-montserrat ml-[30px] 2xl:ml-0">
             {t("main-page.news")}
           </h2>
-          <div className="flex flex-row items-start flex-wrap pb-[150px]">
+          <div className="flex flex-row items-start flex-wrap pb-[100px]">
             <Link
               href={`/${locale}/info_service/news/${mainNews.id}`}
               className="relative w-full mb-[50px] 2xl:basis-9/12 pr-0 sm:pr-[7px]"
@@ -121,6 +122,9 @@ const News = () => {
       ) : (
         ""
       )}
+      <div className="px-5 mb-[40px]">
+        <Image src={oktabr} alt="oktabr" />
+      </div>
     </div>
   );
 };

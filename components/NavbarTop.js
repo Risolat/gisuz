@@ -127,10 +127,39 @@ const NavbarTop = () => {
     const resData = [];
     setresData(resData);
   };
+  async function getUzVoice() {
+    const token = "_Vhu_b30bcxsCetbsaUMYA";
+    const data = new FormData();
+    data.append("token", token);
+    data.append("text", getSelectionText());
+    data.append("speaker_id", "0");
+    const response = await axios.post(
+      `https://api.muxlisa.uz/v1/api/services/tts/`,
+      data
+    );
+    let context = new AudioContext();
+    async function playByteArray(bytes) {
+      const audioBuffer = new Uint8Array(bytes);
+      const blob = new Blob([bytes], {
+        type: "audio/wav",
+      });
+      const url = URL.createObjectURL(blob);
+      // const audio = await context.decodeAudioData(audioBuffer);
+      console.log(url);
+    }
+    function play(audioBuffer) {
+      var source = context.createBufferSource();
+      source.buffer = audioBuffer;
+      source.connect(context.destination);
+      source.start(0);
+    }
+    playByteArray(response.data);
+  }
   function getSelectionText() {
     let text = "";
     if (window.getSelection) {
       text = window.getSelection().toString();
+      console.log(text);
     } else if (document.selection && document.selection.type != "Control") {
       text = document.selection.createRange().text;
     }
@@ -145,11 +174,12 @@ const NavbarTop = () => {
         getVoice(text);
       }
     }
+    getUzVoice();
   }
   function getVoice(text) {
-    console.log(speechSynthesis.getVoices());
+    console.log(speechSynthesis.getVoices(), "qwerty");
     // console.log(speechSynthesis.getVoices());
-
+    console.log(navigator.userAgent);
     const voices = speechSynthesis
       .getVoices()
       .map((voice) => {
@@ -170,11 +200,11 @@ const NavbarTop = () => {
     speakData.rate = 0.7;
     speakData.voice = voices.find((voice) => {
       if (locale === "uz") {
-        return voice.lang.includes("tr");
+        // return voice.lang.includes("tr");
       } else if (locale === "uzb") {
-        return voice.lang.includes("ru");
+        return voice.lang.includes("ru-RU");
       } else if (locale === "ru") {
-        return voice.lang.includes("ru");
+        return voice.lang.includes("ru-RU");
       } else {
         voice.lang.includes("en-GB");
       }
