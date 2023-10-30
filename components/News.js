@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { Roboto } from "next/font/google";
 import dayjs from "dayjs";
+
 const roboto = Roboto({
   subsets: ["latin"],
   variable: "--font-roboto",
@@ -122,9 +123,9 @@ const News = () => {
       ) : (
         ""
       )}
-      <div className="px-5 mb-[40px]">
+      {/* <div className="px-5 mb-[40px]">
         <Image src={oktabr} alt="oktabr" />
-      </div>
+      </div> */}
     </div>
   );
 };
