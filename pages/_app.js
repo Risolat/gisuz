@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import CTRL from "../components/ctrl";
 import Connect from "../components/Connect";
 import ScrollTop from "@/components/ScrollTop";
+import Script from "next/script";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -36,6 +37,13 @@ const App = ({ Component, pageProps }) => {
           content={t("navbar.ozcom-full")}
           key="title"
         />
+        <meta property="og:title" content={t("navbar.ozcom")} key="title" />
+        <meta
+          property="og:title"
+          content="Oʻzkomnazorat Inspeksiyasi"
+          key="title"
+        />
+
         <link
           rel="apple-touch-icon"
           sizes="180x180"
@@ -56,6 +64,19 @@ const App = ({ Component, pageProps }) => {
         <link rel="manifest" href="/site.webmanifest"></link>
         <script src="//code.jivo.ru/widget/PYQoOFHYsy" async></script>
       </Head>
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-HB2K8PGVLV"
+      ></Script>
+      <Script id="google-analytics">
+        {`
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+       
+         gtag('config', 'G-HB2K8PGVLV');
+         `}
+      </Script>
       <Navbar />
       <Connect />
       <CTRL />

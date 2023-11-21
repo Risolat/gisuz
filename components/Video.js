@@ -17,7 +17,7 @@ const Video = () => {
   };
   return (
     <div>
-      <div className=" w-full flex items-center justify-center hidden xl:block">
+      <div className="w-full flex items-center justify-center hidden xl:block">
         <video autoPlay muted loop className="">
           <source src={getVideo()} type="video/mp4" className=" w-full" />
         </video>
