@@ -532,7 +532,7 @@ const NavbarTop = () => {
                 <li className="adress-item pr-[16px] mb-[10px]">
                   <a href="#" className="adress-link flex justify-center">
                     <Image src={location} alt="location" />
-                    <p className="2xl:w-full pl-[5px] text-[#A2A0B3] xl:w-[300px] xl:pl-0">
+                    <address className="2xl:w-full not-italic pl-[5px] text-[#A2A0B3] xl:w-[300px] xl:pl-0">
                       {locale === "uz"
                         ? "100128, Toshkent shahar, Shayxontohur tumani, Labzak ko‘chasi, 136 uy"
                         : locale === "uzb"
@@ -540,7 +540,7 @@ const NavbarTop = () => {
                         : locale === "ru"
                         ? "100128, город Ташкент, Шайхонтохурский район, улица Лабзак, дом 136"
                         : "100128, Tashkent city, Shaykhontokhur district, Labzak street, 136"}
-                    </p>
+                    </address>
                   </a>
                 </li>
                 <li className="adress-item mb-[10px]">
@@ -597,7 +597,7 @@ const NavbarTop = () => {
                   alt="location"
                   className="pr-[5px] 2xl:pr-[5px]"
                 />
-                <span className="2xl:w-full pl-[5px] text-[#A2A0B3] xl:w-[300px] xl:pl-0">
+                <address className="2xl:w-full pl-[5px] not-italic text-[#A2A0B3] xl:w-[300px] xl:pl-0">
                   {locale === "uz"
                     ? "100128, Toshkent shahar, Shayxontohur tumani, Labzak ko‘chasi, 136 uy"
                     : locale === "uzb"
@@ -605,7 +605,7 @@ const NavbarTop = () => {
                     : locale === "ru"
                     ? "100128, город Ташкент, Шайхонтохурский район, улица Лабзак, дом 136"
                     : "100128, Tashkent city, Shaykhontokhur district, Labzak street, 136"}
-                </span>
+                </address>
               </div>
             </li>
             <li className="text-[#A2A0B3] pr-[16px]">|</li>
