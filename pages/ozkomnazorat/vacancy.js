@@ -43,7 +43,7 @@ const page = ({ title, submenu }) => {
                   ? "Вакансиялар"
                   : "Vacancies"}
               </h3>
-              <p>
+              <p className="pb-5">
                 {locale === "uz"
                   ? "Hozirda boʻsh ish oʻrinlari mavjud emas"
                   : locale === "ru"
@@ -52,6 +52,25 @@ const page = ({ title, submenu }) => {
                   ? "Ҳозирда бўш иш ўринлари мавжуд эмас"
                   : "There are currently no open vacancies in the organization"}
               </p>
+              <div className="gradientBox">
+                <div className="bg-color border-[#3A2F7D] border-y-[2px] hover:bg-[#24224E] w-full">
+                  <p className="text-[1.12rem]  py-[16px] px-[8px]">
+                    <Link
+                      href="https://vacancy.argos.uz/vacancies/vacancy-list?organization=17593"
+                      className="text-[#A2A0B3]"
+                      target="_blank"
+                    >
+                      {locale === "uz"
+                        ? "Davlat fuqarolik xizmatchilari vakant lavozimlarining yagona ochiq portali"
+                        : locale === "ru"
+                        ? "Единственный открытый портал вакансий государственных госслужащих"
+                        : locale === "uzb"
+                        ? "Ҳозирда бўш иш ўринлари мавжуд эмас"
+                        : "The only open portal of government civil servants vacancies"}
+                    </Link>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
           <div className="ticky top-[197px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0 py-[8px] bg-[#3A2F7D]">

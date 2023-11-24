@@ -833,7 +833,7 @@ const NavbarTop = () => {
           </div>
           <ul className="flex items-start">
             <li className="pr-[16px]">
-              <Link href="/sitemap">
+              <Link href="/menu">
                 <Image src={menu} alt="menu" className="w-[20px] h-[20px]" />
               </Link>
             </li>

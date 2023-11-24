@@ -37,31 +37,31 @@ const App = ({ Component, pageProps }) => {
           content={t("navbar.ozcom-full")}
           key="title"
         />
-        <meta property="og:title" content={t("navbar.ozcom")} key="title" />
         <meta
           property="og:title"
           content="Oʻzkomnazorat Inspeksiyasi"
           key="title"
         />
-
+        <meta property="og:title" content={t("navbar.ozcom")} key="title" />
         <link
-          rel="apple-touch-icon"
+          rel="canonical"
           sizes="180x180"
           href="/apple-touch-icon.png"
         ></link>
         <link
-          rel="icon"
+          rel="canonical"
           type="image/png"
           sizes="32x32"
           href="/favicon-32x32.png"
         ></link>
         <link
-          rel="icon"
+          rel="canonical"
           type="image/png"
           sizes="16x16"
           href="/favicon-16x16.png"
         ></link>
         <link rel="manifest" href="/site.webmanifest"></link>
+        <link rel="canonical" href="https://www.gis.uz" />
         <script src="//code.jivo.ru/widget/PYQoOFHYsy" async></script>
       </Head>
       <Script
