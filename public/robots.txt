@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.gis.uz
+
+# Sitemaps
+Sitemap: https://www.gis.uz/sitemap.xml
