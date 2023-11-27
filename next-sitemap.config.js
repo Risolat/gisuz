@@ -7,7 +7,7 @@ if (process.env.ENVIRONMENT !== "production") {
 }
 
 module.exports = {
-  siteUrl: process.env.URL,
+  siteUrl: "https://www.gis.uz",
   generateRobotsTxt: true,
   tobotsTxtOptions: {
     policies: [policy],
