@@ -230,11 +230,11 @@ const NavbarTop = () => {
     <div className="relative p-[16px] lg:p-0 xl:border-[#5C587A] xl:border-b-[1px]">
       <div className="flex items-center justify-between xl:hidden border-[#5C587A] border-b-[1px]">
         {isClient ? (
-          <Link href="/" className="relative flex items-center">
+          <Link href="/" className="relative flex items-center p-3">
             <Image
               src={logoGis}
               alt="logo-gis"
-              className="2xl:pr-[16px] pr-[10px] w-[60px] h-[60px] xl:w-[100px] xl:h-[100px]"
+              className="2xl:pr-[16px] pr-1 w-[60px] h-[60px] xl:w-[100px] xl:h-[100px]"
             />
             <Image
               src={logo}
@@ -243,8 +243,8 @@ const NavbarTop = () => {
               height={83}
               className="w-[7px] h-[50px] xl:h-[100px]"
             />
-            <div className="2xl:pl-[16px] pl-[10px]">
-              <h1 className="title-gradient text-[20px] xl:text-[24px] leading-8 font-bold">
+            <div className="2xl:pl-[16px] pl-1">
+              <h1 className="title-gradient text-[16px] xl:text-[24px] leading-5 font-bold">
                 {locale === "uz"
                   ? "O‘ZKOMNAZORAT"
                   : locale === "ru"
@@ -253,7 +253,7 @@ const NavbarTop = () => {
                   ? "ЎЗКОМНАЗОРАТ"
                   : "INSPECTION"}
               </h1>
-              <p className="hidden xl:block max-w-[284px] title-gradient text-[14px] font-normal leading-4">
+              <p className="xl:block max-w-[284px] title-gradient text-[12px] font-normal leading-3">
                 {locale === "uz"
                   ? "Raqamli texnologiyalar vazirligi huzuridagi Axborotlashtirish va telekommunikatsiyalar sohasida nazorat inspeksiyasi"
                   : locale === "ru"
