@@ -47,9 +47,6 @@ const App = ({ Component, pageProps }) => {
         <link type="image/png" sizes="32x32" href="/favicon-32x32.png"></link>
         <link type="image/png" sizes="16x16" href="/favicon-16x16.png"></link>
         <link rel="manifest" href="/site.webmanifest"></link>
-        {/* <link rel="canonical" href="https://www.gis.uz" />
-        <link rel="canonical" href="https://www.technocorp.uz" />
-        <link rel="canonical" href="https://www.digital.uz" /> */}
         <script src="//code.jivo.ru/widget/PYQoOFHYsy" async></script>
       </Head>
       <Script
