@@ -42,6 +42,7 @@ const App = ({ Component, pageProps }) => {
           content="Oʻzkomnazorat Inspeksiyasi"
           key="title"
         />
+        <meta property="og:title" content="gis uz" key="title" />
         <meta property="og:title" content={t("navbar.ozcom")} key="title" />
         <link sizes="180x180" href="/apple-touch-icon.png"></link>
         <link type="image/png" sizes="32x32" href="/favicon-32x32.png"></link>
