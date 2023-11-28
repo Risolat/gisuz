@@ -1,4 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<sitemap><loc>https://www.gis.uz/sitemap-0.xml</loc></sitemap>
-</sitemapindex>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url><loc>https://www.gis.uz</loc><lastmod>2023-11-27T05:39:03.431Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://gis.uz/ozkomnazorat/history</loc></url>
+<url><loc>https://gis.uz/ozkomnazorat/functions</loc></url>
+<url><loc>https://gis.uz/ozkomnazorat/organization_structure</loc></url>
+<url><loc>https://gis.uz/ozkomnazorat/leaders</loc></url>
+<url><loc>https://gis.uz/ozkomnazorat/controls</loc></url>
+<url><loc>https://gis.uz/ozkomnazorat/departments</loc></url>
+<url><loc>https://gis.uz/ozkomnazorat/inspectors</loc></url>
+<url><loc>https://gis.uz/ozkomnazorat/center</loc></url>
+<url><loc>https://gis.uz/ozkomnazorat/vacancy</loc></url>
+<url><loc>https://gis.uz/ozkomnazorat/coordinate</loc></url>
+<url><loc>https://gis.uz/activity/reports</loc></url>
+<url><loc>https://gis.uz/activity/statistics</loc></url>
+<url><loc>https://gis.uz/activity/youth_policy</loc></url>
+<url><loc>https://gis.uz/activity/plans</loc></url>
+<url><loc>https://gis.uz/activity/anticorruption</loc></url>
+<url><loc>https://gis.uz/activity/execution-of-programs</loc></url>
+<url><loc>https://gis.uz/info_service/news?page=1</loc></url>
+<url><loc>https://gis.uz/info_service/ads?page=1</loc></url>
+<url><loc>https://gis.uz/info_service/infographics</loc></url>
+<url><loc>https://gis.uz/info_service/photos</loc></url>
+<url><loc>https://gis.uz/info_service/videos</loc></url>
+<url><loc>https://gis.uz/info_service/seminar_data</loc></url>
+<url><loc>https://gis.uz/info_service/frequently-asked-questions</loc></url>
+<url><loc>https://gis.uz/info_service/wisdom?page=1</loc></url>
+<url><loc>https://gis.uz/info_service/language_nation?page=1</loc></url>
+<url><loc>https://gis.uz/info_service/language_identity?page=1</loc></url>
+<url><loc>https://gis.uz/interactive_service/for_entrepreneur</loc></url>
+<url><loc>https://gis.uz/interactive_service/open_data</loc></url>
+<url><loc>https://gis.uz/interactive_service/survey</loc></url>
+<url><loc>https://gis.uz/connect/hotline</loc></url>
+</urlset>
