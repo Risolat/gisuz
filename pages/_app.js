@@ -47,6 +47,10 @@ const App = ({ Component, pageProps }) => {
           property="og:title"
           content="Oʻzkomnazorat Inspeksiyasining rasmiy vebsayti"
         />
+        <meta
+          name="google-site-verification"
+          content="dWBBDg8dUBa1unpF0_IzpVdnEVZgVfw3cKsxBfppCf0"
+        />
         <meta property="og:title" content={t("navbar.ozcom")} key="title" />
         <link sizes="180x180" href="/apple-touch-icon.png"></link>
         <link type="image/png" sizes="32x32" href="/favicon-32x32.png"></link>
