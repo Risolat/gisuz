@@ -16,6 +16,26 @@ const page = ({ execution, title, submenu, locale }) => {
       <Head>
         <title>{execution[0].sub_menu}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content={execution[0].sub_menu} />
+        <meta property="og:title" content={execution[0].sub_menu} key="title" />
+        <meta name="title" content={execution[0].sub_menu} />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://gis.uz/activity/execution-of-programs"
+        />
+        <meta property="og:title" content="Oʻzkomnazorat" />
+        <meta property="og:description" content={execution[0].sub_menu} />
+        <meta
+          property="twitter:url"
+          content="https://gis.uz/activity/execution-of-programs"
+        />
+        <meta
+          property="twitter:title"
+          content={`Oʻzkomnazorat - ${execution[0].sub_menu}`}
+        />
+        <meta property="twitter:description" content={execution[0].sub_menu} />
+        <meta property="og:title" content={execution[0].sub_menu} key="title" />
       </Head>
 
       <div className="container">

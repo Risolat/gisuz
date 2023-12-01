@@ -16,6 +16,23 @@ const page = ({ reports, title, submenu, locale }) => {
       <Head>
         <title>{reports[0].sub_menu}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content={reports[0].sub_menu} />
+        <meta property="og:title" content={reports[0].sub_menu} key="title" />
+        <meta name="title" content={reports[0].sub_menu} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://gis.uz/activity/reports" />
+        <meta property="og:title" content="Oʻzkomnazorat" />
+        <meta property="og:description" content={reports[0].sub_menu} />
+        <meta
+          property="twitter:url"
+          content="https://gis.uz/activity/reports"
+        />
+        <meta
+          property="twitter:title"
+          content={`Oʻzkomnazorat - ${reports[0].sub_menu}`}
+        />
+        <meta property="twitter:description" content={reports[0].sub_menu} />
+        <meta property="og:title" content={reports[0].sub_menu} key="title" />
       </Head>
       <div className="container">
         <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">

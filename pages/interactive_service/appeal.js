@@ -192,6 +192,38 @@ const page = () => {
 
   return (
     <div>
+      <Head>
+        <title>Rasmiy murojaat, so‘rov yuborish</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content="Rasmiy murojaat, so‘rov yuborish" />
+        <meta
+          property="og:title"
+          content="Rasmiy murojaat, so‘rov yuborish"
+          key="title"
+        />
+        <meta name="title" content="Rasmiy murojaat, so‘rov yuborish" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://gis.uz/connect/hotline" />
+        <meta property="og:title" content="Oʻzkomnazorat" />
+        <meta
+          property="og:description"
+          content="Rasmiy murojaat, so‘rov yuborish"
+        />
+        <meta property="twitter:url" content="https://gis.uz/connect/hotline" />
+        <meta
+          property="twitter:title"
+          content="`Oʻzkomnazorat - Rasmiy murojaat, so‘rov yuborish"
+        />
+        <meta
+          property="twitter:description"
+          content="Rasmiy murojaat, so‘rov yuborish"
+        />
+        <meta
+          property="og:title"
+          content="Rasmiy murojaat, so‘rov yuborish"
+          key="title"
+        />
+      </Head>
       <div className="container">
         <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">
           <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px] pr-[20px] px-[20px]">

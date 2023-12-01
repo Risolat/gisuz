@@ -16,6 +16,23 @@ const page = ({ functions, title, submenu, locale }) => {
       <Head>
         <title>{functions.title}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content={functions.title} />
+        <meta property="og:title" content={functions.title} key="title" />
+        <meta name="title" content={functions.title} />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://gis.uz/ozkomnazorat/functions"
+        />
+        <meta property="og:title" content="Oʻzkomnazorat" />
+        <meta property="og:description" content={functions.title} />
+        <meta
+          property="twitter:url"
+          content="https://gis.uz/ozkomnazorat/functions"
+        />
+        <meta property="twitter:title" content="`Oʻzkomnazorat" />
+        <meta property="twitter:description" content={functions.title} />
+        <meta property="og:title" content={functions.title} key="title" />
       </Head>
       <div className="container">
         <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">

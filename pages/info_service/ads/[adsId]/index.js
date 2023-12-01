@@ -15,6 +15,23 @@ const adsDetail = ({ ads, view, title, submenu, photos, locale, query }) => {
       <Head>
         <title>{ads.title}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content={ads.title} />
+        <meta property="og:title" content={ads.title} key="title" />
+        <meta name="title" content={ads.title} />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content={`https://gis.uz/info_service/ads/${query}`}
+        />
+        <meta property="og:title" content="Oʻzkomnazorat" />
+        <meta property="og:description" content={ads.title} />
+        <meta
+          property="twitter:url"
+          content={`https://gis.uz/info_service/ads/${query}`}
+        />
+        <meta property="twitter:title" content={`Oʻzkomnazorat`} />
+        <meta property="twitter:description" content={ads.title} />
+        <meta property="og:title" content={ads.title} key="title" />
       </Head>
       <div className="container">
         <div className="flex flex-row items-start py-[40px]">

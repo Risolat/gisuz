@@ -110,6 +110,34 @@ const page = () => {
       <Head>
         <title>{t("page-titles.connect.feedback")}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content={t("page-titles.connect.feedback")} />
+        <meta
+          property="og:title"
+          content={t("page-titles.connect.feedback")}
+          key="title"
+        />
+        <meta name="title" content={t("page-titles.connect.feedback")} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://gis.uz/connect/network" />
+        <meta property="og:title" content="Oʻzkomnazorat" />
+        <meta
+          property="og:description"
+          content={t("page-titles.connect.feedback")}
+        />
+        <meta property="twitter:url" content="https://gis.uz/connect/network" />
+        <meta
+          property="twitter:title"
+          content={`Oʻzkomnazorat - ${t("page-titles.connect.feedback")}`}
+        />
+        <meta
+          property="twitter:description"
+          content={t("page-titles.connect.feedback")}
+        />
+        <meta
+          property="og:title"
+          content={t("page-titles.connect.feedback")}
+          key="title"
+        />
       </Head>
       <div className={`${montserrat.variable} container font-montserrat`}>
         <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">

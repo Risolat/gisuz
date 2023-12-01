@@ -186,6 +186,36 @@ const page = () => {
       <Head>
         <title>{t("main-page.statistics")}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content={t("main-page.statistics")} />
+        <meta
+          property="og:title"
+          content={t("main-page.statistics")}
+          key="title"
+        />
+        <meta name="title" content={t("main-page.statistics")} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://gis.uz/activity/statistics" />
+        <meta property="og:title" content="Oʻzkomnazorat - Statistika" />
+        <meta property="og:description" content={t("main-page.statistics")} />
+        <meta
+          property="twitter:url"
+          content="https://gis.uz/activity/statistics"
+        />
+        <meta
+          property="twitter:title"
+          content={`Oʻzkomnazorat - ${t(
+            "page-titles.activity.anticorruption"
+          )}`}
+        />
+        <meta
+          property="twitter:description"
+          content={t("main-page.statistics")}
+        />
+        <meta
+          property="og:title"
+          content={t("main-page.statistics")}
+          key="title"
+        />
       </Head>
       <div className="container mr-[30px]">
         <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px] ">

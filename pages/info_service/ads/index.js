@@ -137,6 +137,40 @@ const page = () => {
       <Head>
         <title>{t("page-titles.info-service.ads")}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content={t("page-titles.info-service.ads")} />
+        <meta
+          property="og:title"
+          content={t("page-titles.info-service.ads")}
+          key="title"
+        />
+        <meta name="title" content={t("page-titles.info-service.ads")} />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://gis.uz/info_service/ads?page=1"
+        />
+        <meta property="og:title" content="Oʻzkomnazorat" />
+        <meta
+          property="og:description"
+          content={t("page-titles.info-service.ads")}
+        />
+        <meta
+          property="twitter:url"
+          content="https://gis.uz/info_service/ads?page=1"
+        />
+        <meta
+          property="twitter:title"
+          content={`Oʻzkomnazorat - ${t("page-titles.info-service.ads")}`}
+        />
+        <meta
+          property="twitter:description"
+          content={t("page-titles.info-service.ads")}
+        />
+        <meta
+          property="og:title"
+          content={t("page-titles.info-service.ads")}
+          key="title"
+        />
       </Head>
       <div className={`${montserrat.variable} container font-montserrat`}>
         <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">

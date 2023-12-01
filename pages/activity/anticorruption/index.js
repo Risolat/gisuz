@@ -55,6 +55,45 @@ const page = () => {
       <Head>
         <title>{t("page-titles.activity.anticorruption")}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta
+          name="description"
+          content={t("page-titles.activity.anticorruption")}
+        />
+        <meta
+          property="og:title"
+          content={t("page-titles.activity.anticorruption")}
+          key="title"
+        />
+        <meta name="title" content={t("page-titles.activity.anticorruption")} />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://gis.uz/activity/anticorruption"
+        />
+        <meta property="og:title" content="Oʻzkomnazorat" />
+        <meta
+          property="og:description"
+          content={t("page-titles.activity.anticorruption")}
+        />
+        <meta
+          property="twitter:url"
+          content="https://gis.uz/activity/anticorruption"
+        />
+        <meta
+          property="twitter:title"
+          content={`Oʻzkomnazorat - ${t(
+            "page-titles.activity.anticorruption"
+          )}`}
+        />
+        <meta
+          property="twitter:description"
+          content={t("page-titles.activity.anticorruption")}
+        />
+        <meta
+          property="og:title"
+          content={t("page-titles.activity.anticorruption")}
+          key="title"
+        />
       </Head>
       <div className="container">
         <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">

@@ -86,6 +86,48 @@ const newsDetail = () => {
       <Head>
         <title>{t("page-titles.info-service.news-archive")}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta
+          name="description"
+          content={t("page-titles.info-service.news-archive")}
+        />
+        <meta
+          property="og:title"
+          content={t("page-titles.info-service.news-archive")}
+          key="title"
+        />
+        <meta
+          name="title"
+          content={t("page-titles.info-service.news-archive")}
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content={`https://gis.uz/info_service/news/${query.newsId}`}
+        />
+        <meta property="og:title" content="Oʻzkomnazorat" />
+        <meta
+          property="og:description"
+          content={t("page-titles.info-service.news-archive")}
+        />
+        <meta
+          property="twitter:url"
+          content={`https://gis.uz/info_service/news/${query.newsId}`}
+        />
+        <meta
+          property="twitter:title"
+          content={`Oʻzkomnazorat - ${t(
+            "page-titles.info-service.news-archive"
+          )}`}
+        />
+        <meta
+          property="twitter:description"
+          content={t("page-titles.info-service.news-archive")}
+        />
+        <meta
+          property="og:title"
+          content={t("page-titles.info-service.news-archive")}
+          key="title"
+        />
       </Head>
       <div className={`${montserrat.variable} container font-montserrat`}>
         <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">
