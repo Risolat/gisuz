@@ -40,17 +40,14 @@ const App = ({ Component, pageProps }) => {
         <meta name="title" content="Oʻzkomnazorat Inspeksiyasi" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://gis.uz/uz/" />
-        <meta property="og:title" content="Oʻzkomnazorat" />
-        <meta
-          property="og:description"
-          content="Oʻzkomnazorat Inspeksiyasining rasmiy vebsayti"
-        />
+        <meta property="og:title" content={t("navbar.ozcom")} />
+        <meta property="og:description" content={t("navbar.metaTag")} />
         <meta
           name="google-site-verification"
           content="dWBBDg8dUBa1unpF0_IzpVdnEVZgVfw3cKsxBfppCf0"
         />
         <meta property="twitter:url" content="https://gis.uz/uz/" />
-        <meta property="twitter:title" content="Oʻzkomnazorat" />
+        <meta property="twitter:title" content={t("navbar.ozcom-short")} />
         <meta property="twitter:description" content={t("navbar.ozcom-full")} />
         <meta property="og:title" content={t("navbar.ozcom")} key="title" />
         <link sizes="180x180" href="/apple-touch-icon.png"></link>
