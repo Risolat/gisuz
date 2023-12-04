@@ -28,7 +28,7 @@ const executionDetail = ({ execution, title, submenu, locale }) => {
                 {execution.title}
               </h3>
               <div
-                className="pr-[40px] desc-html leading-[38px] w-full text-[16px] text-[#A2A0B3] leading-[22px] text-justify font-inter break-words"
+                className="pr-[10px] desc-html leading-[38px] w-full text-[16px] text-[#A2A0B3] leading-[22px] text-justify font-inter break-words"
                 dangerouslySetInnerHTML={{ __html: execution.description }}
               />
               <a

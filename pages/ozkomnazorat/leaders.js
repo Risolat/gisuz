@@ -39,7 +39,7 @@ const page = ({ leaders, title, submenu, locale }) => {
       </Head>
       <div className="container">
         <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">
-          <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px] mr-[30px]">
+          <div className="2xl:basis-3/4 basis-full w-full pl-[30px] mb-[20px] mr-[30px]">
             <h3
               className={`${montserrat.variable} text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]`}
             >
@@ -47,9 +47,9 @@ const page = ({ leaders, title, submenu, locale }) => {
             </h3>
             {leaders.map((l) => (
               <div className="gradientBox mb-[30px]" key={l.id}>
-                <div className="flex flex-col lg:flex-row p-[24px] bg-[#3A2F7D]  hover:bg-[#312E6B]">
-                  <div className="basis-1/5 ">
-                    <div className="mr-[24px] w-[180px] h-[250px] relative">
+                <div className="w-full flex flex-col md:flex-row items-center justify-center md:justify-start xl:items-start p-[24px] bg-[#3A2F7D] hover:bg-[#312E6B]">
+                  <div className="w-full flex justify-center lg:justify-start md:w-[30%] lg:w-[20%] md:mr-5">
+                    <div className="w-[180px] h-[250px] relative">
                       <Image
                         quality={100}
                         src={l.photo}
@@ -63,16 +63,16 @@ const page = ({ leaders, title, submenu, locale }) => {
                       />
                     </div>
                   </div>
-                  <div className="basis-4/5 flex flex-col">
-                    <div className="basis-6/12">
-                      <p className="text-white text-start xl:text-left font-montserrat font-medium text-[1.12em] mb-[8px] mt-[10px]">
+                  <div className="w-full flex flex-col justify-center items-center md:justify-senter md:items-start">
+                    <div className="w-full">
+                      <p className="text-white text-center md:text-left font-montserrat font-medium text-[1.12em] mb-[8px] mt-[10px]">
                         {l.position}
                       </p>
-                      <p className="font-semibold text-start text-[#A2A0B3] xl:text-left font-inter text-[1.25em] h-[90px] max-h-[90px] text-text_secondary">
+                      <p className="font-semibold text-center text-[#A2A0B3] md:text-left font-inter text-[1.25em] h-[60px] xl:h-[110px] text-text_secondary">
                         {l.last_name} {l.first_name} {l.father_name}
                       </p>
                     </div>
-                    <div className="flex flex-col xl:flex-row basis-6/12 border-[#5C587A] border-t-[2px]">
+                    <div className="flex flex-col xl:flex-row w-full border-[#5C587A] border-t-[2px] pt-3 lg:pt-[30px]">
                       <div className="flex items-center mr-[30px] mb-[10px]">
                         <Icon
                           className="text-white mr-[5px]"

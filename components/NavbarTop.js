@@ -284,17 +284,19 @@ const NavbarTop = () => {
                 <Image
                   src={logoGis}
                   alt="logo-gis"
-                  className=":pr-[16px] pr-[10px]"
+                  className="pr-2"
+                  width={70}
+                  height={93}
                 />
                 <Image
                   src={logo}
                   alt="logo"
                   width={7}
-                  height={83}
+                  height={93}
                   className="w-[7px] h-[50px] xl:h-[100px]"
                 />
-                <div className="pl-[16px]">
-                  <h1 className="title-gradient text-[20px] text-[24px] leading-8 font-bold">
+                <div className="pl-2">
+                  <h1 className="title-gradient text-[16px] leading-5 font-bold">
                     {locale === "uz"
                       ? "O‘ZKOMNAZORAT"
                       : locale === "ru"
@@ -303,7 +305,7 @@ const NavbarTop = () => {
                       ? "ЎЗКОМНАЗОРАТ"
                       : "INSPECTION"}
                   </h1>
-                  <p className="max-w-[284px] title-gradient text-[14px] font-normal leading-4">
+                  <p className="max-w-[284px] title-gradient text-[13px] font-normal leading-3">
                     {locale === "uz"
                       ? "Raqamli texnologiyalar vazirligi huzuridagi Axborotlashtirish va telekommunikatsiyalar sohasida nazorat inspeksiyasi"
                       : locale === "ru"
@@ -495,7 +497,7 @@ const NavbarTop = () => {
                 </ul>
               </div>
             </div>
-            <ul className="social-media overflow-scroll h-[50px] flex items-center border-[#5C587A] border-b-[1px]">
+            <ul className="social-media overflow-scroll h-[50px] flex items-center border-[#5C587A] border-b-[1px] pl-2">
               <li className="social-media-item pr-[15px]">
                 <Link
                   href="https://www.facebook.com/uzkomnazorat/"
@@ -530,7 +532,7 @@ const NavbarTop = () => {
             <div className="overflow-scroll h-[800px]">
               <ul className="adress-list flex items-center flex-wrap mb-[10px] pt-[20px] overflow-scroll h-[50px] ">
                 <li className="adress-item pr-[16px] mb-[10px]">
-                  <a href="#" className="adress-link flex justify-center">
+                  <a href="#" className="adress-link flex items-start">
                     <Image src={location} alt="location" />
                     <address className="2xl:w-full not-italic pl-[5px] text-[#A2A0B3] xl:w-[300px] xl:pl-0">
                       {locale === "uz"

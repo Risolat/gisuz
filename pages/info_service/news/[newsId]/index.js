@@ -192,7 +192,7 @@ const newsDetail = () => {
               </Fancybox>
               <div>
                 <p
-                  className="pr-[40px] pt-[20px] desc-html leading-[38px] text-[16px] text-[#A2A0B3] leading-[22px] text-justify font-inter break-words"
+                  className="pt-[20px] desc-html leading-[38px] text-[16px] text-[#A2A0B3] leading-[22px] text-justify font-inter break-words"
                   dangerouslySetInnerHTML={{ __html: news.description }}
                 />
                 <div className="flex item-center"></div>

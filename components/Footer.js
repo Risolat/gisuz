@@ -20,14 +20,14 @@ const Footer = () => {
       className={`${roboto.variable} bottom-0 w-full mt-auto z-1 bg-[#3A2F7D]`}
     >
       <div className="max-w-[1440px] my-0 mx-auto pb-[30px]">
-        <div className="flex justify-center xl:justify-between items-center flex-wrap py-[16px] border-[#A2A0B3] border-b-[1px] mx-[20px] 2xl:mx-0">
-          <div className="flex items-center flex-wrap">
+        <div className="flex justify-center lg:justify-between items-center flex-wrap py-[16px] border-[#A2A0B3] border-b-[1px] mx-[20px] 2xl:mx-0">
+          <div className="flex items-center">
             <Image
               src={footerLogo}
               alt={footerLogo}
               width={40}
               height={40}
-              className="mr-[16px]"
+              className="mr-2 md:mr-[16px]"
             />
             <p className="font-roboto text-white font-bold text-[1.15em] xl:text-[24px]">
               {locale === "uz"
@@ -140,7 +140,7 @@ const Footer = () => {
                 : "Old site version"}
             </Link>
           </div>
-          <div className="basis-2/6 pl-[10px] flex flex-col items-end">
+          <div className="basis-2/6 pl-[10px] pr-3 flex flex-col items-end">
             <p className="pb-[16px] text-right">
               {locale === "uz"
                 ? "Veb-saytdan olingan maʼlumotlar chop etilganda veb-saytga havola qilish majburiy"

@@ -116,7 +116,7 @@ const page = () => {
                   {t("page-titles.activity.anticorruption-text.title-header")}
                 </h4>
                 <p
-                  className="pr-[40px] desc-html leading-[38px] w-full text-[16px] text-[#A2A0B3] leading-[22px] text-justify font-roboto break-words text"
+                  className="pr-[10px] desc-html leading-[38px] w-full text-[16px] text-[#A2A0B3] leading-[22px] text-justify font-roboto break-words"
                   dangerouslySetInnerHTML={{
                     __html:
                       locale === "uz"

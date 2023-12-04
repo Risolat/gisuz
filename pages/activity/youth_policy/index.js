@@ -30,12 +30,7 @@ const page = ({ title, youth, submenu, locale }) => {
           property="twitter:url"
           content="https://gis.uz/activity/youth_policy"
         />
-        <meta
-          property="twitter:title"
-          content={`Oʻzkomnazorat - ${t(
-            "page-titles.activity.anticorruption"
-          )}`}
-        />
+        <meta property="twitter:title" content={`Oʻzkomnazorat`} />
         <meta property="twitter:description" content={youth[0].sub_menu} />
         <meta property="og:title" content={youth[0].sub_menu} key="title" />
       </Head>

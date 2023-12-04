@@ -34,12 +34,12 @@ const adsDetail = ({ ads, view, title, submenu, photos, locale, query }) => {
         <meta property="og:title" content={ads.title} key="title" />
       </Head>
       <div className="container">
-        <div className="flex flex-row items-start py-[40px]">
-          <div className="basis-3/4">
+        <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px] pl-3">
+          <div className="basis-3/4 mr-5">
             <h3 className="text-white mt-[40px] description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]">
               {ads.title}
             </h3>
-            <div className="flex items-center justify-between pb-[20px] pr-[20px] mr-[10px]">
+            <div className="flex items-center justify-between pb-[20px]">
               <div className="flex items-center justify-self-end">
                 <div className="flex items-center mr-[10px]">
                   <Icon icon="fa-solid:calendar-alt" color="#a2a0b3" />
@@ -85,19 +85,19 @@ const adsDetail = ({ ads, view, title, submenu, photos, locale, query }) => {
                   alt="photo"
                   width={1050}
                   height={400}
-                  className="h-[325px] xl:h-[625px] w-[1050px] object-cover"
+                  className="h-[325px] xl:h-[625px] w-[1050px] w-full object-cover"
                 />
               ))}
               <div>
                 <p
-                  className="pr-[40px] desc-html leading-[38px] text-[16px] text-[#A2A0B3] leading-[22px] text-justify font-inter break-words"
+                  className="mb-4 desc-html leading-[38px] text-[16px] text-[#A2A0B3] leading-[22px] text-justify font-inter break-words"
                   dangerouslySetInnerHTML={{ __html: ads.description }}
                 />
                 <div className="flex item-center"></div>
               </div>
             </div>
           </div>
-          <div className="sticky top-[197px] w-[350px] basis-1/4 py-[8px] bg-[#3A2F7D]">
+          <div className="sticky top-[197px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0 py-[8px] bg-[#3A2F7D]">
             <p className="mb-[24px] text-[20px] px-[16px]">{title}</p>
             <ul className="">
               {submenu.map((item) => (
