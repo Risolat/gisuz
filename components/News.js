@@ -22,6 +22,7 @@ const News = () => {
   const [mainNews, setmainNews] = useState([]);
   const [secondaryNewsList, setsecondaryNewsList] = useState([]);
   const [image, setImage] = useState([]);
+  const [banner, setBanner] = useState(null)
   const getNews = async () => {
     const response = await axios.get(
       `/${locale}/api/information_service/newsForHomePage/?submenu_slug=/info_service/news`
@@ -35,8 +36,14 @@ const News = () => {
     const secondaryNewsList = response.data.slice(1);
     setsecondaryNewsList(secondaryNewsList);
   };
+  const getBanner = async () => {
+    const response = await axios.get(`/api/gallery/banner/`);
+    console.log(response)
+    setBanner(response.data.image)
+  }
   useEffect(() => {
     getNews();
+    getBanner()
   }, []);
 
   return (
@@ -123,9 +130,12 @@ const News = () => {
       ) : (
         ""
       )}
-       <div className="px-5 mb-[40px]">
-        <Image src={dekabr} alt="dekabr" />
-      </div>
+      {
+        banner ? <div className=" mb-[40px] w-full">
+          <img unoptimized src={banner} alt="banner" width={1430} height={400} loading="lazy"/>
+        </div> : ""
+      }
+
     </div>
   );
 };
