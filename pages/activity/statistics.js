@@ -179,7 +179,7 @@ const page = () => {
 
   useEffect(() => {
     getData();
-    getBarData();
+    // getBarData();
   }, []);
   return (
     <div>

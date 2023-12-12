@@ -51,12 +51,12 @@ export default function Statistics() {
             <Horizontal className="" />
             <p className="font-medium pt-[10px] text-[16px] leading-6 text-[#A2A0B3] line-clamp-4">
               {locale === "uz"
-                ? "2020-yil may oyi holatiga uyali aloqa operatorlarining tayanch stansiyalari soni"
+                ? "2023-yil noyabr oyi holatiga uyali aloqa operatorlarining tayanch stansiyalari soni"
                 : locale === "ru"
-                ? "Количество базовых станций мобильных операторов май 2020 г."
+                ? "Количество базовых станций мобильных операторов ноябрь 2023 г."
                 : locale === "uzb"
-                ? "2020 йил май ойи ҳолатига уяли алоқа операторларининг таянч станциялари сони"
-                : "Number of base stations of mobile operators May 2020"}
+                ? "2023 йил ноябрь ойи ҳолатига уяли алоқа операторларининг таянч станциялари сони"
+                : "Number of base stations of mobile operators November 2023"}
             </p>
           </div>
           <div className="xl:w-[250px] 2xl:w-[290px] flex flex-col items-center max-w-[280px] sm:max-w-[350px] mb-[10px] bg-[#252356] pt-[33px] pb-[25px] px-[16px] sm:mx-5">

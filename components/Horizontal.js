@@ -30,11 +30,11 @@ export default function Horizontal() {
 
   useEffect(() => {
     setChartData({
-      labels: ["2G", "3G", "4G", "CDMA"],
+      labels: ["CDMA", "2G", "3G", "4G", "5G"],
       datasets: [
         {
           label: "",
-          data: [1300, 1200, 1000, 1188, 1200, 1000, 1188],
+          data: [1236, 24640, 27144, 18664, 229],
           borderColor: "rgb(53, 162, 235)",
           backgroundColor: [
             "#3D8DFF",
@@ -78,11 +78,11 @@ export default function Horizontal() {
       });
       setTimeout(() => {
         setChartData({
-          labels: ["2G", "3G", "4G", "CDMA"],
+          labels: ["CDMA", "2G", "3G", "4G", "5G"],
           datasets: [
             {
               label: "",
-              data: [1300, 1200, 1000, 1188, 1200, 1000, 1188],
+              data: [1236, 24640, 27144, 18664, 229,],
               borderColor: "rgb(53, 162, 235)",
               backgroundColor: [
                 "#3D8DFF",

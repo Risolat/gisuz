@@ -52,6 +52,7 @@ const page = () => {
     const departments = response.data.results.map((d) => {
       return { ...d, modal: false };
     });
+    // console.log(departments)
     setdepartments(departments);
   };
   const changeActive = (i) => {
@@ -102,6 +103,7 @@ const page = () => {
     );
     const departments = response.data.results;
     setdepartments(departments);
+
     window.scrollTo(0, 0);
   };
   const nextPage = async () => {
@@ -122,6 +124,7 @@ const page = () => {
     setCurrentPage(currentPage);
     const departments = response.data.results;
     setdepartments(departments);
+    // console.log(departments)
     window.scrollTo(0, 0);
   };
   useEffect(() => {

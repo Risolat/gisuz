@@ -63,23 +63,28 @@ export const data = {
   datasets: [
     {
       label: "CDMA",
-      data: ["1947"],
+      data: ["1236"],
       backgroundColor: "rgb(73,147,255)",
     },
     {
       label: "4G",
-      data: ["5584"],
+      data: ["18664"],
       backgroundColor: "rgb(124,255,178)",
     },
     {
       label: "3G",
-      data: ["1028"],
+      data: ["27144"],
       backgroundColor: "rgb(253,221,96)",
     },
     {
       label: "2G",
-      data: ["16745"],
+      data: ["24640"],
       backgroundColor: "rgb(255,110,118)",
+    },
+    {
+      label: "5G",
+      data: ["229"],
+      backgroundColor: "rgb(255,110,60)",
     },
   ],
 };
@@ -90,25 +95,25 @@ const page = () => {
 
   const getBarData = async () => {
     const response = await axios.get(
-      `/${locale}/api/statistics/?type=horizontal-bar`
+      `/${locale}/api//?type=horizontal-bar`
     );
     const name = response.data[0].name;
     setname(name);
   };
 
   useEffect(() => {
-    getBarData();
+    // getBarData();
   }, []);
   return (
     <div className="mb-[50px] mr-[50px]">
       <h1 className="text-[1.35em] xl:text-[2em] text-[#A2A0B3] py-[10px] max-w-[1000px]">
         {locale === "uz"
-          ? "2020-yil may oyi holatiga uyali aloqa operatorlarining tayanch stansiyalari soni"
+          ? "2023-yil noyabr oyi holatiga uyali aloqa operatorlarining tayanch stansiyalari soni"
           : locale === "ru"
-          ? "Количество базовых станций мобильных операторов май 2020 г."
+          ? "Количество базовых станций мобильных операторов ноябрь 2023 г."
           : locale === "uzb"
-          ? "2020 йил май ойи ҳолатига уяли алоқа операторларининг таянч станциялари сони"
-          : "Number of base stations of mobile operators May 2020"}
+          ? "2023 йил ноябрь ойи ҳолатига уяли алоқа операторларининг таянч станциялари сони"
+          : "Number of base stations of mobile operators November 2023"}
       </h1>
       <Bar options={options} data={data} className="w-full" />
     </div>
