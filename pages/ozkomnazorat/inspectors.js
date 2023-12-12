@@ -54,6 +54,7 @@ const page = () => {
     );
     const count = response.data.count;
     setCount(count);
+    console.log(response)
     const inspectors = response.data.results;
     setinspectors(inspectors);
   };

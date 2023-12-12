@@ -23,7 +23,7 @@ const page = () => {
   const [count, setCount] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(4);
-  const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(4);
+  const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
   const { t } = useTranslation("index");
   const { locale } = useRouter();
@@ -52,7 +52,8 @@ const page = () => {
     const departments = response.data.results.map((d) => {
       return { ...d, modal: false };
     });
-    // console.log(departments)
+    console.log(departments)
+    console.log(response)
     setdepartments(departments);
   };
   const changeActive = (i) => {
@@ -124,7 +125,7 @@ const page = () => {
     setCurrentPage(currentPage);
     const departments = response.data.results;
     setdepartments(departments);
-    // console.log(departments)
+    console.log(departments)
     window.scrollTo(0, 0);
   };
   useEffect(() => {
