@@ -43,7 +43,7 @@ const page = ({ title, submenu }) => {
                   ? "Вакансиялар"
                   : "Vacancies"}
               </h3>
-              <p className="pb-5">
+              {/* <p className="pb-5">
                 {locale === "uz"
                   ? "Hozirda boʻsh ish oʻrinlari mavjud emas"
                   : locale === "ru"
@@ -51,7 +51,7 @@ const page = ({ title, submenu }) => {
                   : locale === "uzb"
                   ? "Ҳозирда бўш иш ўринлари мавжуд эмас"
                   : "There are currently no open vacancies in the organization"}
-              </p>
+              </p> */}
               <div className="gradientBox">
                 <div className="bg-color border-[#3A2F7D] border-y-[2px] hover:bg-[#24224E] w-full">
                   <p className="text-[1.12rem]  py-[16px] px-[8px]">

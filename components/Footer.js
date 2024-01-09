@@ -1,11 +1,13 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
+
 import Image from "next/image";
 import Link from "next/link";
 import footerLogo from "../public/photos/icons/footerLogo.jpg";
 import { useTranslation } from "next-i18next";
 import footerImg from "../public/photos/icons/footer-img.png";
 import { Roboto } from "next/font/google";
+import Subscription from "./Subscription.js";
 const roboto = Roboto({
   subsets: ["latin"],
   variable: "--font-roboto",
@@ -15,6 +17,7 @@ const roboto = Roboto({
 const Footer = () => {
   const { t } = useTranslation("common");
   const { locale } = useRouter();
+
   return (
     <div
       className={`${roboto.variable} bottom-0 w-full mt-auto z-1 bg-[#3A2F7D]`}
@@ -40,30 +43,7 @@ const Footer = () => {
             </p>
           </div>
           <div className="font-roboto font-normal flex items-center justify-center flex-wrap text-[14px]">
-            <form action="#">
-              <input
-                className="outline-none bg-transparent mr-[2px] w-[240px] xl:w-[300px] placeholder:text-[0.89em] text-[1em] px-[12px] text-white focus:ring-offset-1 focus:ring-2 focus:ring-[#1D1A49] border border-[#3C3971] focus:z-[22] placeholder:text-[#A2A0B3] py-[10px]"
-                type="email"
-                placeholder={
-                  locale === "uz"
-                    ? "Sizning elektron pochta manzilingiz"
-                    : locale === "ru"
-                    ? "Ваша электронная почта"
-                    : locale === "uzb"
-                    ? "Сизнинг электрон почта манзилингиз"
-                    : "Your email"
-                }
-              />
-              <button className="px-[16px] py-[10px] mr-[25px] border border-[#3C3971] hover:bg-white hover:text-[#24224E]">
-                {locale === "uz"
-                  ? "Obuna boʻlish"
-                  : locale === "ru"
-                  ? "Подписаться"
-                  : locale === "uzb"
-                  ? "Обуна бўлиш"
-                  : "Subscribe"}
-              </button>
-            </form>
+            <Subscription />
             <Link
               href="/interactive_service/appeal"
               className="px-[21px] py-[10px] hover:text-[#24224E] hover:bg-white text-white border border-white bg-[#171142]"

@@ -500,7 +500,10 @@ const page = () => {
                                 type="file"
                                 className="hidden"
                                 name="file"
-                                onChange={(e) => setValue(e.target.files[0])}
+                                onChange={(e) => {
+                                  setValue(e.target.files[0]);
+                                  console.log(e);
+                                }}
                                 {...register("file", { required: true })}
                               />
                               {/* <span className="error-message">

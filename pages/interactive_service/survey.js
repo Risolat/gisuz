@@ -46,7 +46,6 @@ const page = () => {
     if (response.status === 201) {
       MySwal.fire({
         title: t("modal.thanks-for-participating-survey"),
-        timer: 5500,
         icon: "success",
         color: "#A2A0B3",
         background: "#3A2F7D",
@@ -65,7 +64,6 @@ const page = () => {
     } else {
       MySwal.fire({
         title: t("modal.survey-not-answered"),
-        timer: 5500,
         icon: "error",
         color: "#A2A0B3",
         background: "#3A2F7D",
