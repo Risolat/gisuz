@@ -7,10 +7,10 @@ import Image from "next/image";
 const Video = () => {
   const { locale } = useRouter();
   const localeVideo = {
-    uz: "/photos/main/pink.mp4",
-    uzb: "/photos/main/uzb.mp4",
-    ru: "/photos/main/ru.mp4",
-    en: "/photos/main/eng.mp4",
+    uz: "/photos/main/pink.webm",
+    uzb: "/photos/main/uzb.webm",
+    ru: "/photos/main/ru.webm",
+    en: "/photos/main/eng.webm",
   };
   const getVideo = () => {
     return localeVideo[locale];
