@@ -4,6 +4,7 @@ import Link from "next/link";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../../next-i18next.config";
 import { useEffect } from "react";
+import dayjs from "dayjs";
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
@@ -21,6 +22,7 @@ const page = ({ capital, submenu, title, locale }) => {
               >
                 {capital.title}
               </h3>
+              <p className="pb-3 text-[18px] text-[#A2A0B3]">{dayjs(capital.updated_at).format("DD.MM.YYYY")}</p>
               <div
                 className="pr-[40px] desc-html leading-[38px] w-full text-[16px] text-[#A2A0B3] leading-[22px] text-justify font-inter break-words"
                 dangerouslySetInnerHTML={{ __html: capital.description }}

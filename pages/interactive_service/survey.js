@@ -13,6 +13,7 @@ const MySwal = withReactContent(Swal);
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { Montserrat } from "next/font/google";
+import dayjs from "dayjs";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -143,6 +144,7 @@ const page = () => {
               >
                 {aboutsurvey.title}
               </h3>
+              <p className="pb-4 text-[18px] text-[#A2A0B3]">{dayjs(aboutsurvey.updated_at).format("DD.MM.YYYY")}</p>
               <p className="pr-[40px] desc-html leading-[38px] w-full text-[16px] text-[#A2A0B3] leading-[22px] text-justify font-inter break-words">
                 {aboutsurvey.description}
               </p>

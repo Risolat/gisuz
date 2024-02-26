@@ -11,6 +11,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../next-i18next.config";
 import { Montserrat } from "next/font/google";
 import Head from "next/head";
+import dayjs from "dayjs";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -29,9 +30,10 @@ const page = ({ title, submenu, infographics, locale }) => {
       <div className={`${montserrat.variable} container font-montserrat`}>
         <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">
           <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px]">
-            <h3 className="text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]">
+            <h3 className="text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[30px]">
               {infographics[0].sub_menu}
             </h3>
+            <p className="pb-2 text-[18px] text-[#A2A0B3]">{dayjs(infographics[0].updated_at).format("DD.MM.YYYY")}</p>
             <div className="mr-[20px]">
               <div className="flex items-center justify-center flex-wrap">
                 <LightGallery

@@ -144,8 +144,8 @@ const Slideshow = () => {
                 1450: { items: 4 },
               }}
               controlsStrategy="alternate"
-              autoPlay={true}
-              autoPlayInterval="2000"
+              // autoPlay={true}
+              // autoPlayInterval="2000"
               infinite={true}
             />
           </div>

@@ -24,6 +24,7 @@ const page = () => {
   const [title, setTitle] = useState();
   const [submenu, setSubmenu] = useState([]);
   const [inspectors, setinspectors] = useState([]);
+  const [modal, setModal] = useState(false);
   const [count, setCount] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(4);
@@ -54,10 +55,51 @@ const page = () => {
     );
     const count = response.data.count;
     setCount(count);
-    console.log(response)
-    const inspectors = response.data.results;
+    console.log(response);
+    const inspectors = response.data.results.map((d) => {
+      return { ...d, modal: false };
+    });
     setinspectors(inspectors);
   };
+  const changeActive = (i) => {
+    setinspectors(
+      inspectors.map((dep, ind) => {
+        if (i !== ind) {
+          dep.modal = false;
+        }
+        return dep;
+      })
+    );
+    setinspectors(
+      inspectors.map((dep, ind) => {
+        if (i === ind) {
+          dep.modal = !dep.modal;
+        }
+        return dep;
+      })
+    );
+  };
+  function hideModal(i) {
+    const hide = document.getElementById("modalId");
+    hide.classList.add("hidden");
+    setinspectors(
+      inspectors.map((dep, ind) => {
+        if (i !== ind) {
+          dep.modal = false;
+        }
+        return dep;
+      })
+    );
+    setinspectors(
+      inspectors.map((dep, ind) => {
+        if (i === ind) {
+          dep.modal = !dep.modal;
+        }
+        return dep;
+      })
+    );
+    return hide;
+  }
   const previousPage = async () => {
     if (currentPage !== 1) {
       setCurrentPage(currentPage - 1);
@@ -142,7 +184,7 @@ const page = () => {
             >
               {t("page-titles.ozcom.inspections")}
             </h3>
-            {inspectors.map((l) => (
+            {inspectors.map((l, i) => (
               <div className="gradientBox mb-[30px]" key={l.id}>
                 <div className="flex flex-col lg:flex-row p-[24px] bg-[#3A2F7D]  hover:bg-[#312E6B]">
                   <div className="basis-1/5">
@@ -166,7 +208,10 @@ const page = () => {
                       </p>
                     </div>
                     <div className="border-[#5C587A] border-b-[2px]">
-                      <h3 className="text-white xl:text-left font-montserrat font-medium text-[16px] lg:text-[1.12em] pb-[8px]">
+                      <h3
+                        onClick={() => changeActive(i)}
+                        className="text-white xl:text-left font-montserrat font-medium text-[16px] lg:text-[1.12em] pb-[8px] hover:border-b-[1px] cursor-pointer"
+                      >
                         {l.address}
                       </h3>
                     </div>
@@ -217,6 +262,56 @@ const page = () => {
                               __html: l.working_time,
                             }}
                           />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    id="modalId"
+                    onClick={() => hideModal(i)}
+                    className={`${
+                      l.modal
+                        ? "fixed top-0 bottom-0 left-0 right-0 z-30 w-full h-full bg-[rgba(0,0,0,.4)]"
+                        : "hidden"
+                    }`}
+                  >
+                    <div className="modal fixed top-[5%] left-[-20px] bottom-0 right-0 w-screen h-screen  z-30 ml-[20px]">
+                      <div className="w-screen h-screen ">
+                        <div className="relative w-[1300px] pt-[30px] my-0  mx-auto flex items-start justify-center bg-[#3A2F7D]">
+                          <div className="flex flex-col items-center px-[30px]">
+                            <img
+                              className="w-[200px] h-[222px] md:w-[250px] md:h-[300px] mb-[30px] object-cover object-top"
+                              src={l.photo}
+                              alt="photo"
+                              width={250}
+                              height={300}
+                            />
+                            <h2 className="font-semibold pb-[20px] font-inter text-[.9em] text-[#A2A0B3] md:text-[1.25em] text-center ">
+                              {l.last_name} {l.first_name} {l.father_name}
+                            </h2>
+                            <h3
+                              className={`${montserrat.variable} text-[#3D8DFF] pb-[20px] tracking-wide font-montserrat font-semibold text-[1.12em] text-[1.12em] md:mb-[8px] text-center`}
+                            >
+                              {l.position}
+                            </h3>
+                            <div
+                              className="pb-[30px] desc-html leading-[38px] w-full text-[.8rem] text-[#A2A0B3] leading-[22px] text-justify font-inter break-words overflow-scroll h-[400px]"
+                              dangerouslySetInnerHTML={{
+                                __html: l.description,
+                              }}
+                            />
+                          </div>
+                          <button
+                            className="absolute right-[3%] "
+                            onClick={() => hideModal(i)}
+                          >
+                            <Icon
+                              icon="iconoir:cancel"
+                              width="30"
+                              height="30"
+                              color="white"
+                            />
+                          </button>
                         </div>
                       </div>
                     </div>

@@ -21,6 +21,7 @@ const reportsDetail = ({ title, submenu, images, reports, locale }) => {
   const onInit = () => {
     console.log("lightGallery has been initialized");
   };
+  console.log(reports)
 
   return (
     <div className="mb-[150px]">

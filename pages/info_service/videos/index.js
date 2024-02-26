@@ -10,14 +10,15 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../../next-i18next.config";
 import { Montserrat } from "next/font/google";
 import Head from "next/head";
+import dayjs from "dayjs";
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
 });
 
-const page = ({ videos1, videos2, videos3, title, submenu, locale }) => {
+const page = ({ videos1, videos2, videos3, title, submenu, locale, data }) => {
   const containerRef = useRef(null);
-
+  console.log(data)
   function videoPlay3(index) {
     videos3.map((v, i) => {
       if (index === i) {
@@ -213,6 +214,7 @@ export async function getServerSideProps(context) {
       videos1: res.data.slice(0, 1),
       videos2: res.data.slice(1, 3),
       videos3: res.data.slice(3),
+      data: res.data,
       title: title,
       submenu: menu[0].submenu,
       locale: locale,

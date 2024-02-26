@@ -4,6 +4,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../../next-i18next.config";
 import { Montserrat } from "next/font/google";
 import Head from "next/head";
+import dayjs from "dayjs";
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
@@ -36,6 +37,7 @@ const page = ({ seminar_data, title, submenu, locale }) => {
                         {r.title}
                       </Link>
                     </p>
+                    <p className="flex items-end justify-end p-3 text-[18px] text-[#A2A0B3]">{dayjs(r.updated_at).format("DD.MM.YYYY")}</p>
                   </div>
                 </div>
               ))}

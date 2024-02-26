@@ -12,6 +12,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../../../next-i18next.config";
 import Fancybox from "../../../../components/Fancybox";
 import Head from "next/head";
+import dayjs from "dayjs";
 const photosDetail = ({
   images,
   firstImage,
@@ -19,9 +20,11 @@ const photosDetail = ({
   lastImg,
   title,
   submenu,
-  locale,
+  locale, response,
   query,
+
 }) => {
+  console.log(response)
   const onInit = () => {
     console.log("lightGallery has been initialized");
   };
@@ -59,6 +62,7 @@ const photosDetail = ({
       <div className="container">
         <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">
           <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px] pr-[20px]">
+            <p className="pb-2 text-[18px] text-[#A2A0B3]">{dayjs(response.updated_at).format("DD.MM.YYYY")}</p>
             <div className="mb-[20px]">
               <div>
                 <div className="flex">
@@ -215,6 +219,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       ...(await serverSideTranslations(locale, ["common"], i18nextConfig)),
+      response: res.data,
       firstImage: res.data.images.slice(0, 1),
       middleImg: res.data.images.slice(1, 3),
       lastImg: res.data.images.slice(3),

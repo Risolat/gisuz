@@ -4,6 +4,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../next-i18next.config";
 import { Montserrat } from "next/font/google";
 import Head from "next/head";
+import dayjs from "dayjs";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -11,6 +12,7 @@ const montserrat = Montserrat({
 });
 
 const page = ({ coordinate, title, submenu, locale }) => {
+  console.log(coordinate)
   return (
     <div>
       <Head>
@@ -33,6 +35,7 @@ const page = ({ coordinate, title, submenu, locale }) => {
                     coordinate.length === 0 ? "" : coordinate[0].description,
                 }}
               />
+              <p className="flex items-end py-3 text-[18px] text-[#A2A0B3]">{dayjs(coordinate[0].date).format("DD.MM.YYYY")}</p>
             </div>
           </div>
           <div className="sticky top-[197px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0 py-[8px] bg-[#3A2F7D]">
