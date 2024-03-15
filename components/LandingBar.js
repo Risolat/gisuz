@@ -26,65 +26,86 @@ export default function Horizontal() {
     datasets: [],
   });
   const [chartOptions, setChartOptions] = useState({});
-  const [indicators, setIndicators] = useState([]);
   const { locale } = useRouter();
 
-  // const getData = async () => {
-  //   const response = await axios.get(`/${locale}/api/statistics/?type=bar`);
-  //   console.log(response);
-  //   const indicators = response.data.indicators;
-  //   setIndicators(indicators);
-  // };
   useEffect(() => {
     setChartData({
       labels: [
         locale === "uz"
-          ? "mahalliy telefon tarmogʻi"
+          ? "Mahalliy telefon xizmatlari"
           : locale === "uzb"
-          ? "маҳаллий телефон тармоғи"
+          ? "Маҳаллий телефон хизматлари"
           : locale === "ru"
-          ? "местная телефонная связь"
+          ? "Местные телефонные услуги"
           : "local telephone connection",
         locale === "uz"
           ? "maʼlumotlar uzatish tarmogʻi"
           : locale === "uzb"
-          ? "маълумотлар узатиш тармоғи"
+          ? "Mаълумотлар узатиш тармоғи"
           : locale === "ru"
           ? "услуги передачи данных"
           : "data services",
         locale === "uz"
-          ? "pochta xizmatlari"
+          ? "Mualliflik huquqi"
           : locale === "uzb"
-          ? "почта хизматлари"
+          ? "Муаллифлик ҳуқуқи"
           : locale === "ru"
-          ? "почтовые услуги"
-          : "post services",
+          ? "Авторские права"
+          : "Mualliflik huquqi",
         locale === "uz"
-          ? "mobil aloqa xizmati"
+          ? "Pochta xizmati va matbuot xizmati"
           : locale === "uzb"
-          ? "мобиль алоқа хизмати"
+          ? "Почта хизмати ва матбуот хизмати"
           : locale === "ru"
-          ? "услуги мобильной связи"
-          : "mobile communication services",
+          ? "Почтовая служба и пресс-служба"
+          : "Pochta xizmati va matbuot xizmati",
         locale === "uz"
-          ? "teleradio (KTV efir)"
+          ? "AKT yo‘nalishi bo‘yicha"
           : locale === "uzb"
-          ? "телерадио (КТВ эфир)"
+          ? "АКТ йўналиши бўйича"
           : locale === "ru"
-          ? "телерадио (эфир КТВ)"
-          : "television and radio (KTV broadcast)",
+          ? "В сфере ИКТ"
+          : "AKT yo‘nalishi bo‘yicha",
         locale === "uz"
-          ? "boshqa masalalar"
+          ? "Korrupsiyaga qarshi kurash yo‘nalishi bo‘yicha"
           : locale === "uzb"
-          ? "бошқа масалалар"
+          ? "Коррупцияга қарши кураш йўналиши бўйича"
           : locale === "ru"
-          ? "другие вопросы"
+          ? "По направлению борьбы с коррупцией"
+          : "Korrupsiyaga qarshi kurash yo‘nalishi bo‘yicha",
+        locale === "uz"
+          ? "Mobil aloqa xizmatlar sifati"
+          : locale === "uzb"
+          ? "Мобил алоқа хизматлар сифати"
+          : locale === "ru"
+          ? "Качество услуг мобильной связи"
+          : "Mobil aloqa xizmatlar sifati",
+        locale === "uz"
+          ? "Teleradio aloqa xizmatlari"
+          : locale === "uzb"
+          ? "Телерадио алоқа хизматлари"
+          : locale === "ru"
+          ? "Услуги телерадиосвязи"
+          : "Teleradio aloqa xizmatlari",
+        locale === "uz"
+          ? "Axborot xavfsizligi yo‘nalishi"
+          : locale === "uzb"
+          ? "Ахборот хавфсизлиги йўналиши"
+          : locale === "ru"
+          ? "Направление информационной безопасности"
+          : "Axborot xavfsizligi yo‘nalishi",
+        locale === "uz"
+          ? "Boshqa masalalar"
+          : locale === "uzb"
+          ? "Бошқа масалалар"
+          : locale === "ru"
+          ? "Другие вопросы"
           : "other questions",
       ],
       datasets: [
         {
           label: "",
-          data: [1961, 2855, 3638, 3638, 544, 243],
+          data: [23, 476, 0, 14, 1, 0, 365, 30, 0, 20],
           borderRadius: 6,
           borderColor: "rgb(53, 162, 235)",
           backgroundColor: [
@@ -94,6 +115,8 @@ export default function Horizontal() {
             "#325EB5",
             "#3156A7",
             "#2F4D9A",
+            "#3D8DFF",
+            "#3878DD",
             "#3D8DFF",
             "#3878DD",
           ],
@@ -143,52 +166,80 @@ export default function Horizontal() {
         setChartData({
           labels: [
             locale === "uz"
-              ? "mahalliy telefon tarmogʻi"
+              ? "Mahalliy telefon xizmatlari"
               : locale === "uzb"
-              ? "маҳаллий телефон тармоғи"
+              ? "Маҳаллий телефон хизматлари"
               : locale === "ru"
-              ? "местная телефонная связь"
+              ? "Местные телефонные услуги"
               : "local telephone connection",
             locale === "uz"
               ? "maʼlumotlar uzatish tarmogʻi"
               : locale === "uzb"
-              ? "маълумотлар узатиш тармоғи"
+              ? "Mаълумотлар узатиш тармоғи"
               : locale === "ru"
               ? "услуги передачи данных"
               : "data services",
             locale === "uz"
-              ? "pochta xizmatlari"
+              ? "Mualliflik huquqi"
               : locale === "uzb"
-              ? "почта хизматлари"
+              ? "Муаллифлик ҳуқуқи"
               : locale === "ru"
-              ? "почтовые услуги"
-              : "post services",
+              ? "Авторские права"
+              : "Mualliflik huquqi",
             locale === "uz"
-              ? "mobil aloqa xizmati"
+              ? "Pochta xizmati va matbuot xizmati"
               : locale === "uzb"
-              ? "мобиль алоқа хизмати"
+              ? "Почта хизмати ва матбуот хизмати"
               : locale === "ru"
-              ? "услуги мобильной связи"
-              : "mobile communication services",
+              ? "Почтовая служба и пресс-служба"
+              : "Pochta xizmati va matbuot xizmati",
             locale === "uz"
-              ? "teleradio (KTV efir)"
+              ? "AKT yo‘nalishi bo‘yicha"
               : locale === "uzb"
-              ? "телерадио (КТВ эфир)"
+              ? "АКТ йўналиши бўйича"
               : locale === "ru"
-              ? "телерадио (эфир КТВ)"
-              : "television and radio (KTV broadcast)",
+              ? "В сфере ИКТ"
+              : "AKT yo‘nalishi bo‘yicha",
             locale === "uz"
-              ? "boshqa masalalar"
+              ? "Korrupsiyaga qarshi kurash yo‘nalishi bo‘yicha"
               : locale === "uzb"
-              ? "бошқа масалалар"
+              ? "Коррупцияга қарши кураш йўналиши бўйича"
               : locale === "ru"
-              ? "другие вопросы"
+              ? "По направлению борьбы с коррупцией"
+              : "Korrupsiyaga qarshi kurash yo‘nalishi bo‘yicha",
+            locale === "uz"
+              ? "Mobil aloqa xizmatlar sifati"
+              : locale === "uzb"
+              ? "Мобил алоқа хизматлар сифати"
+              : locale === "ru"
+              ? "Качество услуг мобильной связи"
+              : "Mobil aloqa xizmatlar sifati",
+            locale === "uz"
+              ? "Teleradio aloqa xizmatlari"
+              : locale === "uzb"
+              ? "Телерадио алоқа хизматлари"
+              : locale === "ru"
+              ? "Услуги телерадиосвязи"
+              : "Teleradio aloqa xizmatlari",
+            locale === "uz"
+              ? "Axborot xavfsizligi yo‘nalishi"
+              : locale === "uzb"
+              ? "Ахборот хавфсизлиги йўналиши"
+              : locale === "ru"
+              ? "Направление информационной безопасности"
+              : "Axborot xavfsizligi yo‘nalishi",
+            locale === "uz"
+              ? "Boshqa masalalar"
+              : locale === "uzb"
+              ? "Бошқа масалалар"
+              : locale === "ru"
+              ? "Другие вопросы"
               : "other questions",
           ],
           datasets: [
             {
               label: "",
-              data: [1961, 2855, 3638, 3638, 544, 243],
+              data: [23, 476, 0, 14, 1, 0, 365, 30, 0, 20],
               borderRadius: 6,
               borderColor: "rgb(53, 162, 235)",
               backgroundColor: [
@@ -198,6 +249,8 @@ export default function Horizontal() {
                 "#325EB5",
                 "#3156A7",
                 "#2F4D9A",
+                "#3D8DFF",
+                "#3878DD",
                 "#3D8DFF",
                 "#3878DD",
               ],

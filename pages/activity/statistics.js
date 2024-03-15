@@ -28,6 +28,7 @@ ChartJS.register(
 );
 import { Montserrat } from "next/font/google";
 import Head from "next/head";
+import FirstChart from "@/components/FirstChart";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -38,6 +39,7 @@ export const options = {
   layout: {
     // padding: 10,
   },
+  indexAxis: "y",
   // scales: {
   //   x: {
   //     // <-- axis is not array anymore, unlike before in v2.x: '[{'
@@ -68,99 +70,72 @@ export const options = {
   },
 };
 
-const labels = ["2019"];
+// const labels = ["2019"];
 
 const page = () => {
   const [title, setTitle] = useState();
   const [submenu, setSubmenu] = useState([]);
   const [name1, setname1] = useState("");
-  const [name2, setname2] = useState("");
+  const [indicators, setIndicators] = useState([]);
+  const [indicatorsNum, setIndicatorsNum] = useState([]);
+  const [indicatorSecond, setIndicatorSecond] = useState([]);
+  const [indicatorsNumSecond, setIndicatorsNumSecond] = useState([]);
+
   const { t } = useTranslation("index");
   const { locale } = useRouter();
+  const getBarData = async () => {
+    const response = await axios.get(
+      `/${locale}/api/statistics/?type=horizontal-bar`
+    );
+    const response1 = await axios.get(
+      `/${locale}/api/statistics/?type=horizontal-bar`
+    );
+    const indicatorSecond = response.data[1].indicators.map((item) => {
+      return item.indicator_name;
+    });
+    const indicatorsNumSecond = response.data[1].indicators.map((item) => {
+      return item.indicator_number;
+    });
+    setIndicatorSecond(indicatorSecond);
+    setIndicatorsNumSecond(indicatorsNumSecond);
+    const result = response.data[0].indicators.map((item) => {
+      return item.indicator_name;
+    });
+    const resultNumber = response.data[0].indicators.map((item) => {
+      return item.indicator_number;
+    });
+    setIndicatorsNum(resultNumber);
+    setIndicators(result);
+    console.log(result);
+  };
+  const backgroundColors = [
+    "rgb(73,147,255)",
+    "rgb(255,110,118",
+    "rgb(88,217,249)",
+    "rgb(5,192,145)",
+    "rgb(153, 102, 255)",
+    "rgb(255, 159, 64)",
+    "rgb(254,221,96)",
+  ];
   const data = {
-    labels,
+    labels: indicators,
     datasets: [
       {
-        label:
-          locale === "uz"
-            ? "mahalliy telefon tarmogʻi"
-            : locale === "uzb"
-            ? "маҳаллий телефон тармоғи"
-            : locale === "ru"
-            ? "местная телефонная связь"
-            : "local telephone connection",
-        data: ["1961"],
-        backgroundColor: "rgb(73,147,255)",
-      },
-      {
-        label:
-          locale === "uz"
-            ? "maʼlumotlar uzatish tarmogʻi"
-            : locale === "uzb"
-            ? "маълумотлар узатиш тармоғи"
-            : locale === "ru"
-            ? "услуги передачи данных"
-            : "data services",
-        data: ["2855"],
-        backgroundColor: "rgb(124,255,178)",
-      },
-      {
-        label:
-          locale === "uz"
-            ? "pochta xizmatlari"
-            : locale === "uzb"
-            ? "почта хизматлари"
-            : locale === "ru"
-            ? "почтовые услуги"
-            : "post services",
-        data: ["3638"],
-        backgroundColor: "rgb(253,221,96)",
-      },
-      {
-        label:
-          locale === "uz"
-            ? "mobil aloqa xizmati"
-            : locale === "uzb"
-            ? "мобиль алоқа хизмати"
-            : locale === "ru"
-            ? "услуги мобильной связи"
-            : "mobile communication services",
-        data: ["3638"],
-        backgroundColor: "rgb(255,110,118)",
-      },
-      {
-        label:
-          locale === "uz"
-            ? "teleradio (KTV efir)"
-            : locale === "uzb"
-            ? "телерадио (КТВ эфир)"
-            : locale === "ru"
-            ? "телерадио (эфир КТВ)"
-            : "television and radio (KTV broadcast)",
-        data: ["544"],
-        backgroundColor: "rgb(88,217,249)",
-      },
-      {
-        label:
-          locale === "uz"
-            ? "boshqa masalalar"
-            : locale === "uzb"
-            ? "бошқа масалалар"
-            : locale === "ru"
-            ? "другие вопросы"
-            : "other questions",
-        data: ["243"],
-        backgroundColor: "rgb(5,192,145)",
+        label: "2024",
+        data: indicatorsNum,
+        backgroundColor: [
+          "rgb(73,147,255)",
+          "rgb(255,110,118",
+          "rgb(88,217,249)",
+          "rgb(5,192,145)",
+          "rgb(153, 102, 255)",
+          "rgb(255, 159, 64)",
+          "rgb(254,221,96)",
+        ],
       },
     ],
   };
-  const getBarData = async () => {
-    const response = await axios.get(`/${locale}/api/statistics/?type=bar`);
-    const name1 = response.data[0].name;
-    setname1(name1);
-    const name2 = response.data[1].name;
-    setname2(name2);
-  };
+
   const getData = async () => {
     const response = await axios.get(`/${locale}/api/menu/`);
 
@@ -179,7 +154,7 @@ const page = () => {
 
   useEffect(() => {
     getData();
-    // getBarData();
+    getBarData();
   }, []);
   return (
     <div>
@@ -235,7 +210,12 @@ const page = () => {
                 : "The number of appeals received by the inspection ”Uzkomnazorat”"}
             </h1>
             <Bar options={options} data={data} className="w-full mb-[50px]" />
-            <h1 className="text-[1.35em] xl:text-[2em] text-[#A2A0B3] py-[20px]  mr-[20px]">
+            {/* <FirstChart
+              labels={indicators}
+              data={indicatorsNum}
+              backgroundColors={backgroundColors}
+            /> */}
+            {/* <h1 className="text-[1.35em] xl:text-[2em] text-[#A2A0B3] py-[20px]  mr-[20px]">
               {locale === "uz"
                 ? "Qurilishi tugallangan telekommunikatsiya qurilmalarini davlat tomonidan qabul qilish toʻgʻrisida maʼlumot"
                 : locale === "ru"
@@ -244,9 +224,13 @@ const page = () => {
                 ? "Қурилиши тугалланган телекоммуникация қурилмаларини давлат томонидан қабул қилиш тўғрисида маълумот"
                 : "Information on the state acceptance of completed construction of telecommunications facilities"}
             </h1>
-            <BarChart className="w-full mb-[50px]" />
+            <BarChart className="w-full mb-[50px]" /> */}
             <Draugh className="w-full mb-[50px]" />
-            <HorizonatBarChart className="mr-[20px]" />
+            <HorizonatBarChart
+              className="mr-[20px]"
+              labels={indicatorSecond}
+              indicatorsNumSecond={indicatorsNumSecond}
+            />
           </div>
           <div className="sticky top-[197px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0 py-[8px] bg-[#3A2F7D]">
             <p

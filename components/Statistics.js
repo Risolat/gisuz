@@ -63,12 +63,12 @@ export default function Statistics() {
             <PieChart className="" />
             <p className="font-medium pt-[10px] text-[16px] leading-6 text-[#A2A0B3] line-clamp-4">
               {locale === "uz"
-                ? "Qurilishi tugallangan telekommunikatsiya qurilmalarini davlat tomonidan qabul qilish toʻgʻrisida maʼlumot"
+                ? "2019-yilda mansabdor shaxslarga nisbatan koʻrilgan choralar toʻgʻrisida maʼlumot"
                 : locale === "ru"
-                ? "Информация о государственной приемке законченных строительством объектов телекоммуникации"
+                ? " Информация о принятых мерах по отношению к ответственным лицам в результате изучения и проверок в 2019 году"
                 : locale === "uzb"
-                ? "Қурилиши тугалланган телекоммуникация қурилмаларини давлат томонидан қабул қилиш тўғрисида маълумот"
-                : "Information on the state acceptance of completed construction of telecommunications facilities"}
+                ? "2019 йилда мансабдор шахсларга нисбатан кўрилган чоралар тўғрисида маълумот"
+                : "Information on the measures taken in relation to responsible persons as a result of the study and inspections in 2019"}
             </p>
           </div>
         </div>

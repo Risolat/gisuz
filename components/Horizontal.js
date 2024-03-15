@@ -82,7 +82,7 @@ export default function Horizontal() {
           datasets: [
             {
               label: "",
-              data: [1236, 24640, 27144, 18664, 229,],
+              data: [1236, 24640, 27144, 18664, 229],
               borderColor: "rgb(53, 162, 235)",
               backgroundColor: [
                 "#3D8DFF",

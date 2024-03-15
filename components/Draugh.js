@@ -12,46 +12,58 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const Draugh = () => {
   const { locale } = useRouter();
   const [name, setname] = useState("");
+  const [labels, setLabels] = useState([]);
+  const [dataNumbers, setDataNumbers] = useState([]);
   const getPieData = async () => {
     const response = await axios.get(`/${locale}/api/statistics/?type=pie`);
     const name = response.data[0].name;
     setname(name);
+    console.log(response);
+    const labels = response.data[0].indicators.map((item) => {
+      return item.indicator_name;
+    });
+    setLabels(labels);
+    const dataNumbers = response.data[0].indicators.map((item) => {
+      return item.indicator_number;
+    });
+    setDataNumbers(dataNumbers);
   };
   const data = {
-    labels: [
-      locale === "uz"
-        ? "hayfsan"
-        : locale === "uzb"
-        ? "ҳайфсан"
-        : locale === "ru"
-        ? "выговор"
-        : "rebuke",
-      locale === "uz"
-        ? "jarima"
-        : locale === "uzb"
-        ? "жарима"
-        : locale === "ru"
-        ? "штраф"
-        : "fine",
-      locale === "uz"
-        ? "egallab turgan lavozimidan ozod etildi"
-        : locale === "uzb"
-        ? "эгаллаб турган лавозимидан озод этилди"
-        : locale === "ru"
-        ? "освобождены от занимаемой должности"
-        : "relieved of his post",
-      locale === "uz"
-        ? "maʼmuriy javobgarlikka tortilgan"
-        : locale === "uzb"
-        ? "маъмурий жавобгарликка тортилган"
-        : locale === "ru"
-        ? "привлечены к административной ответственности"
-        : "brought to administrative responsibility",
-    ],
+    labels: labels,
+    // [
+    //   locale === "uz"
+    //     ? "hayfsan"
+    //     : locale === "uzb"
+    //     ? "ҳайфсан"
+    //     : locale === "ru"
+    //     ? "выговор"
+    //     : "rebuke",
+    //   locale === "uz"
+    //     ? "jarima"
+    //     : locale === "uzb"
+    //     ? "жарима"
+    //     : locale === "ru"
+    //     ? "штраф"
+    //     : "fine",
+    //   locale === "uz"
+    //     ? "egallab turgan lavozimidan ozod etildi"
+    //     : locale === "uzb"
+    //     ? "эгаллаб турган лавозимидан озод этилди"
+    //     : locale === "ru"
+    //     ? "освобождены от занимаемой должности"
+    //     : "relieved of his post",
+    //   locale === "uz"
+    //     ? "maʼmuriy javobgarlikka tortilgan"
+    //     : locale === "uzb"
+    //     ? "маъмурий жавобгарликка тортилган"
+    //     : locale === "ru"
+    //     ? "привлечены к административной ответственности"
+    //     : "brought to administrative responsibility",
+    // ],
     datasets: [
       {
         label: "",
-        data: [62, 18, 5, 8],
+        data: dataNumbers,
         backgroundColor: [
           "rgb(73,147,255)",
           "rgb(255,110,118)",

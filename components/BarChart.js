@@ -46,8 +46,12 @@ const Barchart = () => {
   const { t } = useTranslation("index");
   const { locale } = useRouter();
   const getBarData = async () => {
-    const response = await axios.get(`/${locale}/api/statistics/?type=bar`);
+    const response = await axios.get(`/${locale}/api/statistics/?type=pie`);
+    console.log(response);
   };
+  useEffect(() => {
+    getBarData();
+  }, []);
   const data = {
     labels,
     datasets: [

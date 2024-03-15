@@ -22,85 +22,68 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-export const options = {
-  indexAxis: "y",
-  responsive: true,
-  animations: {
-    tension: {
-      duration: 1000,
-      easing: "easeInQuad",
-      from: 1,
-      to: 0,
-      loop: true,
-    },
-  },
-  scales: {
-    x: {
-      stacked: true,
-    },
-    y: {
-      stacked: true,
-    },
-  },
-  plugins: {
-    legend: {
-      position: "top",
-      labels: {
-        color: "#A2A0B3",
-      },
-    },
-    title: {
-      display: false,
-      text: "“Oʻzkomnazorat” inspeksiyasiga kelib tushgan murojaatlar soni",
-    },
-  },
-};
 
-const labels = ["2019"];
-export const data = {
-  labels,
-  hoverOffset: 4,
-  datasets: [
-    {
-      label: "CDMA",
-      data: ["1236"],
-      backgroundColor: "rgb(73,147,255)",
-    },
-    {
-      label: "4G",
-      data: ["18664"],
-      backgroundColor: "rgb(124,255,178)",
-    },
-    {
-      label: "3G",
-      data: ["27144"],
-      backgroundColor: "rgb(253,221,96)",
-    },
-    {
-      label: "2G",
-      data: ["24640"],
-      backgroundColor: "rgb(255,110,118)",
-    },
-    {
-      label: "5G",
-      data: ["229"],
-      backgroundColor: "rgb(255,110,60)",
-    },
-  ],
-};
-
-const page = () => {
+const page = ({ labels, indicatorsNumSecond }) => {
   const { locale } = useRouter();
   const [name, setname] = useState();
 
   const getBarData = async () => {
-    const response = await axios.get(
-      `/${locale}/api//?type=horizontal-bar`
-    );
+    const response = await axios.get(`/${locale}/api//?type=horizontal-bar`);
     const name = response.data[0].name;
     setname(name);
   };
+  const options = {
+    indexAxis: "y",
+    responsive: true,
+    animations: {
+      tension: {
+        duration: 1000,
+        easing: "easeInQuad",
+        from: 1,
+        to: 0,
+        loop: true,
+      },
+    },
+    scales: {
+      x: {
+        stacked: true,
+      },
+      y: {
+        stacked: true,
+      },
+    },
+    plugins: {
+      legend: {
+        position: "top",
+        labels: {
+          color: "#A2A0B3",
+        },
+      },
+      title: {
+        display: false,
+        text: "“Oʻzkomnazorat” inspeksiyasiga kelib tushgan murojaatlar soni",
+      },
+    },
+  };
 
+  // const labels = ["2023"];
+  const data = {
+    labels: labels,
+    hoverOffset: 4,
+    datasets: [
+      {
+        label: "2023",
+        data: indicatorsNumSecond,
+        backgroundColor: [
+          "rgb(73,147,255)",
+          "rgb(124,255,178)",
+          "rgb(253,221,96)",
+          "rgb(255,110,118)",
+          "rgb(255,110,60)",
+        ],
+      },
+    ],
+  };
   useEffect(() => {
     // getBarData();
   }, []);

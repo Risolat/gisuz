@@ -25,35 +25,43 @@ const pieChart = () => {
     setDataPie({
       labels: [
         locale === "uz"
-          ? "qabul qilingan obyektlar"
+          ? "hayfsan"
           : locale === "uzb"
-          ? "қабул қилинган объектлар"
+          ? "ҳайфсан"
           : locale === "ru"
-          ? "принятые объекты"
-          : "accepted objects",
+          ? "выговор"
+          : "rebuke",
         locale === "uz"
-          ? "qabul qilish jarayonidagi obyektlar"
+          ? "jarima"
           : locale === "uzb"
-          ? "қабул қилиш жараёнидаги объектлар"
+          ? "жарима"
           : locale === "ru"
-          ? "объекты, которые в процессе принятия"
-          : "objects that are in the process of being accepted",
+          ? "штраф"
+          : "fine",
         locale === "uz"
-          ? "qabul qilinmagan obyektlar"
+          ? "egallab turgan lavozimidan ozod etildi"
           : locale === "uzb"
-          ? "unaccepted objects"
+          ? "эгаллаб турган лавозимидан озод этилди"
           : locale === "ru"
-          ? "непринятые объекты"
-          : "unaccepted objects",
+          ? "освобождены от занимаемой должности"
+          : "relieved of his post",
+        locale === "uz"
+          ? "maʼmuriy javobgarlikka tortilgan"
+          : locale === "uzb"
+          ? "маъмурий жавобгарликка тортилган"
+          : locale === "ru"
+          ? "привлечены к административной ответственности"
+          : "brought to administrative responsibility",
       ],
       datasets: [
         {
-          data: [12, 10, 5],
-          backgroundColor: ["#3878DD", "#3D8DFF", "#3467C2"],
+          data: [62, 8, 5, 18],
+          backgroundColor: ["#3467C2", "#3878DD", "#3467C2", "#3D8DFF"],
           borderColor: [
             "rgb(59 130 246 / 0.5)",
             "rgb(79 123 193 / 50%)",
             "#3D8DFF",
+            "rgb(59 130 246 / 0.8)",
           ],
           borderWidth: 1,
         },
@@ -72,35 +80,43 @@ const pieChart = () => {
         setDataPie({
           labels: [
             locale === "uz"
-              ? "qabul qilingan obyektlar"
+              ? "hayfsan"
               : locale === "uzb"
-              ? "қабул қилинган объектлар"
+              ? "ҳайфсан"
               : locale === "ru"
-              ? "принятые объекты"
-              : "accepted objects",
+              ? "выговор"
+              : "rebuke",
             locale === "uz"
-              ? "qabul qilish jarayonidagi obyektlar"
+              ? "jarima"
               : locale === "uzb"
-              ? "қабул қилиш жараёнидаги объектлар"
+              ? "жарима"
               : locale === "ru"
-              ? "объекты, которые в процессе принятия"
-              : "objects that are in the process of being accepted",
+              ? "штраф"
+              : "fine",
             locale === "uz"
-              ? "qabul qilinmagan obyektlar"
+              ? "egallab turgan lavozimidan ozod etildi"
               : locale === "uzb"
-              ? "unaccepted objects"
+              ? "эгаллаб турган лавозимидан озод этилди"
               : locale === "ru"
-              ? "непринятые объекты"
-              : "unaccepted objects",
+              ? "освобождены от занимаемой должности"
+              : "relieved of his post",
+            locale === "uz"
+              ? "maʼmuriy javobgarlikka tortilgan"
+              : locale === "uzb"
+              ? "маъмурий жавобгарликка тортилган"
+              : locale === "ru"
+              ? "привлечены к административной ответственности"
+              : "brought to administrative responsibility",
           ],
           datasets: [
             {
-              data: [12, 10, 5],
-              backgroundColor: ["#3D8DFF", "#3467C2", "#3D8DFF"],
+              data: [62, 8, 5, 18],
+              backgroundColor: ["#3467C2", "#3878DD", "#3467C2", "#3D8DFF"],
               borderColor: [
                 "rgb(59 130 246 / 0.5)",
                 "rgb(79 123 193 / 50%)",
                 "#3D8DFF",
+                "rgb(59 130 246 / 0.8)",
               ],
               borderWidth: 1,
             },
