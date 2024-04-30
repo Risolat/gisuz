@@ -1,14 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import location from "../public/photos/icons/location.svg";
-import mail from "../public/photos/mail.svg";
-import facebook from "../public/photos/icons/facebook.svg";
-import instagram from "../public/photos/icons/instagram.svg";
-import telegram from "../public/photos/icons/telegram.svg";
-import youtube from "../public/photos/icons/youtube.svg";
-import eye from "../public/photos/icons/eye.svg";
-import volume from "../public/photos/icons/volume.svg";
-import arrow from "../public/photos/icons/arrow.svg";
 import menu from "../public/photos/icons/menu.svg";
 import Link from "next/link";
 import logoGis from "../public/photos/icons/logo-gis.svg";
@@ -20,7 +11,10 @@ import { useClickAway } from "@uidotdev/usehooks";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { Roboto } from "next/font/google";
-import Cookies from "js-cookie";
+import SocialMedia from "./SocialMedia";
+import ExtraOpp from "./ExtraOpp";
+import Lang from "./Lang";
+import Address from "./Address";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -30,33 +24,20 @@ const roboto = Roboto({
 const NavbarTop = () => {
   const { t } = useTranslation("common");
   const { locale } = useRouter();
-  const router = useRouter();
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const [selected, setSelected] = useState("");
-  const [open, setOpen] = useState(false);
   const [searchopen, setsearchOpen] = useState(false);
   const [search, setsearch] = useState("");
   const [resData, setresData] = useState([]);
   const [searchSubMenu, setSearchSubMenu] = useState([]);
-  const [view, setView] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [data, setData] = useState([]);
   const [subm, setSubMenu] = useState([]);
-  const [size, setSize] = useState(16);
   const [isClient, setIsClient] = useState(false);
 
-  const languages = [
-    { name: "O'zb", key: "uz" },
-    { name: "Руc", key: "ru" },
-    { name: "Eng", key: "en" },
-    { name: "Ўзб", key: "uzb" },
-  ];
-  Cookies.set("lang", "O`zb");
   const getMenu = async () => {
     const response = await axios.get(`/${locale}/api/menu/`);
     const data = response.data;
@@ -84,39 +65,10 @@ const NavbarTop = () => {
     const response = await axios.get(`/${locale}/api/search/?q=${search}`);
     setresData(response.data.results);
   };
-  const ref = useClickAway(() => {
-    setIsOpen(false);
-  });
   const searchRef = useClickAway(() => {
     searchopen(!searchopen);
   });
-  const handleOpenModal = () => {
-    if (isOpen === false) {
-      setIsOpen(true);
-    }
-  };
-  const changeFontSize = (event) => {
-    const range = event.target.valueAsNumber;
-    const html = document.getElementsByTagName("body")[0];
-    const size = (html.style.fontSize = range + "px");
-    setSize(size);
-    return size;
-  };
-  const changeGrayScale = () => {
-    let html = document.querySelector("html");
-    html.style.filter = "grayscale(1)";
-    setIsOpen(!isOpen);
-  };
-  const changeNormal = () => {
-    let html = document.querySelector("html");
-    html.style.filter = "";
-    setIsOpen(!isOpen);
-  };
-  const changeGrayScale1 = () => {
-    let html = document.querySelector("html");
-    html.style.filter = "grayscale(100%) invert(100%)";
-    setIsOpen(!isOpen);
-  };
+
   const closeSearch = () => {
     setsearchOpen(false);
     const resData = [];
@@ -127,100 +79,8 @@ const NavbarTop = () => {
     const resData = [];
     setresData(resData);
   };
-  async function getUzVoice() {
-    const token = "_Vhu_b30bcxsCetbsaUMYA";
-    const data = new FormData();
-    data.append("token", token);
-    data.append("text", getSelectionText());
-    data.append("speaker_id", "0");
-    const response = await axios.post(
-      `https://api.muxlisa.uz/v1/api/services/tts/`,
-      data
-    );
-    let context = new AudioContext();
-    async function playByteArray(bytes) {
-      const audioBuffer = new Uint8Array(bytes);
-      const blob = new Blob([bytes], {
-        type: "audio/wav",
-      });
-      const url = URL.createObjectURL(blob);
-      // const audio = await context.decodeAudioData(audioBuffer);
-      console.log(url);
-    }
-    function play(audioBuffer) {
-      var source = context.createBufferSource();
-      source.buffer = audioBuffer;
-      source.connect(context.destination);
-      source.start(0);
-    }
-    playByteArray(response.data);
-  }
-  function getSelectionText() {
-    let text = "";
-    if (window.getSelection) {
-      text = window.getSelection().toString();
-      console.log(text);
-    } else if (document.selection && document.selection.type != "Control") {
-      text = document.selection.createRange().text;
-    }
-    return text;
-  }
-  function speechBtnClicked() {
-    if (speechSynthesis.speaking) {
-      speechSynthesis.cancel();
-    } else {
-      let text = getSelectionText();
-      if (text) {
-        getVoice(text);
-      }
-    }
-    getUzVoice();
-  }
-  function getVoice(text) {
-    console.log(speechSynthesis.getVoices(), "qwerty");
-    // console.log(speechSynthesis.getVoices());
-    console.log(navigator.userAgent);
-    const voices = speechSynthesis
-      .getVoices()
-      .map((voice) => {
-        if (navigator.userAgent.includes("Chrome")) {
-          return (
-            (voice.name.includes("Google") || voice.lang.includes("tr")) &&
-            voice
-          );
-        } else {
-          return voice;
-        }
-      })
-      .filter((voice) => voice);
-    console.log(voices);
-    let textToSpeak = text;
-    let speakData = new SpeechSynthesisUtterance();
-    speakData.text = textToSpeak;
-    speakData.rate = 0.7;
-    speakData.voice = voices.find((voice) => {
-      if (locale === "uz") {
-        // return voice.lang.includes("tr");
-      } else if (locale === "uzb") {
-        return voice.lang.includes("ru-RU");
-      } else if (locale === "ru") {
-        return voice.lang.includes("ru-RU");
-      } else {
-        voice.lang.includes("en-GB");
-      }
-    });
-    speechSynthesis.speak(speakData);
-    setTimeout(() => {
-      if (!speechSynthesis.speaking) {
-        speechSynthesis.speak(speakData);
-      }
-    }, 2000);
-  }
+
   useEffect(() => {
-    // const lang = Cookies.get("lang");
-    // console.log(lang);
-    // setSelected(lang);
-    setSelected(languages.find((n) => n.key === locale).name);
     setresData(resData);
     getMenu();
     setIsClient(true);
@@ -330,231 +190,13 @@ const NavbarTop = () => {
                   icon="akar-icons:search"
                   className="w-[24px] h-[24px] mr-[5px]"
                 />
-                {/* <Image src={searchBtn} alt="search" /> */}
               </button>
-              <ul className="extra-list flex items-start">
-                <li className="extra-item pr-[15px]">
-                  <a
-                    href="#"
-                    className="relative"
-                    onClick={() => handleOpenModal()}
-                  >
-                    <Image src={eye} alt="eye" />
-                  </a>
-                  {isOpen ? (
-                    <div ref={ref}>
-                      <div className="eye-modal w-[220px] z-20 absolute p-[20px] bg-[#3A2F7D]">
-                        <p className="text-[#8F8F8F] text-[18px]">
-                          {locale === "uz"
-                            ? "Sayt ko'rinishi"
-                            : locale === "ru"
-                            ? "Вид сайта"
-                            : locale === "uzb"
-                            ? "Сайт кўриниши"
-                            : "Site view"}
-                        </p>
-                        <ul className="flex items-center justify-between py-[15px] border-[#5C587A] border-b-[2px]">
-                          <li>
-                            <button
-                              className="py-[10px] px-[17px] text-[18px] bg-[#171142]"
-                              onClick={() => changeNormal()}
-                            >
-                              A
-                            </button>
-                          </li>
-                          <li>
-                            <button
-                              className="py-[10px] px-[17px] text-[18px] bg-[#000]"
-                              onClick={() => changeGrayScale()}
-                            >
-                              A
-                            </button>
-                          </li>
-                          <li>
-                            <button
-                              className="py-[10px] px-[17px] text-[18px] text-[#000] bg-gray-300"
-                              onClick={() => changeGrayScale1()}
-                            >
-                              A
-                            </button>
-                          </li>
-                        </ul>
-                        <p className="my-[10px] text-[18px] text-[#8F8F8F]">
-                          {locale === "uz"
-                            ? "Shrift o'lchami"
-                            : locale === "ru"
-                            ? "Размер шрифта"
-                            : locale === "uzb"
-                            ? "Шрифт ўлчами"
-                            : "Shrift size"}
-                        </p>
-                        <input
-                          id="range"
-                          className="w-full"
-                          type="range"
-                          min="14"
-                          max="20"
-                          step="2"
-                          onChange={(event) => console.log(event)}
-                          onClick={() => changeFontSize()}
-                        />
-                      </div>
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                </li>
-                <li className="extra-item pr-[15px]">
-                  <button onClick={() => speechBtnClicked()}>
-                    <Image src={volume} alt="volume" />
-                  </button>
-                </li>
-                {/* <li className="text-[#A2A0B3] pr-[16px]">|</li> */}
-              </ul>
-              <div className="w-20">
-                <div
-                  onClick={() => setOpen(!open)}
-                  className="w-full  flex justify-center cursor-pointer rounded"
-                >
-                  <p className="text-[16px]">{selected}</p>
-                  <Image src={arrow} alt="arrow" />
-                </div>
-                <ul
-                  className={`${
-                    open
-                      ? "block absolute w-48 h-38 mt-3  pt-1 bg-[#3C3976] cursor-pointer z-10"
-                      : "hidden"
-                  }`}
-                >
-                  <li>
-                    <a
-                      href={`/uz${router.asPath}`}
-                      locale="uz"
-                      onClick={() => {
-                        setSelected("O`zb");
-                        setOpen(false);
-                      }}
-                      className={
-                        locale === "uz"
-                          ? "px-[10px] py-[8px] block text-sm pointer bg-[#171142] hover:text-white"
-                          : "px-[10px] py-[8px] block text-sm pointer bg-[#3C3976] hover:bg-[#171142] hover:text-white"
-                      }
-                    >
-                      O`zbek tili
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href={`/uzb${router.asPath}`}
-                      locale="uzb"
-                      onClick={() => {
-                        setSelected("Ўзб");
-                        setOpen(false);
-                      }}
-                      className={
-                        locale === "uzb"
-                          ? "px-[10px] py-[8px] block text-sm pointer bg-[#171142] hover:text-white"
-                          : "px-[10px] py-[8px] block text-sm pointer bg-[#3C3976] hover:bg-[#171142] hover:text-white"
-                      }
-                    >
-                      Ўзбек тили
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href={`/ru${router.asPath}`}
-                      locale="ru"
-                      onClick={() => {
-                        setSelected("Руc");
-                        setOpen(false);
-                      }}
-                      className={
-                        locale === "ru"
-                          ? "px-[10px] py-[8px] block text-sm pointer bg-[#171142] hover:text-white"
-                          : "px-[10px] py-[8px] block text-sm pointer bg-[#3C3976] hover:bg-[#171142] hover:text-white"
-                      }
-                    >
-                      Русский язык
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href={`/en${router.asPath}`}
-                      locale="en"
-                      onClick={() => {
-                        setSelected("Eng");
-                        setOpen(false);
-                      }}
-                      className={
-                        locale === "en"
-                          ? "px-[10px] py-[8px] block text-sm pointer bg-[#171142] hover:text-white"
-                          : "px-[10px] py-[8px] block text-sm pointer bg-[#3C3976] hover:bg-[#171142] hover:text-white"
-                      }
-                    >
-                      English
-                    </a>
-                  </li>
-                </ul>
-              </div>
+              <ExtraOpp />
+              <Lang />
             </div>
-            <ul className="social-media overflow-scroll h-[50px] flex items-center border-[#5C587A] border-b-[1px] pl-2">
-              <li className="social-media-item pr-[15px]">
-                <Link
-                  href="https://www.facebook.com/uzkomnazorat/"
-                  target="_blank"
-                  title="facebook"
-                >
-                  <Image src={facebook} alt="facebook" />
-                </Link>
-              </li>
-              <li className="social-media-item pr-[15px]">
-                <Link
-                  href="https://www.instagram.com/uzkomnazorat/"
-                  target="_blank"
-                >
-                  <Image src={instagram} alt="instagram" />
-                </Link>
-              </li>
-              <li className="social-media-item pr-[15px]">
-                <Link href="https://t.me/gisuz" target="_blank">
-                  <Image src={telegram} alt="telegram" />
-                </Link>
-              </li>
-              <li className="social-media-item pr-[15px]">
-                <Link
-                  href="https://www.youtube.com/channel/UC3ajfdl_uoWLGR1B-eCELWA"
-                  target="_blank"
-                >
-                  <Image src={youtube} alt="youtube" />
-                </Link>
-              </li>
-            </ul>
+            <SocialMedia />
             <div className="overflow-scroll h-[800px]">
-              <ul className="adress-list flex items-center flex-wrap mb-[10px] pt-[20px] overflow-scroll h-[50px] ">
-                <li className="adress-item pr-[16px] mb-[10px]">
-                  <a href="#" className="adress-link flex items-start">
-                    <Image src={location} alt="location" />
-                    <address className="2xl:w-full not-italic pl-[5px] text-[#A2A0B3] xl:w-[300px] xl:pl-0">
-                      {locale === "uz"
-                        ? "100128, Toshkent shahar, Shayxontohur tumani, Labzak ko‘chasi, 136 uy"
-                        : locale === "uzb"
-                        ? "100128, Тошкент шаҳар, Шайхонтоҳур тумани, Лабзак кўчаси, 136 уй"
-                        : locale === "ru"
-                        ? "100128, город Ташкент, Шайхонтохурский район, улица Лабзак, дом 136"
-                        : "100128, Tashkent city, Shaykhontokhur district, Labzak street, 136"}
-                    </address>
-                  </a>
-                </li>
-                <li className="adress-item mb-[10px]">
-                  <a
-                    href="#"
-                    className="adress-link flex items-center justify-center"
-                  >
-                    <Image src={mail} alt="mail" />
-                    <p className="pl-[5px] text-[#A2A0B3]">info@gis.uz</p>
-                  </a>
-                </li>
-              </ul>
+              <Address />
               <div className="flex justify-between flex-wrap overflow-scroll py-[30px] px-[20px] border-[#5C587A] border-b-[1px] bg-[#171142]">
                 {data.map((d, i) => (
                   <ul key={d.id}>
@@ -591,248 +233,12 @@ const NavbarTop = () => {
       </div>
       <div className="2xl:max-w-[1440px] hidden my-0 mx-auto xl:px-[10px] 2xl:px-[10px] xl:flex 2xl:items-start items-center justify-between pt-[8px] pb-[0]">
         <div className="navbar-left">
-          <ul className="adress-list flex items-center text-[14px]">
-            <li className="adress-item pr-[16px]">
-              <div className="adress-link flex items-center justify-center pb-[5px]">
-                <Image
-                  src={location}
-                  alt="location"
-                  className="pr-[5px] 2xl:pr-[5px]"
-                />
-                <address className="2xl:w-full pl-[5px] not-italic text-[#A2A0B3] xl:w-[300px] xl:pl-0">
-                  {locale === "uz"
-                    ? "100128, Toshkent shahar, Shayxontohur tumani, Labzak ko‘chasi, 136 uy"
-                    : locale === "uzb"
-                    ? "100128, Тошкент шаҳар, Шайхонтоҳур тумани, Лабзак кўчаси, 136 уй"
-                    : locale === "ru"
-                    ? "100128, город Ташкент, Шайхонтохурский район, улица Лабзак, дом 136"
-                    : "100128, Tashkent city, Shaykhontokhur district, Labzak street, 136"}
-                </address>
-              </div>
-            </li>
-            <li className="text-[#A2A0B3] pr-[16px]">|</li>
-            <li className="adress-item">
-              <a
-                href="#"
-                className="adress-link flex items-center justify-center"
-              >
-                <Image src={mail} alt="mail" />
-                <p className="pl-[5px] text-[#A2A0B3]">info@gis.uz</p>
-              </a>
-            </li>
-          </ul>
+          <Address />
         </div>
         <div className="navbar-right flex items-start">
-          <ul className="flex items-center">
-            <li className="social-media-item pr-[15px]">
-              <Link
-                href="https://www.facebook.com/uzkomnazorat/"
-                target="_blank"
-                title="facebook"
-              >
-                <Image src={facebook} alt="facebook" />
-              </Link>
-            </li>
-            <li className="social-media-item pr-[15px]">
-              <Link
-                href="https://www.instagram.com/uzkomnazorat/"
-                target="_blank"
-              >
-                <Image src={instagram} alt="instagram" />
-              </Link>
-            </li>
-            <li className="social-media-item pr-[15px]">
-              <Link href="https://t.me/gisuz" target="_blank">
-                <Image src={telegram} alt="telegram" />
-              </Link>
-            </li>
-            <li className="social-media-item pr-[15px]">
-              <Link
-                href="https://www.youtube.com/channel/UC3ajfdl_uoWLGR1B-eCELWA"
-                target="_blank"
-              >
-                <Image src={youtube} alt="youtube" />
-              </Link>
-            </li>
-            <li className="text-[#A2A0B3] pr-[16px]">|</li>
-          </ul>
-          <ul className="extra-list flex items-start">
-            <li className="extra-item mr-[10px] ">
-              <a
-                href="#"
-                className="relative"
-                onClick={() => handleOpenModal()}
-              >
-                <Image src={eye} alt="eye" width={20} height={20} />
-              </a>
-              {isOpen ? (
-                <div ref={ref}>
-                  <div className="eye-modal w-[220px] z-20 absolute p-[20px] bg-[#3A2F7D]">
-                    <p className="text-[#8F8F8F] text-[18px]">
-                      {locale === "uz"
-                        ? "Sayt ko'rinishi"
-                        : locale === "ru"
-                        ? "Вид сайта"
-                        : locale === "uzb"
-                        ? "Сайт кўриниши"
-                        : "Site view"}
-                    </p>
-                    <ul className="flex items-center justify-between py-[15px] border-[#5C587A] border-b-[2px]">
-                      <li>
-                        <button
-                          className="py-[10px] px-[17px] text-[18px] bg-[#171142]"
-                          onClick={() => changeNormal()}
-                        >
-                          A
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          className="py-[10px] px-[17px] text-[18px] bg-[#000]"
-                          onClick={() => changeGrayScale()}
-                        >
-                          A
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          className="py-[10px] px-[17px] text-[18px] text-[#000] bg-gray-300"
-                          onClick={() => changeGrayScale1()}
-                        >
-                          A
-                        </button>
-                      </li>
-                    </ul>
-                    <p className="my-[10px] text-[18px] text-[#8F8F8F]">
-                      {locale === "uz"
-                        ? "Shrift o'lchami"
-                        : locale === "ru"
-                        ? "Размер шрифта"
-                        : locale === "uzb"
-                        ? "Шрифт ўлчами"
-                        : "Shrift size"}
-                    </p>
-                    <input
-                      id="range"
-                      className="w-full"
-                      type="range"
-                      min="14"
-                      max="20"
-                      step="2"
-                      onChange={(event) => changeFontSize(event)}
-                    />
-                  </div>
-                </div>
-              ) : (
-                ""
-              )}
-            </li>
-            <li className="extra-item mr-[10px]">
-              <button onClick={() => speechBtnClicked()}>
-                <Image src={volume} alt="volume" width={20} height={20} />
-              </button>
-            </li>
-            <li className="text-[#A2A0B3] pr-[16px]">|</li>
-          </ul>
-          <div className="w-20">
-            <div
-              onClick={() => setOpen(!open)}
-              className="w-full  flex justify-center items-center cursor-pointer rounded"
-            >
-              <p className="text-[15px] pr-[5px]">{selected}</p>
-              {open ? (
-                <Icon
-                  icon="ep:arrow-up-bold"
-                  color="white"
-                  width={15}
-                  height={15}
-                />
-              ) : (
-                <Icon
-                  icon="ep:arrow-down-bold"
-                  color="white"
-                  width={15}
-                  height={15}
-                />
-              )}
-            </div>
-            <ul
-              className={`${
-                open
-                  ? "block absolute w-48 h-38 mt-3  pt-1 bg-[#3C3976] cursor-pointer z-10"
-                  : "hidden"
-              }`}
-            >
-              <li>
-                <a
-                  href={`/uz${router.asPath}`}
-                  locale="uz"
-                  onClick={() => {
-                    setSelected("O`zb");
-                    setOpen(false);
-                  }}
-                  className={
-                    locale === "uz"
-                      ? "px-[10px] py-[8px] block text-sm pointer bg-[#171142] hover:text-white"
-                      : "px-[10px] py-[8px] block text-sm pointer bg-[#3C3976] hover:bg-[#171142] hover:text-white"
-                  }
-                >
-                  O`zbek tili
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`/uzb${router.asPath}`}
-                  locale="uzb"
-                  onClick={() => {
-                    setSelected("Ўзб");
-                    setOpen(false);
-                  }}
-                  className={
-                    locale === "uzb"
-                      ? "px-[10px] py-[8px] block text-sm pointer bg-[#171142] hover:text-white"
-                      : "px-[10px] py-[8px] block text-sm pointer bg-[#3C3976] hover:bg-[#171142] hover:text-white"
-                  }
-                >
-                  Ўзбек тили
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`/ru${router.asPath}`}
-                  locale="ru"
-                  onClick={() => {
-                    setSelected("Руc");
-                    setOpen(false);
-                  }}
-                  className={
-                    locale === "ru"
-                      ? "px-[10px] py-[8px] block text-sm pointer bg-[#171142] hover:text-white"
-                      : "px-[10px] py-[8px] block text-sm pointer bg-[#3C3976] hover:bg-[#171142] hover:text-white"
-                  }
-                >
-                  Русский язык
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`/en${router.asPath}`}
-                  locale="en"
-                  onClick={() => {
-                    setSelected("Eng");
-                    setOpen(false);
-                  }}
-                  className={
-                    locale === "en"
-                      ? "px-[10px] py-[8px] block text-sm pointer bg-[#171142] hover:text-white"
-                      : "px-[10px] py-[8px] block text-sm pointer bg-[#3C3976] hover:bg-[#171142] hover:text-white"
-                  }
-                >
-                  English
-                </a>
-              </li>
-            </ul>
-          </div>
+          <SocialMedia />
+          <ExtraOpp />
+          <Lang />
           <ul className="flex items-start">
             <li className="pr-[16px]">
               <Link href="/menu">
@@ -842,7 +248,6 @@ const NavbarTop = () => {
             <li className="pr-[16px]">
               <button onClick={() => setsearchOpen(!searchopen)}>
                 <Icon icon="akar-icons:search" className="w-[24px] h-[24px]" />
-                {/* <Image src={searchBtn} alt="search" /> */}
               </button>
             </li>
           </ul>
