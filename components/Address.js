@@ -8,7 +8,7 @@ const Address = () => {
   const { locale } = useRouter();
   return (
     <div>
-      <ul className="adress-list flex items-start flex-wrap pt-[20px] xl:pt-0 overflow-scroll h-[50px] xl:h-auto xl:text-[14px]">
+      <ul className="adress-list flex items-start flex-wrap pt-[20px] xl:pt-0 overflow-scroll xl:overflow-auto h-[50px] xl:h-auto xl:text-[14px]">
         <li className="adress-item pr-[16px] mb-[10px]">
           <a href="#" className="adress-link flex items-start">
             <Image src={location} alt="location" />

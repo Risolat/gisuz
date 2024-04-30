@@ -9,7 +9,7 @@ import Image from "next/image";
 const SocialMedia = () => {
   return (
     <div>
-      <ul className="social-media overflow-scroll flex items-center border-[#5C587A] border-b-[1px] xl:border-none pl-2">
+      <ul className="social-media overflow-scroll xl:overflow-auto flex items-center border-[#5C587A] border-b-[1px] xl:border-none pl-2">
         <li className="social-media-item pr-[15px]">
           <Link
             href="https://www.facebook.com/uzkomnazorat/"
