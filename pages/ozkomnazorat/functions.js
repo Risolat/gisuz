@@ -4,13 +4,14 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../next-i18next.config";
 import { Montserrat } from "next/font/google";
 import Head from "next/head";
+import Sidebar from "@/components/Sidebar";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
 });
 
-const page = ({ functions, title, submenu, locale }) => {
+const page = ({ functions }) => {
   return (
     <div>
       <Head>
@@ -49,39 +50,7 @@ const page = ({ functions, title, submenu, locale }) => {
               />
             </div>
           </div>
-          <div className="sticky top-[197px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0  py-[8px] bg-[#3A2F7D]">
-            <p
-              className={`${montserrat.variable} font-semibold font-montserrat mb-[24px] text-[1.12rem] px-[16px]`}
-            >
-              {title}
-            </p>
-            <ul className="">
-              {submenu.map((item) => (
-                <li key={item.id} className="bg-[#3A2F7D]">
-                  {item.slug === "/ozkomnazorat/functions" ? (
-                    <div className="gradientBox  bg-[#3A2F7D]">
-                      <Link
-                        className="block py-[10px] px-[16px] mx-[3px] hover:bg-[#24224E] bg-[#171142] text-white"
-                        href={`${item.slug}`}
-                      >
-                        {item.title}
-                      </Link>
-                    </div>
-                  ) : (
-                    <div className="gradientBox bg-[#3A2F7D]">
-                      <Link
-                        className="block py-[10px] px-[16px] hover:bg-[#24224E] hover:text-white bg-[#3A2F7D] text-[#A2A0B3]"
-                        locale={locale}
-                        href={`${item.slug}`}
-                      >
-                        {item.title}
-                      </Link>
-                    </div>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <Sidebar />
         </div>
       </div>
     </div>
@@ -96,21 +65,9 @@ export async function getServerSideProps(context) {
   );
   const data = await res.data[0];
 
-  const response = await axios.get(`/${locale}/api/menu/`);
-  const menuName = ["OZCOM"];
-  const menu = response.data.filter((category) =>
-    menuName.includes(category.name)
-  );
-  const title = menu.map((d) => {
-    return d.title;
-  });
-
   return {
     props: {
       functions: data,
-      title: title,
-      submenu: menu[0].submenu,
-      locale: locale,
       ...(await serverSideTranslations(locale, ["common"], i18nextConfig)),
     },
   };

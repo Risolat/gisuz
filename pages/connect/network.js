@@ -14,6 +14,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../next-i18next.config";
 import { Montserrat } from "next/font/google";
 import Head from "next/head";
+import Sidebar from "@/components/Sidebar";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -56,20 +57,13 @@ const page = () => {
         formData,
         captcha_is_correct: true,
       });
-      console.log(response);
     } else {
       setError("captcha_is_correct", {
         message: "is incorect",
       });
     }
-
-    console.log(response);
   };
-  const [title, setTitle] = useState();
-  const [submenu, setSubmenu] = useState([]);
-  const [network, setnetwork] = useState([]);
   const [randomText, setRandomText] = useState("");
-  const [captcha_is_correct, setcaptcha_is_correct] = useState(false);
   const [testCode, setTestCode] = useState("");
 
   function makeId() {
@@ -84,24 +78,8 @@ const page = () => {
     setTestCode(rText);
     return rText;
   }
-  const getData = async () => {
-    const response = await axios.get(`/${locale}/api/menu/`);
-
-    const menuName = ["NETWORK"];
-
-    const data = response.data.filter((category) =>
-      menuName.includes(category.name)
-    );
-
-    const title = data.map((d) => {
-      return d.title;
-    });
-    setTitle(title);
-    setSubmenu(data[0].submenu);
-  };
 
   useEffect(() => {
-    getData();
     makeId();
   }, []);
 
@@ -139,9 +117,11 @@ const page = () => {
           key="title"
         />
       </Head>
-      <div className={`${montserrat.variable} container font-montserrat`}>
+      <div className={`container`}>
         <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">
-          <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px] px-[20px]">
+          <div
+            className={`${montserrat.variable} font-montserrat 2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px] px-[20px]`}
+          >
             <div className="pb-[50px]">
               <h3
                 className={`${montserrat.variable} text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[40px]`}
@@ -373,40 +353,7 @@ const page = () => {
               </div>
             </div>
           </div>
-          <div className="sticky top-[197px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0 py-[8px] bg-[#3A2F7D]">
-            <p
-              className={`${montserrat.variable} font-semibold font-montserrat mb-[24px] text-[20px] px-[16px]`}
-            >
-              {title}
-            </p>
-            <ul className="font-inter">
-              {submenu.map((item) => (
-                <li key={item.id} className="">
-                  {item.slug === "/connect/network" ? (
-                    <div className="gradientBox">
-                      <Link
-                        locale={locale}
-                        className="block py-[10px] px-[16px] mx-[3px] bg-[#171142] hover:bg-[#24224E]"
-                        href={`${item.slug}`}
-                      >
-                        {item.title}
-                      </Link>
-                    </div>
-                  ) : (
-                    <div className="gradientBox">
-                      <Link
-                        className="block py-[10px] px-[16px] hover:bg-[#24224E]"
-                        locale={locale}
-                        href={`${item.slug}`}
-                      >
-                        {item.title}
-                      </Link>
-                    </div>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <Sidebar />
         </div>
       </div>
     </div>

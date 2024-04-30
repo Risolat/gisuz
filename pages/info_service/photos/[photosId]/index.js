@@ -13,18 +13,16 @@ import i18nextConfig from "../../../../next-i18next.config";
 import Fancybox from "../../../../components/Fancybox";
 import Head from "next/head";
 import dayjs from "dayjs";
+import Sidebar from "@/components/Sidebar";
 const photosDetail = ({
   images,
   firstImage,
   middleImg,
   lastImg,
-  title,
-  submenu,
-  locale, response,
-  query,
-
+  locale,
+  response,
 }) => {
-  console.log(response)
+  console.log(response);
   const onInit = () => {
     console.log("lightGallery has been initialized");
   };
@@ -62,7 +60,9 @@ const photosDetail = ({
       <div className="container">
         <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">
           <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px] pr-[20px]">
-            <p className="pb-2 text-[18px] text-[#A2A0B3]">{dayjs(response.updated_at).format("DD.MM.YYYY")}</p>
+            <p className="pb-2 text-[18px] text-[#A2A0B3]">
+              {dayjs(response.updated_at).format("DD.MM.YYYY")}
+            </p>
             <div className="mb-[20px]">
               <div>
                 <div className="flex">
@@ -178,24 +178,7 @@ const photosDetail = ({
               </div>
             </div>
           </div>
-          <div className="sticky top-[160px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0  py-[8px] bg-[#3A2F7D]">
-            <p className="mb-[24px] text-[20px] px-[16px]">{title}</p>
-            <ul className="">
-              {submenu.map((item) => (
-                <li key={item.id} className="bg-[#3A2F7D]">
-                  <div className="gradientBox bg-[#3A2F7D]">
-                    <Link
-                      className="block py-[10px] px-[16px] hover:bg-[#24224E] hover:text-white bg-[#3A2F7D] text-[#A2A0B3]"
-                      locale={locale}
-                      href={`${item.slug}`}
-                    >
-                      {item.title}
-                    </Link>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <Sidebar />
         </div>
       </div>
     </div>
@@ -206,16 +189,6 @@ export async function getServerSideProps(context) {
   const locale = context.locale;
   const query = context.query.photosId;
   const res = await axios(`/${locale}/api/gallery/photos/${query}`);
-
-  const response = await axios.get(`/${locale}/api/menu/`);
-  const menuName = ["INFORMATION_SERVICE"];
-  const menu = response.data.filter((category) =>
-    menuName.includes(category.name)
-  );
-  const title = menu.map((d) => {
-    return d.title;
-  });
-  console.log(res, "photos");
   return {
     props: {
       ...(await serverSideTranslations(locale, ["common"], i18nextConfig)),
@@ -224,10 +197,6 @@ export async function getServerSideProps(context) {
       middleImg: res.data.images.slice(1, 3),
       lastImg: res.data.images.slice(3),
       images: res.data.images,
-      query: context.query.photosId,
-      title: title,
-      submenu: menu[0].submenu,
-      locale: locale,
     },
   };
 }

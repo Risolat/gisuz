@@ -14,6 +14,7 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { Montserrat } from "next/font/google";
 import dayjs from "dayjs";
+import Sidebar from "@/components/Sidebar";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -88,31 +89,9 @@ const page = () => {
     "Текст",
     "Кнопка переключения и текст",
   ];
-  const [title, setTitle] = useState();
-  const [submenu, setSubmenu] = useState([]);
   const [survey, setsurvey] = useState([]);
   const [aboutsurvey, setaboutsurvey] = useState([]);
   const [form_data, setFormData] = useState({});
-
-  const getData = async () => {
-    const response = await axios.get(`/${locale}/api/menu/`);
-
-    const menuName = ["INTERACTIVE_SERVICES"];
-
-    const data = response.data.filter((category) =>
-      menuName.includes(category.name)
-    );
-    const title = data.map((d) => {
-      return d.title;
-    });
-    setTitle(title);
-    setSubmenu(data[0].submenu);
-  };
-
-  // const setAnswer = (questionId, answerId, answerText) => {
-  //   form_data[questionId] = { text: answerText, id: answerId };
-  //   console.log(form_data);
-  // };
 
   const getsurvey = async () => {
     const response = await axios.get(
@@ -125,7 +104,6 @@ const page = () => {
   };
 
   useEffect(() => {
-    getData();
     getsurvey();
   }, []);
 
@@ -144,7 +122,9 @@ const page = () => {
               >
                 {aboutsurvey.title}
               </h3>
-              <p className="pb-4 text-[18px] text-[#A2A0B3]">{dayjs(aboutsurvey.updated_at).format("DD.MM.YYYY")}</p>
+              <p className="pb-4 text-[18px] text-[#A2A0B3]">
+                {dayjs(aboutsurvey.updated_at).format("DD.MM.YYYY")}
+              </p>
               <p className="pr-[40px] desc-html leading-[38px] w-full text-[16px] text-[#A2A0B3] leading-[22px] text-justify font-inter break-words">
                 {aboutsurvey.description}
               </p>
@@ -350,39 +330,7 @@ const page = () => {
               </form>
             </div>
           </div>
-          <div className="sticky top-[160px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0 py-[8px] bg-[#3A2F7D]">
-            <p
-              className={`${montserrat.variable} font-semibold font-montserrat mb-[24px] text-[1.12rem] px-[16px]`}
-            >
-              {title}
-            </p>
-            <ul className="">
-              {submenu.map((item) => (
-                <li key={item.id} className="bg-[#3A2F7D]">
-                  {item.slug === "/interactive_service/survey" ? (
-                    <div className="gradientBox  bg-[#3A2F7D]">
-                      <Link
-                        className="block py-[10px] px-[16px] mx-[3px] hover:bg-[#24224E] bg-[#171142] text-white"
-                        href={`${item.slug}`}
-                      >
-                        {item.title}
-                      </Link>
-                    </div>
-                  ) : (
-                    <div className="gradientBox bg-[#3A2F7D]">
-                      <Link
-                        className="block py-[10px] px-[16px] hover:bg-[#24224E] hover:text-white bg-[#3A2F7D] text-[#A2A0B3]"
-                        locale={locale}
-                        href={`${item.slug}`}
-                      >
-                        {item.title}
-                      </Link>
-                    </div>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <Sidebar />
         </div>
       </div>
     </div>

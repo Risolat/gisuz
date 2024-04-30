@@ -8,13 +8,14 @@ import i18nextConfig from "../../../next-i18next.config";
 import { Montserrat } from "next/font/google";
 import Head from "next/head";
 import dayjs from "dayjs";
+import Sidebar from "@/components/Sidebar";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
 });
 
-const page = ({ title, submenu, locale, plans }) => {
+const page = ({ plans }) => {
   return (
     <div className="mb-[120px]">
       <Head>
@@ -55,67 +56,15 @@ const page = ({ title, submenu, locale, plans }) => {
                         {r.title}
                       </Link>
                     </p>
-                    <p className="flex items-end justify-end p-3 text-[18px] text-[#A2A0B3]">{dayjs(r.updated_at).format("DD.MM.YYYY")}</p>
+                    <p className="flex items-end justify-end p-3 text-[18px] text-[#A2A0B3]">
+                      {dayjs(r.updated_at).format("DD.MM.YYYY")}
+                    </p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-          <div className="sticky top-[197px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] mt-[80px] 2xl:mx-0 py-[8px] bg-[#3A2F7D]">
-            <p
-              className={`${montserrat.variable} font-semibold font-montserrat mb-[24px] text-[1.12rem] px-[16px]`}
-            >
-              {title}
-            </p>
-            <ul className="">
-              {submenu.map((item) => (
-                <li key={item.id} className="bg-[#3A2F7D]">
-                  {item.slug === "/activity/plans" ? (
-                    <div className="gradientBox  bg-[#3A2F7D]">
-                      <Link
-                        className="block py-[10px] px-[16px] mx-[3px] hover:bg-[#24224E] bg-[#171142] text-white"
-                        href={`${
-                          item.slug === "/activity/strategy" ||
-                          item.slug == null
-                            ? item.link
-                            : item.slug
-                        }`}
-                        target={`${
-                          item.slug === "/activity/strategy" ||
-                          item.slug == null
-                            ? "_blank"
-                            : "_self"
-                        }`}
-                      >
-                        {item.title}
-                      </Link>
-                    </div>
-                  ) : (
-                    <div className="gradientBox bg-[#3A2F7D]">
-                      <Link
-                        className="block py-[10px] px-[16px] hover:bg-[#24224E] hover:text-white bg-[#3A2F7D] text-[#A2A0B3]"
-                        locale={locale}
-                        href={`${
-                          item.slug === "/activity/strategy" ||
-                          item.slug == null
-                            ? item.link
-                            : item.slug
-                        }`}
-                        target={`${
-                          item.slug === "/activity/strategy" ||
-                          item.slug == null
-                            ? "_blank"
-                            : "_self"
-                        }`}
-                      >
-                        {item.title}
-                      </Link>
-                    </div>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <Sidebar />
         </div>
       </div>
     </div>
@@ -129,22 +78,11 @@ export async function getServerSideProps(context) {
     `/${locale}/api/activity/activityPostBySubmenuSlug/?submenu_slug=/activity/plans`
   );
   const data = await res.data.results;
-  const response = await axios.get(`/${locale}/api/menu/`);
-  const menuName = ["ACTIVITY"];
-  const menu = response.data.filter((category) =>
-    menuName.includes(category.name)
-  );
-  const title = menu.map((d) => {
-    return d.title;
-  });
 
   return {
     props: {
       ...(await serverSideTranslations(locale, ["common"], i18nextConfig)),
       plans: data,
-      title: title,
-      submenu: menu[0].submenu,
-      locale: locale,
     },
   };
 }

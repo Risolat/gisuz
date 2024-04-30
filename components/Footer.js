@@ -1,11 +1,9 @@
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
-
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import footerLogo from "../public/photos/icons/footerLogo.jpg";
 import { useTranslation } from "next-i18next";
-import footerImg from "../public/photos/icons/footer-img.png";
 import { Roboto } from "next/font/google";
 import Subscription from "./Subscription.js";
 const roboto = Roboto({

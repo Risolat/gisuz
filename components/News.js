@@ -3,12 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import date from "../public/photos/main/date.svg";
 import eye from "../public/photos/main/eye.svg";
-import dekabr from "../public/photos/dekabr.jpg";
-import axios from "../http";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { Roboto } from "next/font/google";
 import dayjs from "dayjs";
+import { getBanner, getMainNews } from "@/http/api";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -22,11 +21,9 @@ const News = () => {
   const [mainNews, setmainNews] = useState([]);
   const [secondaryNewsList, setsecondaryNewsList] = useState([]);
   const [image, setImage] = useState([]);
-  const [banner, setBanner] = useState(null)
+  const [banner, setBanner] = useState(null);
   const getNews = async () => {
-    const response = await axios.get(
-      `/${locale}/api/information_service/newsForHomePage/?submenu_slug=/info_service/news`
-    );
+    const response = await getMainNews(locale);
     if (response.data.length != 0) {
       const mainNews = response.data[0];
       const image = mainNews.images[0];
@@ -36,14 +33,13 @@ const News = () => {
     const secondaryNewsList = response.data.slice(1);
     setsecondaryNewsList(secondaryNewsList);
   };
-  const getBanner = async () => {
-    const response = await axios.get(`/api/gallery/banner/`);
-    console.log(response)
-    setBanner(response.data.image)
-  }
+  const getAdsBanner = async () => {
+    const data = await getBanner();
+    setBanner(data.image);
+  };
   useEffect(() => {
     getNews();
-    getBanner()
+    getAdsBanner();
   }, []);
 
   return (
@@ -130,12 +126,20 @@ const News = () => {
       ) : (
         ""
       )}
-      {
-        banner ? <div className=" mb-[40px] w-full">
-          <img unoptimized src={banner} alt="banner" width={1430} height={400} loading="lazy"/>
-        </div> : ""
-      }
-
+      {banner ? (
+        <div className=" mb-[40px] w-full">
+          <img
+            unoptimized
+            src={banner}
+            alt="banner"
+            width={1430}
+            height={400}
+            loading="lazy"
+          />
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

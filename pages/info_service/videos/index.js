@@ -1,24 +1,21 @@
 import axios from "../../../http";
-import { useEffect, useState, useRef } from "react";
-import Link from "next/link";
+import { useRef } from "react";
 import Image from "next/image";
 import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
-
 import play from "../../../public/photos/icons/play.svg";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../../next-i18next.config";
 import { Montserrat } from "next/font/google";
 import Head from "next/head";
-import dayjs from "dayjs";
+import Sidebar from "@/components/Sidebar";
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
 });
 
-const page = ({ videos1, videos2, videos3, title, submenu, locale, data }) => {
+const page = ({ videos1, videos2, videos3, submenu, data }) => {
   const containerRef = useRef(null);
-  console.log(data)
   function videoPlay3(index) {
     videos3.map((v, i) => {
       if (index === i) {
@@ -156,39 +153,7 @@ const page = ({ videos1, videos2, videos3, title, submenu, locale, data }) => {
               ))}
             </div>
           </div>
-          <div className="sticky top-[255px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0  py-[8px] bg-[#3A2F7D]">
-            <p
-              className={`${montserrat.variable} font-montserrat font-semibold mb-[24px] text-[20px] px-[16px]`}
-            >
-              {title}
-            </p>
-            <ul className="">
-              {submenu.map((item) => (
-                <li key={item.id} className="bg-[#3A2F7D]">
-                  {item.slug === "/info_service/videos" ? (
-                    <div className="gradientBox  bg-[#3A2F7D]">
-                      <Link
-                        className="block py-[10px] px-[16px] mx-[3px] hover:bg-[#24224E] bg-[#171142] text-white"
-                        href={`${item.slug}`}
-                      >
-                        {item.title}
-                      </Link>
-                    </div>
-                  ) : (
-                    <div className="gradientBox bg-[#3A2F7D]">
-                      <Link
-                        className="block py-[10px] px-[16px] hover:bg-[#24224E] hover:text-white bg-[#3A2F7D] text-[#A2A0B3]"
-                        locale={locale}
-                        href={`${item.slug}`}
-                      >
-                        {item.title}
-                      </Link>
-                    </div>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <Sidebar />
         </div>
       </div>
     </div>
@@ -196,7 +161,6 @@ const page = ({ videos1, videos2, videos3, title, submenu, locale, data }) => {
 };
 
 export async function getServerSideProps(context) {
-  console.log(context, "context");
   const locale = context.locale;
   const res = await axios(`/${locale}/api/gallery/videos/`);
 
@@ -205,9 +169,6 @@ export async function getServerSideProps(context) {
   const menu = response.data.filter((category) =>
     menuName.includes(category.name)
   );
-  const title = menu.map((d) => {
-    return d.title;
-  });
   return {
     props: {
       ...(await serverSideTranslations(locale, ["common"], i18nextConfig)),
@@ -215,9 +176,7 @@ export async function getServerSideProps(context) {
       videos2: res.data.slice(1, 3),
       videos3: res.data.slice(3),
       data: res.data,
-      title: title,
       submenu: menu[0].submenu,
-      locale: locale,
     },
   };
 }

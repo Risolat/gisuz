@@ -9,6 +9,7 @@ import i18nextConfig from "../../next-i18next.config";
 import { Montserrat } from "next/font/google";
 import Head from "next/head";
 import { useSearchParams, usePathname } from "next/navigation";
+import Sidebar from "@/components/Sidebar";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -21,8 +22,6 @@ const page = () => {
   const searchParams = useSearchParams();
   const { t } = useTranslation("index");
   const { locale } = useRouter();
-  const [title, setTitle] = useState();
-  const [submenu, setSubmenu] = useState([]);
   const [laws, setlaws] = useState([]);
   const [count, setCount] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -41,22 +40,6 @@ const page = () => {
     },
     [searchParams]
   );
-
-  const getData = async () => {
-    const response = await axios.get(`/${locale}/api/menu/`);
-
-    const menuName = ["DOCUMENTS"];
-
-    const data = response.data.filter((category) =>
-      menuName.includes(category.name)
-    );
-
-    const title = data.map((d) => {
-      return d.title;
-    });
-    setTitle(title);
-    setSubmenu(data[0].submenu);
-  };
 
   const getlaws = async () => {
     const response = await axios.get(
@@ -125,7 +108,6 @@ const page = () => {
   };
 
   useEffect(() => {
-    getData();
     getlaws();
   }, []);
 
@@ -171,41 +153,7 @@ const page = () => {
               minPageNumberLimit={minPageNumberLimit}
             />
           </div>
-          <div className="sticky top-[160px] mt-[85px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0 py-[8px] bg-[#3A2F7D]">
-            <p
-              className={`${montserrat.variable} font-semibold font-montserrat mb-[24px] text-[1.12rem] px-[16px]`}
-            >
-              {title}
-            </p>
-            <ul className="">
-              {submenu.map((item) => (
-                <li key={item.id} className="bg-[#3A2F7D]">
-                  {item.slug === "/documents/uz_laws" ? (
-                    <div className="gradientBox  bg-[#3A2F7D]">
-                      <Link
-                        className="block py-[10px] px-[16px] mx-[3px] hover:bg-[#24224E] bg-[#171142] text-white"
-                        href={`${item.slug == null ? item.link : item.slug}`}
-                        target={`${item.slug == null ? "__blank" : "_self"}`}
-                      >
-                        {item.title}
-                      </Link>
-                    </div>
-                  ) : (
-                    <div className="gradientBox bg-[#3A2F7D]">
-                      <Link
-                        className="block py-[10px] px-[16px] hover:bg-[#24224E] hover:text-white bg-[#3A2F7D] text-[#A2A0B3]"
-                        locale={locale}
-                        href={`${item.slug == null ? item.link : item.slug}`}
-                        target={`${item.slug == null ? "__blank" : "_self"}`}
-                      >
-                        {item.title}
-                      </Link>
-                    </div>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <Sidebar />
         </div>
       </div>
     </div>

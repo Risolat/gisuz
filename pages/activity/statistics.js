@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "../../http";
-import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -15,7 +14,6 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import BarChart from "../../components/BarChart.js";
 import Draugh from "../../components/Draugh";
 import HorizonatBarChart from "../../components/HorizontalBarChart.js";
 ChartJS.register(
@@ -28,7 +26,7 @@ ChartJS.register(
 );
 import { Montserrat } from "next/font/google";
 import Head from "next/head";
-import FirstChart from "@/components/FirstChart";
+import Sidebar from "@/components/Sidebar";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -40,22 +38,6 @@ export const options = {
     // padding: 10,
   },
   indexAxis: "y",
-  // scales: {
-  //   x: {
-  //     // <-- axis is not array anymore, unlike before in v2.x: '[{'
-  //     grid: {
-  //       color: "#ccc",
-  //       borderColor: "red", // <-- this line is answer to initial question
-  //     },
-  //   },
-  //   y: {
-  //     // <-- axis is not array anymore, unlike before in v2.x: '[{'
-  //     grid: {
-  //       color: "#ccc",
-  //       borderColor: "green", // <-- this line is answer to initial question
-  //     },
-  //   },
-  // },
   plugins: {
     legend: {
       position: "top",
@@ -70,12 +52,7 @@ export const options = {
   },
 };
 
-// const labels = ["2019"];
-
 const page = () => {
-  const [title, setTitle] = useState();
-  const [submenu, setSubmenu] = useState([]);
-  const [name1, setname1] = useState("");
   const [indicators, setIndicators] = useState([]);
   const [indicatorsNum, setIndicatorsNum] = useState([]);
   const [indicatorSecond, setIndicatorSecond] = useState([]);
@@ -136,24 +113,7 @@ const page = () => {
     ],
   };
 
-  const getData = async () => {
-    const response = await axios.get(`/${locale}/api/menu/`);
-
-    const menuName = ["ACTIVITY"];
-
-    const data = response.data.filter((category) =>
-      menuName.includes(category.name)
-    );
-
-    const title = data.map((d) => {
-      return d.title;
-    });
-    setTitle(title);
-    setSubmenu(data[0].submenu);
-  };
-
   useEffect(() => {
-    getData();
     getBarData();
   }, []);
   return (
@@ -210,21 +170,6 @@ const page = () => {
                 : "The number of appeals received by the inspection ”Uzkomnazorat”"}
             </h1>
             <Bar options={options} data={data} className="w-full mb-[50px]" />
-            {/* <FirstChart
-              labels={indicators}
-              data={indicatorsNum}
-              backgroundColors={backgroundColors}
-            /> */}
-            {/* <h1 className="text-[1.35em] xl:text-[2em] text-[#A2A0B3] py-[20px]  mr-[20px]">
-              {locale === "uz"
-                ? "Qurilishi tugallangan telekommunikatsiya qurilmalarini davlat tomonidan qabul qilish toʻgʻrisida maʼlumot"
-                : locale === "ru"
-                ? "Информация о государственной приемке законченных строительством объектов телекоммуникации"
-                : locale === "uzb"
-                ? "Қурилиши тугалланган телекоммуникация қурилмаларини давлат томонидан қабул қилиш тўғрисида маълумот"
-                : "Information on the state acceptance of completed construction of telecommunications facilities"}
-            </h1>
-            <BarChart className="w-full mb-[50px]" /> */}
             <Draugh className="w-full mb-[50px]" />
             <HorizonatBarChart
               className="mr-[20px]"
@@ -232,61 +177,7 @@ const page = () => {
               indicatorsNumSecond={indicatorsNumSecond}
             />
           </div>
-          <div className="sticky top-[197px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0 py-[8px] bg-[#3A2F7D]">
-            <p
-              className={`${montserrat.variable} font-semibold font-montserrat mb-[24px] text-[1.12rem] px-[16px]`}
-            >
-              {title}
-            </p>
-            <ul className="">
-              {submenu.map((item) => (
-                <li key={item.id} className="bg-[#3A2F7D]">
-                  {item.slug === "/activity/statistics" ? (
-                    <div className="gradientBox  bg-[#3A2F7D]">
-                      <Link
-                        className="block py-[10px] px-[16px] mx-[3px] hover:bg-[#24224E] bg-[#171142] text-white"
-                        href={`${
-                          item.slug === "/activity/strategy" ||
-                          item.slug == null
-                            ? item.link
-                            : item.slug
-                        }`}
-                        target={`${
-                          item.slug === "/activity/strategy" ||
-                          item.slug == null
-                            ? "_blank"
-                            : "_self"
-                        }`}
-                      >
-                        {item.title}
-                      </Link>
-                    </div>
-                  ) : (
-                    <div className="gradientBox bg-[#3A2F7D]">
-                      <Link
-                        className="block py-[10px] px-[16px] hover:bg-[#24224E] hover:text-white bg-[#3A2F7D] text-[#A2A0B3]"
-                        locale={locale}
-                        href={`${
-                          item.slug === "/activity/strategy" ||
-                          item.slug == null
-                            ? item.link
-                            : item.slug
-                        }`}
-                        target={`${
-                          item.slug === "/activity/strategy" ||
-                          item.slug == null
-                            ? "_blank"
-                            : "_self"
-                        }`}
-                      >
-                        {item.title}
-                      </Link>
-                    </div>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <Sidebar />
         </div>
       </div>
     </div>

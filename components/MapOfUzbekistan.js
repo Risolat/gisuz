@@ -6,9 +6,9 @@ import hudud from "../public/photos/main/hudud.svg";
 import map from "../public/photos/main/hudud-addr.svg";
 import mail from "../public/photos/main/mail-hudud.svg";
 import tel from "../public/photos/main/tel-hudud.svg";
-import axios from "../http";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
+import { mapOfUzb } from "@/http/api";
 
 const MapOfUzbekistan = () => {
   const { t } = useTranslation("common");
@@ -16,14 +16,10 @@ const MapOfUzbekistan = () => {
   const [regionData, setRegionData] = useState([]);
 
   const getAreaData = async (areaId = 10) => {
-    const response = await axios.get(
-      `/${locale}/api/employee/territory/territorialInspectionByRegionId/?region_id=${areaId}`
-    );
-    const regionData = response.data;
-    setRegionData(regionData);
+    const data = await mapOfUzb(locale, areaId);
+    setRegionData(data);
   };
   function showTooltip(event) {
-    console.log(event);
     const tooltip = event.target.dataset.title;
     const span = document.getElementById("tooltip");
     span.style.left = event.pageX + 10 + "px";

@@ -1,6 +1,7 @@
 import React from "react";
 import NavbarTop from "./NavbarTop";
 import NavbarBottom from "./NavbarBottom";
+import Sidebar from "./Sidebar";
 
 const Navbar = () => {
   return (

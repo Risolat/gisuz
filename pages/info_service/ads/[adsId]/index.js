@@ -8,8 +8,9 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../../../next-i18next.config";
 import { Icon } from "@iconify/react";
 import Head from "next/head";
+import Sidebar from "@/components/Sidebar";
 
-const adsDetail = ({ ads, view, title, submenu, photos, locale, query }) => {
+const adsDetail = ({ ads, view, photos, locale, query }) => {
   return (
     <div>
       <Head>
@@ -97,24 +98,7 @@ const adsDetail = ({ ads, view, title, submenu, photos, locale, query }) => {
               </div>
             </div>
           </div>
-          <div className="sticky top-[197px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0 py-[8px] bg-[#3A2F7D]">
-            <p className="mb-[24px] text-[20px] px-[16px]">{title}</p>
-            <ul className="">
-              {submenu.map((item) => (
-                <li key={item.id} className="bg-[#3A2F7D]">
-                  <div className="gradientBox bg-[#3A2F7D]">
-                    <Link
-                      className="block py-[10px] px-[16px] hover:bg-[#24224E] hover:text-white bg-[#3A2F7D] text-[#A2A0B3]"
-                      locale={locale}
-                      href={`${item.slug}`}
-                    >
-                      {item.title}
-                    </Link>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <Sidebar />
         </div>
       </div>
     </div>
@@ -127,19 +111,10 @@ export async function getServerSideProps(context) {
   const res = await axios(`/${locale}/api/information_service/${query}`);
   const ads = await res.data;
 
-  const response = await axios.get(`/${locale}/api/menu/`);
-  const menuName = ["INFORMATION_SERVICE"];
-  const menu = response.data.filter((category) =>
-    menuName.includes(category.name)
-  );
   const view = await axios(
     `/${locale}/api/information_service/view_count/${query}`
   );
-  console.log(view);
 
-  const title = menu.map((d) => {
-    return d.title;
-  });
   return {
     props: {
       ...(await serverSideTranslations(locale, ["common"], i18nextConfig)),
@@ -147,8 +122,6 @@ export async function getServerSideProps(context) {
       view: view.data.num_views,
       query: context.query.adsId,
       photos: res.data.images,
-      title: title,
-      submenu: menu[0].submenu,
       locale: locale,
     },
   };

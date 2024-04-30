@@ -9,7 +9,6 @@ import Interactive from "@/components/Interactive";
 import Statistics from "@/components/Statistics";
 import MapOfUzbekistan from "@/components/MapOfUzbekistan";
 import Partners from "@/components/Partners";
-import axios from "axios";
 
 const inter = Inter({
   subsets: ["latin"],

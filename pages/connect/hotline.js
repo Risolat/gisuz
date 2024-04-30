@@ -4,12 +4,13 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../next-i18next.config";
 import { Montserrat } from "next/font/google";
 import Head from "next/head";
+import Sidebar from "@/components/Sidebar";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
 });
-const page = ({ hotline, title, submenu, locale }) => {
+const page = ({ hotline }) => {
   return (
     <div>
       <Head>
@@ -45,40 +46,7 @@ const page = ({ hotline, title, submenu, locale }) => {
               />
             </div>
           </div>
-          <div className="sticky top-[197px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0 py-[8px] bg-[#3A2F7D]">
-            <p
-              className={`${montserrat.variable} font-semibold font-montserrat mb-[24px] text-[20px] px-[16px]`}
-            >
-              {title}
-            </p>
-            <ul className="">
-              {submenu.map((item) => (
-                <li key={item.id} className="">
-                  {item.slug === "/connect/hotline" ? (
-                    <div className="gradientBox">
-                      <Link
-                        locale={locale}
-                        className="block py-[10px] px-[16px] mx-[3px] bg-[#171142] hover:bg-[#24224E]"
-                        href={`${item.slug}`}
-                      >
-                        {item.title}
-                      </Link>
-                    </div>
-                  ) : (
-                    <div className="gradientBox">
-                      <Link
-                        className="block py-[10px] px-[16px] hover:bg-[#24224E]"
-                        locale={locale}
-                        href={`${item.slug}`}
-                      >
-                        {item.title}
-                      </Link>
-                    </div>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <Sidebar />
         </div>
       </div>
     </div>
@@ -91,22 +59,10 @@ export async function getServerSideProps(context) {
     `/${locale}/api/contact/helplineBySubmenu/?submenu_slug=/connect/hotline`
   );
   const hotline = await res.data[0];
-
-  const response = await axios.get(`/${locale}/api/menu/`);
-  const menuName = ["NETWORK"];
-  const menu = response.data.filter((category) =>
-    menuName.includes(category.name)
-  );
-  const title = menu.map((d) => {
-    return d.title;
-  });
   return {
     props: {
       ...(await serverSideTranslations(locale, ["common"], i18nextConfig)),
       hotline: hotline,
-      title: title,
-      submenu: menu[0].submenu,
-      locale: locale,
     },
   };
 }

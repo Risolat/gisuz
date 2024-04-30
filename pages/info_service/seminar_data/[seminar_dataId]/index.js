@@ -3,7 +3,9 @@ import Link from "next/link";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../../../next-i18next.config";
 import Head from "next/head";
-const seminarDataDetail = ({ seminar_data, title, submenu, locale }) => {
+import Sidebar from "@/components/Sidebar";
+
+const seminarDataDetail = ({ seminar_data }) => {
   return (
     <div>
       <Head>
@@ -23,24 +25,7 @@ const seminarDataDetail = ({ seminar_data, title, submenu, locale }) => {
               />
             </div>
           </div>
-          <div className="sticky top-[160px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0  py-[8px] bg-[#3A2F7D]">
-            <p className="mb-[24px] text-[20px] px-[16px]">{title}</p>
-            <ul className="">
-              {submenu.map((item) => (
-                <li key={item.id} className="bg-[#3A2F7D]">
-                  <div className="gradientBox bg-[#3A2F7D]">
-                    <Link
-                      className="block py-[10px] px-[16px] hover:bg-[#24224E] hover:text-white bg-[#3A2F7D] text-[#A2A0B3]"
-                      locale={locale}
-                      href={`${item.slug}`}
-                    >
-                      {item.title}
-                    </Link>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <Sidebar />
         </div>
       </div>
     </div>
@@ -55,23 +40,11 @@ export async function getServerSideProps(context) {
     `/${locale}/api/information_service/additional_info/${query}`
   );
   const data = await res.data;
-  const response = await axios.get(`/${locale}/api/menu/`);
-
-  const menuName = ["INFORMATION_SERVICE"];
-  const menu = response.data.filter((category) =>
-    menuName.includes(category.name)
-  );
-  const title = menu.map((d) => {
-    return d.title;
-  });
 
   return {
     props: {
       ...(await serverSideTranslations(locale, ["common"], i18nextConfig)),
       seminar_data: data,
-      title: title,
-      submenu: menu[0].submenu,
-      locale: locale,
     },
   };
 }

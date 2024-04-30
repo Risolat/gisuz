@@ -11,17 +11,18 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import i18nextConfig from "../../../../next-i18next.config";
 import { Montserrat } from "next/font/google";
 import Head from "next/head";
+import Sidebar from "@/components/Sidebar";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
 });
 
-const reportsDetail = ({ title, submenu, images, reports, locale }) => {
+const reportsDetail = ({ images, reports }) => {
   const onInit = () => {
     console.log("lightGallery has been initialized");
   };
-  console.log(reports)
+  console.log(reports);
 
   return (
     <div className="mb-[150px]">
@@ -63,37 +64,7 @@ const reportsDetail = ({ title, submenu, images, reports, locale }) => {
               </div>
             </div>
           </div>
-          <div className="sticky top-[197px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0 py-[8px] bg-[#3A2F7D]">
-            <p
-              className={`${montserrat.variable} font-semibold font-montserrat mb-[24px] text-[1.12rem] px-[16px]`}
-            >
-              {title}
-            </p>
-            <ul className="">
-              {submenu.map((item) => (
-                <li key={item.id} className="bg-[#3A2F7D]">
-                  <div className="gradientBox bg-[#3A2F7D]">
-                    <Link
-                      className="block py-[10px] px-[16px] hover:bg-[#24224E] hover:text-white bg-[#3A2F7D] text-[#A2A0B3]"
-                      locale={locale}
-                      href={`${
-                        item.slug === "/activity/strategy" || item.slug == null
-                          ? item.link
-                          : item.slug
-                      }`}
-                      target={`${
-                        item.slug === "/activity/strategy" || item.slug == null
-                          ? "_blank"
-                          : "_self"
-                      }`}
-                    >
-                      {item.title}
-                    </Link>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <Sidebar />
         </div>
       </div>
     </div>
@@ -105,25 +76,11 @@ export async function getServerSideProps(context) {
   const query = context.query.reportsId;
   const res = await axios(`/${locale}/api/activity/${query}`);
   const data = await res.data;
-  const response = await axios.get(`/${locale}/api/menu/`);
-
-  const menuName = ["ACTIVITY"];
-
-  const menu = response.data.filter((category) =>
-    menuName.includes(category.name)
-  );
-
-  const title = menu.map((d) => {
-    return d.title;
-  });
   return {
     props: {
       ...(await serverSideTranslations(locale, ["common"], i18nextConfig)),
       reports: data,
       images: data.images,
-      title: title,
-      submenu: menu[0].submenu,
-      locale: locale,
     },
   };
 }

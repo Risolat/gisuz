@@ -8,6 +8,7 @@ import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
+import { getPartners } from "@/http/api";
 
 const Partners = () => {
   const { t } = useTranslation("common");
@@ -19,13 +20,9 @@ const Partners = () => {
     1360: { items: 4 },
   };
   const [partners, setPartners] = useState([]);
-  const getPartners = async () => {
-    const response =
-      await axios.get(`/${locale}/api/partners/?0=p&1=a&2=r&3=t&4=n&5=e&6=r&7=s
-    `);
-    const partners = response.data;
-
-    setPartners(partners);
+  const getData = async () => {
+    const data = await getPartners(locale);
+    setPartners(data);
   };
   const items = partners.map((p, i) => (
     <div className="item mx-[10px]" key={i} data-value="1">
@@ -49,7 +46,7 @@ const Partners = () => {
   ));
 
   useEffect(() => {
-    getPartners();
+    getData();
   }, []);
   return (
     <div className="container z-1">

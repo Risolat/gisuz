@@ -12,12 +12,13 @@ import i18nextConfig from "../../next-i18next.config";
 import { Montserrat } from "next/font/google";
 import Head from "next/head";
 import dayjs from "dayjs";
+import Sidebar from "@/components/Sidebar";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
 });
-const page = ({ title, submenu, infographics, locale }) => {
+const page = ({ infographics }) => {
   const onInit = () => {
     console.log("lightGallery has been initialized");
   };
@@ -27,13 +28,17 @@ const page = ({ title, submenu, infographics, locale }) => {
         <title>{infographics[0].sub_menu}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <div className={`${montserrat.variable} container font-montserrat`}>
+      <div className="container">
         <div className="flex flex-col 2xl:flex-row  2xl:items-start items-center py-[40px]">
-          <div className="2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px]">
+          <div
+            className={`${montserrat.variable} font-montserrat 2xl:basis-3/4 basis-full w-full pl-[20px] 2xl:pl-0 mb-[20px]`}
+          >
             <h3 className="text-white description-html font-semibold font-montserrat text-[1.35em] xl:text-[2em] leading-[32px] xl:leading-[44px] mb-[30px]">
               {infographics[0].sub_menu}
             </h3>
-            <p className="pb-2 text-[18px] text-[#A2A0B3]">{dayjs(infographics[0].updated_at).format("DD.MM.YYYY")}</p>
+            <p className="pb-2 text-[18px] text-[#A2A0B3]">
+              {dayjs(infographics[0].updated_at).format("DD.MM.YYYY")}
+            </p>
             <div className="mr-[20px]">
               <div className="flex items-center justify-center flex-wrap">
                 <LightGallery
@@ -64,37 +69,7 @@ const page = ({ title, submenu, infographics, locale }) => {
               </div>
             </div>
           </div>
-          <div className="sticky top-[272px] 2xl:w-[350px] w-full 2xl:basis-1/4 basis-full mx-[20px] 2xl:mx-0  py-[8px] bg-[#3A2F7D]">
-            <p className="mb-[24px] text-[20px] px-[16px] font-montserrat font-semibold">
-              {title}
-            </p>
-            <ul className="">
-              {submenu.map((item) => (
-                <li key={item.id} className="bg-[#3A2F7D]">
-                  {item.slug === "/info_service/infographics" ? (
-                    <div className="gradientBox  bg-[#3A2F7D] font-inter">
-                      <Link
-                        className="block py-[10px] px-[16px] mx-[3px] hover:bg-[#24224E] bg-[#171142] text-white font-inter"
-                        href={`${item.slug}`}
-                      >
-                        {item.title}
-                      </Link>
-                    </div>
-                  ) : (
-                    <div className="gradientBox bg-[#3A2F7D]">
-                      <Link
-                        className="block py-[10px] px-[16px] hover:bg-[#24224E] hover:text-white bg-[#3A2F7D] text-[#A2A0B3] font-inter"
-                        locale={locale}
-                        href={`${item.slug}`}
-                      >
-                        {item.title}
-                      </Link>
-                    </div>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <Sidebar />
         </div>
       </div>
     </div>
@@ -108,22 +83,10 @@ export async function getServerSideProps(context) {
     `/${locale}/api/information_service/infographicsBySlug/?submenu_slug=/info_service/infographics`
   );
   const data = await res.data;
-
-  const response = await axios.get(`/${locale}/api/menu/`);
-  const menuName = ["INFORMATION_SERVICE"];
-  const menu = response.data.filter((category) =>
-    menuName.includes(category.name)
-  );
-  const title = menu.map((d) => {
-    return d.title;
-  });
   return {
     props: {
       ...(await serverSideTranslations(locale, ["common"], i18nextConfig)),
       infographics: data,
-      title: title,
-      submenu: menu[0].submenu,
-      locale: locale,
     },
   };
 }
