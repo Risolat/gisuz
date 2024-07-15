@@ -62,7 +62,7 @@ const Footer = () => {
               {locale === "uz"
                 ? "Copyright © 2019 - 2022 Raqamli texnologiyalar vazirligi huzuridagi Axborotlashtirish va telekommunikatsiyalar sohasida nazorat inspeksiyasi rasmiy veb-sayti. Mualliflik huquqlari himoyalangan"
                 : locale === "ru"
-                ? "Copyright © 2019 - 2022 Официальный веб-сайт Инспекция по контролю в сфере информатизации и телекоммуникаций при Министерстве цифровых технологий. Авторские права защищены"
+                ? "Copyright © 2019 - 2022 Официальный веб-сайт Инспекции по контролю в сфере информатизации и телекоммуникаций при Министерстве цифровых технологий. Авторские права защищены"
                 : locale === "uzb"
                 ? "Copyright © 2019 - 2022 Рақамли технологиялар вазирлиги ҳузуридаги Ахборотлаштириш ва телекоммуникациялар соҳасида назорат инспекцияси расмий веб-сайти. Муаллифлик ҳуқуқлари ҳимояланган"
                 : "Copyright © 2019 - 2022 Official website of the Inspection for Control in the Field of Information and Telecommunications under the Ministry of Digital Technologies of the Republic of Uzbekistan."}
